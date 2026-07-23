@@ -7,4 +7,44 @@ Tested up to: 8.0
 Requires PHP: 8.0
 License: GNU General Public License v2 or later
 License URI: LICENSE
-Text Domain: custom-theme
+Text Domain: custom-theme*/
+
+/* Desktop Menu - Tailwind Style */
+body{
+    background-color: #3A7D44;
+}
+.primary-menu a {
+    position: relative;
+    text-decoration: none;
+    color: #888888;
+    font-size: 0.78rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    padding: 6px 10px;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+}
+
+.primary-menu a:hover {
+    color: #fff;
+    background: rgba(255,255,255,0.05);
+}
+
+/* Active Menu Item */
+.primary-menu .current-menu-item a,
+.primary-menu .current_page_item a {
+    color: #fff;
+}
+
+.primary-menu .current-menu-item a::after,
+.primary-menu .current_page_item a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 10px;
+    right: 10px;
+    height: 2px;
+    background: #3A7D44;
+    border-radius: 2px;
+}

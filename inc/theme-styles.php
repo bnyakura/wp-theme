@@ -12,16 +12,39 @@ if ( ! function_exists( 'custom_theme_enqueue_styles' ) ) {
 	 * @return void
 	 */
 	function custom_theme_enqueue_styles(): void {
-		$stylesheet_path = '/dist/css/app.css';
+		$stylesheet_path = '/assets/css/tailwind.css';        // ← compiled output
 		$stylesheet_file = get_template_directory() . $stylesheet_path;
 		$stylesheet_uri  = get_template_directory_uri() . $stylesheet_path;
 
-		wp_enqueue_style(
-			'custom-theme-styles',
-			$stylesheet_uri,
-			array(),
-			file_exists( $stylesheet_file ) ? filemtime( $stylesheet_file ) : wp_get_theme()->get( 'Version' )
-		);
+		// Only enqueue if the compiled file exists
+		if ( file_exists( $stylesheet_file ) ) {
+			wp_enqueue_style(
+				'custom-theme-styles',
+				$stylesheet_uri,
+				array(),
+				filemtime( $stylesheet_file )
+			);
+		} else {
+			// Fallback: show admin notice if CSS hasn't been built
+			add_action( 'admin_notices', function() {
+				echo '<div class="notice notice-error"><p><strong>Theme Error:</strong> Compiled CSS not found. Run <code>npm run build:css</code> to generate <code>assets/css/app.css</code>.</p></div>';
+			});
+		}
 	}
 }
+
+
+
+function iron_gorilla_enqueue_icons() {
+
+    wp_enqueue_style(
+        'font-awesome',
+        'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css',
+        [],
+        '6.5.2'
+    );
+
+}
+
+add_action('wp_enqueue_scripts', 'iron_gorilla_enqueue_icons');
 add_action( 'wp_enqueue_scripts', 'custom_theme_enqueue_styles' );

@@ -1,0 +1,126 @@
+@import "tailwindcss";
+
+@import "tailwindcss";
+
+/*
+ * IGA design tokens (ported from the old CSS custom properties).
+ * Tailwind v4 auto-detects all .php files in the theme when scanning for classes.
+ */
+@theme {
+  --color-ink: #0A0A0A;
+  --color-s1: #141414;
+  --color-s2: #1C1C1C;
+  --color-s3: #242424;
+  --color-green: #3A7D44;
+  --color-green-l: #4E9E5A;
+  --color-green-d: #2A5C32;
+  --color-amber: #C47B2B;
+  --color-off: #F2F2F2;
+  --color-muted: #888888;
+  --color-muted-l: #AAAAAA;
+  --color-line: rgba(255, 255, 255, 0.07);
+  --color-line-strong: rgba(255, 255, 255, 0.14);
+
+  --font-sans: "DM Sans", sans-serif;
+  --font-display: "Bebas Neue", sans-serif;
+
+  /* Hero autoplay progress bar */
+  --animate-slide-progress: slide-progress 6000ms linear forwards;
+  @keyframes slide-progress {
+    from { width: 0%; }
+    to   { width: 100%; }
+  }
+}
+
+/*
+ * Base layer — restores the original global stylesheet's html/body defaults
+ * (dark background, DM Sans, off-white text, 1.6 line-height, no horizontal
+ * scroll). Tailwind preflight does NOT set these, and without them the whole
+ * site renders on a white page. The original's `body { padding-top: 80px }`
+ * is deliberately omitted until the fixed header is converted.
+ */
+@layer base {
+  html {
+    @apply overflow-x-hidden scroll-smooth;
+  }
+
+  body {
+    @apply overflow-x-hidden bg-ink font-sans leading-[1.6] text-off antialiased;
+  }
+}
+
+
+/* Desktop + Mobile Menu Links */
+.primary-menu a,
+.mobile-nav a {
+
+    position: relative;
+    text-decoration: none;
+
+    color: #888888;
+
+    font-size: 0.78rem;
+    font-weight: 600;
+
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+
+    padding: 6px 10px;
+
+    border-radius: 6px;
+
+    transition: all 0.2s ease;
+}
+
+
+/* Hover */
+.primary-menu a:hover,
+.mobile-nav a:hover {
+
+    color: #fff;
+
+    background: rgba(255,255,255,0.05);
+
+}
+
+
+/* Active Menu Item */
+.primary-menu .current-menu-item a,
+.primary-menu .current_page_item a,
+.mobile-nav .current-menu-item a,
+.mobile-nav .current_page_item a {
+
+    color: #fff;
+
+}
+
+
+/* Active underline */
+.primary-menu .current-menu-item a::after,
+.primary-menu .current_page_item a::after,
+.mobile-nav .current-menu-item a::after,
+.mobile-nav .current_page_item a::after {
+
+    content: '';
+
+    position: absolute;
+
+    bottom: -2px;
+
+    left: 10px;
+
+    right: 10px;
+
+    height: 2px;
+
+    background: #3A7D44;
+
+    border-radius: 2px;
+
+}
+
+.mobile-nav a {
+    display: block;
+    width: 100%;
+    padding: 12px 15px;
+}

@@ -1,130 +1,150 @@
 <?php
 /**
- * The footer for the custom-theme theme.
+ * The template for displaying the footer.
  *
- * @package custom-theme
+ * Contains the site footer and the closing of the <body> and <html> tags.
+ * Anything opened in header.php (e.g. a #page wrapper div) must be closed
+ * here, before wp_footer().
+ *
+ * @package IGA
  */
 
-$footer_logo      = get_field( 'footer_logo', 'option' );
-$footer_columns   = get_field( 'footer_columns', 'option' );
-$social_links     = get_field( 'footer_social_links', 'option' );
-$copyright_text   = get_field( 'footer_copyright_text', 'option' );
-$current_year     = gmdate( 'Y' );
-$site_title       = get_bloginfo( 'name' );
+$logo_id  = get_theme_mod( 'custom_logo' );
+$logo_url = $logo_id
+	? wp_get_attachment_image_url( $logo_id, 'full' )
+	: get_theme_file_uri( 'assets/images/logo.png' );
+
+$instagram_url = get_theme_mod( 'iga_instagram_url', 'https://www.instagram.com/irongorillaarmy' );
 ?>
 
-</main>
+<?php // Close header.php wrappers here if needed, e.g. </div><!-- #page -->. ?>
 
-<footer class="site-footer bg-primary text-base">
-	<div class="mx-auto max-w-7xl px-4 py-12 lg:px-8">
+<footer class="border-t border-line bg-s1 px-[5vw] pb-8 pt-[60px]">
+	<div class="mb-12 grid grid-cols-1 gap-10 min-[601px]:grid-cols-2 min-[1081px]:grid-cols-[2fr_1fr_1fr_1fr]">
 
-		<?php if ( $footer_logo || $footer_columns ) : ?>
-			<div class="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
-				<div class="footer-logo">
-					<?php if ( $footer_logo ) : ?>
-						<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
-							<?php
-							echo wp_get_attachment_image(
-								$footer_logo,
-								'medium',
-								false,
-								array(
-									'class' => 'h-auto max-w-40',
-									'alt'   => esc_attr( $site_title ),
-								)
-							);
-							?>
-						</a>
-					<?php endif; ?>
-				</div>
-
-				<?php
-				if ( $footer_columns ) :
-					foreach ( $footer_columns as $footer_column ) :
-						$column_title = $footer_column['column_title'] ?? '';
-						$menu_id      = $footer_column['column_menu'] ?? '';
-						?>
-
-						<div class="footer-menu-column">
-							<?php if ( $column_title ) : ?>
-								<h2 class="mb-4 font-heading text-lg font-semibold text-heading">
-									<?php echo esc_html( $column_title ); ?>
-								</h2>
-							<?php endif; ?>
-
-							<?php
-							if ( $menu_id ) {
-								wp_nav_menu(
-									array(
-										'menu'           => $menu_id,
-										'container'      => false,
-										'menu_class'     => 'space-y-2 text-sm',
-										'fallback_cb'    => false,
-										'depth'          => 1,
-									)
-								);
-							}
-							?>
-						</div>
-
-						<?php
-					endforeach;
-				endif;
-				?>
-			</div>
-		<?php endif; ?>
-
-		<div class="mt-10 border-t border-white/20 pt-6 md:flex md:items-center md:justify-between">
-			<?php if ( $social_links ) : ?>
-				<ul class="mb-6 flex items-center gap-4 md:mb-0">
-					<?php foreach ( $social_links as $social_link ) : ?>
-						<?php
-						$icon = $social_link['icon_code'] ?? '';
-						$url  = $social_link['url'] ?? '';
-						?>
-
-						<?php if ( $icon && $url ) : ?>
-							<li>
-								<a
-									class="inline-flex size-10 items-center justify-center rounded-full border border-white/30 transition hover:bg-white/10"
-									href="<?php echo esc_url( $url ); ?>"
-									target="_blank"
-									rel="noopener noreferrer"
-								>
-									<span class="sr-only">
-										<?php esc_html_e( 'Social media link', 'custom-theme' ); ?>
-									</span>
-
-									<?php echo wp_kses_post( $icon ); ?>
-								</a>
-							</li>
-						<?php endif; ?>
-					<?php endforeach; ?>
-				</ul>
-			<?php endif; ?>
-
-			<p class="text-sm">
-				<?php
-				if ( $copyright_text ) {
-					echo esc_html(
-						str_replace(
-							array( '{year}', '{site_title}' ),
-							array( $current_year, $site_title ),
-							$copyright_text
-						)
-					);
-				} else {
-					printf(
-						esc_html__( '© %1$s %2$s. All rights reserved.', 'custom-theme' ),
-						esc_html( $current_year ),
-						esc_html( $site_title )
-					);
-				}
-				?>
+		<!-- Brand -->
+		<div class="min-[601px]:col-span-2 min-[1081px]:col-span-1">
+			<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="mb-5 flex items-center gap-[15px] transition-opacity duration-200 hover:opacity-85">
+				<img
+					src="<?php echo esc_url( $logo_url ); ?>"
+					alt="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>"
+					width="45"
+					height="45"
+					class="block h-[45px] w-auto rounded-lg"
+				/>
+				<span class="mt-1 font-display text-[1.8rem] uppercase tracking-[2px] text-white">
+					Iron <span class="text-green-l">Gorilla</span> Army
+				</span>
+			</a>
+			<p class="max-w-[300px] text-[0.95rem] leading-[1.7] text-muted">
+				<?php esc_html_e( 'A community built around iron and faith. Salt River, Cape Town. Forging people of discipline, purpose, and strength since 2022.', 'iga' ); ?>
 			</p>
+		</div>
+
+		<!-- Navigate -->
+		<nav aria-label="<?php esc_attr_e( 'Footer navigation', 'iga' ); ?>">
+			<h4 class="mb-4 font-display text-[0.8rem] font-bold uppercase tracking-[2px] text-green-l">
+				<?php esc_html_e( 'Navigate', 'iga' ); ?>
+			</h4>
+			<?php
+			wp_nav_menu(
+				[
+					'theme_location' => 'footer',
+					'container'      => false,
+					'menu_class'     => 'flex list-none flex-col gap-2.5',
+					'fallback_cb'    => 'iga_footer_nav_fallback',
+					'depth'          => 1,
+				]
+			);
+			?>
+		</nav>
+
+		<!-- Get In -->
+		<div>
+			<h4 class="mb-4 font-display text-[0.8rem] font-bold uppercase tracking-[2px] text-green-l">
+				<?php esc_html_e( 'Get In', 'iga' ); ?>
+			</h4>
+			<ul class="flex list-none flex-col gap-2.5">
+				<li>
+					<button
+						type="button"
+						data-modal-open="enlist-modal"
+						class="cursor-pointer p-0 text-[0.95rem] text-muted-l transition-colors duration-200 hover:text-white"
+					>
+						<?php esc_html_e( 'Enlist Now', 'iga' ); ?>
+					</button>
+				</li>
+				<li>
+					<a href="<?php echo esc_url( home_url( '/book/' ) ); ?>" class="text-[0.95rem] text-muted-l transition-colors duration-200 hover:text-white">
+						<?php esc_html_e( 'Book Drop-In', 'iga' ); ?>
+					</a>
+				</li>
+				<li>
+					<a href="<?php echo esc_url( home_url( '/contact/' ) ); ?>" class="text-[0.95rem] text-muted-l transition-colors duration-200 hover:text-white">
+						<?php esc_html_e( 'Contact Us', 'iga' ); ?>
+					</a>
+				</li>
+			</ul>
+		</div>
+
+		<!-- Find Us -->
+		<div>
+			<h4 class="mb-4 font-display text-[0.8rem] font-bold uppercase tracking-[2px] text-green-l">
+				<?php esc_html_e( 'Find Us', 'iga' ); ?>
+			</h4>
+			<address class="text-[0.95rem] not-italic leading-[1.8] text-muted-l">
+				Unit 209 Salt Circle, Kent Str.<br />
+				Salt River, Cape Town
+			</address>
+			<ul class="mt-4 flex list-none flex-col">
+				<li class="flex justify-between text-[0.9rem] text-muted-l">
+					<span><?php esc_html_e( 'Mon – Sat', 'iga' ); ?></span>
+					<span class="text-white"><?php esc_html_e( '6AM – 9PM', 'iga' ); ?></span>
+				</li>
+				<li class="mt-2 flex justify-between text-[0.9rem] text-muted">
+					<span><?php esc_html_e( 'Sunday', 'iga' ); ?></span>
+					<span><?php esc_html_e( 'Closed', 'iga' ); ?></span>
+				</li>
+			</ul>
+		</div>
+
+	</div>
+
+	<!-- Bottom bar -->
+	<div class="flex flex-col items-start gap-3 border-t border-line pt-6 min-[601px]:flex-row min-[601px]:flex-wrap min-[601px]:items-center min-[601px]:justify-between">
+		<p class="text-[0.85rem] text-muted">
+			<?php
+			printf(
+				/* translators: %s: current year. */
+				esc_html__( '© %s Iron Gorilla Army. All rights reserved.', 'iga' ),
+				esc_html( date_i18n( 'Y' ) )
+			);
+			?>&nbsp;&nbsp;
+			<a href="<?php echo esc_url( home_url( '/terms/' ) ); ?>" class="text-[0.8rem] text-muted"><?php esc_html_e( 'Terms', 'iga' ); ?></a>
+			&middot;
+			<a href="<?php echo esc_url( home_url( '/privacy/' ) ); ?>" class="text-[0.8rem] text-muted"><?php esc_html_e( 'Privacy', 'iga' ); ?></a>
+			&middot;
+			<a href="<?php echo esc_url( home_url( '/refund/' ) ); ?>" class="text-[0.8rem] text-muted"><?php esc_html_e( 'Refunds', 'iga' ); ?></a>
+		</p>
+
+		<div class="flex gap-3">
+			<a
+				href="<?php echo esc_url( $instagram_url ); ?>"
+				target="_blank"
+				rel="noopener noreferrer"
+				aria-label="Instagram"
+				class="flex h-10 w-10 items-center justify-center rounded-full border border-line-strong text-base text-muted transition-all duration-200 hover:border-white/30 hover:bg-s3 hover:text-white"
+			>
+				<i class="fa-brands fa-instagram" aria-hidden="true"></i>
+			</a>
 		</div>
 	</div>
 </footer>
+
+<?php
+// Render the enlist modal so the footer trigger (and any other page) can open it.
+get_template_part( 'template-parts/modal', 'enlist' );
+?>
 
 <?php wp_footer(); ?>
 

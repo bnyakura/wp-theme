@@ -1,101 +1,125 @@
-<?php
-/**
- * The header for the custom-theme.
- *
- * @package custom-theme
- */
-
-$primary_colour   = get_field( 'primary_colour', 'option' ) ?: '#0057ff';
-$secondary_colour = get_field( 'secondary_colour', 'option' ) ?: '#00a6a6';
-$base_colour      = get_field( 'base_colour', 'option' ) ?: '#ffffff';
-$heading_colour   = get_field( 'heading_colour', 'option' ) ?: '#111827';
-$font_colour      = get_field( 'font_colour', 'option' ) ?: '#374151';
-
-$heading_font = get_field( 'heading_font_family', 'option' ) ?: 'Inter';
-$body_font    = get_field( 'body_font_family', 'option' ) ?: 'Inter';
-
-$site_name = get_bloginfo( 'name' );
-?>
-<!doctype html>
+<!DOCTYPE html>
 <html <?php language_attributes(); ?>>
 <head>
-	<meta charset="<?php bloginfo( 'charset' ); ?>">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-
-	<?php wp_head(); ?>
-
-	<style>
-		:root {
-			--color-primary: <?php echo esc_attr( $primary_colour ); ?>;
-			--color-secondary: <?php echo esc_attr( $secondary_colour ); ?>;
-			--color-base: <?php echo esc_attr( $base_colour ); ?>;
-			--color-heading: <?php echo esc_attr( $heading_colour ); ?>;
-			--color-font: <?php echo esc_attr( $font_colour ); ?>;
-
-			--font-heading: "<?php echo esc_attr( $heading_font ); ?>", sans-serif;
-			--font-body: "<?php echo esc_attr( $body_font ); ?>", sans-serif;
-		}
-	</style>
+    <meta charset="<?php bloginfo('charset'); ?>">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <?php wp_head(); ?>
 </head>
-
-<body <?php body_class( 'bg-base text-font font-body antialiased' ); ?>>
+<body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
 
-<a class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:bg-white focus:px-4 focus:py-2 focus:text-black" href="#main-content">
-	<?php esc_html_e( 'Skip to content', 'custom-theme' ); ?>
-</a>
+<header id="site-header"
+        class="fixed top-0 left-0 w-full h-20 z-[999] grid grid-cols-[auto_1fr_auto] items-center px-[5vw] transition-all duration-300
+               bg-[#0A0A0A]/75 border-b border-white/7 backdrop-blur-[24px] saturate-[1.4]">
+    
+    <!-- Logo -->
+    <a href="<?php echo esc_url(home_url('/')); ?>" class="flex items-center gap-[14px] pr-10 border-r border-white/7 no-underline transition-opacity hover:opacity-85">
+        <?php if (has_custom_logo()) : ?>
+            <?php the_custom_logo(); ?>
+        <?php else : ?>
+            <img src="<?php echo esc_url(get_template_directory_uri() . '/assets/images/logo.png'); ?>" 
+                 alt="<?php bloginfo('name'); ?>" class="h-10 w-auto">
+        <?php endif; ?>
+        
+        <div class="font-['Bebas_Neue'] text-[1.55rem] tracking-[2px] text-white uppercase leading-none">
+            Iron <span class="text-[#4E9E5A]">Gorilla</span> Army
+        </div>
+    </a>
 
-<header class="site-header border-b border-gray-200 bg-base">
-	<div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 lg:px-8">
-		<div class="site-branding">
-			<?php if ( has_custom_logo() ) : ?>
-				<?php the_custom_logo(); ?>
-			<?php else : ?>
-				<a class="font-heading text-xl font-bold text-heading" href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
-					<?php echo esc_html( $site_name ); ?>
-				</a>
-			<?php endif; ?>
-		</div>
+    <!-- Desktop Navigation -->
+    <nav class="hidden md:flex items-center justify-center gap-1.5 px-6">
+        <?php
+        wp_nav_menu([
+            'theme_location' => 'primary_navigation',
+            'container'      => false,
+            'menu_class'     => 'flex items-center gap-1.5 primary-menu',
+            'menu_id'        => 'primary-menu',
+            'fallback_cb'    => false,
+            'depth'          => 1,
+        ]);
+        ?>
+        
+        <!-- Legends Link -->
+        <a href="<?php echo esc_url(home_url('/league')); ?>" 
+           class="relative px-2.5 py-1.5 text-[0.78rem] font-bold uppercase tracking-[1.2px] text-[#C47B2B] hover:text-[#D4893A] transition-all">
+            Legends
+        </a>
+    </nav>
 
-		<nav class="hidden items-center gap-8 md:flex" aria-label="<?php esc_attr_e( 'Primary navigation', 'custom-theme' ); ?>">
-			<?php
-			wp_nav_menu(
-				array(
-					'theme_location' => 'primary_navigation',
-					'container'      => false,
-					'menu_class'     => 'flex items-center gap-8 text-sm font-medium',
-					'fallback_cb'    => false,
-					'depth'          => 2,
-				)
-			);
-			?>
-		</nav>
+    <!-- Header Actions -->
+    <div class="flex items-center gap-2 pl-8 border-l border-white/7 md:pl-8">
+        
+        <!-- Desktop Book Button -->
+        <a href="<?php echo esc_url(home_url('/book')); ?>" 
+           class="hidden md:flex items-center gap-2 px-5 py-[10px] text-[0.8rem] font-bold uppercase tracking-[1px] rounded-full bg-[#3A7D44] text-white hover:bg-[#4E9E5A] hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(58,125,68,0.3)] transition-all no-underline">
+            <i class="fa-regular fa-calendar-check"></i> 
+            Book Free Assessment
+        </a>
 
-		<button
-			class="inline-flex items-center justify-center rounded-md border border-gray-300 px-3 py-2 text-sm font-medium text-font md:hidden"
-			type="button"
-			aria-controls="mobile-navigation"
-			aria-expanded="false"
-			data-mobile-menu-toggle
-		>
-			<span class="sr-only"><?php esc_html_e( 'Open menu', 'custom-theme' ); ?></span>
-			<?php esc_html_e( 'Menu', 'custom-theme' ); ?>
-		</button>
-	</div>
+        <!-- WhatsApp -->
+        <?php $whatsapp = get_theme_mod('iron_gorilla_whatsapp', ''); ?>
 
-	<nav id="mobile-navigation" class="hidden border-t border-gray-200 px-4 py-4 md:hidden" aria-label="<?php esc_attr_e( 'Mobile navigation', 'custom-theme' ); ?>">
-		<?php
-		wp_nav_menu(
-			array(
-				'theme_location' => 'primary_navigation',
-				'container'      => false,
-				'menu_class'     => 'space-y-4 text-sm font-medium',
-				'fallback_cb'    => false,
-				'depth'          => 2,
-			)
-		);
-		?>
-	</nav>
+        <?php if ($whatsapp) : ?>
+
+            <a href="https://wa.me/<?php echo esc_attr($whatsapp); ?>?text=<?php echo urlencode('Hi Iron Gorilla Army, I want to find out more about joining The Forge.'); ?>"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex md:hidden items-center justify-center w-[38px] h-[38px] rounded-lg border border-white/14 text-[#25D366] hover:bg-[#25D366]/10 hover:border-[#25D366]/40 transition-all"
+            aria-label="Chat on WhatsApp">
+
+                <i class="fa-brands fa-whatsapp text-[1.15rem]"></i>
+
+            </a>
+
+        <?php endif; ?>
+
+        <!-- Mobile Menu Button -->
+        <button id="mobile-menu-btn"
+                class="md:hidden flex items-center justify-center w-[38px] h-[38px] rounded-lg border border-white/14 text-white hover:border-[#4E9E5A] hover:text-[#4E9E5A] hover:bg-[#3A7D44]/10 transition-all"
+                aria-label="Open menu" aria-expanded="false">
+            <i class="fa-solid fa-bars text-[0.9rem]"></i>
+        </button>
+    </div>
 </header>
 
-<main id="main-content" class="site-main">
+<!-- Mobile Overlay -->
+<div id="mobile-overlay" class="fixed inset-0 bg-black/75 backdrop-blur-md z-[1998] hidden md:hidden"></div>
+
+<!-- Mobile Drawer -->
+<div id="mobile-drawer"
+     class="fixed top-0 right-0 w-[min(320px,85vw)] h-dvh bg-[#141414] z-[1999] p-9 pt-20 flex flex-col border-l border-white/7 transition-transform duration-300 translate-x-full md:hidden">
+    
+    <button id="mobile-close-btn"
+            class="absolute top-5 right-5 w-9 h-9 flex items-center justify-center rounded-full bg-[#242424] border border-white/7 text-[#888888] hover:text-white">
+        <i class="fa-solid fa-xmark"></i>
+    </button>
+
+    <nav class="flex flex-col flex-1 overflow-y-auto">
+        <?php
+        wp_nav_menu([
+            'theme_location' => 'primary_navigation',
+            'container'      => false,
+            'menu_class'     => 'mobile-nav flex flex-col',
+            'fallback_cb'    => false,
+            'depth'          => 1,
+        ]);
+        ?>
+        
+        <a href="<?php echo esc_url(home_url('/league')); ?>" 
+           class="font-['Bebas_Neue'] text-[1.55rem] tracking-[2px] py-[9px] border-b border-white/7 text-[#C47B2B] hover:text-[#D4893A] hover:pl-2 transition-all">
+            Legends
+        </a>
+    </nav>
+
+    <div class="flex flex-col gap-2.5 mt-4 pt-4 border-t border-white/7">
+        <a href="<?php echo esc_url(home_url('/book')); ?>" 
+           class="flex items-center justify-center gap-2 px-5 py-4 text-[0.78rem] font-bold uppercase tracking-[0.5px] rounded-full bg-[#3A7D44] text-white no-underline">
+            <i class="fa-regular fa-calendar-check"></i> Book Free Assessment
+        </a>
+        
+        <button onclick="document.getElementById('packages-modal').classList.add('open'); closeMobileMenu();"
+                class="flex items-center justify-center gap-2 px-5 py-4 text-[0.78rem] font-bold uppercase tracking-[0.5px] rounded-full border border-white/14 text-[#F2F2F2] hover:bg-white/5 transition-all">
+            <i class="fa-solid fa-medal"></i> View Memberships
+        </button>
+    </div>
+</div>
