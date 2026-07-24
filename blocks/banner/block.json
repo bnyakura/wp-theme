@@ -1,0 +1,11 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "acf/hero-banner",
+    "title": "Hero Banner",
+    "category": "layout",
+    "icon": "cover-image",
+    "acf": {
+      "renderTemplate": "render.php"
+    }
+  }

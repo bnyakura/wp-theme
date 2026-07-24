@@ -4,13 +4,7 @@
  *
  * @package custom-theme
  */
-require get_theme_file_path( 'inc/hero-slides.php' );
-require get_theme_file_path( 'inc/distinction-cards.php' );
-require get_theme_file_path( 'inc/mission.php' );
-require get_theme_file_path( 'inc/forge-pillars.php' );
-require get_theme_file_path( 'inc/pricing-tiers.php' );
-require get_theme_file_path( 'inc/testimonials.php' );
-require get_theme_file_path( 'inc/contact-section.php' );
+
 
 if ( ! function_exists( 'custom_theme_setup' ) ) {
 	/**
