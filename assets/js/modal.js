@@ -11,7 +11,6 @@
  */
 (function () {
 	'use strict';
-    alert("modal things");
 
 	function openModal(modal) {
 		modal.classList.add('is-open');
