@@ -25,8 +25,8 @@ if ( ! function_exists( 'custom_theme_register_acf_blocks' ) ) {
 		}
 
 		foreach ( $block_json_files as $block_json_file ) {
-			acf_register_block_type( dirname( $block_json_file ) );
+			register_block_type( dirname( $block_json_file ) );
 		}
 	}
 }
-add_action( 'init', 'custom_theme_register_acf_blocks' );
+add_action( 'acf/init', 'custom_theme_register_acf_blocks' );
