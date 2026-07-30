@@ -1,0 +1,21 @@
+{
+    "name": "wp-theme/mission",
+    "title": "Mission",
+    "category": "design",
+    "icon": "editor-quote",
+    "description": "Two-column mission/origin story section with image.",
+    "keywords": ["mission", "story", "origin", "about"],
+    "acf": {
+        "mode": "preview",
+        "renderTemplate": "render.php"
+    },
+    "supports": {
+        "align": ["wide", "full"],
+        "anchor": true,
+        "spacing": {
+            "padding": true,
+            "margin": true
+        }
+    },
+    "style": "file:./style.css"
+}

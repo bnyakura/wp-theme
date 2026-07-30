@@ -1,0 +1,21 @@
+{
+    "name": "wp-theme/distinction",
+    "title": "Distinction",
+    "category": "design",
+    "icon": "grid-view",
+    "description": "Info cards with images, tags, and CTAs.",
+    "keywords": ["cards", "distinction", "featured", "grid"],
+    "acf": {
+        "mode": "preview",
+        "renderTemplate": "render.php"
+    },
+    "supports": {
+        "align": ["wide", "full"],
+        "anchor": true,
+        "spacing": {
+            "padding": true,
+            "margin": true
+        }
+    },
+    "style": "file:./style.css"
+}

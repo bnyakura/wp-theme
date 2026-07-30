@@ -1,0 +1,615 @@
+{
+    "key": "group_pricing",
+    "title": "Pricing",
+    "fields": [
+        {
+            "key": "field_pricing_eyebrow",
+            "label": "Eyebrow",
+            "name": "eyebrow",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Small label above heading.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_pricing_title",
+            "label": "Title",
+            "name": "title",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Section heading (e.g. 'Choose Your Rank').",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_pricing_subtitle",
+            "label": "Subtitle",
+            "name": "subtitle",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "Supporting text below the heading.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "rows": 3,
+            "placeholder": "",
+            "new_lines": ""
+        },
+        {
+            "key": "field_pricing_monthly_tiers",
+            "label": "Monthly Tiers",
+            "name": "monthly_tiers",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "Monthly membership pricing cards.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "pagination": 0,
+            "min": 0,
+            "max": 10,
+            "collapsed": "field_pricing_tier_rank",
+            "button_label": "Add Monthly Tier",
+            "rows_per_page": 20,
+            "sub_fields": [
+                {
+                    "key": "field_pricing_monthly_rank",
+                    "label": "Rank",
+                    "name": "rank",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "Tier name (e.g. 'Platoons').",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_pricing_monthly_tiers"
+                },
+                {
+                    "key": "field_pricing_monthly_sub",
+                    "label": "Sub",
+                    "name": "sub",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "Small label above rank (e.g. 'Group Training · Monthly').",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_pricing_monthly_tiers"
+                },
+                {
+                    "key": "field_pricing_monthly_price",
+                    "label": "Price",
+                    "name": "price",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "Price display (e.g. 'R 800').",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_pricing_monthly_tiers"
+                },
+                {
+                    "key": "field_pricing_monthly_cadence",
+                    "label": "Cadence",
+                    "name": "cadence",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "Frequency label (e.g. 'per month').",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_pricing_monthly_tiers"
+                },
+                {
+                    "key": "field_pricing_monthly_desc",
+                    "label": "Description",
+                    "name": "desc",
+                    "aria-label": "",
+                    "type": "textarea",
+                    "instructions": "Short paragraph describing the tier.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "rows": 3,
+                    "placeholder": "",
+                    "new_lines": "",
+                    "parent_repeater": "field_pricing_monthly_tiers"
+                },
+                {
+                    "key": "field_pricing_monthly_features",
+                    "label": "Features",
+                    "name": "features",
+                    "aria-label": "",
+                    "type": "textarea",
+                    "instructions": "One feature per line.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "rows": 4,
+                    "placeholder": "",
+                    "new_lines": "",
+                    "parent_repeater": "field_pricing_monthly_tiers"
+                },
+                {
+                    "key": "field_pricing_monthly_badge",
+                    "label": "Badge",
+                    "name": "badge",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "Badge text pinned to top (e.g. 'Most Popular').",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_pricing_monthly_tiers"
+                },
+                {
+                    "key": "field_pricing_monthly_primary",
+                    "label": "Primary",
+                    "name": "primary",
+                    "aria-label": "",
+                    "type": "true_false",
+                    "instructions": "Enable to highlight with green gradient styling.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "message": "",
+                    "default_value": 0,
+                    "ui": 1,
+                    "ui_on_text": "",
+                    "ui_off_text": "",
+                    "parent_repeater": "field_pricing_monthly_tiers"
+                },
+                {
+                    "key": "field_pricing_monthly_cta_label",
+                    "label": "CTA Label",
+                    "name": "cta_label",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "Button text.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_pricing_monthly_tiers"
+                },
+                {
+                    "key": "field_pricing_monthly_cta_action",
+                    "label": "CTA Action",
+                    "name": "cta_action",
+                    "aria-label": "",
+                    "type": "select",
+                    "instructions": "Button action: 'link' for URL or modal name.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "link": "Link (URL)",
+                        "enlist-modal": "Enlist Modal",
+                        "packages-modal": "Packages Modal"
+                    },
+                    "default_value": "link",
+                    "return_format": "value",
+                    "multiple": 0,
+                    "allow_null": 0,
+                    "ui": 0,
+                    "ajax": 0,
+                    "placeholder": "",
+                    "parent_repeater": "field_pricing_monthly_tiers"
+                },
+                {
+                    "key": "field_pricing_monthly_cta_url",
+                    "label": "CTA URL",
+                    "name": "cta_url",
+                    "aria-label": "",
+                    "type": "url",
+                    "instructions": "Destination URL for link action.",
+                    "required": 0,
+                    "conditional_logic": [
+                        {
+                            "field": "field_pricing_monthly_cta_action",
+                            "operator": "==",
+                            "value": "link"
+                        }
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "parent_repeater": "field_pricing_monthly_tiers"
+                }
+            ]
+        },
+        {
+            "key": "field_pricing_dropin_tiers",
+            "label": "Drop-In Tiers",
+            "name": "dropin_tiers",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "Drop-in session pricing cards.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "pagination": 0,
+            "min": 0,
+            "max": 10,
+            "collapsed": "field_pricing_dropin_rank",
+            "button_label": "Add Drop-In Tier",
+            "rows_per_page": 20,
+            "sub_fields": [
+                {
+                    "key": "field_pricing_dropin_rank",
+                    "label": "Rank",
+                    "name": "rank",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "Tier name (e.g. 'Platoon Drop-In').",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_pricing_dropin_tiers"
+                },
+                {
+                    "key": "field_pricing_dropin_sub",
+                    "label": "Sub",
+                    "name": "sub",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "Small label above rank (e.g. 'Group Session · Single').",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_pricing_dropin_tiers"
+                },
+                {
+                    "key": "field_pricing_dropin_price",
+                    "label": "Price",
+                    "name": "price",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "Price display (e.g. 'R 100').",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_pricing_dropin_tiers"
+                },
+                {
+                    "key": "field_pricing_dropin_cadence",
+                    "label": "Cadence",
+                    "name": "cadence",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "Frequency label (e.g. 'per session').",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_pricing_dropin_tiers"
+                },
+                {
+                    "key": "field_pricing_dropin_desc",
+                    "label": "Description",
+                    "name": "desc",
+                    "aria-label": "",
+                    "type": "textarea",
+                    "instructions": "Short paragraph describing the tier.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "rows": 3,
+                    "placeholder": "",
+                    "new_lines": "",
+                    "parent_repeater": "field_pricing_dropin_tiers"
+                },
+                {
+                    "key": "field_pricing_dropin_features",
+                    "label": "Features",
+                    "name": "features",
+                    "aria-label": "",
+                    "type": "textarea",
+                    "instructions": "One feature per line.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "rows": 4,
+                    "placeholder": "",
+                    "new_lines": "",
+                    "parent_repeater": "field_pricing_dropin_tiers"
+                },
+                {
+                    "key": "field_pricing_dropin_badge",
+                    "label": "Badge",
+                    "name": "badge",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "Badge text pinned to top (e.g. 'Most Popular').",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_pricing_dropin_tiers"
+                },
+                {
+                    "key": "field_pricing_dropin_primary",
+                    "label": "Primary",
+                    "name": "primary",
+                    "aria-label": "",
+                    "type": "true_false",
+                    "instructions": "Enable to highlight with green gradient styling.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "message": "",
+                    "default_value": 0,
+                    "ui": 1,
+                    "ui_on_text": "",
+                    "ui_off_text": "",
+                    "parent_repeater": "field_pricing_dropin_tiers"
+                },
+                {
+                    "key": "field_pricing_dropin_cta_label",
+                    "label": "CTA Label",
+                    "name": "cta_label",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "Button text.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_pricing_dropin_tiers"
+                },
+                {
+                    "key": "field_pricing_dropin_cta_action",
+                    "label": "CTA Action",
+                    "name": "cta_action",
+                    "aria-label": "",
+                    "type": "select",
+                    "instructions": "Button action: 'link' for URL or modal name.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "link": "Link (URL)",
+                        "enlist-modal": "Enlist Modal",
+                        "packages-modal": "Packages Modal"
+                    },
+                    "default_value": "link",
+                    "return_format": "value",
+                    "multiple": 0,
+                    "allow_null": 0,
+                    "ui": 0,
+                    "ajax": 0,
+                    "placeholder": "",
+                    "parent_repeater": "field_pricing_dropin_tiers"
+                },
+                {
+                    "key": "field_pricing_dropin_cta_url",
+                    "label": "CTA URL",
+                    "name": "cta_url",
+                    "aria-label": "",
+                    "type": "url",
+                    "instructions": "Destination URL for link action.",
+                    "required": 0,
+                    "conditional_logic": [
+                        {
+                            "field": "field_pricing_dropin_cta_action",
+                            "operator": "==",
+                            "value": "link"
+                        }
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "parent_repeater": "field_pricing_dropin_tiers"
+                }
+            ]
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "wp-theme/pricing"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "Pricing tiers section with monthly and drop-in tabs.",
+    "show_in_rest": 0,
+    "modified": 0
+}

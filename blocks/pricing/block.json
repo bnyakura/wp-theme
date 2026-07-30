@@ -1,0 +1,21 @@
+{
+    "name": "wp-theme/pricing",
+    "title": "Pricing",
+    "category": "design",
+    "icon": "money-alt",
+    "description": "Tabbed pricing section with monthly and drop-in memberships.",
+    "keywords": ["pricing", "plans", "membership", "tiers"],
+    "acf": {
+        "mode": "preview",
+        "renderTemplate": "render.php"
+    },
+    "supports": {
+        "align": ["wide", "full"],
+        "anchor": true,
+        "spacing": {
+            "padding": true,
+            "margin": true
+        }
+    },
+    "style": "file:./style.css"
+}

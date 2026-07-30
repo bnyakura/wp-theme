@@ -1,0 +1,25 @@
+{
+    "name": "wp-theme/hero",
+    "title": "Hero",
+    "category": "design",
+    "icon": "superhero-alt",
+    "description": "A customizable hero banner section.",
+    "keywords": ["hero", "banner", "header", "cta"],
+    "acf": {
+        "mode": "preview",
+        "renderTemplate": "render.php"
+    },
+    "supports": {
+        "align": ["wide", "full"],
+        "anchor": true,
+        "color": {
+            "background": true,
+            "text": true
+        },
+        "spacing": {
+            "padding": true,
+            "margin": true
+        }
+    },
+    "style": "file:./style.css"
+}
