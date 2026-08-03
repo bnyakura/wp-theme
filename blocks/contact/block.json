@@ -1,0 +1,21 @@
+{
+    "name": "wp-theme/contact",
+    "title": "Contact",
+    "category": "design",
+    "icon": "email",
+    "description": "Contact page: hero, headquarters details, dispatch form with email handler, testimonials, and final CTA.",
+    "keywords": ["contact", "dispatch", "form", "headquarters", "enlist"],
+    "acf": {
+        "mode": "preview",
+        "renderTemplate": "render.php"
+    },
+    "supports": {
+        "align": ["wide", "full"],
+        "anchor": true,
+        "spacing": {
+            "padding": true,
+            "margin": true
+        }
+    },
+    "style": "file:./style.css"
+}
