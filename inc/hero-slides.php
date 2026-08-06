@@ -60,7 +60,7 @@ function iga_register_hero_slide_post_type() {
 			],
 			'public'        => false,
 			'show_ui'       => true,
-			'show_in_menu'  => true,
+			'show_in_menu'  => false,
 			'menu_icon'     => 'dashicons-images-alt2',
 			'menu_position' => 20,
 			'supports'      => [ 'title', 'thumbnail', 'page-attributes' ],

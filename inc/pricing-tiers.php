@@ -104,7 +104,7 @@ function iga_register_pricing_tier_post_type() {
 			],
 			'public'        => false,
 			'show_ui'       => true,
-			'show_in_menu'  => true,
+			'show_in_menu'  => false,
 			'menu_icon'     => 'dashicons-money-alt',
 			'menu_position' => 23,
 			'supports'      => [ 'title', 'page-attributes' ],

@@ -91,7 +91,7 @@ function iga_register_distinction_card_post_type() {
 			],
 			'public'        => false,
 			'show_ui'       => true,
-			'show_in_menu'  => true,
+			'show_in_menu'  => false,
 			'menu_icon'     => 'dashicons-columns',
 			'menu_position' => 21,
 			'supports'      => [ 'title', 'thumbnail', 'page-attributes' ],

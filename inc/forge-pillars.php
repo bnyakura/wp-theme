@@ -48,7 +48,7 @@ function iga_register_forge_pillar_post_type() {
 			],
 			'public'        => false,
 			'show_ui'       => true,
-			'show_in_menu'  => true,
+			'show_in_menu'  => false,
 			'menu_icon'     => 'dashicons-awards',
 			'menu_position' => 22,
 			'supports'      => [ 'title', 'page-attributes' ],
