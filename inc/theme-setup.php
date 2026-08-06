@@ -31,7 +31,7 @@ if ( ! function_exists( 'custom_theme_setup' ) ) {
 		register_nav_menus(
 			array(
 				'primary_navigation' => esc_html__( 'Primary Navigation', 'custom-theme' ),
-				'footer_navigation'  => esc_html__( 'Footer Navigation', 'custom-theme' ),
+				'footer'             => esc_html__( 'Footer Navigation', 'custom-theme' ),
 			)
 		);
 	}
@@ -110,11 +110,12 @@ add_filter( 'nav_menu_link_attributes', 'iga_footer_menu_link_atts', 10, 3 );
  */
 function iga_footer_nav_fallback() {
 	$items = [
+		[ 'label' => __( 'About', 'iga' ), 'path' => '/about/' ],
 		[ 'label' => __( 'The Forge', 'iga' ), 'path' => '/training/' ],
 		[ 'label' => __( 'Armory', 'iga' ), 'path' => '/armory/' ],
-		[ 'label' => __( 'Legends', 'iga' ), 'path' => '/league/' ],
-		[ 'label' => __( 'About', 'iga' ), 'path' => '/about/' ],
 		[ 'label' => __( 'FAQ', 'iga' ), 'path' => '/faq/' ],
+		[ 'label' => __( 'Contact', 'iga' ), 'path' => '/contact/' ],
+		[ 'label' => __( 'Legends', 'iga' ), 'path' => '/league/' ],
 	];
 
 	echo '<ul class="flex list-none flex-col gap-2.5">';
@@ -148,6 +149,23 @@ function iga_customize_register( $wp_customize ) {
 			'label'   => __( 'Instagram URL', 'iga' ),
 			'section' => 'title_tagline',
 			'type'    => 'url',
+		]
+	);
+
+	$wp_customize->add_setting(
+		'iga_footer_tagline',
+		[
+			'default'           => __( 'A community built around iron and faith. Salt River, Cape Town. Forging people of discipline, purpose, and strength since 2022.', 'iga' ),
+			'sanitize_callback' => 'sanitize_textarea_field',
+		]
+	);
+
+	$wp_customize->add_control(
+		'iga_footer_tagline',
+		[
+			'label'   => __( 'Footer Tagline', 'iga' ),
+			'section' => 'title_tagline',
+			'type'    => 'textarea',
 		]
 	);
 

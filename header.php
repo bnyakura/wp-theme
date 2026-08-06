@@ -13,14 +13,16 @@
                bg-[#0A0A0A]/75 border-b border-white/7 backdrop-blur-[24px] saturate-[1.4]">
     
     <!-- Logo -->
+    <?php
+    $iga_header_logo_id  = get_theme_mod( 'custom_logo' );
+    $iga_header_logo_url = $iga_header_logo_id
+        ? wp_get_attachment_image_url( $iga_header_logo_id, 'full' )
+        : get_template_directory_uri() . '/assets/images/logo.png';
+    ?>
     <a href="<?php echo esc_url(home_url('/')); ?>" class="flex items-center gap-[14px] pr-10 border-r border-white/7 no-underline transition-opacity hover:opacity-85">
-        <?php if (has_custom_logo()) : ?>
-            <?php the_custom_logo(); ?>
-        <?php else : ?>
-            <img src="<?php echo esc_url(get_template_directory_uri() . '/assets/images/logo.png'); ?>" 
-                 alt="<?php bloginfo('name'); ?>" class="h-10 w-auto">
-        <?php endif; ?>
-        
+        <img src="<?php echo esc_url( $iga_header_logo_url ); ?>"
+             alt="<?php bloginfo('name'); ?>" class="h-10 w-auto">
+
         <div class="font-['Bebas_Neue'] text-[1.55rem] tracking-[2px] text-white uppercase leading-none">
             Iron <span class="text-[#4E9E5A]">Gorilla</span> Army
         </div>

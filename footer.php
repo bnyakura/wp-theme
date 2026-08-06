@@ -14,7 +14,8 @@ $logo_url = $logo_id
 	? wp_get_attachment_image_url( $logo_id, 'full' )
 	: get_theme_file_uri( 'assets/images/logo.png' );
 
-$instagram_url = get_theme_mod( 'iga_instagram_url', 'https://www.instagram.com/irongorillaarmy' );
+$instagram_url  = get_theme_mod( 'iga_instagram_url', 'https://www.instagram.com/irongorillaarmy' );
+$footer_tagline = get_theme_mod( 'iga_footer_tagline', __( 'A community built around iron and faith. Salt River, Cape Town. Forging people of discipline, purpose, and strength since 2022.', 'iga' ) );
 ?>
 
 <?php // Close header.php wrappers here if needed, e.g. </div><!-- #page -->. ?>
@@ -37,7 +38,7 @@ $instagram_url = get_theme_mod( 'iga_instagram_url', 'https://www.instagram.com/
 				</span>
 			</a>
 			<p class="max-w-[300px] text-[0.95rem] leading-[1.7] text-muted">
-				<?php esc_html_e( 'A community built around iron and faith. Salt River, Cape Town. Forging people of discipline, purpose, and strength since 2022.', 'iga' ); ?>
+				<?php echo esc_html( $footer_tagline ); ?>
 			</p>
 		</div>
 
