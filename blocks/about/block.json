@@ -6,7 +6,7 @@
     "description": "Full About page: hero, origin story, core values, brotherhood image, coaches, testimonials, and final CTA.",
     "keywords": ["about", "story", "values", "coaches", "team", "origin"],
     "acf": {
-        "mode": "preview",
+        "mode": "auto",
         "renderTemplate": "render.php"
     },
     "supports": {

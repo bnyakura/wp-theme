@@ -6,7 +6,7 @@
     "description": "Booking page: quick sign-up class cards or date-based session picker, with an email handler.",
     "keywords": ["book", "booking", "drop-in", "session", "class", "schedule"],
     "acf": {
-        "mode": "preview",
+        "mode": "auto",
         "renderTemplate": "render.php"
     },
     "supports": {

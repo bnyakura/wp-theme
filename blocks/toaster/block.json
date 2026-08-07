@@ -6,7 +6,7 @@
     "description": "A configurable toast notification block.",
     "keywords": ["toast", "notification", "alert", "message"],
     "acf": {
-        "mode": "preview",
+        "mode": "auto",
         "renderTemplate": "render.php"
     },
     "supports": {

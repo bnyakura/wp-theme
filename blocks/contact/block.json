@@ -6,7 +6,7 @@
     "description": "Contact page: hero, headquarters details, dispatch form with email handler, testimonials, and final CTA.",
     "keywords": ["contact", "dispatch", "form", "headquarters", "enlist"],
     "acf": {
-        "mode": "preview",
+        "mode": "auto",
         "renderTemplate": "render.php"
     },
     "supports": {

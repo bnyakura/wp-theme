@@ -6,7 +6,7 @@
     "description": "Armory hero with background video, eyebrow, heading, CTAs, and coming-soon badge.",
     "keywords": ["armory", "store", "apparel", "supplements", "hero", "video"],
     "acf": {
-        "mode": "preview",
+        "mode": "auto",
         "renderTemplate": "render.php"
     },
     "supports": {

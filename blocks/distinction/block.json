@@ -6,7 +6,7 @@
     "description": "Info cards with images, tags, and CTAs.",
     "keywords": ["cards", "distinction", "featured", "grid"],
     "acf": {
-        "mode": "preview",
+        "mode": "auto",
         "renderTemplate": "render.php"
     },
     "supports": {

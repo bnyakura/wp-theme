@@ -48,3 +48,24 @@ function iron_gorilla_enqueue_icons() {
 
 add_action('wp_enqueue_scripts', 'iron_gorilla_enqueue_icons');
 add_action( 'wp_enqueue_scripts', 'custom_theme_enqueue_styles' );
+
+if ( ! function_exists( 'custom_theme_enqueue_editor_styles' ) ) {
+	/**
+	 * Load the frontend styles inside the block editor so ACF block
+	 * previews match how they actually look on the live site.
+	 *
+	 * @return void
+	 */
+	function custom_theme_enqueue_editor_styles(): void {
+		custom_theme_enqueue_styles();
+		iron_gorilla_enqueue_icons();
+
+		wp_enqueue_style(
+			'iga-fonts',
+			'https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;600;700&display=swap',
+			[],
+			null
+		);
+	}
+}
+add_action( 'enqueue_block_editor_assets', 'custom_theme_enqueue_editor_styles' );

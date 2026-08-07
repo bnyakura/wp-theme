@@ -6,7 +6,7 @@
     "description": "A row of highlighted statistics with values and labels.",
     "keywords": ["stats", "statistics", "numbers", "counter"],
     "acf": {
-        "mode": "preview",
+        "mode": "auto",
         "renderTemplate": "render.php"
     },
     "supports": {

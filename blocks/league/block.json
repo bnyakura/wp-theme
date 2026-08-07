@@ -6,7 +6,7 @@
     "description": "League of Legends honour roll page: coming-soon banner, hero, and bank transfer details.",
     "keywords": ["league", "legends", "donors", "honour roll"],
     "acf": {
-        "mode": "preview",
+        "mode": "auto",
         "renderTemplate": "render.php"
     },
     "supports": {

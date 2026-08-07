@@ -6,7 +6,7 @@
     "description": "A customizable hero banner section.",
     "keywords": ["hero", "banner", "header", "cta"],
     "acf": {
-        "mode": "preview",
+        "mode": "auto",
         "renderTemplate": "render.php"
     },
     "supports": {

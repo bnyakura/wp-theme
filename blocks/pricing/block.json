@@ -6,7 +6,7 @@
     "description": "Tabbed pricing section with monthly and drop-in memberships.",
     "keywords": ["pricing", "plans", "membership", "tiers"],
     "acf": {
-        "mode": "preview",
+        "mode": "auto",
         "renderTemplate": "render.php"
     },
     "supports": {

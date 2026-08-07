@@ -6,7 +6,7 @@
     "description": "Member testimonial cards with quotes and details.",
     "keywords": ["testimonial", "quote", "review", "members"],
     "acf": {
-        "mode": "preview",
+        "mode": "auto",
         "renderTemplate": "render.php"
     },
     "supports": {

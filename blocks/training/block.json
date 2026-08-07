@@ -6,7 +6,7 @@
     "description": "Full Training page: hero, pillars, training tracks, schedule, testimonials, pricing, coaches, onboarding steps, and final CTA.",
     "keywords": ["training", "forge", "pricing", "schedule", "coaches"],
     "acf": {
-        "mode": "preview",
+        "mode": "auto",
         "renderTemplate": "render.php"
     },
     "supports": {
