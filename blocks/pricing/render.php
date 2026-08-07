@@ -1,4 +1,85 @@
 <?php
+/**
+ * Render a single pricing card.
+ */
+if ( ! function_exists( 'render_pricing_card' ) ) :
+function render_pricing_card( $tier ) {
+    $primary  = ! empty( $tier['primary'] );
+    $features_raw = $tier['features'] ?? '';
+    $features = array_values( array_filter( array_map( 'trim', preg_split( '/\r\n|\r|\n/', (string) $features_raw ) ) ) );
+
+    $card_variant = $primary
+        ? 'border-[rgba(58,125,68,0.35)] bg-[linear-gradient(160deg,rgba(58,125,68,0.1)_0%,#141414_50%)] hover:border-green-l'
+        : 'border-line bg-s1 hover:border-line-strong';
+
+    $cta_classes = 'mt-auto inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-full border px-[26px] py-[11px] font-sans text-[0.85rem] font-bold uppercase tracking-[1px] no-underline transition-all duration-[250ms] '
+        . ( $primary
+            ? 'border-transparent bg-green text-white hover:-translate-y-0.5 hover:bg-green-l hover:shadow-[0_8px_24px_rgba(58,125,68,0.3)]'
+            : 'border-line-strong bg-transparent text-off hover:border-white/[0.32] hover:bg-white/[0.05]' );
+
+    $cta_url = $tier['cta_url'] ?? '';
+    if ( ! empty( $cta_url ) && 0 === strpos( $cta_url, '/' ) ) {
+        $cta_url = home_url( $cta_url );
+    }
+
+    ob_start();
+    ?>
+    <article class="relative flex h-full flex-col rounded-[18px] border px-[28px] py-9 transition-all duration-[250ms] hover:-translate-y-1 <?php echo esc_attr( $card_variant ); ?>">
+        <?php if ( ! empty( $tier['badge'] ) ) : ?>
+            <div class="absolute left-1/2 top-[-1px] -translate-x-1/2 rounded-b-[10px] bg-green px-4 py-1 text-[0.62rem] font-bold uppercase tracking-[1.5px] text-white">
+                <?php echo esc_html( $tier['badge'] ); ?>
+            </div>
+        <?php endif; ?>
+        <div class="mb-4">
+            <?php if ( ! empty( $tier['sub'] ) ) : ?>
+                <div class="mb-1.5 text-[0.6rem] font-bold uppercase tracking-[2px] <?php echo $primary ? 'text-green-l' : 'text-muted'; ?>">
+                    <?php echo esc_html( $tier['sub'] ); ?>
+                </div>
+            <?php endif; ?>
+            <h3 class="font-display text-[1.9rem] leading-none tracking-[1px] text-white">
+                <?php echo esc_html( $tier['rank'] ?? '' ); ?>
+            </h3>
+        </div>
+        <div class="mb-[14px]">
+            <span class="font-display text-[2.6rem] tracking-[1px] <?php echo $primary ? 'text-green-l' : 'text-white'; ?>">
+                <?php echo esc_html( $tier['price'] ?? '' ); ?>
+            </span>
+            <?php if ( ! empty( $tier['cadence'] ) ) : ?>
+                <span class="ml-1.5 text-[0.78rem] text-muted"><?php echo esc_html( $tier['cadence'] ); ?></span>
+            <?php endif; ?>
+        </div>
+        <?php if ( ! empty( $tier['desc'] ) ) : ?>
+            <p class="mb-5 text-[0.85rem] leading-[1.65] text-muted"><?php echo esc_html( $tier['desc'] ); ?></p>
+        <?php endif; ?>
+        <?php if ( ! empty( $features ) ) : ?>
+            <ul class="mb-6 flex list-none flex-col gap-[9px]">
+                <?php foreach ( $features as $feature ) : ?>
+                    <li class="flex items-start gap-2.5 text-[0.83rem] text-muted-l">
+                        <i class="fa-solid fa-check mt-1 shrink-0 text-[0.65rem] <?php echo $primary ? 'text-green-l' : 'text-muted'; ?>" aria-hidden="true"></i>
+                        <?php echo esc_html( $feature ); ?>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
+        <?php endif; ?>
+        <?php if ( ! empty( $tier['cta_label'] ) ) : ?>
+            <?php if ( 'link' === ( $tier['cta_action'] ?? 'link' ) && $cta_url ) : ?>
+                <a href="<?php echo esc_url( $cta_url ); ?>" class="<?php echo esc_attr( $cta_classes ); ?>">
+                    <?php echo esc_html( $tier['cta_label'] ); ?>
+                    <i class="fa-solid fa-arrow-right shrink-0 text-[0.9em] leading-none" aria-hidden="true"></i>
+                </a>
+            <?php else : ?>
+                <button type="button" data-modal-open="<?php echo esc_attr( $tier['cta_action'] ?? '' ); ?>" class="<?php echo esc_attr( $cta_classes ); ?>">
+                    <?php echo esc_html( $tier['cta_label'] ); ?>
+                    <i class="fa-solid fa-arrow-right shrink-0 text-[0.9em] leading-none" aria-hidden="true"></i>
+                </button>
+            <?php endif; ?>
+        <?php endif; ?>
+    </article>
+    <?php
+    return ob_get_clean();
+}
+endif;
+
 $eyebrow       = get_field( 'eyebrow' );
 $title         = get_field( 'title' );
 $subtitle      = get_field( 'subtitle' );
@@ -95,85 +176,3 @@ $wrapper_attributes = get_block_wrapper_attributes( array(
 
     </div>
 </section>
-
-<?php
-/**
- * Render a single pricing card.
- */
-if ( ! function_exists( 'render_pricing_card' ) ) :
-function render_pricing_card( $tier ) {
-    $primary  = ! empty( $tier['primary'] );
-    $features_raw = $tier['features'] ?? '';
-    $features = array_values( array_filter( array_map( 'trim', preg_split( '/\r\n|\r|\n/', (string) $features_raw ) ) ) );
-
-    $card_variant = $primary
-        ? 'border-[rgba(58,125,68,0.35)] bg-[linear-gradient(160deg,rgba(58,125,68,0.1)_0%,#141414_50%)] hover:border-green-l'
-        : 'border-line bg-s1 hover:border-line-strong';
-
-    $cta_classes = 'mt-auto inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-full border px-[26px] py-[11px] font-sans text-[0.85rem] font-bold uppercase tracking-[1px] no-underline transition-all duration-[250ms] '
-        . ( $primary
-            ? 'border-transparent bg-green text-white hover:-translate-y-0.5 hover:bg-green-l hover:shadow-[0_8px_24px_rgba(58,125,68,0.3)]'
-            : 'border-line-strong bg-transparent text-off hover:border-white/[0.32] hover:bg-white/[0.05]' );
-
-    $cta_url = $tier['cta_url'] ?? '';
-    if ( ! empty( $cta_url ) && 0 === strpos( $cta_url, '/' ) ) {
-        $cta_url = home_url( $cta_url );
-    }
-
-    ob_start();
-    ?>
-    <article class="relative flex h-full flex-col rounded-[18px] border px-[28px] py-9 transition-all duration-[250ms] hover:-translate-y-1 <?php echo esc_attr( $card_variant ); ?>">
-        <?php if ( ! empty( $tier['badge'] ) ) : ?>
-            <div class="absolute left-1/2 top-[-1px] -translate-x-1/2 rounded-b-[10px] bg-green px-4 py-1 text-[0.62rem] font-bold uppercase tracking-[1.5px] text-white">
-                <?php echo esc_html( $tier['badge'] ); ?>
-            </div>
-        <?php endif; ?>
-        <div class="mb-4">
-            <?php if ( ! empty( $tier['sub'] ) ) : ?>
-                <div class="mb-1.5 text-[0.6rem] font-bold uppercase tracking-[2px] <?php echo $primary ? 'text-green-l' : 'text-muted'; ?>">
-                    <?php echo esc_html( $tier['sub'] ); ?>
-                </div>
-            <?php endif; ?>
-            <h3 class="font-display text-[1.9rem] leading-none tracking-[1px] text-white">
-                <?php echo esc_html( $tier['rank'] ?? '' ); ?>
-            </h3>
-        </div>
-        <div class="mb-[14px]">
-            <span class="font-display text-[2.6rem] tracking-[1px] <?php echo $primary ? 'text-green-l' : 'text-white'; ?>">
-                <?php echo esc_html( $tier['price'] ?? '' ); ?>
-            </span>
-            <?php if ( ! empty( $tier['cadence'] ) ) : ?>
-                <span class="ml-1.5 text-[0.78rem] text-muted"><?php echo esc_html( $tier['cadence'] ); ?></span>
-            <?php endif; ?>
-        </div>
-        <?php if ( ! empty( $tier['desc'] ) ) : ?>
-            <p class="mb-5 text-[0.85rem] leading-[1.65] text-muted"><?php echo esc_html( $tier['desc'] ); ?></p>
-        <?php endif; ?>
-        <?php if ( ! empty( $features ) ) : ?>
-            <ul class="mb-6 flex list-none flex-col gap-[9px]">
-                <?php foreach ( $features as $feature ) : ?>
-                    <li class="flex items-start gap-2.5 text-[0.83rem] text-muted-l">
-                        <i class="fa-solid fa-check mt-1 shrink-0 text-[0.65rem] <?php echo $primary ? 'text-green-l' : 'text-muted'; ?>" aria-hidden="true"></i>
-                        <?php echo esc_html( $feature ); ?>
-                    </li>
-                <?php endforeach; ?>
-            </ul>
-        <?php endif; ?>
-        <?php if ( ! empty( $tier['cta_label'] ) ) : ?>
-            <?php if ( 'link' === ( $tier['cta_action'] ?? 'link' ) && $cta_url ) : ?>
-                <a href="<?php echo esc_url( $cta_url ); ?>" class="<?php echo esc_attr( $cta_classes ); ?>">
-                    <?php echo esc_html( $tier['cta_label'] ); ?>
-                    <i class="fa-solid fa-arrow-right shrink-0 text-[0.9em] leading-none" aria-hidden="true"></i>
-                </a>
-            <?php else : ?>
-                <button type="button" data-modal-open="<?php echo esc_attr( $tier['cta_action'] ?? '' ); ?>" class="<?php echo esc_attr( $cta_classes ); ?>">
-                    <?php echo esc_html( $tier['cta_label'] ); ?>
-                    <i class="fa-solid fa-arrow-right shrink-0 text-[0.9em] leading-none" aria-hidden="true"></i>
-                </button>
-            <?php endif; ?>
-        <?php endif; ?>
-    </article>
-    <?php
-    return ob_get_clean();
-}
-endif;
