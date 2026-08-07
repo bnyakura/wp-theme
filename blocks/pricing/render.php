@@ -100,6 +100,7 @@ $wrapper_attributes = get_block_wrapper_attributes( array(
 /**
  * Render a single pricing card.
  */
+if ( ! function_exists( 'render_pricing_card' ) ) :
 function render_pricing_card( $tier ) {
     $primary  = ! empty( $tier['primary'] );
     $features_raw = $tier['features'] ?? '';
@@ -175,3 +176,4 @@ function render_pricing_card( $tier ) {
     <?php
     return ob_get_clean();
 }
+endif;
