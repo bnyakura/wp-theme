@@ -1,0 +1,21 @@
+{
+    "name": "wp-theme/homepage-contact",
+    "title": "Homepage Contact Section",
+    "category": "design",
+    "icon": "phone",
+    "description": "Condensed homepage contact section: header, headquarters card, and dispatch form. Shares headquarters data and the email handler with the Contact page block.",
+    "keywords": ["contact", "dispatch", "form", "headquarters", "homepage"],
+    "acf": {
+        "mode": "auto",
+        "renderTemplate": "render.php"
+    },
+    "supports": {
+        "align": ["wide", "full"],
+        "anchor": true,
+        "spacing": {
+            "padding": true,
+            "margin": true
+        }
+    },
+    "style": "file:./style.css"
+}
