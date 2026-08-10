@@ -42,7 +42,7 @@ $wrapper_attributes = get_block_wrapper_attributes( array(
         <div class="grid grid-cols-[repeat(auto-fit,minmax(min(260px,100%),1fr))] gap-5">
             <?php foreach ( $pillars as $i => $pillar ) : ?>
                 <div data-reveal class="translate-y-6 opacity-0 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] motion-reduce:translate-y-0 motion-reduce:opacity-100 [&.is-revealed]:translate-y-0 [&.is-revealed]:opacity-100" style="transition-delay: <?php echo esc_attr( (string) ( $i * 100 ) ); ?>ms;">
-                    <article class="relative flex h-full flex-row items-start gap-4 overflow-hidden rounded-[18px] border border-line bg-s2 px-[30px] py-10 transition-all duration-700 after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[3px] after:origin-left after:scale-x-0 after:bg-green after:transition-transform after:duration-[400ms] after:content-[''] hover:-translate-y-1.5 hover:border-line-strong hover:after:scale-x-100 min-[601px]:flex-col min-[601px]:gap-0">
+                    <article class="relative flex h-full flex-row items-start gap-4 overflow-hidden rounded-[18px] border border-line bg-s2 px-[30px] py-10 transition-all duration-300 after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[3px] after:origin-left after:scale-x-0 after:bg-green after:transition-transform after:duration-[400ms] after:content-[''] hover:-translate-y-1.5 hover:border-line-strong hover:after:scale-x-100 min-[601px]:flex-col min-[601px]:gap-0">
 
                         <div class="mt-1 flex h-[55px] w-[55px] shrink-0 items-center justify-center rounded-full border border-[rgba(58,125,68,0.35)] bg-[rgba(58,125,68,0.15)] text-[1.3rem] text-green-l min-[601px]:mt-0 min-[601px]:mb-[25px]">
                             <?php if ( ! empty( $pillar['icon'] ) ) : ?>
@@ -54,7 +54,7 @@ $wrapper_attributes = get_block_wrapper_attributes( array(
                             <h3 class="mb-3 font-display text-[1.7rem] tracking-[2px] text-white">
                                 <?php echo esc_html( $pillar['title'] ); ?>
                             </h3>
-                            <p class="leading-[1.8] text-muted">
+                            <p class="text-[0.95rem] leading-[1.8] text-muted">
                                 <?php echo esc_html( $pillar['body'] ); ?>
                             </p>
                         </div>

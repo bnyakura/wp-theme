@@ -1,4 +1,4 @@
-# About Block
+# About Page Block
 
 Full About page: hero, origin story, core values, brotherhood image, coaches grid, testimonials, and final CTA. Falls back to the original Iron Gorilla content when fields are left empty.
 

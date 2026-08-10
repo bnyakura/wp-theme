@@ -1,4 +1,4 @@
-# Book a Drop-In Block
+# Book a Drop-In Page Block
 
 Booking page with two flows: quick sign-up (pick a class) and calendar (pick a date + session). Includes the shared booking form handler and email notification. Falls back to the original Iron Gorilla content when fields are left empty.
 

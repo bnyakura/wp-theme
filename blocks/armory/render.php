@@ -82,14 +82,14 @@ if ( empty( $iga_armory_hero['video'] ) ) {
 
 $wrapper_attributes = get_block_wrapper_attributes(
 	array(
-		'class' => 'wp-theme-armory overflow-hidden bg-[#0A0A0A] font-[\'DM_Sans\'] text-[#F2F2F2] antialiased',
+		'class' => 'wp-theme-armory overflow-hidden bg-ink font-sans text-off antialiased',
 	)
 );
 ?>
 <div <?php echo $wrapper_attributes; ?>>
 
 	<!-- Armory hero -->
-	<section class="relative flex min-h-[560px] items-center overflow-hidden lg:h-[90vh]">
+	<section class="relative flex h-[90vh] min-h-140 items-center overflow-hidden">
 
 		<!-- Background video -->
 		<video
@@ -110,34 +110,34 @@ $wrapper_attributes = get_block_wrapper_attributes(
 
 		<!-- Video overlays -->
 		<div
-			class="absolute inset-0 bg-gradient-to-r from-[#0A0A0A] from-[38%] via-[#0A0A0A]/80 to-[#0A0A0A]/20"
+			class="absolute inset-0 bg-gradient-to-r from-ink from-[38%] via-ink/80 to-ink/20"
 		></div>
 
 		<div
-			class="absolute inset-0 bg-gradient-to-t from-[#0A0A0A]/65 via-transparent to-[#0A0A0A]/20"
+			class="absolute inset-0 bg-gradient-to-t from-ink/65 via-transparent to-ink/20"
 		></div>
 
 		<!-- Hero content -->
-		<div class="relative z-10 mx-auto w-full max-w-[1440px] px-6 py-24 sm:px-10 lg:px-20 xl:px-28">
+		<div class="relative z-10 mx-auto w-full max-w-[1440px] px-[clamp(24px,5vw,80px)] py-24">
 			<div class="max-w-2xl">
 
 				<!-- Eyebrow -->
 				<div class="mb-5 flex items-center gap-3">
-					<span class="h-px w-10 bg-[#3A7D44]"></span>
+					<span class="h-px w-10 bg-green"></span>
 
-					<span class="text-xs font-bold uppercase tracking-[0.22em] text-[#4E9E5A]">
+					<span class="text-xs font-bold uppercase tracking-[0.22em] text-green-l">
 						<?php echo esc_html( $iga_armory_hero['eyebrow'] ); ?>
 					</span>
 				</div>
 
 				<!-- Heading -->
-				<h1 class="font-['Bebas_Neue'] text-6xl uppercase leading-[0.9] tracking-[0.035em] text-white sm:text-7xl lg:text-8xl xl:text-[6rem]">
+				<h1 class="font-display text-[clamp(3rem,7vw,6rem)] uppercase leading-[0.9] tracking-[0.035em] text-white">
 					<?php echo esc_html( $iga_armory_hero['title_1'] ); ?><br>
-					<span class="text-[#4E9E5A]"><?php echo esc_html( $iga_armory_hero['title_2'] ); ?></span>
+					<span class="text-green-l"><?php echo esc_html( $iga_armory_hero['title_2'] ); ?></span>
 				</h1>
 
 				<!-- Description -->
-				<p class="mt-6 max-w-md text-sm leading-7 text-white/55 sm:text-base">
+				<p class="mt-6 max-w-md text-base leading-7 text-white/55">
 					<?php echo esc_html( $iga_armory_hero['subtitle'] ); ?>
 				</p>
 
@@ -146,7 +146,7 @@ $wrapper_attributes = get_block_wrapper_attributes(
 
 					<a
 						href="<?php echo esc_url( $iga_armory_urls['early_access'] ); ?>"
-						class="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-[#3A7D44] px-8 py-4 text-xs font-bold uppercase tracking-[0.12em] text-white transition duration-300 hover:-translate-y-0.5 hover:bg-[#4E9E5A] hover:shadow-[0_10px_30px_rgba(58,125,68,0.35)]"
+						class="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-green px-8 py-4 text-xs font-bold uppercase tracking-[0.12em] text-white transition duration-300 hover:-translate-y-0.5 hover:bg-green-l hover:shadow-[0_10px_30px_rgba(58,125,68,0.35)]"
 					>
 						<?php
 						echo $iga_armory_icon( 'bell', 'h-5 w-5' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
@@ -157,7 +157,7 @@ $wrapper_attributes = get_block_wrapper_attributes(
 
 					<a
 						href="<?php echo esc_url( $iga_armory_urls['memberships'] ); ?>"
-						class="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-white/20 bg-black/10 px-8 py-4 text-xs font-bold uppercase tracking-[0.12em] text-white backdrop-blur-sm transition duration-300 hover:border-white/35 hover:bg-white/[0.07]"
+						class="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-white/20 bg-black/10 px-8 py-4 text-xs font-bold uppercase tracking-[0.12em] text-white backdrop-blur-sm transition duration-300 hover:border-white/35 hover:bg-line"
 					>
 						<?php
 						echo $iga_armory_icon( 'medal', 'h-5 w-5' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
@@ -169,15 +169,15 @@ $wrapper_attributes = get_block_wrapper_attributes(
 				</div>
 
 				<!-- Coming soon badge -->
-				<div class="mt-5 inline-flex items-center gap-2 rounded-full border border-[#C47B2B]/30 bg-[#C47B2B]/10 px-4 py-2">
+				<div class="mt-5 inline-flex items-center gap-2 rounded-full border border-amber/30 bg-amber/10 px-4 py-2">
 
-					<span class="text-[#C47B2B]">
+					<span class="text-amber">
 						<?php
 						echo $iga_armory_icon( 'clock', 'h-4 w-4' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 						?>
 					</span>
 
-					<span class="text-[10px] font-bold uppercase tracking-[0.16em] text-[#C47B2B] sm:text-xs">
+					<span class="text-[0.72rem] font-bold uppercase tracking-[0.16em] text-amber">
 						<?php echo esc_html( $iga_armory_hero['coming'] ); ?>
 					</span>
 

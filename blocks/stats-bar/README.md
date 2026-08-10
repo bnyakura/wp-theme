@@ -1,4 +1,4 @@
-# Stats Bar Block
+# Homepage – Stats Bar Block
 
 Displays a row of statistics with large values and descriptive labels.
 

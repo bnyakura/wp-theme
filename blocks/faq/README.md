@@ -1,4 +1,4 @@
-# FAQ Block
+# FAQ Page Block
 
 Full FAQ page: hero, categorised questions, testimonials, and final CTA. Falls back to the original Iron Gorilla content when fields are left empty.
 

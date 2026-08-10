@@ -1,4 +1,4 @@
-# Hero Block
+# Homepage – Hero Block
 
 A custom slider/carousel block powered by **Secure Custom Fields (SCF)**.
 

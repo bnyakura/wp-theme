@@ -1,4 +1,4 @@
-# Pricing Block
+# Homepage – Pricing Block
 
 Tabbed pricing section with **Monthly Memberships** and **Drop-In Sessions** tabs.
 

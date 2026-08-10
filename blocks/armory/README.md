@@ -1,4 +1,4 @@
-# Armory Block
+# Armory Page Block
 
 Full-width armory hero with a background video, heading, CTA buttons, and a "coming soon" badge. Falls back to the original Iron Gorilla content when fields are left empty.
 

@@ -1,4 +1,4 @@
-# Distinction Block
+# Homepage – Distinction Block
 
 Three-column info cards with images, tags, and call-to-action buttons.
 

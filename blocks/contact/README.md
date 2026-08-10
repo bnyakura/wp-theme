@@ -1,4 +1,4 @@
-# Contact Block
+# Contact Page Block
 
 Contact page with hero, headquarters details, dispatch form (with email handler and subject preselection), testimonials, and final CTA. Falls back to the original Iron Gorilla content when fields are left empty.
 

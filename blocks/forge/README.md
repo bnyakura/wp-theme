@@ -1,4 +1,4 @@
-# Forge Block
+# Homepage – Forge Block
 
 Three-pillar section with icon cards, a section header, and bottom call-to-action buttons.
 

@@ -22,15 +22,15 @@ $wrapper_attributes = get_block_wrapper_attributes( array(
                 </div>
             <?php endif; ?>
             <?php if ( $title ) : ?>
-                <h2 class="mb-4 text-center font-display text-[clamp(2rem,4vw,3.5rem)] leading-[1.05] tracking-[2px] text-white"><?php echo esc_html( $title ); ?></h2>
+                <h2 class="mb-5 text-center font-display text-[clamp(2rem,4vw,3.5rem)] leading-[1.05] tracking-[2px] text-white"><?php echo esc_html( $title ); ?></h2>
             <?php endif; ?>
             <?php if ( $subtitle ) : ?>
-                <p class="mx-auto mb-10 max-w-[600px] text-center text-[1rem] leading-[1.85] text-muted"><?php echo esc_html( $subtitle ); ?></p>
+                <p class="mx-auto mb-12 max-w-[600px] text-center text-[1rem] leading-[1.7] text-muted"><?php echo esc_html( $subtitle ); ?></p>
             <?php endif; ?>
         </div>
     <?php endif; ?>
 
-    <div class="mx-auto mt-10 grid max-w-[1100px] grid-cols-1 gap-3 min-[768px]:grid-cols-1 min-[481px]:grid-cols-2 min-[769px]:gap-4 min-[1081px]:grid-cols-3">
+    <div class="mx-auto mt-10 grid max-w-[1100px] grid-cols-1 gap-3 min-[481px]:grid-cols-2 min-[769px]:grid-cols-1 min-[769px]:gap-4 min-[1081px]:grid-cols-3">
         <?php foreach ( $testimonials as $i => $t ) : ?>
             <div data-reveal class="translate-y-6 rounded-[18px] border border-line bg-s1 px-[30px] py-[35px] opacity-0 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] motion-reduce:translate-y-0 motion-reduce:opacity-100 [&.is-revealed]:translate-y-0 [&.is-revealed]:opacity-100" style="transition-delay: <?php echo esc_attr( (string) ( $i * 100 ) ); ?>ms;">
                 <div class="mb-[18px]">

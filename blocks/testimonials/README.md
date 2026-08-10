@@ -1,4 +1,4 @@
-# Testimonials Block
+# Homepage – Testimonials Block
 
 Responsive grid of member testimonial cards with quotes, initials, names, locations, and result badges.
 

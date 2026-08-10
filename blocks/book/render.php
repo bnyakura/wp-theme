@@ -60,38 +60,38 @@ $quick_fields = array(
 
 $wrapper_attributes = get_block_wrapper_attributes(
 	array(
-		'class' => 'wp-theme-book overflow-hidden bg-[#0A0A0A] font-[\'DM_Sans\'] text-[#F2F2F2] antialiased',
+		'class' => 'wp-theme-book overflow-hidden bg-ink font-sans text-off antialiased',
 	)
 );
 ?>
 <div <?php echo $wrapper_attributes; ?>>
 
 	<!-- Page hero -->
-	<section class="border-b border-white/[0.07] bg-[#141414] px-6 py-20 text-center sm:px-10 lg:px-20 lg:py-24 xl:px-28">
+	<section class="border-b border-line bg-s1 px-4.5 pb-12 pt-15 text-center min-[481px]:px-[5vw] min-[481px]:pb-16 min-[481px]:pt-20">
 		<div class="mx-auto max-w-4xl">
 			<div class="mb-4 flex items-center justify-center gap-3">
-				<span class="h-px w-10 bg-[#3A7D44]"></span>
-				<span class="text-xs font-bold uppercase tracking-[0.22em] text-[#4E9E5A]"><?php echo esc_html( $iga_book_hero['eyebrow'] ); ?></span>
-				<span class="h-px w-10 bg-[#3A7D44]"></span>
+				<span class="h-px w-10 bg-green"></span>
+				<span class="text-xs font-bold uppercase tracking-[0.22em] text-green-l"><?php echo esc_html( $iga_book_hero['eyebrow'] ); ?></span>
+				<span class="h-px w-10 bg-green"></span>
 			</div>
-			<h1 class="font-['Bebas_Neue'] text-4xl uppercase leading-none tracking-[0.04em] text-white sm:text-6xl lg:text-7xl"><?php echo esc_html( $iga_book_hero['title'] ); ?></h1>
-			<p class="mx-auto mt-5 max-w-2xl text-sm leading-7 text-white/50 sm:text-base"><?php echo esc_html( $iga_book_hero['subtitle'] ); ?></p>
+			<h1 class="font-display uppercase leading-none tracking-[0.04em] text-white text-[clamp(1.8rem,8vw,2.6rem)] min-[481px]:text-[clamp(2rem,4vw,3.5rem)]"><?php echo esc_html( $iga_book_hero['title'] ); ?></h1>
+			<p class="mx-auto mt-5 max-w-2xl leading-7 text-white/50 text-[0.93rem] min-[481px]:text-[0.95rem] min-[769px]:text-base"><?php echo esc_html( $iga_book_hero['subtitle'] ); ?></p>
 		</div>
 	</section>
 
-	<section class="px-6 py-20 sm:px-10 lg:px-20 lg:py-24 xl:px-28">
+	<section class="px-4.5 py-15 min-[481px]:px-6 min-[481px]:py-18 min-[1081px]:px-[5vw] min-[1081px]:py-25">
 		<div class="mx-auto max-w-xl">
 			<?php if ( is_array( $iga_success_booking ) ) : ?>
 				<!-- Success screen -->
 				<div class="text-center">
-					<div class="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full border border-[#3A7D44]/50 bg-[#3A7D44]/10 text-[#4E9E5A]">
+					<div class="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full border border-green/50 bg-green/10 text-green-l">
 						<?php echo $iga_booking_icon( 'check', 'h-9 w-9' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 					</div>
-					<h2 class="font-['Bebas_Neue'] text-5xl uppercase tracking-wide text-white">You're On The List.</h2>
-					<p class="mx-auto mt-4 max-w-md text-sm leading-7 text-white/50 sm:text-base">We'll confirm your spot personally via WhatsApp. Show up ready.</p>
+					<h2 class="font-display text-5xl uppercase tracking-wide text-white">You're On The List.</h2>
+					<p class="mx-auto mt-4 max-w-md text-base leading-7 text-white/50">We'll confirm your spot personally via WhatsApp. Show up ready.</p>
 
-					<div class="mt-8 rounded-xl border border-[#3A7D44]/40 bg-[#0F1F11] p-6 text-left">
-						<p class="mb-4 text-[10px] font-bold uppercase tracking-[0.2em] text-[#4E9E5A]">Your Booking</p>
+					<div class="mt-8 rounded-xl border border-green/40 bg-[#0F1F11] p-6 text-left">
+						<p class="mb-4 text-[10px] font-bold uppercase tracking-[0.2em] text-green-l">Your Booking</p>
 						<?php
 						$success_rows = array(
 							array( 'calendar', $iga_success_booking['date'] ),
@@ -105,7 +105,7 @@ $wrapper_attributes = get_block_wrapper_attributes(
 							}
 							?>
 							<div class="mt-3 flex items-center gap-3 text-sm text-white/65">
-								<span class="text-[#4E9E5A]"><?php echo $iga_booking_icon( $row[0], 'h-4 w-4' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
+								<span class="text-green-l"><?php echo $iga_booking_icon( $row[0], 'h-4 w-4' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
 								<?php echo esc_html( $row[1] ); ?>
 							</div>
 						<?php endforeach; ?>
@@ -124,8 +124,8 @@ $wrapper_attributes = get_block_wrapper_attributes(
 				<?php endif; ?>
 
 				<!-- Mode switcher -->
-				<div class="mb-9 grid grid-cols-2 gap-1 rounded-xl border border-white/10 bg-[#1C1C1C] p-1">
-					<button type="button" data-book-mode="quick" class="flex items-center justify-center gap-2 rounded-lg bg-[#3A7D44] px-3 py-3 text-xs font-bold text-white transition">
+				<div class="mb-9 grid grid-cols-2 gap-1 rounded-xl border border-white/10 bg-s2 p-1">
+					<button type="button" data-book-mode="quick" class="flex items-center justify-center gap-2 rounded-lg bg-green px-3 py-3 text-xs font-bold text-white transition">
 						<?php echo $iga_booking_icon( 'bolt', 'h-4 w-4' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 						Quick Sign-Up
 					</button>
@@ -138,15 +138,15 @@ $wrapper_attributes = get_block_wrapper_attributes(
 				<!-- Quick sign-up -->
 				<div data-book-panel="quick">
 					<div id="iga-quick-step-one">
-						<h2 class="mb-6 font-['Bebas_Neue'] text-4xl uppercase tracking-wide text-white">Which Class?</h2>
+						<h2 class="mb-6 font-display text-4xl uppercase tracking-wide text-white">Which Class?</h2>
 						<div class="space-y-3">
 							<?php foreach ( $iga_quick_classes as $class_id => $class ) : ?>
-								<button type="button" data-quick-class="<?php echo esc_attr( $class_id ); ?>" class="flex w-full items-center gap-4 rounded-xl border bg-[#1C1C1C] p-4 text-left transition <?php echo esc_attr( $class['card_class'] ); ?>">
+								<button type="button" data-quick-class="<?php echo esc_attr( $class_id ); ?>" class="flex w-full items-center gap-4 rounded-xl border bg-s2 p-4 text-left transition <?php echo esc_attr( $class['card_class'] ); ?>">
 									<span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border <?php echo esc_attr( $class['icon_class'] ); ?>">
 										<?php echo $iga_booking_icon( $class['icon'], 'h-5 w-5' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 									</span>
 									<span class="min-w-0 flex-1">
-										<strong class="block font-['Bebas_Neue'] text-2xl leading-none tracking-wide text-white"><?php echo esc_html( $class['name'] ); ?></strong>
+										<strong class="block font-display text-2xl leading-none tracking-wide text-white"><?php echo esc_html( $class['name'] ); ?></strong>
 										<small class="mt-1 block text-xs text-white/55">Coach <?php echo esc_html( $class['coach'] . ' · ' . $class['schedule'] ); ?></small>
 										<small class="mt-1 block text-[10px] text-white/30"><?php echo esc_html( $class['duration'] ); ?></small>
 									</span>
@@ -157,11 +157,11 @@ $wrapper_attributes = get_block_wrapper_attributes(
 					</div>
 
 					<div id="iga-quick-step-two" class="hidden">
-						<h2 class="mb-6 font-['Bebas_Neue'] text-4xl uppercase tracking-wide text-white">Almost There.</h2>
-						<div class="mb-7 flex items-center gap-4 rounded-xl border border-[#3A7D44]/40 bg-[#0F1F11] p-4">
-							<span id="iga-quick-recap-icon" class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[#3A7D44]/30 bg-[#3A7D44]/10 text-[#4E9E5A]"></span>
+						<h2 class="mb-6 font-display text-4xl uppercase tracking-wide text-white">Almost There.</h2>
+						<div class="mb-7 flex items-center gap-4 rounded-xl border border-green/40 bg-[#0F1F11] p-4">
+							<span id="iga-quick-recap-icon" class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-green/30 bg-green/10 text-green-l"></span>
 							<span class="min-w-0 flex-1">
-								<strong id="iga-quick-recap-name" class="block font-['Bebas_Neue'] text-xl leading-none tracking-wide text-white"></strong>
+								<strong id="iga-quick-recap-name" class="block font-display text-xl leading-none tracking-wide text-white"></strong>
 								<small id="iga-quick-recap-meta" class="mt-1 block text-xs text-white/55"></small>
 							</span>
 							<button type="button" data-quick-change class="text-xs text-white/40 transition hover:text-white">Change</button>
@@ -176,14 +176,14 @@ $wrapper_attributes = get_block_wrapper_attributes(
 							<?php foreach ( $quick_fields as $field ) : ?>
 								<div>
 									<label for="quick-<?php echo esc_attr( $field[2] ); ?>" class="mb-2 block text-[10px] font-bold uppercase tracking-[0.16em] text-white/40"><?php echo esc_html( $field[0] ); ?></label>
-									<input id="quick-<?php echo esc_attr( $field[2] ); ?>" type="<?php echo esc_attr( $field[1] ); ?>" name="<?php echo esc_attr( $field[2] ); ?>" placeholder="<?php echo esc_attr( $field[3] ); ?>" autocomplete="<?php echo esc_attr( $field[4] ); ?>" required class="w-full rounded-xl border border-white/10 bg-[#141414] px-5 py-4 text-sm text-white outline-none transition placeholder:text-white/20 focus:border-[#4E9E5A] focus:ring-2 focus:ring-[#3A7D44]/20">
+									<input id="quick-<?php echo esc_attr( $field[2] ); ?>" type="<?php echo esc_attr( $field[1] ); ?>" name="<?php echo esc_attr( $field[2] ); ?>" placeholder="<?php echo esc_attr( $field[3] ); ?>" autocomplete="<?php echo esc_attr( $field[4] ); ?>" required class="w-full rounded-xl border border-white/10 bg-s1 px-5 py-4 text-sm text-white outline-none transition placeholder:text-white/20 focus:border-green-l focus:ring-2 focus:ring-green/20">
 								</div>
 							<?php endforeach; ?>
-							<div class="flex gap-3 rounded-r-xl border-l-2 border-[#3A7D44] bg-[#1C1C1C] px-4 py-3 text-xs leading-6 text-white/40">
-								<span class="mt-1 shrink-0 text-[#4E9E5A]"><?php echo $iga_booking_icon( 'info', 'h-4 w-4' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
+							<div class="flex gap-3 rounded-r-xl border-l-2 border-green bg-s2 px-4 py-3 text-xs leading-6 text-white/40">
+								<span class="mt-1 shrink-0 text-green-l"><?php echo $iga_booking_icon( 'info', 'h-4 w-4' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
 								We confirm your spot via WhatsApp within 24 hours.
 							</div>
-							<button type="submit" class="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-[#3A7D44] px-8 py-4 text-xs font-bold uppercase tracking-[0.12em] text-white transition hover:bg-[#4E9E5A] hover:shadow-[0_10px_30px_rgba(58,125,68,0.35)]">
+							<button type="submit" class="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-green px-8 py-4 text-xs font-bold uppercase tracking-[0.12em] text-white transition hover:bg-green-l hover:shadow-[0_10px_30px_rgba(58,125,68,0.35)]">
 								<?php echo $iga_booking_icon( 'calendar', 'h-5 w-5' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 								Reserve My Spot
 							</button>
@@ -199,38 +199,38 @@ $wrapper_attributes = get_block_wrapper_attributes(
 				<div data-book-panel="calendar" class="hidden">
 					<div class="mb-9 flex items-start">
 						<div class="flex flex-col items-center gap-2">
-							<span id="iga-session-progress" class="flex h-9 w-9 items-center justify-center rounded-full border border-[#3A7D44] bg-[#3A7D44] text-white"><?php echo $iga_booking_icon( 'dumbbell', 'h-4 w-4' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
+							<span id="iga-session-progress" class="flex h-9 w-9 items-center justify-center rounded-full border border-green bg-green text-white"><?php echo $iga_booking_icon( 'dumbbell', 'h-4 w-4' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
 							<small class="text-[9px] font-bold uppercase tracking-[0.14em] text-white">Session</small>
 						</div>
 						<span id="iga-progress-line" class="mt-[17px] h-0.5 flex-1 bg-white/10"></span>
 						<div class="flex flex-col items-center gap-2">
-							<span id="iga-user-progress" class="flex h-9 w-9 items-center justify-center rounded-full border border-white/15 bg-[#242424] text-white/30"><?php echo $iga_booking_icon( 'user', 'h-4 w-4' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
+							<span id="iga-user-progress" class="flex h-9 w-9 items-center justify-center rounded-full border border-white/15 bg-s3 text-white/30"><?php echo $iga_booking_icon( 'user', 'h-4 w-4' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
 							<small class="text-[9px] font-bold uppercase tracking-[0.14em] text-white/30">You</small>
 						</div>
 					</div>
 
 					<div id="iga-calendar-step-one">
-						<h2 class="mb-6 font-['Bebas_Neue'] text-4xl uppercase tracking-wide text-white">Pick a Session.</h2>
-						<div class="mb-7 overflow-hidden rounded-2xl border border-white/10 bg-[#1C1C1C]">
+						<h2 class="mb-6 font-display text-4xl uppercase tracking-wide text-white">Pick a Session.</h2>
+						<div class="mb-7 overflow-hidden rounded-2xl border border-white/10 bg-s2">
 							<p class="border-b border-white/[0.06] px-4 py-3 text-center text-[9px] font-bold uppercase tracking-[0.16em] text-white/30">Swipe to browse</p>
 							<div id="iga-date-strip" class="flex snap-x snap-mandatory gap-1 overflow-x-auto px-[calc(50%-30px)] py-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
 								<?php foreach ( $iga_booking_dates as $index => $date ) : ?>
-									<button type="button" data-book-date="<?php echo esc_attr( $date->format( 'Y-m-d' ) ); ?>" class="flex w-[60px] shrink-0 snap-center flex-col items-center gap-1 rounded-xl px-1 py-2 transition <?php echo 0 === $index ? 'bg-[#3A7D44]/10 opacity-100' : 'opacity-40 hover:opacity-80'; ?>">
-										<span class="text-[9px] font-bold uppercase tracking-wide text-[#4E9E5A]"><?php echo esc_html( $date->format( 'D' ) ); ?></span>
-										<span class="flex h-10 w-10 items-center justify-center rounded-full font-['Bebas_Neue'] text-xl <?php echo 0 === $index ? 'bg-[#3A7D44] text-white' : 'text-white'; ?>"><?php echo esc_html( $date->format( 'j' ) ); ?></span>
+									<button type="button" data-book-date="<?php echo esc_attr( $date->format( 'Y-m-d' ) ); ?>" class="flex w-[60px] shrink-0 snap-center flex-col items-center gap-1 rounded-xl px-1 py-2 transition <?php echo 0 === $index ? 'bg-green/10 opacity-100' : 'opacity-40 hover:opacity-80'; ?>">
+										<span class="text-[9px] font-bold uppercase tracking-wide text-green-l"><?php echo esc_html( $date->format( 'D' ) ); ?></span>
+										<span class="flex h-10 w-10 items-center justify-center rounded-full font-display text-xl <?php echo 0 === $index ? 'bg-green text-white' : 'text-white'; ?>"><?php echo esc_html( $date->format( 'j' ) ); ?></span>
 										<span class="text-[8px] font-bold uppercase text-white/30"><?php echo esc_html( $date->format( 'Y-m-d' ) === $iga_booking_dates[0]->format( 'Y-m-d' ) ? 'Today' : $date->format( 'M' ) ); ?></span>
 									</button>
 								<?php endforeach; ?>
 							</div>
 						</div>
-						<p id="iga-selected-date-label" class="mb-4 text-[10px] font-bold uppercase tracking-[0.2em] text-[#4E9E5A]"></p>
+						<p id="iga-selected-date-label" class="mb-4 text-[10px] font-bold uppercase tracking-[0.2em] text-green-l"></p>
 						<div id="iga-session-list" class="space-y-3"></div>
 					</div>
 
 					<div id="iga-calendar-step-two" class="hidden">
-						<h2 class="mb-6 font-['Bebas_Neue'] text-4xl uppercase tracking-wide text-white">Almost There.</h2>
-						<div class="mb-7 rounded-xl border border-[#3A7D44]/40 bg-[#0F1F11] p-5">
-							<p class="mb-3 text-[10px] font-bold uppercase tracking-[0.2em] text-[#4E9E5A]">Your Session</p>
+						<h2 class="mb-6 font-display text-4xl uppercase tracking-wide text-white">Almost There.</h2>
+						<div class="mb-7 rounded-xl border border-green/40 bg-[#0F1F11] p-5">
+							<p class="mb-3 text-[10px] font-bold uppercase tracking-[0.2em] text-green-l">Your Session</p>
 							<div id="iga-calendar-recap" class="space-y-2 text-sm text-white/65"></div>
 						</div>
 
@@ -247,14 +247,14 @@ $wrapper_attributes = get_block_wrapper_attributes(
 							<?php foreach ( $quick_fields as $field ) : ?>
 								<div>
 									<label for="calendar-<?php echo esc_attr( $field[2] ); ?>" class="mb-2 block text-[10px] font-bold uppercase tracking-[0.16em] text-white/40"><?php echo esc_html( $field[0] ); ?></label>
-									<input id="calendar-<?php echo esc_attr( $field[2] ); ?>" type="<?php echo esc_attr( $field[1] ); ?>" name="<?php echo esc_attr( $field[2] ); ?>" placeholder="<?php echo esc_attr( $field[3] ); ?>" autocomplete="<?php echo esc_attr( $field[4] ); ?>" required class="w-full rounded-xl border border-white/10 bg-[#141414] px-5 py-4 text-sm text-white outline-none transition placeholder:text-white/20 focus:border-[#4E9E5A] focus:ring-2 focus:ring-[#3A7D44]/20">
+									<input id="calendar-<?php echo esc_attr( $field[2] ); ?>" type="<?php echo esc_attr( $field[1] ); ?>" name="<?php echo esc_attr( $field[2] ); ?>" placeholder="<?php echo esc_attr( $field[3] ); ?>" autocomplete="<?php echo esc_attr( $field[4] ); ?>" required class="w-full rounded-xl border border-white/10 bg-s1 px-5 py-4 text-sm text-white outline-none transition placeholder:text-white/20 focus:border-green-l focus:ring-2 focus:ring-green/20">
 								</div>
 							<?php endforeach; ?>
-							<div class="flex gap-3 rounded-r-xl border-l-2 border-[#3A7D44] bg-[#1C1C1C] px-4 py-3 text-xs leading-6 text-white/40">
-								<span class="mt-1 shrink-0 text-[#4E9E5A]"><?php echo $iga_booking_icon( 'info', 'h-4 w-4' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
+							<div class="flex gap-3 rounded-r-xl border-l-2 border-green bg-s2 px-4 py-3 text-xs leading-6 text-white/40">
+								<span class="mt-1 shrink-0 text-green-l"><?php echo $iga_booking_icon( 'info', 'h-4 w-4' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
 								First session free. We confirm via WhatsApp within 24 hours.
 							</div>
-							<button type="submit" class="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-[#3A7D44] px-8 py-4 text-xs font-bold uppercase tracking-[0.12em] text-white transition hover:bg-[#4E9E5A] hover:shadow-[0_10px_30px_rgba(58,125,68,0.35)]">
+							<button type="submit" class="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-green px-8 py-4 text-xs font-bold uppercase tracking-[0.12em] text-white transition hover:bg-green-l hover:shadow-[0_10px_30px_rgba(58,125,68,0.35)]">
 								<?php echo $iga_booking_icon( 'calendar', 'h-5 w-5' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 								Book My Free Drop-In
 							</button>
@@ -286,7 +286,7 @@ document.addEventListener('DOMContentLoaded', function () {
 		});
 		document.querySelectorAll('[data-book-mode]').forEach(function (button) {
 			var active = button.getAttribute('data-book-mode') === mode;
-			button.classList.toggle('bg-[#3A7D44]', active);
+			button.classList.toggle('bg-green', active);
 			button.classList.toggle('text-white', active);
 			button.classList.toggle('text-white/40', !active);
 		});
@@ -354,10 +354,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
 		if (day === 6) {
 			var appointment = document.createElement('div');
-			appointment.className = 'rounded-xl border border-[#3A7D44]/40 bg-[#1C1C1C] p-5';
-			appointment.appendChild(makeText('h3', "font-['Bebas_Neue'] text-2xl tracking-wide text-white", 'Saturday — By Appointment'));
+			appointment.className = 'rounded-xl border border-green/40 bg-s2 p-5';
+			appointment.appendChild(makeText('h3', "font-display text-2xl tracking-wide text-white", 'Saturday — By Appointment'));
 			appointment.appendChild(makeText('p', 'mt-2 text-sm leading-6 text-white/45', "Saturday sessions are arranged personally. WhatsApp us and we'll lock in your time."));
-			var link = makeText('a', 'mt-5 inline-flex min-h-11 w-full items-center justify-center rounded-full bg-[#3A7D44] px-6 py-3 text-xs font-bold uppercase tracking-wide text-white hover:bg-[#4E9E5A]', 'WhatsApp to Book');
+			var link = makeText('a', 'mt-5 inline-flex min-h-11 w-full items-center justify-center rounded-full bg-green px-6 py-3 text-xs font-bold uppercase tracking-wide text-white hover:bg-green-l', 'WhatsApp to Book');
 			link.href = whatsappUrl;
 			link.target = '_blank';
 			link.rel = 'noopener noreferrer';
@@ -367,18 +367,18 @@ document.addEventListener('DOMContentLoaded', function () {
 		}
 
 		if (!sessions.length) {
-			sessionList.appendChild(makeText('div', 'rounded-xl border border-white/10 bg-[#1C1C1C] p-5 text-sm text-white/45', 'No sessions this day. Please try a different date.'));
+			sessionList.appendChild(makeText('div', 'rounded-xl border border-white/10 bg-s2 p-5 text-sm text-white/45', 'No sessions this day. Please try a different date.'));
 			return;
 		}
 
 		sessions.forEach(function (session) {
 			var button = document.createElement('button');
 			button.type = 'button';
-			button.className = 'flex w-full items-center gap-4 rounded-xl border border-white/10 bg-[#1C1C1C] p-4 text-left transition hover:border-[#3A7D44]/50 hover:bg-[#242424]';
-			var icon = makeText('span', 'flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[#3A7D44]/30 bg-[#3A7D44]/10 font-bold text-[#4E9E5A]', session.name.charAt(0));
+			button.className = 'flex w-full items-center gap-4 rounded-xl border border-white/10 bg-s2 p-4 text-left transition hover:border-green/50 hover:bg-s3';
+			var icon = makeText('span', 'flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-green/30 bg-green/10 font-bold text-green-l', session.name.charAt(0));
 			var body = document.createElement('span');
 			body.className = 'min-w-0 flex-1';
-			body.appendChild(makeText('strong', "block font-['Bebas_Neue'] text-2xl leading-none tracking-wide text-white", formatTime(session.time)));
+			body.appendChild(makeText('strong', "block font-display text-2xl leading-none tracking-wide text-white", formatTime(session.time)));
 			body.appendChild(makeText('small', 'mt-1 block truncate text-xs text-white/55', session.name + ' · ' + session.coach));
 			body.appendChild(makeText('small', 'mt-1 block text-[10px] text-white/30', session.duration + ' min · ' + session.capacity + ' spots'));
 			button.appendChild(icon);
@@ -404,8 +404,8 @@ document.addEventListener('DOMContentLoaded', function () {
 		);
 		calendarOne.classList.add('hidden');
 		calendarTwo.classList.remove('hidden');
-		document.getElementById('iga-progress-line').classList.add('bg-[#3A7D44]');
-		document.getElementById('iga-user-progress').className = 'flex h-9 w-9 items-center justify-center rounded-full border border-[#3A7D44] bg-[#3A7D44] text-white';
+		document.getElementById('iga-progress-line').classList.add('bg-green');
+		document.getElementById('iga-user-progress').className = 'flex h-9 w-9 items-center justify-center rounded-full border border-green bg-green text-white';
 	}
 
 	document.querySelectorAll('[data-book-date]').forEach(function (button) {
@@ -413,12 +413,12 @@ document.addEventListener('DOMContentLoaded', function () {
 			selectedDate = button.getAttribute('data-book-date');
 			document.querySelectorAll('[data-book-date]').forEach(function (dateButton) {
 				var active = dateButton === button;
-				dateButton.classList.toggle('bg-[#3A7D44]/10', active);
+				dateButton.classList.toggle('bg-green/10', active);
 				dateButton.classList.toggle('opacity-100', active);
 				dateButton.classList.toggle('opacity-40', !active);
 				var circle = dateButton.querySelector('span:nth-child(2)');
 				if (circle) {
-					circle.classList.toggle('bg-[#3A7D44]', active);
+					circle.classList.toggle('bg-green', active);
 					circle.classList.toggle('text-white', true);
 				}
 			});

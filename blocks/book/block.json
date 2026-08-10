@@ -1,6 +1,6 @@
 {
     "name": "wp-theme/book",
-    "title": "Book a Drop-In",
+    "title": "Book a Drop-In Page",
     "category": "design",
     "icon": "calendar",
     "description": "Booking page: quick sign-up class cards or date-based session picker, with an email handler.",

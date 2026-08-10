@@ -1,4 +1,4 @@
-# Homepage Contact Block
+# Homepage – Contact Block
 
 Condensed contact section for the homepage: section header, a headquarters card, and a dispatch form (name, email, message). A lighter sibling of the full Contact page block — same headquarters data and email handler, no hero/testimonials/CTA.
 

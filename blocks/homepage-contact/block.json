@@ -1,6 +1,6 @@
 {
     "name": "wp-theme/homepage-contact",
-    "title": "Homepage Contact Section",
+    "title": "Homepage – Contact",
     "category": "design",
     "icon": "phone",
     "description": "Condensed homepage contact section: header, headquarters card, and dispatch form. Shares headquarters data and the email handler with the Contact page block.",

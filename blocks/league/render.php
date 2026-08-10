@@ -71,16 +71,16 @@ $iga_league_bank['link_label']     = $iga_league_bank['link_label'] ?: 'reach ou
 
 $wrapper_attributes = get_block_wrapper_attributes(
 	array(
-		'class' => 'wp-theme-league overflow-hidden bg-[#0A0A0A] font-[\'DM_Sans\'] text-[#F2F2F2] antialiased',
+		'class' => 'wp-theme-league overflow-hidden bg-ink font-sans text-off antialiased',
 	)
 );
 ?>
 <div <?php echo $wrapper_attributes; ?>>
 
 	<!-- Coming soon banner -->
-	<div class="flex items-center justify-center gap-2.5 border-b border-[#C47B2B]/25 bg-[#C47B2B]/10 px-6 py-3 text-center">
+	<div class="flex items-center justify-center gap-2.5 border-b border-amber/25 bg-amber/10 px-6 py-3 text-center">
 
-		<span class="shrink-0 text-[#C47B2B]">
+		<span class="shrink-0 text-amber">
 			<?php
 			echo $iga_league_icon(
 				'clock',
@@ -89,23 +89,23 @@ $wrapper_attributes = get_block_wrapper_attributes(
 			?>
 		</span>
 
-		<p class="text-[10px] font-bold uppercase tracking-[0.16em] text-[#C47B2B] sm:text-xs">
+		<p class="text-xs font-bold uppercase tracking-[0.16em] text-amber">
 			<?php echo esc_html( $iga_league_banner ); ?>
 		</p>
 
 	</div>
 
 	<!-- League hero -->
-	<section class="relative flex min-h-[620px] items-center border-b border-white/[0.07] bg-gradient-to-b from-[#0A0A0A] to-[#111111] px-6 py-20 text-center sm:px-10 lg:px-20 lg:py-28 xl:px-28">
+	<section class="relative flex min-h-[620px] items-center border-b border-line bg-gradient-to-b from-ink to-[#111111] px-[5vw] py-20 text-center">
 
 		<!-- Decorative background -->
 		<div
 			class="pointer-events-none absolute inset-0 overflow-hidden"
 			aria-hidden="true"
 		>
-			<div class="absolute left-1/2 top-1/2 h-[480px] w-[480px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#3A7D44]/[0.06] blur-3xl"></div>
+			<div class="absolute left-1/2 top-1/2 h-[480px] w-[480px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-green/[0.06] blur-3xl"></div>
 
-			<div class="absolute left-1/2 top-1/2 h-[300px] w-[300px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-[#3A7D44]/10"></div>
+			<div class="absolute left-1/2 top-1/2 h-[300px] w-[300px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-green/10"></div>
 		</div>
 
 		<div class="relative z-10 mx-auto w-full max-w-3xl">
@@ -113,35 +113,35 @@ $wrapper_attributes = get_block_wrapper_attributes(
 			<!-- Eyebrow -->
 			<div class="mb-5 flex items-center justify-center gap-3">
 
-				<span class="h-px w-10 bg-[#3A7D44]"></span>
+				<span class="h-px w-10 bg-green"></span>
 
-				<span class="text-xs font-bold uppercase tracking-[0.22em] text-[#4E9E5A]">
+				<span class="text-xs font-bold uppercase tracking-[0.22em] text-green-l">
 					<?php echo esc_html( $iga_league_hero['eyebrow'] ); ?>
 				</span>
 
-				<span class="h-px w-10 bg-[#3A7D44]"></span>
+				<span class="h-px w-10 bg-green"></span>
 
 			</div>
 
 			<!-- Heading -->
-			<h1 class="font-['Bebas_Neue'] text-6xl uppercase leading-[0.9] tracking-[0.04em] text-white sm:text-7xl lg:text-8xl">
+			<h1 class="font-display text-6xl uppercase leading-[0.9] tracking-[0.04em] text-white sm:text-7xl lg:text-8xl">
 				<?php echo esc_html( $iga_league_hero['title_1'] ); ?><br>
-				<span class="text-[#4E9E5A]">
+				<span class="text-green-l">
 					<?php echo esc_html( $iga_league_hero['title_2'] ); ?>
 				</span>
 			</h1>
 
 			<!-- Introduction -->
-			<p class="mx-auto mt-6 max-w-2xl text-sm leading-7 text-white/50 sm:text-base">
+			<p class="mx-auto mt-6 max-w-2xl text-sm leading-7 text-white/50 min-[769px]:text-base">
 				<?php echo esc_html( $iga_league_hero['subtitle'] ); ?>
 			</p>
 
 			<!-- Bank transfer card -->
-			<div class="mx-auto mt-10 max-w-md rounded-xl border border-[#3A7D44] bg-[#141414] p-6 text-left shadow-[0_20px_60px_rgba(0,0,0,0.35)] sm:px-7">
+			<div class="mx-auto mt-10 max-w-md rounded-xl border border-green bg-s1 px-7 py-4 text-left shadow-[0_20px_60px_rgba(0,0,0,0.35)]">
 
 				<div class="mb-4 flex items-center gap-3">
 
-					<span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-[#3A7D44]/40 bg-[#3A7D44]/10 text-[#4E9E5A]">
+					<span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-green/40 bg-green/10 text-green-l">
 						<?php
 						echo $iga_league_icon(
 							'bank',
@@ -150,7 +150,7 @@ $wrapper_attributes = get_block_wrapper_attributes(
 						?>
 					</span>
 
-					<p class="text-[10px] font-bold uppercase tracking-[0.2em] text-[#4E9E5A]">
+					<p class="text-[10px] font-bold uppercase tracking-[0.2em] text-green-l">
 						<?php echo esc_html( $iga_league_bank['label'] ); ?>
 					</p>
 
@@ -169,12 +169,12 @@ $wrapper_attributes = get_block_wrapper_attributes(
 					</span>
 				</p>
 
-				<p class="mt-4 border-t border-white/[0.07] pt-4 text-xs leading-6 text-white/30">
+				<p class="mt-4 border-t border-line pt-4 text-xs leading-6 text-white/30">
 					<?php echo esc_html( $iga_league_bank['footnote'] ); ?>
 
 					<a
 						href="<?php echo esc_url( $iga_league_contact_url ); ?>"
-						class="inline-flex items-center gap-1 font-semibold text-[#4E9E5A] transition hover:text-white"
+						class="inline-flex items-center gap-1 font-semibold text-green-l transition hover:text-white"
 					>
 						<?php echo esc_html( $iga_league_bank['link_label'] ); ?>
 

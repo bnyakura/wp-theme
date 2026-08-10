@@ -65,17 +65,17 @@ $iga_training_icon = static function ( $name, $classes = 'h-6 w-6' ) {
 
 $iga_training_section_header = static function ( $eyebrow, $title, $subtitle = '' ) {
 	?>
-	<div class="mx-auto mb-12 max-w-3xl text-center lg:mb-14">
+	<div class="mx-auto mb-12 max-w-3xl text-center">
 		<div class="mb-4 flex items-center justify-center gap-3">
-			<span class="h-px w-10 bg-[#3A7D44]"></span>
-			<span class="text-xs font-bold uppercase tracking-[0.22em] text-[#4E9E5A]"><?php echo esc_html( $eyebrow ); ?></span>
-			<span class="h-px w-10 bg-[#3A7D44]"></span>
+			<span class="h-px w-10 bg-green"></span>
+			<span class="text-xs font-bold uppercase tracking-[0.22em] text-green-l"><?php echo esc_html( $eyebrow ); ?></span>
+			<span class="h-px w-10 bg-green"></span>
 		</div>
-		<h2 class="font-['Bebas_Neue'] text-4xl uppercase leading-none tracking-[0.04em] text-white sm:text-5xl lg:text-6xl">
+		<h2 class="font-display text-4xl uppercase leading-none tracking-[0.04em] text-white sm:text-5xl lg:text-6xl">
 			<?php echo esc_html( $title ); ?>
 		</h2>
 		<?php if ( $subtitle ) : ?>
-			<p class="mx-auto mt-5 max-w-2xl text-sm leading-7 text-white/50 sm:text-base"><?php echo esc_html( $subtitle ); ?></p>
+			<p class="mx-auto mt-5 max-w-2xl text-sm leading-7 text-white/50 min-[769px]:text-base"><?php echo esc_html( $subtitle ); ?></p>
 		<?php endif; ?>
 	</div>
 	<?php
@@ -494,25 +494,25 @@ $iga_training_cta['subtitle'] = $iga_training_cta['subtitle'] ?: 'Zero pressure.
 $iga_training_pricing_card = static function ( $plan ) use ( $iga_training_icon ) {
 	$is_primary = ! empty( $plan['primary'] );
 	$card_class = $is_primary
-		? 'relative flex h-full flex-col rounded-2xl border border-[#3A7D44]/70 bg-gradient-to-br from-[#18301D]/70 to-[#141414] p-7 shadow-[0_20px_60px_rgba(58,125,68,0.10)] transition duration-300 hover:-translate-y-1 hover:border-[#4E9E5A] sm:p-8'
-		: 'relative flex h-full flex-col rounded-2xl border border-white/10 bg-[#141414] p-7 transition duration-300 hover:-translate-y-1 hover:border-white/20 sm:p-8';
+		? 'relative flex h-full flex-col rounded-2xl border border-green/70 bg-gradient-to-br from-[#18301D]/70 to-s1 p-7 shadow-[0_20px_60px_rgba(58,125,68,0.10)] transition duration-300 hover:-translate-y-1 hover:border-green-l min-[481px]:p-8'
+		: 'relative flex h-full flex-col rounded-2xl border border-white/10 bg-s1 p-7 transition duration-300 hover:-translate-y-1 hover:border-white/20 min-[481px]:p-8';
 	?>
 	<article class="<?php echo esc_attr( $card_class ); ?>">
 		<?php if ( ! empty( $plan['badge'] ) ) : ?>
-			<span class="absolute left-1/2 top-0 -translate-x-1/2 rounded-b-lg bg-[#3A7D44] px-4 py-1 text-[10px] font-bold uppercase tracking-[0.18em] text-white">
+			<span class="absolute left-1/2 top-0 -translate-x-1/2 rounded-b-lg bg-green px-4 py-1 text-[10px] font-bold uppercase tracking-[0.18em] text-white">
 				<?php echo esc_html( $plan['badge'] ); ?>
 			</span>
 		<?php endif; ?>
 
 		<div class="mb-4 <?php echo ! empty( $plan['badge'] ) ? 'pt-3' : ''; ?>">
-			<p class="mb-2 text-[10px] font-bold uppercase tracking-[0.2em] <?php echo $is_primary ? 'text-[#4E9E5A]' : 'text-white/40'; ?>">
+			<p class="mb-2 text-[10px] font-bold uppercase tracking-[0.2em] <?php echo $is_primary ? 'text-green-l' : 'text-white/40'; ?>">
 				<?php echo esc_html( $plan['subtitle'] ); ?>
 			</p>
-			<h3 class="font-['Bebas_Neue'] text-3xl uppercase tracking-[0.04em] text-white"><?php echo esc_html( $plan['rank'] ); ?></h3>
+			<h3 class="font-display text-3xl uppercase tracking-[0.04em] text-white"><?php echo esc_html( $plan['rank'] ); ?></h3>
 		</div>
 
 		<div class="mb-4 flex items-end gap-2">
-			<span class="font-['Bebas_Neue'] text-5xl leading-none tracking-wide <?php echo $is_primary ? 'text-[#4E9E5A]' : 'text-white'; ?>">
+			<span class="font-display text-5xl leading-none tracking-wide <?php echo $is_primary ? 'text-green-l' : 'text-white'; ?>">
 				<?php echo esc_html( $plan['price'] ); ?>
 			</span>
 			<span class="pb-1 text-xs text-white/40"><?php echo esc_html( $plan['cadence'] ); ?></span>
@@ -523,13 +523,13 @@ $iga_training_pricing_card = static function ( $plan ) use ( $iga_training_icon 
 		<ul class="mb-8 space-y-3">
 			<?php foreach ( $plan['features'] as $feature ) : ?>
 				<li class="flex items-start gap-3 text-sm text-white/65">
-					<span class="mt-0.5 text-[#4E9E5A]"><?php echo $iga_training_icon( 'check', 'h-4 w-4' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
+					<span class="mt-0.5 text-green-l"><?php echo $iga_training_icon( 'check', 'h-4 w-4' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
 					<?php echo esc_html( $feature ); ?>
 				</li>
 			<?php endforeach; ?>
 		</ul>
 
-		<a href="<?php echo esc_url( $plan['url'] ); ?>" class="mt-auto inline-flex min-h-12 items-center justify-center gap-2 rounded-full px-6 py-3 text-xs font-bold uppercase tracking-[0.12em] transition <?php echo $is_primary ? 'bg-[#3A7D44] text-white hover:bg-[#4E9E5A] hover:shadow-[0_10px_30px_rgba(58,125,68,0.35)]' : 'border border-white/15 text-white hover:border-white/30 hover:bg-white/5'; ?>">
+		<a href="<?php echo esc_url( $plan['url'] ); ?>" class="mt-auto inline-flex min-h-12 items-center justify-center gap-2 rounded-full px-6 py-3 text-xs font-bold uppercase tracking-[0.12em] transition <?php echo $is_primary ? 'bg-green text-white hover:bg-green-l hover:shadow-[0_10px_30px_rgba(58,125,68,0.35)]' : 'border border-white/15 text-white hover:border-white/30 hover:bg-white/5'; ?>">
 			<?php echo esc_html( $plan['cta'] ); ?>
 			<?php echo $iga_training_icon( 'arrow', 'h-4 w-4' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 		</a>
@@ -541,41 +541,41 @@ $iga_training_block_id = 'iga-training-' . wp_unique_id();
 
 $wrapper_attributes = get_block_wrapper_attributes(
 	array(
-		'class' => 'wp-theme-training overflow-hidden bg-[#0A0A0A] font-[\'DM_Sans\'] text-[#F2F2F2] antialiased',
+		'class' => 'wp-theme-training overflow-hidden bg-ink font-sans text-off antialiased',
 	)
 );
 ?>
 <div <?php echo $wrapper_attributes; ?> id="<?php echo esc_attr( $iga_training_block_id ); ?>">
 	<!-- Hero -->
-	<section class="relative flex min-h-[580px] items-center overflow-hidden lg:h-[90vh]">
+	<section class="relative flex h-[90vh] min-h-145 items-center overflow-hidden">
 		<img
 			src="<?php echo esc_url( $iga_training_hero['image'] ); ?>"
 			alt="The Forge — Iron Gorilla Army training facility"
 			class="absolute inset-0 h-full w-full object-cover object-center"
 			fetchpriority="high"
 		>
-		<div class="absolute inset-0 bg-gradient-to-r from-[#0A0A0A] from-[35%] via-[#0A0A0A]/80 to-[#0A0A0A]/20"></div>
-		<div class="absolute inset-0 bg-gradient-to-t from-[#0A0A0A]/70 via-transparent to-transparent"></div>
+		<div class="absolute inset-0 bg-gradient-to-r from-ink from-[35%] via-ink/80 to-ink/20"></div>
+		<div class="absolute inset-0 bg-gradient-to-t from-ink/70 via-transparent to-transparent"></div>
 
-		<div class="relative z-10 mx-auto w-full max-w-[1440px] px-6 py-24 sm:px-10 lg:px-20 xl:px-28">
+		<div class="relative z-10 mx-auto w-full max-w-[1440px] px-[clamp(24px,6vw,120px)]">
 			<div class="max-w-2xl">
 				<div class="mb-6 flex items-center gap-3">
-					<span class="h-px w-10 bg-[#3A7D44]"></span>
-					<span class="text-xs font-bold uppercase tracking-[0.2em] text-[#4E9E5A]"><?php echo esc_html( $iga_training_hero['eyebrow'] ); ?></span>
+					<span class="h-px w-10 bg-green"></span>
+					<span class="text-xs font-bold uppercase tracking-[0.2em] text-green-l"><?php echo esc_html( $iga_training_hero['eyebrow'] ); ?></span>
 				</div>
 
-				<h1 class="font-['Bebas_Neue'] text-5xl uppercase leading-[0.92] tracking-[0.03em] text-white sm:text-6xl lg:text-7xl xl:text-[5.5rem]">
+				<h1 class="font-display text-5xl uppercase leading-[0.92] tracking-[0.03em] text-white sm:text-6xl lg:text-7xl xl:text-[5.5rem]">
 					<?php echo esc_html( $iga_training_hero['title_1'] ); ?><br>
-					<span class="text-[#4E9E5A]"><?php echo esc_html( $iga_training_hero['accent'] ); ?></span><br>
+					<span class="text-green-l"><?php echo esc_html( $iga_training_hero['accent'] ); ?></span><br>
 					<?php echo esc_html( $iga_training_hero['title_2'] ); ?>
 				</h1>
 
-				<p class="mt-6 max-w-md text-sm leading-7 text-white/55 sm:text-base">
+				<p class="mt-6 max-w-md text-base leading-7 text-white/55">
 					<?php echo esc_html( $iga_training_hero['subtitle'] ); ?>
 				</p>
 
 				<div class="mt-8 flex flex-wrap items-center gap-3">
-					<a href="<?php echo esc_url( $iga_training_urls['book'] ); ?>" class="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-[#3A7D44] px-7 py-3 text-xs font-bold uppercase tracking-[0.12em] text-white transition hover:-translate-y-0.5 hover:bg-[#4E9E5A] hover:shadow-[0_10px_30px_rgba(58,125,68,0.35)] sm:px-9 sm:py-4">
+					<a href="<?php echo esc_url( $iga_training_urls['book'] ); ?>" class="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-green px-7 py-3 text-xs font-bold uppercase tracking-[0.12em] text-white transition hover:-translate-y-0.5 hover:bg-green-l hover:shadow-[0_10px_30px_rgba(58,125,68,0.35)] sm:px-9 sm:py-4">
 						<?php echo $iga_training_icon( 'calendar', 'h-5 w-5' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 						Book Free Assessment
 					</a>
@@ -586,7 +586,7 @@ $wrapper_attributes = get_block_wrapper_attributes(
 				</div>
 
 				<p class="mt-7 flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.16em] text-white/30">
-					<span class="text-[#4E9E5A]"><?php echo $iga_training_icon( 'location', 'h-4 w-4' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
+					<span class="text-green-l"><?php echo $iga_training_icon( 'location', 'h-4 w-4' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
 					<?php echo esc_html( $iga_training_hero['location'] ); ?>
 				</p>
 			</div>
@@ -594,7 +594,7 @@ $wrapper_attributes = get_block_wrapper_attributes(
 	</section>
 
 	<!-- Three pillars -->
-	<section class="px-6 py-20 sm:px-10 lg:px-20 lg:py-28 xl:px-28">
+	<section class="px-4.5 py-20 min-[481px]:px-6 min-[1081px]:px-[5vw] min-[1081px]:py-28">
 		<div class="mx-auto max-w-[1280px]">
 			<?php
 			$iga_training_section_header(
@@ -604,19 +604,19 @@ $wrapper_attributes = get_block_wrapper_attributes(
 			);
 			?>
 
-			<div class="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+			<div class="grid grid-cols-1 gap-5 min-[601px]:grid-cols-2 min-[1101px]:grid-cols-3">
 				<?php foreach ( $iga_training_pillars as $pillar ) : ?>
-					<article class="group flex gap-5 rounded-2xl border border-white/[0.07] bg-[#141414] p-6 transition duration-300 hover:-translate-y-1 hover:border-[#3A7D44]/50 sm:block sm:p-8">
-						<div class="flex h-[52px] w-[52px] shrink-0 items-center justify-center rounded-xl border border-[#3A7D44]/40 bg-[#3A7D44]/15 text-[#4E9E5A] sm:mb-5">
+					<article class="group flex gap-5 rounded-2xl border border-line bg-s1 p-6 transition duration-300 hover:-translate-y-1 hover:border-green/50 min-[601px]:block min-[601px]:p-8">
+						<div class="flex h-[52px] w-[52px] shrink-0 items-center justify-center rounded-xl border border-green/40 bg-green/15 text-green-l min-[601px]:mb-5">
 							<?php echo $iga_training_icon( $pillar['icon'], 'h-6 w-6' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 						</div>
 						<div>
-							<h3 class="font-['Bebas_Neue'] text-3xl uppercase tracking-wide text-white"><?php echo esc_html( $pillar['title'] ); ?></h3>
+							<h3 class="font-display text-3xl uppercase tracking-wide text-white"><?php echo esc_html( $pillar['title'] ); ?></h3>
 							<p class="mt-3 text-sm leading-7 text-white/45"><?php echo esc_html( $pillar['desc'] ); ?></p>
 							<ul class="mt-5 space-y-2.5">
 								<?php foreach ( $pillar['items'] as $item ) : ?>
 									<li class="flex items-center gap-2 text-sm text-white/65">
-										<span class="text-[#4E9E5A]"><?php echo $iga_training_icon( 'chevron', 'h-3 w-3' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
+										<span class="text-green-l"><?php echo $iga_training_icon( 'chevron', 'h-3 w-3' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
 										<?php echo esc_html( $item ); ?>
 									</li>
 								<?php endforeach; ?>
@@ -629,8 +629,8 @@ $wrapper_attributes = get_block_wrapper_attributes(
 	</section>
 
 	<!-- Training tracks -->
-	<section class="border-y border-white/[0.07] bg-[#141414]">
-		<div class="px-6 pb-12 pt-20 sm:px-10 lg:px-20 lg:pt-24 xl:px-28">
+	<section class="border-y border-line bg-s1">
+		<div class="px-4.5 pb-12 pt-20 min-[481px]:px-6 min-[1081px]:px-[5vw] min-[1081px]:pt-24">
 			<?php
 			$iga_training_section_header(
 				'The Forge',
@@ -641,30 +641,30 @@ $wrapper_attributes = get_block_wrapper_attributes(
 		</div>
 
 		<?php foreach ( $iga_training_tracks as $track ) : ?>
-			<article class="grid border-t border-white/[0.07] lg:min-h-[420px] lg:grid-cols-2">
-				<div class="relative min-h-60 overflow-hidden <?php echo esc_attr( $track['visual'] ); ?> <?php echo $track['reverse'] ? 'lg:order-2' : ''; ?>">
-					<div class="absolute inset-0 flex items-center justify-center text-[#4E9E5A]/20">
+			<article class="grid border-t border-line min-[769px]:min-h-105 min-[769px]:grid-cols-2">
+				<div class="relative min-h-60 overflow-hidden <?php echo esc_attr( $track['visual'] ); ?> <?php echo $track['reverse'] ? 'min-[769px]:order-2' : ''; ?>">
+					<div class="absolute inset-0 flex items-center justify-center text-green-l/20">
 						<?php echo $iga_training_icon( $track['icon'], 'h-24 w-24' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 					</div>
-					<div class="absolute inset-0 bg-gradient-to-r from-transparent to-[#0A0A0A]/40"></div>
-					<span class="absolute bottom-4 right-6 font-['Bebas_Neue'] text-7xl leading-none text-white/[0.04]"><?php echo esc_html( $track['number'] ); ?></span>
+					<div class="absolute inset-0 bg-gradient-to-r from-transparent to-ink/40"></div>
+					<span class="absolute bottom-4 right-6 font-display text-7xl leading-none text-white/[0.04]"><?php echo esc_html( $track['number'] ); ?></span>
 				</div>
 
-				<div class="flex flex-col justify-center px-7 py-12 sm:px-12 lg:px-14 lg:py-14 <?php echo $track['reverse'] ? 'lg:order-1' : ''; ?>">
-					<span class="font-['Bebas_Neue'] text-sm tracking-[0.2em] text-white/10"><?php echo esc_html( $track['number'] ); ?> / <?php echo esc_html( str_pad( (string) count( $iga_training_tracks ), 2, '0', STR_PAD_LEFT ) ); ?></span>
-					<span class="mt-1 text-[10px] font-bold uppercase tracking-[0.25em] text-[#4E9E5A]"><?php echo esc_html( $track['tier'] ); ?></span>
-					<h3 class="mt-4 max-w-sm font-['Bebas_Neue'] text-5xl uppercase leading-[0.95] tracking-wide text-white"><?php echo esc_html( $track['title'] ); ?></h3>
+				<div class="flex flex-col justify-center px-7 py-12 min-[769px]:px-14 min-[769px]:py-14 <?php echo $track['reverse'] ? 'min-[769px]:order-1' : ''; ?>">
+					<span class="font-display text-sm tracking-[0.2em] text-white/10"><?php echo esc_html( $track['number'] ); ?> / <?php echo esc_html( str_pad( (string) count( $iga_training_tracks ), 2, '0', STR_PAD_LEFT ) ); ?></span>
+					<span class="mt-1 text-[10px] font-bold uppercase tracking-[0.25em] text-green-l"><?php echo esc_html( $track['tier'] ); ?></span>
+					<h3 class="mt-4 max-w-sm font-display text-5xl uppercase leading-[0.95] tracking-wide text-white"><?php echo esc_html( $track['title'] ); ?></h3>
 					<p class="mt-5 max-w-md text-sm leading-7 text-white/45 sm:text-base"><?php echo esc_html( $track['description'] ); ?></p>
 
 					<?php if ( $track['plan'] ) : ?>
-						<a href="#pricing" data-training-pricing-tab="<?php echo esc_attr( $track['tab'] ); ?>" class="mt-6 inline-flex w-fit items-center gap-2 rounded-full border border-[#3A7D44]/40 bg-[#3A7D44]/10 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.15em] text-[#4E9E5A] transition hover:border-[#4E9E5A]">
+						<a href="#pricing" data-training-pricing-tab="<?php echo esc_attr( $track['tab'] ); ?>" class="mt-6 inline-flex w-fit items-center gap-2 rounded-full border border-green/40 bg-green/10 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.15em] text-green-l transition hover:border-green-l">
 							<?php echo $iga_training_icon( 'tag', 'h-3.5 w-3.5' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 							<?php echo esc_html( $track['plan'] ); ?> ↓
 						</a>
 					<?php endif; ?>
 
 					<div class="mt-7 flex flex-wrap gap-3">
-						<a href="<?php echo esc_url( $track['primary_url'] ); ?>" class="inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-[#3A7D44] px-6 py-3 text-xs font-bold uppercase tracking-[0.1em] text-white transition hover:bg-[#4E9E5A]">
+						<a href="<?php echo esc_url( $track['primary_url'] ); ?>" class="inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-green px-6 py-3 text-xs font-bold uppercase tracking-[0.1em] text-white transition hover:bg-green-l">
 							<?php echo esc_html( $track['primary'] ); ?>
 							<?php echo $iga_training_icon( 'arrow', 'h-4 w-4' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 						</a>
@@ -679,20 +679,20 @@ $wrapper_attributes = get_block_wrapper_attributes(
 			</article>
 		<?php endforeach; ?>
 
-		<div class="flex items-center justify-center gap-4 border-t border-white/[0.07] bg-[#0A0A0A] px-6 py-9">
-			<span class="hidden h-px w-32 bg-white/[0.07] sm:block"></span>
+		<div class="flex items-center justify-center gap-4 border-t border-line bg-ink px-6 py-9">
+			<span class="hidden h-px w-32 bg-line sm:block"></span>
 			<div class="text-center">
 				<p class="mb-3 text-[10px] font-bold uppercase tracking-[0.2em] text-white/35">Ready to choose your rank?</p>
 				<a href="#pricing" data-training-pricing-tab="monthly" class="inline-flex items-center gap-2 rounded-full border border-white/15 px-6 py-3 text-xs font-bold uppercase tracking-[0.1em] text-white transition hover:border-white/30 hover:bg-white/5">
 					View All Plans ↓
 				</a>
 			</div>
-			<span class="hidden h-px w-32 bg-white/[0.07] sm:block"></span>
+			<span class="hidden h-px w-32 bg-line sm:block"></span>
 		</div>
 	</section>
 
 	<!-- Schedule -->
-	<section class="px-6 py-20 sm:px-10 lg:px-20 lg:py-28 xl:px-28">
+	<section class="px-4.5 py-20 min-[481px]:px-6 min-[1081px]:px-[5vw] min-[1081px]:py-28">
 		<div class="mx-auto max-w-[1280px]">
 			<?php
 			$iga_training_section_header(
@@ -704,8 +704,8 @@ $wrapper_attributes = get_block_wrapper_attributes(
 
 			<div class="mx-auto max-w-4xl space-y-3">
 				<?php foreach ( $iga_training_schedule as $day ) : ?>
-					<div class="rounded-xl border border-white/[0.07] bg-[#1C1C1C] px-5 py-5 transition hover:border-white/15 sm:flex sm:items-start sm:justify-between sm:gap-8 sm:px-7">
-						<strong class="font-['Bebas_Neue'] text-xl uppercase tracking-wide text-[#4E9E5A]"><?php echo esc_html( $day['day'] ); ?></strong>
+					<div class="rounded-xl border border-line bg-s2 px-5 py-5 transition hover:border-white/15 sm:flex sm:items-start sm:justify-between sm:gap-8 sm:px-7">
+						<strong class="font-display text-xl uppercase tracking-wide text-green-l"><?php echo esc_html( $day['day'] ); ?></strong>
 						<div class="mt-2 space-y-1 text-left sm:mt-0 sm:text-right">
 							<?php foreach ( $day['classes'] as $class ) : ?>
 								<p class="text-sm text-white/60"><?php echo esc_html( $class ); ?></p>
@@ -725,7 +725,7 @@ $wrapper_attributes = get_block_wrapper_attributes(
 	</section>
 
 	<!-- Testimonials -->
-	<section class="border-y border-white/[0.07] bg-[#141414] px-6 py-20 sm:px-10 lg:px-20 lg:py-28 xl:px-28">
+	<section class="border-y border-line bg-s1 px-4.5 py-20 min-[481px]:px-6 min-[1081px]:px-[5vw] min-[1081px]:py-28">
 		<div class="mx-auto max-w-[1280px]">
 			<?php
 			$iga_training_section_header(
@@ -735,20 +735,20 @@ $wrapper_attributes = get_block_wrapper_attributes(
 			);
 			?>
 
-			<div class="grid gap-4 lg:grid-cols-3">
+			<div class="grid grid-cols-1 gap-3 min-[481px]:grid-cols-2 min-[769px]:grid-cols-1 min-[769px]:gap-4 min-[1081px]:grid-cols-3">
 				<?php foreach ( $iga_training_testimonials as $testimonial ) : ?>
-					<article class="flex h-full flex-col rounded-2xl border border-white/[0.07] bg-[#1C1C1C] p-7">
-						<div class="mb-5 text-[#4E9E5A]/50"><?php echo $iga_training_icon( 'quote', 'h-8 w-8' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></div>
+					<article class="flex h-full flex-col rounded-2xl border border-line bg-s2 p-7">
+						<div class="mb-5 text-green-l/50"><?php echo $iga_training_icon( 'quote', 'h-8 w-8' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></div>
 						<blockquote class="flex-1 text-sm italic leading-7 text-white/65">&ldquo;<?php echo esc_html( $testimonial['quote'] ); ?>&rdquo;</blockquote>
-						<div class="mt-6 flex flex-wrap items-center justify-between gap-3 border-t border-white/[0.07] pt-5">
+						<div class="mt-6 flex flex-wrap items-center justify-between gap-3 border-t border-line pt-5">
 							<div class="flex items-center gap-3">
-								<span class="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-[#242424] font-['Bebas_Neue'] text-lg text-white"><?php echo esc_html( $testimonial['initials'] ); ?></span>
+								<span class="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-s3 font-display text-lg text-white"><?php echo esc_html( $testimonial['initials'] ); ?></span>
 								<span>
 									<strong class="block text-sm text-white"><?php echo esc_html( $testimonial['name'] ); ?></strong>
 									<small class="block text-[10px] uppercase tracking-[0.12em] text-white/35"><?php echo esc_html( $testimonial['location'] ); ?></small>
 								</span>
 							</div>
-							<span class="rounded-full border border-[#3A7D44]/40 bg-[#3A7D44]/10 px-3 py-1 text-[9px] font-bold uppercase tracking-[0.1em] text-[#4E9E5A]"><?php echo esc_html( $testimonial['result'] ); ?></span>
+							<span class="rounded-full border border-green/40 bg-green/10 px-3 py-1 text-[9px] font-bold uppercase tracking-[0.1em] text-green-l"><?php echo esc_html( $testimonial['result'] ); ?></span>
 						</div>
 					</article>
 				<?php endforeach; ?>
@@ -757,7 +757,7 @@ $wrapper_attributes = get_block_wrapper_attributes(
 	</section>
 
 	<!-- Pricing -->
-	<section id="pricing" class="scroll-mt-24 border-b border-white/[0.07] bg-[#0A0A0A] px-6 py-20 sm:px-10 lg:px-20 lg:py-28 xl:px-28">
+	<section id="pricing" class="scroll-mt-24 border-b border-line bg-ink px-4.5 py-20 min-[481px]:px-6 min-[1081px]:px-[5vw] min-[1081px]:py-28">
 		<div class="mx-auto max-w-[1280px]">
 			<?php
 			$iga_training_section_header(
@@ -768,46 +768,46 @@ $wrapper_attributes = get_block_wrapper_attributes(
 			?>
 
 			<div class="mb-12 flex justify-center" role="tablist" aria-label="Pricing options">
-				<div class="inline-flex rounded-full border border-white/10 bg-[#141414] p-1.5">
-					<button type="button" data-training-monthly-tab data-pricing-button="monthly" class="rounded-full bg-[#3A7D44] px-4 py-3 text-[10px] font-bold uppercase tracking-[0.1em] text-white shadow-[0_4px_18px_rgba(58,125,68,0.3)] transition sm:px-7 sm:text-xs" role="tab" aria-selected="true">
+				<div class="inline-flex rounded-full border border-white/10 bg-s1 p-1.5">
+					<button type="button" data-training-monthly-tab data-pricing-button="monthly" class="rounded-full bg-green px-4 py-3 text-[10px] font-bold uppercase tracking-[0.1em] text-white shadow-[0_4px_18px_rgba(58,125,68,0.3)] transition min-[481px]:px-7 min-[481px]:text-xs" role="tab" aria-selected="true">
 						Monthly Memberships
 					</button>
-					<button type="button" data-training-dropin-tab data-pricing-button="dropin" class="rounded-full px-4 py-3 text-[10px] font-bold uppercase tracking-[0.1em] text-white/40 transition hover:text-white sm:px-7 sm:text-xs" role="tab" aria-selected="false">
+					<button type="button" data-training-dropin-tab data-pricing-button="dropin" class="rounded-full px-4 py-3 text-[10px] font-bold uppercase tracking-[0.1em] text-white/40 transition hover:text-white min-[481px]:px-7 min-[481px]:text-xs" role="tab" aria-selected="false">
 						Drop-In Sessions
 					</button>
 				</div>
 			</div>
 
 			<div data-training-monthly-panel data-pricing-panel="monthly" role="tabpanel">
-				<div class="grid items-stretch gap-5 md:grid-cols-2 lg:grid-cols-3">
+				<div class="grid items-stretch grid-cols-[repeat(auto-fill,minmax(min(280px,100%),1fr))] gap-5">
 					<?php foreach ( $iga_training_monthly_plans as $plan ) : ?>
 						<?php $iga_training_pricing_card( $plan ); ?>
 					<?php endforeach; ?>
 				</div>
-				<div class="mx-auto mt-8 max-w-xl rounded-2xl border border-white/[0.07] bg-[#141414] px-5 py-4 text-center text-sm leading-6 text-white/45">
+				<div class="mx-auto mt-8 max-w-xl rounded-2xl border border-line bg-s1 px-5 py-4 text-center text-sm leading-6 text-white/45">
 					<strong class="text-white/70">Not ready to commit?</strong>
 					Try a drop-in first — no obligation, just show up and train.
-					<button type="button" data-training-pricing-tab="dropin" class="font-bold text-[#4E9E5A]">See Drop-In options →</button>
+					<button type="button" data-training-pricing-tab="dropin" class="font-bold text-green-l">See Drop-In options →</button>
 				</div>
 			</div>
 
 			<div data-training-dropin-panel data-pricing-panel="dropin" class="hidden" role="tabpanel" hidden>
-				<div class="mx-auto grid max-w-3xl items-stretch gap-5 md:grid-cols-2">
+				<div class="mx-auto grid max-w-3xl grid-cols-1 items-stretch gap-5 min-[481px]:grid-cols-2">
 					<?php foreach ( $iga_training_dropin_plans as $plan ) : ?>
 						<?php $iga_training_pricing_card( $plan ); ?>
 					<?php endforeach; ?>
 				</div>
-				<div class="mx-auto mt-8 max-w-xl rounded-2xl border border-white/[0.07] bg-[#141414] px-5 py-4 text-center text-sm leading-6 text-white/45">
+				<div class="mx-auto mt-8 max-w-xl rounded-2xl border border-line bg-s1 px-5 py-4 text-center text-sm leading-6 text-white/45">
 					<strong class="text-white/70">Train regularly?</strong>
 					A monthly membership works out far cheaper.
-					<button type="button" data-training-pricing-tab="monthly" class="font-bold text-[#4E9E5A]">See Monthly plans →</button>
+					<button type="button" data-training-pricing-tab="monthly" class="font-bold text-green-l">See Monthly plans →</button>
 				</div>
 			</div>
 		</div>
 	</section>
 
 	<!-- Coaches -->
-	<section class="border-b border-white/[0.07] bg-[#141414] px-6 py-20 sm:px-10 lg:px-20 lg:py-28 xl:px-28">
+	<section class="border-b border-line bg-s1 px-4.5 py-20 min-[481px]:px-6 min-[1081px]:px-[5vw] min-[1081px]:py-28">
 		<div class="mx-auto max-w-[1280px]">
 			<?php
 			$iga_training_section_header(
@@ -817,11 +817,11 @@ $wrapper_attributes = get_block_wrapper_attributes(
 			);
 			?>
 
-			<div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+			<div class="grid grid-cols-1 gap-5 min-[601px]:grid-cols-2 min-[861px]:grid-cols-3">
 				<?php foreach ( $iga_training_coaches as $index => $coach ) : ?>
-					<article class="group overflow-hidden rounded-2xl border border-white/[0.07] bg-[#0F0F0F] transition duration-300 hover:-translate-y-1 hover:border-[#3A7D44]/50">
-						<div class="relative aspect-[3/4] overflow-hidden bg-gradient-to-br from-[#1C1C1C] to-[#142018]">
-							<span class="absolute left-3 top-3 z-20 rounded border border-[#3A7D44]/20 bg-black/60 px-2 py-1 text-[9px] font-bold tracking-[0.2em] text-[#4E9E5A]">
+					<article class="group overflow-hidden rounded-2xl border border-line bg-[#0F0F0F] transition duration-300 hover:-translate-y-1 hover:border-green/50">
+						<div class="relative aspect-[3/4] overflow-hidden bg-gradient-to-br from-s2 to-[#142018]">
+							<span class="absolute left-3 top-3 z-20 rounded border border-green/20 bg-black/60 px-2 py-1 text-[9px] font-bold tracking-[0.2em] text-green-l">
 								<?php echo esc_html( str_pad( (string) ( $index + 1 ), 2, '0', STR_PAD_LEFT ) . ' / ' . str_pad( (string) count( $iga_training_coaches ), 2, '0', STR_PAD_LEFT ) ); ?>
 							</span>
 
@@ -829,16 +829,16 @@ $wrapper_attributes = get_block_wrapper_attributes(
 								<img src="<?php echo esc_url( $coach['image'] ); ?>" alt="Coach <?php echo esc_attr( $coach['name'] ); ?>" class="h-full w-full object-cover transition duration-500 group-hover:scale-105" style="object-position: <?php echo esc_attr( $coach['position'] ); ?>;" loading="lazy">
 							<?php else : ?>
 								<div class="absolute inset-0 flex flex-col items-center justify-center gap-3">
-									<span class="flex h-20 w-20 items-center justify-center rounded-full border border-[#3A7D44]/40 bg-[#3A7D44]/10 font-['Bebas_Neue'] text-3xl tracking-wide text-[#4E9E5A]"><?php echo esc_html( $coach['initials'] ); ?></span>
+									<span class="flex h-20 w-20 items-center justify-center rounded-full border border-green/40 bg-green/10 font-display text-3xl tracking-wide text-green-l"><?php echo esc_html( $coach['initials'] ); ?></span>
 									<span class="text-[9px] font-bold uppercase tracking-[0.2em] text-white/15">Photo Coming Soon</span>
 								</div>
 							<?php endif; ?>
 
-							<div class="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-[#0A0A0A]/10 to-transparent"></div>
-							<h3 class="absolute bottom-4 left-5 z-10 font-['Bebas_Neue'] text-3xl uppercase tracking-wide text-white"><?php echo esc_html( $coach['name'] ); ?></h3>
+							<div class="absolute inset-0 bg-gradient-to-t from-ink via-ink/10 to-transparent"></div>
+							<h3 class="absolute bottom-4 left-5 z-10 font-display text-3xl uppercase tracking-wide text-white"><?php echo esc_html( $coach['name'] ); ?></h3>
 						</div>
-						<div class="border-t border-white/[0.07] p-5">
-							<span class="inline-block rounded-full border border-[#3A7D44]/40 bg-[#3A7D44]/10 px-2.5 py-1 text-[8px] font-bold uppercase leading-4 tracking-[0.1em] text-[#4E9E5A]"><?php echo esc_html( $coach['role'] ); ?></span>
+						<div class="border-t border-line p-5">
+							<span class="inline-block rounded-full border border-green/40 bg-green/10 px-2.5 py-1 text-[8px] font-bold uppercase leading-4 tracking-[0.1em] text-green-l"><?php echo esc_html( $coach['role'] ); ?></span>
 							<p class="mt-3 text-xs leading-6 text-white/45"><?php echo esc_html( $coach['bio'] ); ?></p>
 						</div>
 					</article>
@@ -848,7 +848,7 @@ $wrapper_attributes = get_block_wrapper_attributes(
 	</section>
 
 	<!-- Onboarding -->
-	<section class="px-6 py-20 sm:px-10 lg:px-20 lg:py-28 xl:px-28">
+	<section class="px-4.5 py-20 min-[481px]:px-6 min-[1081px]:px-[5vw] min-[1081px]:py-28">
 		<div class="mx-auto max-w-[1100px]">
 			<?php
 			$iga_training_section_header(
@@ -858,15 +858,15 @@ $wrapper_attributes = get_block_wrapper_attributes(
 			);
 			?>
 
-			<div class="relative grid gap-10 md:grid-cols-3">
-				<div class="absolute left-[16.66%] right-[16.66%] top-[86px] hidden h-px bg-white/[0.07] md:block"></div>
+			<div class="relative grid grid-cols-1 gap-10 min-[481px]:grid-cols-2 min-[1101px]:grid-cols-3">
+				<div class="absolute left-[16.66%] right-[16.66%] top-[86px] hidden h-px bg-line min-[1101px]:block"></div>
 				<?php foreach ( $iga_training_steps as $step ) : ?>
 					<article class="relative">
-						<span class="font-['Bebas_Neue'] text-7xl leading-none text-[#3A7D44]/15"><?php echo esc_html( $step['number'] ); ?></span>
-						<div class="relative z-10 -mt-3 mb-5 flex h-14 w-14 items-center justify-center rounded-xl border border-[#3A7D44]/40 bg-[#102014] text-[#4E9E5A]">
+						<span class="font-display text-7xl leading-none text-green/15"><?php echo esc_html( $step['number'] ); ?></span>
+						<div class="relative z-10 -mt-3 mb-5 flex h-14 w-14 items-center justify-center rounded-xl border border-green/40 bg-[#102014] text-green-l">
 							<?php echo $iga_training_icon( $step['icon'], 'h-6 w-6' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 						</div>
-						<h3 class="font-['Bebas_Neue'] text-3xl uppercase tracking-wide text-white"><?php echo esc_html( $step['title'] ); ?></h3>
+						<h3 class="font-display text-3xl uppercase tracking-wide text-white"><?php echo esc_html( $step['title'] ); ?></h3>
 						<p class="mt-3 text-sm leading-7 text-white/45"><?php echo esc_html( $step['desc'] ); ?></p>
 					</article>
 				<?php endforeach; ?>
@@ -875,7 +875,7 @@ $wrapper_attributes = get_block_wrapper_attributes(
 	</section>
 
 	<!-- Final CTA -->
-	<section class="border-t border-white/[0.07] bg-[#141414] px-6 py-20 text-center sm:px-10 lg:px-20 lg:py-28 xl:px-28">
+	<section class="border-t border-line bg-s1 px-4.5 py-20 text-center min-[481px]:px-6 min-[1081px]:px-[5vw] min-[1081px]:py-28">
 		<div class="mx-auto max-w-3xl">
 			<?php
 			$iga_training_section_header(
@@ -886,7 +886,7 @@ $wrapper_attributes = get_block_wrapper_attributes(
 			?>
 
 			<div class="flex flex-wrap justify-center gap-3">
-				<a href="<?php echo esc_url( $iga_training_urls['book'] ); ?>" class="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-[#3A7D44] px-8 py-4 text-xs font-bold uppercase tracking-[0.12em] text-white transition hover:-translate-y-0.5 hover:bg-[#4E9E5A] hover:shadow-[0_10px_30px_rgba(58,125,68,0.35)]">
+				<a href="<?php echo esc_url( $iga_training_urls['book'] ); ?>" class="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-green px-8 py-4 text-xs font-bold uppercase tracking-[0.12em] text-white transition hover:-translate-y-0.5 hover:bg-green-l hover:shadow-[0_10px_30px_rgba(58,125,68,0.35)]">
 					<?php echo $iga_training_icon( 'calendar', 'h-5 w-5' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 					Book Free Assessment
 				</a>
@@ -897,13 +897,13 @@ $wrapper_attributes = get_block_wrapper_attributes(
 			</div>
 
 			<p class="mt-7 flex items-center justify-center gap-2 text-sm text-white/40">
-				<span class="text-[#4E9E5A]"><?php echo $iga_training_icon( 'location', 'h-4 w-4' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
+				<span class="text-green-l"><?php echo $iga_training_icon( 'location', 'h-4 w-4' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
 				<?php echo esc_html( $iga_training_hero['location'] ); ?>
 			</p>
 
-			<div class="mt-8 border-t border-white/[0.07] pt-6 text-sm text-white/40">
+			<div class="mt-8 border-t border-line pt-6 text-sm text-white/40">
 				Questions about membership or training?
-				<a href="<?php echo esc_url( $iga_training_urls['faq'] ); ?>" class="ml-1 inline-flex items-center gap-1.5 font-bold text-[#4E9E5A] hover:text-white">
+				<a href="<?php echo esc_url( $iga_training_urls['faq'] ); ?>" class="ml-1 inline-flex items-center gap-1.5 font-bold text-green-l hover:text-white">
 					Browse the FAQ
 					<?php echo $iga_training_icon( 'arrow', 'h-4 w-4' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 				</a>
@@ -927,7 +927,7 @@ $wrapper_attributes = get_block_wrapper_attributes(
 		pricingButtons.forEach(function (button) {
 			var active = button.getAttribute('data-pricing-button') === tab;
 			button.setAttribute('aria-selected', active ? 'true' : 'false');
-			button.classList.toggle('bg-[#3A7D44]', active);
+			button.classList.toggle('bg-green', active);
 			button.classList.toggle('text-white', active);
 			button.classList.toggle('shadow-[0_4px_18px_rgba(58,125,68,0.3)]', active);
 			button.classList.toggle('text-white/40', !active);

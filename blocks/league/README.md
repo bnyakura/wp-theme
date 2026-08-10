@@ -1,4 +1,4 @@
-# League Block
+# League Page Block
 
 League of Legends honour roll page: coming-soon banner, hero, and bank transfer card. Falls back to the original Iron Gorilla content when fields are left empty.
 

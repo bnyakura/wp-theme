@@ -1,6 +1,6 @@
 {
     "name": "wp-theme/contact",
-    "title": "Contact",
+    "title": "Contact Page",
     "category": "design",
     "icon": "email",
     "description": "Contact page: hero, headquarters details, dispatch form with email handler, testimonials, and final CTA.",

@@ -40,9 +40,9 @@ $wrapper_attributes = get_block_wrapper_attributes( array(
         <div class="mb-[14px] flex items-center justify-center gap-3 before:h-px before:max-w-10 before:flex-1 before:bg-green before:content-[''] after:h-px after:max-w-10 after:flex-1 after:bg-green after:content-['']">
             <span class="text-[0.8rem] font-bold uppercase tracking-[2px] text-green-l"><?php echo esc_html( $eyebrow ); ?></span>
         </div>
-        <h2 class="mb-4 text-center font-display text-[clamp(2rem,4vw,3.5rem)] leading-[1.05] tracking-[2px] text-white"><?php echo esc_html( $title ); ?></h2>
+        <h2 class="mb-5 text-center font-display text-[clamp(2rem,4vw,3.5rem)] leading-[1.05] tracking-[2px] text-white"><?php echo esc_html( $title ); ?></h2>
         <?php if ( $subtitle ) : ?>
-            <p class="mx-auto mb-12 max-w-[600px] text-center text-[1rem] leading-[1.85] text-muted"><?php echo esc_html( $subtitle ); ?></p>
+            <p class="mx-auto mb-12 max-w-[600px] text-center text-[1rem] leading-[1.7] text-muted"><?php echo esc_html( $subtitle ); ?></p>
         <?php endif; ?>
     </div>
 

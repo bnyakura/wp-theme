@@ -1,4 +1,4 @@
-# Mission Block
+# Homepage – Mission Block
 
 Two-column mission/origin story section with text on the left and a portrait image on the right.
 

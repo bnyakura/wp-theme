@@ -49,24 +49,24 @@ $iga_faq_section_header = static function (
 	$subtitle = ''
 ) {
 	?>
-	<div class="mx-auto mb-12 max-w-3xl text-center lg:mb-14">
+	<div class="mx-auto mb-12 max-w-3xl text-center">
 
 		<div class="mb-4 flex items-center justify-center gap-3">
-			<span class="h-px w-10 bg-[#3A7D44]"></span>
+			<span class="h-px w-10 bg-green"></span>
 
-			<span class="text-xs font-bold uppercase tracking-[0.22em] text-[#4E9E5A]">
+			<span class="text-xs font-bold uppercase tracking-[0.22em] text-green-l">
 				<?php echo esc_html( $eyebrow ); ?>
 			</span>
 
-			<span class="h-px w-10 bg-[#3A7D44]"></span>
+			<span class="h-px w-10 bg-green"></span>
 		</div>
 
-		<h2 class="font-['Bebas_Neue'] text-4xl uppercase leading-none tracking-[0.04em] text-white sm:text-5xl lg:text-6xl">
+		<h2 class="font-display text-4xl uppercase leading-none tracking-[0.04em] text-white sm:text-5xl lg:text-6xl">
 			<?php echo esc_html( $title ); ?>
 		</h2>
 
 		<?php if ( $subtitle ) : ?>
-			<p class="mx-auto mt-5 max-w-2xl text-sm leading-7 text-white/50 sm:text-base">
+			<p class="mx-auto mt-5 max-w-2xl text-sm leading-7 text-white/50 min-[769px]:text-base">
 				<?php echo esc_html( $subtitle ); ?>
 			</p>
 		<?php endif; ?>
@@ -261,31 +261,31 @@ $iga_faq_cta['subtitle'] = $iga_faq_cta['subtitle'] ?: "Our team is available to
 
 $wrapper_attributes = get_block_wrapper_attributes(
 	array(
-		'class' => 'wp-theme-faq overflow-hidden bg-[#0A0A0A] font-[\'DM_Sans\'] text-[#F2F2F2] antialiased',
+		'class' => 'wp-theme-faq overflow-hidden bg-ink font-sans text-off antialiased',
 	)
 );
 ?>
 <div <?php echo $wrapper_attributes; ?>>
 
 	<!-- Page hero -->
-	<section class="border-b border-white/[0.07] bg-[#141414] px-6 py-20 text-center sm:px-10 lg:px-20 lg:py-24 xl:px-28">
+	<section class="border-b border-line bg-s1 px-4.5 pb-12 pt-15 text-center min-[481px]:px-[5vw] min-[481px]:pb-16 min-[481px]:pt-20">
 		<div class="mx-auto max-w-3xl">
 
 			<div class="mb-4 flex items-center justify-center gap-3">
-				<span class="h-px w-10 bg-[#3A7D44]"></span>
+				<span class="h-px w-10 bg-green"></span>
 
-				<span class="text-xs font-bold uppercase tracking-[0.22em] text-[#4E9E5A]">
+				<span class="text-xs font-bold uppercase tracking-[0.22em] text-green-l">
 					<?php echo esc_html( $iga_faq_hero['eyebrow'] ); ?>
 				</span>
 
-				<span class="h-px w-10 bg-[#3A7D44]"></span>
+				<span class="h-px w-10 bg-green"></span>
 			</div>
 
-			<h1 class="font-['Bebas_Neue'] text-5xl uppercase leading-none tracking-[0.04em] text-white sm:text-6xl lg:text-7xl">
+			<h1 class="font-display text-5xl uppercase leading-none tracking-[0.04em] text-white sm:text-6xl lg:text-7xl">
 				<?php echo esc_html( $iga_faq_hero['title'] ); ?>
 			</h1>
 
-			<p class="mx-auto mt-5 max-w-2xl text-sm leading-7 text-white/50 sm:text-base">
+			<p class="mx-auto mt-5 max-w-2xl text-sm leading-7 text-white/50 min-[769px]:text-base">
 				<?php echo esc_html( $iga_faq_hero['subtitle'] ); ?>
 			</p>
 
@@ -293,7 +293,7 @@ $wrapper_attributes = get_block_wrapper_attributes(
 	</section>
 
 	<!-- Categorised FAQs -->
-	<section class="px-6 py-20 sm:px-10 lg:px-20 lg:py-28 xl:px-28">
+	<section class="px-4.5 py-15 min-[481px]:px-6 min-[481px]:py-18 min-[1081px]:px-[5vw] min-[1081px]:py-25">
 		<div class="mx-auto max-w-[860px] space-y-12">
 
 			<?php foreach ( $iga_faq_categories as $category ) : ?>
@@ -301,9 +301,9 @@ $wrapper_attributes = get_block_wrapper_attributes(
 				<section
 					aria-labelledby="faq-<?php echo esc_attr( sanitize_title( $category['category'] ) ); ?>"
 				>
-					<div class="mb-5 flex items-center gap-3.5 border-b border-white/[0.07] pb-4">
+					<div class="mb-5 flex items-center gap-3.5 border-b border-line pb-4">
 
-						<div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[#3A7D44]/40 bg-[#3A7D44]/10 text-[#4E9E5A]">
+						<div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-green/40 bg-green/10 text-green-l">
 							<?php
 							echo $iga_faq_icon(
 								$category['icon'],
@@ -314,7 +314,7 @@ $wrapper_attributes = get_block_wrapper_attributes(
 
 						<h2
 							id="faq-<?php echo esc_attr( sanitize_title( $category['category'] ) ); ?>"
-							class="font-['Bebas_Neue'] text-3xl uppercase tracking-wide text-white"
+							class="font-display text-3xl uppercase tracking-wide text-white"
 						>
 							<?php echo esc_html( $category['category'] ); ?>
 						</h2>
@@ -325,15 +325,15 @@ $wrapper_attributes = get_block_wrapper_attributes(
 
 						<?php foreach ( $category['faqs'] as $faq ) : ?>
 
-							<details class="group overflow-hidden rounded-xl border border-white/[0.07] bg-[#1C1C1C] transition duration-300 open:border-[#3A7D44]/40">
+							<details class="group overflow-hidden rounded-xl border border-line bg-s2 transition duration-300 open:border-green/40">
 
-								<summary class="flex min-h-16 cursor-pointer list-none items-center justify-between gap-5 px-5 py-4 text-left text-sm font-semibold text-white transition hover:bg-white/[0.03] sm:px-6 sm:text-base [&::-webkit-details-marker]:hidden">
+								<summary class="flex min-h-16 cursor-pointer list-none items-center justify-between gap-5 px-6.25 py-5.5 text-left text-base font-semibold text-white transition hover:bg-white/[0.03] [&::-webkit-details-marker]:hidden">
 
 									<span>
 										<?php echo esc_html( $faq['q'] ); ?>
 									</span>
 
-									<span class="shrink-0 text-[#4E9E5A] transition duration-300 group-open:rotate-180">
+									<span class="shrink-0 text-green-l transition duration-300 group-open:rotate-180">
 										<?php
 										echo $iga_faq_icon(
 											'chevron',
@@ -344,8 +344,8 @@ $wrapper_attributes = get_block_wrapper_attributes(
 
 								</summary>
 
-								<div class="border-t border-white/[0.05] px-5 py-5 sm:px-6">
-									<p class="text-sm leading-7 text-white/55 sm:text-[0.95rem]">
+								<div class="border-t border-white/[0.05] px-6.25 py-5">
+									<p class="text-[0.95rem] leading-7 text-white/55">
 										<?php echo esc_html( $faq['a'] ); ?>
 									</p>
 								</div>
@@ -366,7 +366,7 @@ $wrapper_attributes = get_block_wrapper_attributes(
 	<!-- Testimonials -->
 	<section
 		id="testimonials"
-		class="border-y border-white/[0.07] bg-[#141414] px-6 py-20 sm:px-10 lg:px-20 lg:py-28 xl:px-28"
+		class="border-y border-line bg-s1 px-4.5 py-15 min-[481px]:px-6 min-[481px]:py-18 min-[1081px]:px-[5vw] min-[1081px]:py-25"
 	>
 		<div class="mx-auto max-w-[1280px]">
 
@@ -378,13 +378,13 @@ $wrapper_attributes = get_block_wrapper_attributes(
 			);
 			?>
 
-			<div class="grid gap-4 lg:grid-cols-3">
+			<div class="grid grid-cols-1 gap-3 min-[768px]:grid-cols-1 min-[481px]:grid-cols-2 min-[769px]:gap-4 min-[1081px]:grid-cols-3">
 
 				<?php foreach ( $iga_testimonials as $testimonial ) : ?>
 
-					<article class="flex h-full flex-col rounded-2xl border border-white/[0.07] bg-[#1C1C1C] p-7">
+					<article class="flex h-full flex-col rounded-2xl border border-line bg-s2 p-7">
 
-						<div class="mb-5 text-[#4E9E5A]/50">
+						<div class="mb-5 text-green-l/50">
 							<?php
 							echo $iga_faq_icon(
 								'quote',
@@ -397,11 +397,11 @@ $wrapper_attributes = get_block_wrapper_attributes(
 							&ldquo;<?php echo esc_html( $testimonial['quote'] ); ?>&rdquo;
 						</blockquote>
 
-						<div class="mt-6 flex flex-wrap items-center justify-between gap-3 border-t border-white/[0.07] pt-5">
+						<div class="mt-6 flex flex-wrap items-center justify-between gap-3 border-t border-line pt-5">
 
 							<div class="flex items-center gap-3">
 
-								<span class="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-[#242424] font-['Bebas_Neue'] text-lg text-white">
+								<span class="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-s3 font-display text-lg text-white">
 									<?php echo esc_html( $testimonial['initials'] ); ?>
 								</span>
 
@@ -417,7 +417,7 @@ $wrapper_attributes = get_block_wrapper_attributes(
 
 							</div>
 
-							<span class="rounded-full border border-[#3A7D44]/40 bg-[#3A7D44]/10 px-3 py-1 text-[9px] font-bold uppercase tracking-[0.1em] text-[#4E9E5A]">
+							<span class="rounded-full border border-green/40 bg-green/10 px-3 py-1 text-[9px] font-bold uppercase tracking-[0.1em] text-green-l">
 								<?php echo esc_html( $testimonial['result'] ); ?>
 							</span>
 
@@ -433,14 +433,14 @@ $wrapper_attributes = get_block_wrapper_attributes(
 	</section>
 
 	<!-- Final CTA -->
-	<section class="bg-[#141414] px-6 py-20 text-center sm:px-10 lg:px-20 lg:py-28 xl:px-28">
+	<section class="bg-s1 px-4.5 py-15 text-center min-[481px]:px-6 min-[481px]:py-18 min-[1081px]:px-[5vw] min-[1081px]:py-25">
 		<div class="mx-auto max-w-3xl">
 
-			<h2 class="font-['Bebas_Neue'] text-4xl uppercase leading-none tracking-[0.04em] text-white sm:text-5xl lg:text-6xl">
+			<h2 class="font-display text-4xl uppercase leading-none tracking-[0.04em] text-white sm:text-5xl lg:text-6xl">
 				<?php echo esc_html( $iga_faq_cta['title'] ); ?>
 			</h2>
 
-			<p class="mx-auto mt-5 max-w-2xl text-sm leading-7 text-white/50 sm:text-base">
+			<p class="mx-auto mt-5 max-w-2xl text-sm leading-7 text-white/50 min-[769px]:text-base">
 				<?php echo esc_html( $iga_faq_cta['subtitle'] ); ?>
 			</p>
 
@@ -448,7 +448,7 @@ $wrapper_attributes = get_block_wrapper_attributes(
 
 				<a
 					href="<?php echo esc_url( $iga_faq_urls['contact'] ); ?>"
-					class="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-[#3A7D44] px-8 py-4 text-xs font-bold uppercase tracking-[0.12em] text-white transition duration-300 hover:-translate-y-0.5 hover:bg-[#4E9E5A] hover:shadow-[0_10px_30px_rgba(58,125,68,0.35)]"
+					class="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-green px-8 py-4 text-xs font-bold uppercase tracking-[0.12em] text-white transition duration-300 hover:-translate-y-0.5 hover:bg-green-l hover:shadow-[0_10px_30px_rgba(58,125,68,0.35)]"
 				>
 					<?php
 					echo $iga_faq_icon(

@@ -1,4 +1,4 @@
-# Training Block
+# Training Page Block
 
 Full Training page: hero, three pillars, training tracks, weekly schedule, testimonials, monthly/drop-in pricing tabs, coaches, onboarding steps, and final CTA. Falls back to the original Iron Gorilla content when fields are left empty.
 

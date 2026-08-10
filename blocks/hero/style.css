@@ -76,7 +76,7 @@
     height: 1px;
     max-width: 2.5rem;
     flex: 1;
-    background: var(--wp--preset--color--accent, #22c55e);
+    background: var(--color-green);
 }
 
 .hero-layout-left .hero-eyebrow::after {
@@ -100,7 +100,7 @@
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 2px;
-    color: var(--wp--preset--color--accent, #22c55e);
+    color: var(--color-green-l);
 }
 
 .hero-headline {
@@ -110,12 +110,12 @@
     letter-spacing: 2px;
     color: #fff;
     margin: 0 0 1.25rem;
-    font-family: var(--wp--preset--font-family--display, inherit);
+    font-family: var(--font-display);
 }
 
 .hero-headline-accent {
     font-style: normal;
-    color: var(--wp--preset--color--accent, #22c55e);
+    color: var(--color-green-l);
 }
 
 .hero-description {
@@ -154,7 +154,7 @@
     gap: 0.5rem;
     padding: 0.9375rem 2.375rem;
     border-radius: 9999px;
-    background: var(--wp--preset--color--accent, #22c55e);
+    background: var(--color-green);
     color: #fff;
     font-size: 0.9rem;
     font-weight: 700;
@@ -193,7 +193,7 @@
 }
 
 .hero-arrow:hover {
-    border-color: var(--wp--preset--color--accent, #22c55e);
+    border-color: var(--color-green);
     background: rgba(58,125,68,0.75);
 }
 
@@ -228,7 +228,7 @@
 
 .hero-dot.is-active {
     width: 1.5rem;
-    background: var(--wp--preset--color--accent, #22c55e);
+    background: var(--color-green);
 }
 
 .hero-progress {
@@ -243,5 +243,5 @@
 .hero-progress-fill {
     height: 100%;
     width: 0;
-    background: var(--wp--preset--color--accent, #22c55e);
+    background: var(--color-green);
 }
