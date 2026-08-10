@@ -66,6 +66,12 @@ if ( ! function_exists( 'custom_theme_enqueue_editor_styles' ) ) {
 			[],
 			null
 		);
+
+		// Scroll-reveal sections (Mission, Forge, Pricing, Testimonials, etc.)
+		// render with opacity:0 until this runs, so it must load in the
+		// editor canvas too or the preview stays blank until manually clicked.
+		$version = wp_get_theme()->get( 'Version' );
+		wp_enqueue_script( 'iga-reveal', get_theme_file_uri( 'assets/js/reveal.js' ), [], $version, true );
 	}
 }
 add_action( 'enqueue_block_editor_assets', 'custom_theme_enqueue_editor_styles' );
