@@ -1,9 +1,55 @@
 <?php
+$iga_theme_uri = get_stylesheet_directory_uri();
+
+/**
+ * Resolve an ACF image field (id) to a URL, falling back to $default.
+ */
+$iga_hero_image_url = static function ( $image_id, $default = '' ) {
+    if ( ! empty( $image_id ) && is_numeric( $image_id ) ) {
+        $url = wp_get_attachment_image_url( (int) $image_id, 'full' );
+        if ( $url ) {
+            return $url;
+        }
+    }
+
+    return $default;
+};
+
+$iga_hero_default_slides = array(
+    array(
+        'background_image' => $iga_theme_uri . '/assets/images/cover_1.jpg',
+        'eyebrow'           => 'The Brotherhood',
+        'title'             => 'IRON GORILLA',
+        'line_2'            => 'ARMY',
+        'description'       => "Cape Town's most serious training community is enlisting. Built around iron, faith, and the belief that strength is forged — not born.",
+        'button_text'       => 'Book Free Assessment',
+        'button_url'        => home_url( '/book/' ),
+    ),
+    array(
+        'background_image' => $iga_theme_uri . '/assets/images/forge-gym.png',
+        'eyebrow'           => 'The Forge',
+        'title'             => 'STRENGTH',
+        'line_2'            => 'FORGED DAILY',
+        'description'       => 'Open access training, hybrid group classes, and squads led by professional coaches. Walk in soft. Walk out steel.',
+        'button_text'       => 'Book Free Assessment',
+        'button_url'        => home_url( '/book/' ),
+    ),
+    array(
+        'background_image' => $iga_theme_uri . '/assets/images/cover_3.jpg',
+        'eyebrow'           => 'The Standard',
+        'title'             => 'DISCIPLINE',
+        'line_2'            => 'OVER MOOD',
+        'description'       => "We don't chase motivation. We build standards. Every rep, every class, every member held to the same line.",
+        'button_text'       => 'Book Free Assessment',
+        'button_url'        => home_url( '/book/' ),
+    ),
+);
+
 $slides = get_field( 'slides' );
 $layout = get_field( 'layout' ) ?: 'left';
 
 if ( empty( $slides ) ) {
-    return;
+    $slides = $iga_hero_default_slides;
 }
 
 $wrapper_attributes = get_block_wrapper_attributes( array(
@@ -18,13 +64,18 @@ $wrapper_attributes = get_block_wrapper_attributes( array(
                 class="hero-slide <?php echo 0 === $i ? 'is-active' : ''; ?>"
             >
                 <?php
-                $image_id = $slide['background_image'];
-                if ( $image_id ) :
-                    echo wp_get_attachment_image( $image_id, 'full', '', array(
-                        'class'   => 'hero-slide-image',
-                        'decoding' => 'async',
-                        ( 0 === $i ? 'fetchpriority="high"' : 'loading="lazy"' ),
-                    ) );
+                $image_id  = $slide['background_image'];
+                $image_url = is_numeric( $image_id ) ? $iga_hero_image_url( $image_id ) : $image_id;
+                if ( $image_url ) :
+                    ?>
+                    <img
+                        src="<?php echo esc_url( $image_url ); ?>"
+                        alt="<?php echo esc_attr( $slide['eyebrow'] ?? '' ); ?>"
+                        class="hero-slide-image"
+                        decoding="async"
+                        <?php echo 0 === $i ? 'fetchpriority="high"' : 'loading="lazy"'; ?>
+                    >
+                    <?php
                 endif;
                 ?>
                 <div class="hero-overlay"></div>

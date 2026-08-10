@@ -1,8 +1,49 @@
 <?php
+$iga_theme_uri = get_stylesheet_directory_uri();
+
+$iga_distinction_defaults = array(
+    array(
+        'featured'   => false,
+        'image'      => $iga_theme_uri . '/assets/images/cover_2.jpg',
+        'tag'        => 'The Movement',
+        'tag_icon'   => 'fa-users',
+        'title'      => 'Iron Gorilla Army',
+        'body'       => 'We are a community built around iron and faith. The Army is the overarching culture, the standard, and the movement committed to growth and complete self-mastery.',
+        'cta_label'  => 'Enlist Now',
+        'cta_icon'   => 'fa-medal',
+        'cta_url'    => '',
+        'cta_action' => 'enlist-modal',
+    ),
+    array(
+        'featured'   => true,
+        'image'      => $iga_theme_uri . '/assets/images/forge-gym.png',
+        'tag'        => 'The Facility',
+        'tag_icon'   => 'fa-dumbbell',
+        'title'      => 'The Forge Gym',
+        'body'       => 'The Forge is the proving ground where the Army trains. Open access, studio classes, and coach-led sessions. This is where the work gets done.',
+        'cta_label'  => 'View Training Programs',
+        'cta_icon'   => 'fa-dumbbell',
+        'cta_url'    => '/training',
+        'cta_action' => 'link',
+    ),
+    array(
+        'featured'   => false,
+        'image'      => '',
+        'tag'        => 'Headquarters',
+        'tag_icon'   => 'fa-location-dot',
+        'title'      => 'Where To Find Us',
+        'body'       => 'Unit 209 Salt Circle, Kent Str, Salt River, Cape Town. Mon–Sat: 6AM–9PM. Sunday: Closed.',
+        'cta_label'  => 'Get Directions',
+        'cta_icon'   => 'fa-map-location-dot',
+        'cta_url'    => '',
+        'cta_action' => 'directions',
+    ),
+);
+
 $cards = get_field( 'cards' );
 
 if ( empty( $cards ) ) {
-    return;
+    $cards = $iga_distinction_defaults;
 }
 
 $wrapper_attributes = get_block_wrapper_attributes( array(
@@ -33,8 +74,16 @@ $wrapper_attributes = get_block_wrapper_attributes( array(
             }
 
             $image_id = $card['image'] ?? null;
-            $image_url = $image_id ? wp_get_attachment_image_url( $image_id, 'large' ) : null;
-            $image_alt = $image_id ? get_post_meta( $image_id, '_wp_attachment_image_alt', true ) : '';
+
+            if ( is_numeric( $image_id ) ) {
+                $image_url = wp_get_attachment_image_url( (int) $image_id, 'large' );
+            } elseif ( is_string( $image_id ) && $image_id ) {
+                $image_url = $image_id;
+            } else {
+                $image_url = null;
+            }
+
+            $image_alt = is_numeric( $image_id ) ? get_post_meta( $image_id, '_wp_attachment_image_alt', true ) : '';
             ?>
             <article class="flex flex-col overflow-hidden rounded-[18px] border <?php echo esc_attr( $article_classes ); ?>">
                 <div class="relative h-[200px] w-full shrink-0 overflow-hidden">

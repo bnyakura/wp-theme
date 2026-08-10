@@ -1,4 +1,6 @@
 <?php
+$iga_theme_uri = get_stylesheet_directory_uri();
+
 $eyebrow    = get_field( 'eyebrow' );
 $heading    = get_field( 'heading' );
 $paragraphs = get_field( 'paragraphs' );
@@ -8,8 +10,27 @@ $story_url  = get_field( 'story_url' );
 $image_id   = get_field( 'image' );
 $caption    = get_field( 'caption' );
 
-if ( empty( $heading ) && empty( $image_id ) ) {
-    return;
+$eyebrow     = $eyebrow ?: 'The Origin';
+$heading     = $heading ?: "We Built What We Couldn't Find";
+$paragraphs  = $paragraphs ?: array(
+    array( 'paragraph' => 'Iron Gorilla Army wasn\'t built in a boardroom. It started with a group of men in Cape Town who were tired of going through the motions — training alone, winning and losing alone, with no one who truly held them to a higher standard.' ),
+    array( 'paragraph' => 'We believed that iron sharpens iron — that you become who you are in the company you keep. So we built a space where physical training is the vehicle, not the destination. You come for the weights. You stay for the community.' ),
+);
+$values      = $values ?: array(
+    array( 'icon' => 'fa-dumbbell', 'label' => 'Iron Discipline' ),
+    array( 'icon' => 'fa-heart', 'label' => 'Faith First' ),
+    array( 'icon' => 'fa-users', 'label' => 'Brotherhood' ),
+);
+$story_label = $story_label ?: 'Read Our Story';
+$story_url   = $story_url ?: '/blog/iron-gorilla-origin-story';
+$caption     = $caption ?: 'Salt River, Cape Town';
+
+$image_url = is_numeric( $image_id )
+    ? wp_get_attachment_image_url( (int) $image_id, 'full' )
+    : ( is_string( $image_id ) && $image_id ? $image_id : null );
+
+if ( ! $image_url ) {
+    $image_url = $iga_theme_uri . '/assets/images/cover_2.jpg';
 }
 
 if ( ! empty( $story_url ) && 0 === strpos( $story_url, '/' ) ) {
@@ -68,13 +89,15 @@ $wrapper_attributes = get_block_wrapper_attributes( array(
             <?php endif; ?>
         </div>
 
-        <?php if ( $image_id ) : ?>
+        <?php if ( $image_url ) : ?>
             <div class="relative isolate h-[260px] overflow-hidden rounded-[18px] min-[769px]:aspect-[4/5] min-[769px]:h-auto min-[769px]:min-h-[380px]">
-                <?php echo wp_get_attachment_image( $image_id, 'full', '', array(
-                    'class'    => 'absolute inset-0 h-full w-full object-cover',
-                    'loading'  => 'lazy',
-                    'decoding' => 'async',
-                ) ); ?>
+                <img
+                    src="<?php echo esc_url( $image_url ); ?>"
+                    alt="<?php echo esc_attr( $caption ?: $heading ); ?>"
+                    class="absolute inset-0 h-full w-full object-cover"
+                    loading="lazy"
+                    decoding="async"
+                >
                 <div class="absolute inset-0 bg-[linear-gradient(to_top,rgba(10,10,10,0.7)_0%,transparent_60%)]"></div>
                 <?php if ( $caption ) : ?>
                     <div class="absolute bottom-6 left-6 font-display text-[1.1rem] tracking-[3px] text-white/90">

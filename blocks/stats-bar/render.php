@@ -1,8 +1,27 @@
 <?php
+$iga_stats_bar_defaults = array(
+    array(
+        'value' => '120+',
+        'label' => 'Active Members',
+    ),
+    array(
+        'value' => '3 Yrs',
+        'label' => 'Iron-Tested Since 2022',
+    ),
+    array(
+        'value' => '6AM',
+        'label' => 'Doors Open Daily',
+    ),
+    array(
+        'value' => '1 Unit',
+        'label' => 'Brotherhood. No Excuses.',
+    ),
+);
+
 $stats = get_field( 'stats' );
 
 if ( empty( $stats ) ) {
-    return;
+    $stats = $iga_stats_bar_defaults;
 }
 
 $wrapper_attributes = get_block_wrapper_attributes( array(

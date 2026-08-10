@@ -8,8 +8,30 @@ $cta_action = get_field( 'cta_primary_action' ) ?: 'enlist-modal';
 $cta2_label = get_field( 'cta_secondary_label' ) ?: __( 'Explore Programs', 'iga' );
 $cta2_url   = get_field( 'cta_secondary_url' ) ?: home_url( '/training/' );
 
+$eyebrow  = $eyebrow ?: 'What We Offer';
+$title    = $title ?: 'Built on Three Pillars';
+$subtitle = $subtitle ?: 'Every session, every program, and every coach is built around three core pillars.';
+
+$iga_forge_default_pillars = array(
+    array(
+        'icon'  => 'fa-dumbbell',
+        'title' => 'Movement',
+        'body'  => 'Strength & Conditioning, Hybrid Group Classes, Open Studio. Every session is coach-led — movements are scaled so anyone can train.',
+    ),
+    array(
+        'icon'  => 'fa-brain',
+        'title' => 'Holistic Wellness',
+        'body'  => 'Physical training is one part of the equation. We integrate mental resilience, nutrition guidance, and spiritual grounding into everything.',
+    ),
+    array(
+        'icon'  => 'fa-users',
+        'title' => 'Brotherhood',
+        'body'  => 'Small squads trained under professional guidance. You belong here. You are held accountable. You do not train alone.',
+    ),
+);
+
 if ( empty( $pillars ) ) {
-    return;
+    $pillars = $iga_forge_default_pillars;
 }
 
 if ( ! empty( $cta2_url ) && 0 === strpos( $cta2_url, '/' ) ) {

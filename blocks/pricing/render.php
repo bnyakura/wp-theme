@@ -86,8 +86,75 @@ $subtitle      = get_field( 'subtitle' );
 $monthly_tiers = get_field( 'monthly_tiers' );
 $dropin_tiers  = get_field( 'dropin_tiers' );
 
-if ( empty( $monthly_tiers ) && empty( $dropin_tiers ) ) {
-    return;
+$eyebrow  = $eyebrow ?: 'Membership';
+$title    = $title ?: 'Choose Your Rank';
+$subtitle = $subtitle ?: 'No hidden fees. No lock-in contracts. Choose how you want to train.';
+
+$iga_pricing_default_monthly = array(
+    array(
+        'sub'        => 'Open Gym · Monthly',
+        'rank'       => 'Studio Access',
+        'price'      => 'R 200',
+        'cadence'    => 'per month',
+        'desc'       => 'Open gym access on your own terms. No coach required — just you, the equipment, and the iron.',
+        'features'   => "Unlimited studio access\nSelf-directed training\nFull equipment use\nNo lock-in contract",
+        'cta_label'  => 'Get Access',
+        'cta_action' => 'packages-modal',
+    ),
+    array(
+        'badge'      => 'Most Popular',
+        'sub'        => 'Group Training · Monthly',
+        'rank'       => 'Platoons',
+        'price'      => 'R 800',
+        'cadence'    => 'per month',
+        'desc'       => 'Structured group training every week. The core membership for committed members who want community and accountability.',
+        'features'   => "Unlimited group sessions\nCoach-led programming\nCommunity events access\nNo lock-in contract",
+        'cta_label'  => 'Enlist Now',
+        'cta_action' => 'enlist-modal',
+    ),
+    array(
+        'sub'        => 'Personal Sessions · Pack of 4',
+        'rank'       => 'Squads',
+        'price'      => 'R 950',
+        'cadence'    => 'per pack',
+        'desc'       => 'Four personalized 1-on-1 sessions in one block. Serious coaching for serious results — R238 per session.',
+        'features'   => "4 personalized sessions\n1-on-1 coaching\nFlexible scheduling\nProgress tracking",
+        'cta_label'  => 'Get Started',
+        'cta_action' => 'packages-modal',
+    ),
+);
+
+$iga_pricing_default_dropin = array(
+    array(
+        'badge'      => 'Most Popular',
+        'sub'        => 'Group Session · Single',
+        'rank'       => 'Platoon Drop-In',
+        'price'      => 'R 100',
+        'cadence'    => 'per session',
+        'desc'       => 'Drop in for a single group session. Coach-supervised, full equipment access. No strings attached.',
+        'features'   => "Single group session\nCoach-supervised\nFull equipment use\nNo contract required",
+        'cta_label'  => 'Book Drop-In',
+        'cta_action' => 'link',
+        'cta_url'    => home_url( '/book/' ),
+    ),
+    array(
+        'sub'        => 'Personal Session · Single',
+        'rank'       => 'Squad Drop-In',
+        'price'      => 'R 200',
+        'cadence'    => 'per session',
+        'desc'       => 'A single personalized session with focused 1-on-1 coaching. Test the experience before committing.',
+        'features'   => "Single personalized session\n1-on-1 coaching\nTailored to your goals\nNo contract required",
+        'cta_label'  => 'Book Session',
+        'cta_action' => 'link',
+        'cta_url'    => home_url( '/book/' ),
+    ),
+);
+
+if ( empty( $monthly_tiers ) ) {
+    $monthly_tiers = $iga_pricing_default_monthly;
+}
+if ( empty( $dropin_tiers ) ) {
+    $dropin_tiers = $iga_pricing_default_dropin;
 }
 
 $tab_classes = 'inline-flex cursor-pointer items-center gap-2 rounded-full border-0 bg-transparent px-[14px] py-[9px] font-sans text-[0.7rem] font-bold uppercase tracking-[0.5px] text-muted transition-all duration-[250ms] min-[481px]:px-[28px] min-[481px]:py-[10px] min-[481px]:text-[0.8rem] min-[481px]:tracking-[1px] [&.is-active]:bg-green [&.is-active]:text-white [&.is-active]:shadow-[0_4px_16px_rgba(58,125,68,0.3)] [&:not(.is-active):hover]:text-muted-l';
