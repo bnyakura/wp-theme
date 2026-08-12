@@ -49,6 +49,29 @@ function iron_gorilla_enqueue_icons() {
 add_action('wp_enqueue_scripts', 'iron_gorilla_enqueue_icons');
 add_action( 'wp_enqueue_scripts', 'custom_theme_enqueue_styles' );
 
+if ( ! function_exists( 'iron_gorilla_dequeue_preorders_sitewide_assets' ) ) {
+	/**
+	 * Pre-Orders for WooCommerce enqueues its main.css / jquery-ui / main.js
+	 * on every front-end page (no is_woocommerce() guard in the plugin), and
+	 * main.css ships a bare `.hidden { display: none; }` rule that collides
+	 * with Tailwind's `hidden` / `md:flex` utility classes used on the header
+	 * nav, hiding it. Drop those assets outside actual WooCommerce pages.
+	 *
+	 * @return void
+	 */
+	function iron_gorilla_dequeue_preorders_sitewide_assets(): void {
+		if ( function_exists( 'is_woocommerce' ) && ( is_woocommerce() || is_cart() || is_checkout() || is_account_page() ) ) {
+			return;
+		}
+
+		wp_dequeue_style( 'woocommerce-pre-orders-main-css' );
+		wp_dequeue_style( 'jquery-ui' );
+		wp_dequeue_script( 'preorders-main-js' );
+		wp_dequeue_script( 'preorders-field-date-js' );
+	}
+}
+add_action( 'wp_enqueue_scripts', 'iron_gorilla_dequeue_preorders_sitewide_assets', 100 );
+
 if ( ! function_exists( 'custom_theme_enqueue_editor_styles' ) ) {
 	/**
 	 * Load the frontend styles inside the block editor so ACF block
