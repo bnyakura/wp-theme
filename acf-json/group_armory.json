@@ -1,0 +1,210 @@
+{
+    "key": "group_armory",
+    "title": "Armory",
+    "fields": [
+        {
+            "key": "field_armory_hero_eyebrow",
+            "label": "Hero Eyebrow",
+            "name": "hero_eyebrow",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Small label above the heading (e.g. 'The Armory').",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_armory_hero_title_line_1",
+            "label": "Hero Title Line 1",
+            "name": "hero_title_line_1",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "First heading line (e.g. 'Gear For').",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_armory_hero_title_accent",
+            "label": "Hero Title Accent",
+            "name": "hero_title_accent",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Accent-coloured heading line (e.g. 'The Grind').",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_armory_hero_subtitle",
+            "label": "Hero Subtitle",
+            "name": "hero_subtitle",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "Intro paragraph.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "rows": 3,
+            "placeholder": "",
+            "new_lines": ""
+        },
+        {
+            "key": "field_armory_hero_poster",
+            "label": "Hero Poster",
+            "name": "hero_poster",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "Poster image shown while the video loads. Defaults to the theme's forge-gym.png.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "id",
+            "preview_size": "medium",
+            "library": "all",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": ""
+        },
+        {
+            "key": "field_armory_hero_video",
+            "label": "Hero Video",
+            "name": "hero_video",
+            "aria-label": "",
+            "type": "file",
+            "instructions": "Background MP4 video. Defaults to the theme's iga-apparel.mp4.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "url",
+            "library": "all",
+            "min_size": "",
+            "max_size": "",
+            "mime_types": "mp4"
+        },
+        {
+            "key": "field_armory_early_access_label",
+            "label": "Early Access Label",
+            "name": "early_access_label",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Primary CTA text (links to contact with '?subject=armory-early-access').",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_armory_memberships_label",
+            "label": "Memberships Label",
+            "name": "memberships_label",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Secondary CTA text (links to /training/#pricing).",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_armory_coming_soon_label",
+            "label": "Coming Soon Label",
+            "name": "coming_soon_label",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Amber badge text.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "wp-theme/armory"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "Armory hero with background video, heading, CTAs, and coming-soon badge.",
+    "show_in_rest": 0,
+    "modified": 0
+}

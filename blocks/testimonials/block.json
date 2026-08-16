@@ -1,0 +1,21 @@
+{
+    "name": "wp-theme/testimonials",
+    "title": "Homepage – Testimonials",
+    "category": "design",
+    "icon": "testimonial",
+    "description": "Member testimonial cards with quotes and details.",
+    "keywords": ["testimonial", "quote", "review", "members"],
+    "acf": {
+        "mode": "auto",
+        "renderTemplate": "render.php"
+    },
+    "supports": {
+        "align": ["wide", "full"],
+        "anchor": true,
+        "spacing": {
+            "padding": true,
+            "margin": true
+        }
+    },
+    "style": "file:./style.css"
+}

@@ -1,0 +1,21 @@
+{
+    "name": "wp-theme/faq",
+    "title": "FAQ Page",
+    "category": "design",
+    "icon": "editor-help",
+    "description": "Full FAQ page: hero, categorised questions, testimonials, and final CTA.",
+    "keywords": ["faq", "questions", "help", "testimonials"],
+    "acf": {
+        "mode": "auto",
+        "renderTemplate": "render.php"
+    },
+    "supports": {
+        "align": ["wide", "full"],
+        "anchor": true,
+        "spacing": {
+            "padding": true,
+            "margin": true
+        }
+    },
+    "style": "file:./style.css"
+}

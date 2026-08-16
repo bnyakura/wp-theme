@@ -48,3 +48,53 @@ function iron_gorilla_enqueue_icons() {
 
 add_action('wp_enqueue_scripts', 'iron_gorilla_enqueue_icons');
 add_action( 'wp_enqueue_scripts', 'custom_theme_enqueue_styles' );
+
+if ( ! function_exists( 'iron_gorilla_dequeue_preorders_sitewide_assets' ) ) {
+	/**
+	 * Pre-Orders for WooCommerce enqueues its main.css / jquery-ui / main.js
+	 * on every front-end page (no is_woocommerce() guard in the plugin), and
+	 * main.css ships a bare `.hidden { display: none; }` rule that collides
+	 * with Tailwind's `hidden` / `md:flex` utility classes used on the header
+	 * nav, hiding it. Drop those assets outside actual WooCommerce pages.
+	 *
+	 * @return void
+	 */
+	function iron_gorilla_dequeue_preorders_sitewide_assets(): void {
+		if ( function_exists( 'is_woocommerce' ) && ( is_woocommerce() || is_cart() || is_checkout() || is_account_page() ) ) {
+			return;
+		}
+
+		wp_dequeue_style( 'woocommerce-pre-orders-main-css' );
+		wp_dequeue_style( 'jquery-ui' );
+		wp_dequeue_script( 'preorders-main-js' );
+		wp_dequeue_script( 'preorders-field-date-js' );
+	}
+}
+add_action( 'wp_enqueue_scripts', 'iron_gorilla_dequeue_preorders_sitewide_assets', 100 );
+
+if ( ! function_exists( 'custom_theme_enqueue_editor_styles' ) ) {
+	/**
+	 * Load the frontend styles inside the block editor so ACF block
+	 * previews match how they actually look on the live site.
+	 *
+	 * @return void
+	 */
+	function custom_theme_enqueue_editor_styles(): void {
+		custom_theme_enqueue_styles();
+		iron_gorilla_enqueue_icons();
+
+		wp_enqueue_style(
+			'iga-fonts',
+			'https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;600;700&display=swap',
+			[],
+			null
+		);
+
+		// Scroll-reveal sections (Mission, Forge, Pricing, Testimonials, etc.)
+		// render with opacity:0 until this runs, so it must load in the
+		// editor canvas too or the preview stays blank until manually clicked.
+		$version = wp_get_theme()->get( 'Version' );
+		wp_enqueue_script( 'iga-reveal', get_theme_file_uri( 'assets/js/reveal.js' ), [], $version, true );
+	}
+}
+add_action( 'enqueue_block_editor_assets', 'custom_theme_enqueue_editor_styles' );

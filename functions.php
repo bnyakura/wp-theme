@@ -9,6 +9,8 @@
 
 DEFINED( 'CUSTOM_THEME_VERSION' ) OR define( 'CUSTOM_THEME_VERSION', '1.0.1' );
 
+
+
 // Define the path to the acf-requirements file
 $theme_setup_file_path = get_template_directory() . '/inc/acf-requirements.php';
 if( file_exists( $theme_setup_file_path ) ) {
@@ -52,6 +54,25 @@ $acf_options_file_path = get_template_directory() . '/inc/acf-options.php';
 if( file_exists( $acf_options_file_path ) ) {
     require $acf_options_file_path;
 }
+
+// Define the path to the page block form handlers (booking + contact)
+$page_forms_file_path = get_template_directory() . '/inc/page-forms.php';
+if( file_exists( $page_forms_file_path ) ) {
+    require $page_forms_file_path;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -1,0 +1,21 @@
+{
+    "name": "wp-theme/forge",
+    "title": "Homepage – Forge",
+    "category": "design",
+    "icon": "hammer",
+    "description": "Three-pillar section with icon cards and CTAs.",
+    "keywords": ["forge", "pillars", "features", "icon cards"],
+    "acf": {
+        "mode": "auto",
+        "renderTemplate": "render.php"
+    },
+    "supports": {
+        "align": ["wide", "full"],
+        "anchor": true,
+        "spacing": {
+            "padding": true,
+            "margin": true
+        }
+    },
+    "style": "file:./style.css"
+}

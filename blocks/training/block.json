@@ -1,0 +1,21 @@
+{
+    "name": "wp-theme/training",
+    "title": "Training Page",
+    "category": "design",
+    "icon": "universal-access-alt",
+    "description": "Full Training page: hero, pillars, training tracks, schedule, testimonials, pricing, coaches, onboarding steps, and final CTA.",
+    "keywords": ["training", "forge", "pricing", "schedule", "coaches"],
+    "acf": {
+        "mode": "auto",
+        "renderTemplate": "render.php"
+    },
+    "supports": {
+        "align": ["wide", "full"],
+        "anchor": true,
+        "spacing": {
+            "padding": true,
+            "margin": true
+        }
+    },
+    "style": "file:./style.css"
+}

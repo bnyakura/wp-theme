@@ -1,0 +1,161 @@
+{
+    "key": "group_homepage_contact",
+    "title": "Homepage Contact",
+    "fields": [
+        {
+            "key": "field_homepage_contact_eyebrow",
+            "label": "Eyebrow",
+            "name": "eyebrow",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Small label above heading (e.g. \"Dispatch\").",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "Dispatch",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_homepage_contact_title",
+            "label": "Title",
+            "name": "title",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Section heading (e.g. \"Establish Contact\").",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "Establish Contact",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_homepage_contact_subtitle",
+            "label": "Subtitle",
+            "name": "subtitle",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "Supporting text below the heading.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "rows": 3,
+            "placeholder": "",
+            "new_lines": ""
+        },
+        {
+            "key": "field_homepage_contact_hq_heading",
+            "label": "Headquarters",
+            "name": "hq_heading",
+            "aria-label": "",
+            "type": "message",
+            "message": "Leave the fields below blank to fall back to the site-wide contact details used on the Contact page.",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "esc_html": 0
+        },
+        {
+            "key": "field_homepage_contact_location",
+            "label": "Location",
+            "name": "location",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Headquarters address (e.g. \"Unit 209 Salt Circle, Kent Str., Salt River, Cape Town\").",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_homepage_contact_email",
+            "label": "Email",
+            "name": "email",
+            "aria-label": "",
+            "type": "email",
+            "instructions": "Headquarters contact email.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_homepage_contact_phone",
+            "label": "Comm-Line",
+            "name": "phone",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Phone number, international format (e.g. \"+27790614906\"). Displayed formatted automatically.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "wp-theme/homepage-contact"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "Homepage contact section header and headquarters details. Blank headquarters fields fall back to the shared Contact data (inc/page-forms.php). The dispatch form is not editable per-block.",
+    "show_in_rest": 0,
+    "modified": 0
+}

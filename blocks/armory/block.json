@@ -1,0 +1,21 @@
+{
+    "name": "wp-theme/armory",
+    "title": "Armory Page",
+    "category": "design",
+    "icon": "store",
+    "description": "Armory hero with background video, eyebrow, heading, CTAs, and coming-soon badge.",
+    "keywords": ["armory", "store", "apparel", "supplements", "hero", "video"],
+    "acf": {
+        "mode": "auto",
+        "renderTemplate": "render.php"
+    },
+    "supports": {
+        "align": ["wide", "full"],
+        "anchor": true,
+        "spacing": {
+            "padding": true,
+            "margin": true
+        }
+    },
+    "style": "file:./style.css"
+}
