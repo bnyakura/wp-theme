@@ -36,7 +36,6 @@ $iga_armory_icon = static function ( $name, $classes = 'h-5 w-5' ) {
 	$paths = array(
 		'bell'  => '<path stroke-linecap="round" stroke-linejoin="round" d="M14.86 17.08a23.85 23.85 0 0 0 5.45-1.31A8.97 8.97 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.97 8.97 0 0 1-2.31 6.02c1.75.58 3.58 1.02 5.45 1.31m5.72 0a24.3 24.3 0 0 1-5.72 0m5.72 0a3 3 0 1 1-5.72 0"/>',
 		'medal' => '<path stroke-linecap="round" stroke-linejoin="round" d="M8.25 3 12 8.25 15.75 3M7.5 3h9M12 8.25a6 6 0 1 0 0 12 6 6 0 0 0 0-12Zm0 3.25 1.05 2.12 2.34.34-1.7 1.65.4 2.33L12 16.9l-2.09 1.1.4-2.33-1.7-1.65 2.34-.34L12 11.5Z"/>',
-		'clock' => '<path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6l4 2m5-2a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>',
 		'arrow' => '<path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-5-5 5 5-5 5"/>',
 	);
 
@@ -58,7 +57,6 @@ $iga_armory_hero = array(
 	'video'      => get_field( 'hero_video' ),
 	'cta_1'      => get_field( 'early_access_label' ),
 	'cta_2'      => get_field( 'memberships_label' ),
-	'coming'     => get_field( 'coming_soon_label' ),
 );
 
 $iga_armory_hero['eyebrow']  = $iga_armory_hero['eyebrow'] ?: 'The Armory';
@@ -67,7 +65,6 @@ $iga_armory_hero['title_2']  = $iga_armory_hero['title_2'] ?: 'The Grind';
 $iga_armory_hero['subtitle'] = $iga_armory_hero['subtitle'] ?: 'IGA supplements and apparel built for those who train with purpose. No filler. No noise. Just the kit you need to show up and perform.';
 $iga_armory_hero['cta_1']    = $iga_armory_hero['cta_1'] ?: 'Get Early Access';
 $iga_armory_hero['cta_2']    = $iga_armory_hero['cta_2'] ?: 'View Memberships';
-$iga_armory_hero['coming']   = $iga_armory_hero['coming'] ?: 'Online Shop — Coming Soon';
 
 if ( ! empty( $iga_armory_hero['poster'] ) && is_numeric( $iga_armory_hero['poster'] ) ) {
 	$poster_url = wp_get_attachment_image_url( (int) $iga_armory_hero['poster'], 'full' );
@@ -165,21 +162,6 @@ $wrapper_attributes = get_block_wrapper_attributes(
 
 						<?php echo esc_html( $iga_armory_hero['cta_2'] ); ?>
 					</a>
-
-				</div>
-
-				<!-- Coming soon badge -->
-				<div class="mt-5 inline-flex items-center gap-2 rounded-full border border-amber/30 bg-amber/10 px-4 py-2">
-
-					<span class="text-amber">
-						<?php
-						echo $iga_armory_icon( 'clock', 'h-4 w-4' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-						?>
-					</span>
-
-					<span class="text-[0.72rem] font-bold uppercase tracking-[0.16em] text-amber">
-						<?php echo esc_html( $iga_armory_hero['coming'] ); ?>
-					</span>
 
 				</div>
 

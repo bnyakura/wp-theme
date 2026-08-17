@@ -1,0 +1,21 @@
+{
+    "name": "wp-theme/about-origin",
+    "title": "About — Origin Story",
+    "category": "design",
+    "icon": "clock",
+    "description": "'How The Army Was Born' origin story section, with paragraphs and a gym photo.",
+    "keywords": ["about", "origin", "story"],
+    "acf": {
+        "mode": "auto",
+        "renderTemplate": "render.php"
+    },
+    "supports": {
+        "align": ["wide", "full"],
+        "anchor": true,
+        "spacing": {
+            "padding": true,
+            "margin": true
+        }
+    },
+    "style": "file:./style.css"
+}

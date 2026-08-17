@@ -1,0 +1,85 @@
+{
+    "key": "group_faq_hero",
+    "title": "FAQ — Hero",
+    "fields": [
+        {
+            "key": "field_faq_hero_eyebrow",
+            "label": "Hero Eyebrow",
+            "name": "hero_eyebrow",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Small label above the hero heading (e.g. 'Questions').",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Questions",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_faq_hero_title",
+            "label": "Hero Title",
+            "name": "hero_title",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Main hero heading.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Is This For You?",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_faq_hero_subtitle",
+            "label": "Hero Subtitle",
+            "name": "hero_subtitle",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "Hero intro paragraph.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Straight answers. No fluff. If your question isn't here, send a dispatch and we'll respond within 24 hours.",
+            "maxlength": "",
+            "rows": 3,
+            "placeholder": "",
+            "new_lines": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "wp-theme/faq-hero"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "FAQ page hero section.",
+    "show_in_rest": 0,
+    "modified": 0
+}

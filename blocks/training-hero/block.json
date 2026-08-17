@@ -1,0 +1,21 @@
+{
+    "name": "wp-theme/training-hero",
+    "title": "Training — Hero",
+    "category": "design",
+    "icon": "universal-access-alt",
+    "description": "Training page hero: eyebrow, three-line heading, subtitle, location, and background image.",
+    "keywords": ["training", "hero"],
+    "acf": {
+        "mode": "auto",
+        "renderTemplate": "render.php"
+    },
+    "supports": {
+        "align": ["wide", "full"],
+        "anchor": true,
+        "spacing": {
+            "padding": true,
+            "margin": true
+        }
+    },
+    "style": "file:./style.css"
+}

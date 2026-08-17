@@ -1,0 +1,21 @@
+{
+    "name": "wp-theme/training-coaches",
+    "title": "Training — Coaches",
+    "category": "design",
+    "icon": "groups",
+    "description": "'Meet The Team' coach cards section for the Training page.",
+    "keywords": ["training", "coaches", "team"],
+    "acf": {
+        "mode": "auto",
+        "renderTemplate": "render.php"
+    },
+    "supports": {
+        "align": ["wide", "full"],
+        "anchor": true,
+        "spacing": {
+            "padding": true,
+            "margin": true
+        }
+    },
+    "style": "file:./style.css"
+}

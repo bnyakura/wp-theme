@@ -177,6 +177,27 @@
                     "default_value": "",
                     "placeholder": "",
                     "parent_repeater": "field_hero_slides"
+                },
+                {
+                    "key": "field_hero_slide_secondary_button_text",
+                    "label": "Secondary Button Text",
+                    "name": "secondary_button_text",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "Text-style button that opens WhatsApp (using the site's WhatsApp number under Customizer → Theme Settings). Leave empty to hide it.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "Enlist Now",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_hero_slides"
                 }
             ]
         },

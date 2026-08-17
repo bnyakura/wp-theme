@@ -16,7 +16,7 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "",
+            "default_value": "Book a Drop-In",
             "maxlength": "",
             "placeholder": "",
             "prepend": "",
@@ -36,7 +36,7 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "",
+            "default_value": "Claim Your Spot. Show Up Ready.",
             "maxlength": "",
             "placeholder": "",
             "prepend": "",
@@ -56,7 +56,7 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "",
+            "default_value": "Your first session is free. Fill in your details and we'll confirm your booking personally within 24 hours.",
             "maxlength": "",
             "rows": 3,
             "placeholder": "",

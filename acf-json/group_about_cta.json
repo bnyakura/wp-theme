@@ -1,0 +1,65 @@
+{
+    "key": "group_about_cta",
+    "title": "About — Final CTA",
+    "fields": [
+        {
+            "key": "field_about_cta_title",
+            "label": "CTA Title",
+            "name": "cta_title",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Final call-to-action heading.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Ready To Join The Army?",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_about_cta_subtitle",
+            "label": "CTA Subtitle",
+            "name": "cta_subtitle",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "Final call-to-action intro.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Come see the floor. Meet the coaches. Experience the community. Your first drop-in is on us.",
+            "maxlength": "",
+            "rows": 3,
+            "placeholder": "",
+            "new_lines": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "wp-theme/about-cta"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "About page final call-to-action.",
+    "show_in_rest": 0,
+    "modified": 0
+}

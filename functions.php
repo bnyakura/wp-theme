@@ -61,6 +61,13 @@ if( file_exists( $page_forms_file_path ) ) {
     require $page_forms_file_path;
 }
 
+// Define the path to the ACF block field defaults file (pre-fills the block
+// editor forms with the theme's shipped content instead of blank fields)
+$acf_block_defaults_file_path = get_template_directory() . '/inc/acf-block-defaults.php';
+if( file_exists( $acf_block_defaults_file_path ) ) {
+    require $acf_block_defaults_file_path;
+}
+
 
 
 

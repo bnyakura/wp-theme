@@ -1,0 +1,21 @@
+{
+    "name": "wp-theme/about-cta",
+    "title": "About — Final CTA",
+    "category": "design",
+    "icon": "megaphone",
+    "description": "'Ready To Join The Army?' closing call-to-action section for the About page.",
+    "keywords": ["about", "cta"],
+    "acf": {
+        "mode": "auto",
+        "renderTemplate": "render.php"
+    },
+    "supports": {
+        "align": ["wide", "full"],
+        "anchor": true,
+        "spacing": {
+            "padding": true,
+            "margin": true
+        }
+    },
+    "style": "file:./style.css"
+}

@@ -16,7 +16,7 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "",
+            "default_value": "The Armory",
             "maxlength": "",
             "placeholder": "",
             "prepend": "",
@@ -36,7 +36,7 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "",
+            "default_value": "Gear For",
             "maxlength": "",
             "placeholder": "",
             "prepend": "",
@@ -56,7 +56,7 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "",
+            "default_value": "The Grind",
             "maxlength": "",
             "placeholder": "",
             "prepend": "",
@@ -76,7 +76,7 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "",
+            "default_value": "IGA supplements and apparel built for those who train with purpose. No filler. No noise. Just the kit you need to show up and perform.",
             "maxlength": "",
             "rows": 3,
             "placeholder": "",
@@ -141,7 +141,7 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "",
+            "default_value": "Get Early Access",
             "maxlength": "",
             "placeholder": "",
             "prepend": "",
@@ -161,27 +161,7 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "",
-            "maxlength": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
-        },
-        {
-            "key": "field_armory_coming_soon_label",
-            "label": "Coming Soon Label",
-            "name": "coming_soon_label",
-            "aria-label": "",
-            "type": "text",
-            "instructions": "Amber badge text.",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
+            "default_value": "View Memberships",
             "maxlength": "",
             "placeholder": "",
             "prepend": "",
@@ -204,7 +184,7 @@
     "instruction_placement": "label",
     "hide_on_screen": "",
     "active": true,
-    "description": "Armory hero with background video, heading, CTAs, and coming-soon badge.",
+    "description": "Armory hero with background video, heading, and CTAs.",
     "show_in_rest": 0,
     "modified": 0
 }

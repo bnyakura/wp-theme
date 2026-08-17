@@ -1,0 +1,21 @@
+{
+    "name": "wp-theme/about-values",
+    "title": "About — Values",
+    "category": "design",
+    "icon": "star-filled",
+    "description": "'Our Core Values' cards section for the About page.",
+    "keywords": ["about", "values"],
+    "acf": {
+        "mode": "auto",
+        "renderTemplate": "render.php"
+    },
+    "supports": {
+        "align": ["wide", "full"],
+        "anchor": true,
+        "spacing": {
+            "padding": true,
+            "margin": true
+        }
+    },
+    "style": "file:./style.css"
+}

@@ -1,0 +1,21 @@
+{
+    "name": "wp-theme/training-steps",
+    "title": "Training — Onboarding Steps",
+    "category": "design",
+    "icon": "editor-ol",
+    "description": "'Your Path Into The Brotherhood' onboarding steps section for the Training page.",
+    "keywords": ["training", "steps", "onboarding"],
+    "acf": {
+        "mode": "auto",
+        "renderTemplate": "render.php"
+    },
+    "supports": {
+        "align": ["wide", "full"],
+        "anchor": true,
+        "spacing": {
+            "padding": true,
+            "margin": true
+        }
+    },
+    "style": "file:./style.css"
+}

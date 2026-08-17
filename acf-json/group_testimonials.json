@@ -16,7 +16,7 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "",
+            "default_value": "What Members Say",
             "maxlength": "",
             "placeholder": "",
             "prepend": "",
@@ -36,7 +36,7 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "",
+            "default_value": "The Brotherhood Speaks",
             "maxlength": "",
             "placeholder": "",
             "prepend": "",
@@ -56,7 +56,7 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "",
+            "default_value": "Not endorsements — honest accounts from members who showed up and did the work.",
             "maxlength": "",
             "rows": 3,
             "placeholder": "",

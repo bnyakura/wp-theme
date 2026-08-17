@@ -1,0 +1,21 @@
+{
+    "name": "wp-theme/about-hero",
+    "title": "About — Hero",
+    "category": "design",
+    "icon": "book-alt",
+    "description": "About page hero: eyebrow, title, and subtitle.",
+    "keywords": ["about", "hero"],
+    "acf": {
+        "mode": "auto",
+        "renderTemplate": "render.php"
+    },
+    "supports": {
+        "align": ["wide", "full"],
+        "anchor": true,
+        "spacing": {
+            "padding": true,
+            "margin": true
+        }
+    },
+    "style": "file:./style.css"
+}

@@ -16,7 +16,7 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "",
+            "default_value": "Membership",
             "maxlength": "",
             "placeholder": "",
             "prepend": "",
@@ -36,7 +36,7 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "",
+            "default_value": "Choose Your Rank",
             "maxlength": "",
             "placeholder": "",
             "prepend": "",
@@ -56,7 +56,7 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "",
+            "default_value": "No hidden fees. No lock-in contracts. Choose how you want to train.",
             "maxlength": "",
             "rows": 3,
             "placeholder": "",

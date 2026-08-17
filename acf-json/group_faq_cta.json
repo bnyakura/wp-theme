@@ -1,0 +1,65 @@
+{
+    "key": "group_faq_cta",
+    "title": "FAQ — Final CTA",
+    "fields": [
+        {
+            "key": "field_faq_cta_title",
+            "label": "CTA Title",
+            "name": "cta_title",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Final call-to-action heading.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Still Have Questions?",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_faq_cta_subtitle",
+            "label": "CTA Subtitle",
+            "name": "cta_subtitle",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "Final call-to-action intro.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Our team is available to answer anything not covered here. Don't overthink it — just reach out.",
+            "maxlength": "",
+            "rows": 3,
+            "placeholder": "",
+            "new_lines": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "wp-theme/faq-cta"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "FAQ page final call-to-action section.",
+    "show_in_rest": 0,
+    "modified": 0
+}

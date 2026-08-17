@@ -1,0 +1,21 @@
+{
+    "name": "wp-theme/training-cta",
+    "title": "Training — Final CTA",
+    "category": "design",
+    "icon": "megaphone",
+    "description": "Training page closing call-to-action: eyebrow, title, and subtitle.",
+    "keywords": ["training", "cta"],
+    "acf": {
+        "mode": "auto",
+        "renderTemplate": "render.php"
+    },
+    "supports": {
+        "align": ["wide", "full"],
+        "anchor": true,
+        "spacing": {
+            "padding": true,
+            "margin": true
+        }
+    },
+    "style": "file:./style.css"
+}

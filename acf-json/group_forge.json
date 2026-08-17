@@ -16,7 +16,7 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "",
+            "default_value": "What We Offer",
             "maxlength": "",
             "placeholder": "",
             "prepend": "",
@@ -36,7 +36,7 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "",
+            "default_value": "Built on Three Pillars",
             "maxlength": "",
             "placeholder": "",
             "prepend": "",
@@ -56,7 +56,7 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "",
+            "default_value": "Every session, every program, and every coach is built around three core pillars.",
             "maxlength": "",
             "rows": 3,
             "placeholder": "",
@@ -223,7 +223,7 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "",
+            "default_value": "/training/",
             "placeholder": ""
         }
     ],

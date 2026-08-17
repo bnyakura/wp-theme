@@ -1,0 +1,21 @@
+{
+    "name": "wp-theme/faq-hero",
+    "title": "FAQ — Hero",
+    "category": "design",
+    "icon": "editor-help",
+    "description": "FAQ page hero: eyebrow, title, and subtitle.",
+    "keywords": ["faq", "hero", "questions"],
+    "acf": {
+        "mode": "auto",
+        "renderTemplate": "render.php"
+    },
+    "supports": {
+        "align": ["wide", "full"],
+        "anchor": true,
+        "spacing": {
+            "padding": true,
+            "margin": true
+        }
+    },
+    "style": "file:./style.css"
+}

@@ -1,0 +1,180 @@
+{
+    "key": "group_about_coaches",
+    "title": "About — Coaches",
+    "fields": [
+        {
+            "key": "field_about_coaches",
+            "label": "Coaches",
+            "name": "coaches",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "Team member cards.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "pagination": 0,
+            "min": 0,
+            "max": 20,
+            "collapsed": "field_about_coach_name",
+            "button_label": "Add Coach",
+            "rows_per_page": 20,
+            "sub_fields": [
+                {
+                    "key": "field_about_coach_initials",
+                    "label": "Initials",
+                    "name": "initials",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "Avatar initials (e.g. 'PA').",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "25",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_about_coaches"
+                },
+                {
+                    "key": "field_about_coach_name",
+                    "label": "Name",
+                    "name": "name",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "Coach name.",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "75",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_about_coaches"
+                },
+                {
+                    "key": "field_about_coach_role",
+                    "label": "Role",
+                    "name": "role",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "Role / specialism badge (e.g. 'Boxing Coach · Co-Founder').",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_about_coaches"
+                },
+                {
+                    "key": "field_about_coach_bio",
+                    "label": "Bio",
+                    "name": "bio",
+                    "aria-label": "",
+                    "type": "textarea",
+                    "instructions": "Short bio.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "rows": 5,
+                    "placeholder": "",
+                    "new_lines": "",
+                    "parent_repeater": "field_about_coaches"
+                },
+                {
+                    "key": "field_about_coach_image",
+                    "label": "Image",
+                    "name": "image",
+                    "aria-label": "",
+                    "type": "image",
+                    "instructions": "Coach photo. Falls back to the initials avatar when empty.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "id",
+                    "preview_size": "medium",
+                    "library": "all",
+                    "min_width": "",
+                    "min_height": "",
+                    "min_size": "",
+                    "max_width": "",
+                    "max_height": "",
+                    "max_size": "",
+                    "mime_types": "",
+                    "parent_repeater": "field_about_coaches"
+                },
+                {
+                    "key": "field_about_coach_position",
+                    "label": "Object Position",
+                    "name": "position",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "CSS object-position (e.g. 'center 22%').",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "center center",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_about_coaches"
+                }
+            ]
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "wp-theme/about-coaches"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "About page coach cards.",
+    "show_in_rest": 0,
+    "modified": 0
+}

@@ -16,7 +16,7 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "",
+            "default_value": "The Origin",
             "maxlength": "",
             "placeholder": "",
             "prepend": "",
@@ -36,7 +36,7 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "",
+            "default_value": "We Built What We Couldn't Find",
             "maxlength": "",
             "placeholder": "",
             "prepend": "",
@@ -167,7 +167,7 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "",
+            "default_value": "Read Our Story",
             "maxlength": "",
             "placeholder": "",
             "prepend": "",
@@ -192,7 +192,7 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "",
+            "default_value": "/blog/iron-gorilla-origin-story",
             "placeholder": ""
         },
         {
@@ -234,7 +234,7 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "",
+            "default_value": "Salt River, Cape Town",
             "maxlength": "",
             "placeholder": "",
             "prepend": "",

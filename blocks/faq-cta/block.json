@@ -1,0 +1,21 @@
+{
+    "name": "wp-theme/faq-cta",
+    "title": "FAQ — Final CTA",
+    "category": "design",
+    "icon": "megaphone",
+    "description": "FAQ page closing call-to-action: title and subtitle with dispatch and booking links.",
+    "keywords": ["faq", "cta"],
+    "acf": {
+        "mode": "auto",
+        "renderTemplate": "render.php"
+    },
+    "supports": {
+        "align": ["wide", "full"],
+        "anchor": true,
+        "spacing": {
+            "padding": true,
+            "margin": true
+        }
+    },
+    "style": "file:./style.css"
+}
