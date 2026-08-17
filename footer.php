@@ -143,6 +143,23 @@ $footer_tagline = get_theme_mod( 'iga_footer_tagline', __( 'A community built ar
 </footer>
 
 <?php
+// Floating WhatsApp button, shown site-wide (matches the original site's <WhatsApp /> in its root layout).
+$footer_whatsapp = get_theme_mod( 'iron_gorilla_whatsapp', '' );
+?>
+
+<?php if ( $footer_whatsapp ) : ?>
+	<a
+		href="https://wa.me/<?php echo esc_attr( $footer_whatsapp ); ?>?text=<?php echo urlencode( 'Hi Iron Gorilla Army, I want to find out more about joining The Forge.' ); ?>"
+		target="_blank"
+		rel="noopener noreferrer"
+		aria-label="Chat on WhatsApp"
+		class="fixed bottom-7 right-7 z-900 flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-2xl text-white shadow-[0_4px_20px_rgba(37,211,102,0.45)] transition duration-200 hover:scale-110 hover:shadow-[0_6px_28px_rgba(37,211,102,0.6)] max-[768px]:bottom-5 max-[768px]:right-4 max-[768px]:h-12 max-[768px]:w-12 max-[768px]:text-xl"
+	>
+		<i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+	</a>
+<?php endif; ?>
+
+<?php
 // Render the enlist modal so the footer trigger (and any other page) can open it.
 get_template_part( 'template-parts/modal', 'enlist' );
 ?>
