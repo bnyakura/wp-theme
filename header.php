@@ -75,6 +75,27 @@
 
         <?php endif; ?>
 
+        <!-- Cart -->
+        <?php if ( function_exists( 'WC' ) && WC()->cart ) : ?>
+
+            <?php $iga_header_cart_count = WC()->cart->get_cart_contents_count(); ?>
+
+            <a href="<?php echo esc_url( wc_get_cart_url() ); ?>"
+               class="relative flex items-center justify-center w-[38px] h-[38px] rounded-lg border border-white/14 text-white hover:border-[#4E9E5A] hover:text-[#4E9E5A] hover:bg-[#3A7D44]/10 transition-all"
+               aria-label="<?php echo esc_attr( sprintf( _n( 'View cart (%d item)', 'View cart (%d items)', $iga_header_cart_count, 'iga' ), $iga_header_cart_count ) ); ?>">
+
+                <i class="fa-solid fa-cart-shopping text-[0.95rem]"></i>
+
+                <?php if ( $iga_header_cart_count > 0 ) : ?>
+                    <span class="absolute -top-1.5 -right-1.5 flex h-4 min-w-[16px] items-center justify-center rounded-full bg-[#3A7D44] px-1 text-[10px] font-bold leading-none text-white">
+                        <?php echo esc_html( $iga_header_cart_count > 99 ? '99+' : $iga_header_cart_count ); ?>
+                    </span>
+                <?php endif; ?>
+
+            </a>
+
+        <?php endif; ?>
+
         <!-- Mobile Menu Button -->
         <button id="mobile-menu-btn"
                 class="md:hidden flex items-center justify-center w-[38px] h-[38px] rounded-lg border border-white/14 text-white hover:border-[#4E9E5A] hover:text-[#4E9E5A] hover:bg-[#3A7D44]/10 transition-all"

@@ -266,6 +266,9 @@
   .inset-x-0 {
     inset-inline: 0px;
   }
+  .-top-1\.5 {
+    top: calc(var(--spacing) * -1.5);
+  }
   .top-0 {
     top: 0px;
   }
@@ -283,6 +286,9 @@
   }
   .top-\[86px\] {
     top: 86px;
+  }
+  .-right-1\.5 {
+    right: calc(var(--spacing) * -1.5);
   }
   .right-0 {
     right: 0px;
@@ -808,6 +814,9 @@
   }
   .min-w-0 {
     min-width: 0px;
+  }
+  .min-w-\[16px\] {
+    min-width: 16px;
   }
   .flex-1 {
     flex: 1;
@@ -1725,6 +1734,9 @@
   }
   .pt-20 {
     padding-top: calc(var(--spacing) * 20);
+  }
+  .pt-32 {
+    padding-top: calc(var(--spacing) * 32);
   }
   .pt-\[60px\] {
     padding-top: 60px;

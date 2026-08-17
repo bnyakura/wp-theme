@@ -55,7 +55,18 @@ $orderby  = get_field( 'orderby' ) ?: 'date';
 $category = get_field( 'category' );
 
 $cta_label = get_field( 'cta_label' ) ?: 'View All Products';
-$cta_url   = get_field( 'cta_url' ) ?: ( function_exists( 'wc_get_page_permalink' ) ? wc_get_page_permalink( 'shop' ) : '' );
+$cta_url_field = get_field( 'cta_url' );
+
+if ( $cta_url_field ) {
+	// An explicit URL was set — always honour it, even on the Shop page.
+	$cta_url = $cta_url_field;
+} else {
+	$shop_url = function_exists( 'wc_get_page_permalink' ) ? wc_get_page_permalink( 'shop' ) : '';
+	// Hide the auto "View All Products" fallback when this block is already
+	// rendering on the Shop page itself — linking to the page you're already
+	// on is dead weight.
+	$cta_url = ( function_exists( 'is_shop' ) && is_shop() ) ? '' : $shop_url;
+}
 
 $empty_title      = get_field( 'empty_title' ) ?: 'Online Shop — Coming Soon';
 $empty_message    = get_field( 'empty_message' ) ?: 'New gear is being loaded into the Armory. Check back soon, or get early access the moment it drops.';

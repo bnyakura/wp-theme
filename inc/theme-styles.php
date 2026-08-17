@@ -55,16 +55,21 @@ if ( ! function_exists( 'iron_gorilla_dequeue_preorders_sitewide_assets' ) ) {
 	 * on every front-end page (no is_woocommerce() guard in the plugin), and
 	 * main.css ships a bare `.hidden { display: none; }` rule that collides
 	 * with Tailwind's `hidden` / `md:flex` utility classes used on the header
-	 * nav, hiding it. Drop those assets outside actual WooCommerce pages.
+	 * nav, hiding it (the whole nav computes to display:none regardless of
+	 * viewport). The CSS is purely cosmetic for the plugin's date-picker UI,
+	 * not required for it to function, so it's always safe to drop -- unlike
+	 * jquery-ui/main.js, which real pre-order products still need on pages
+	 * where that UI can appear (product, cart, checkout, account).
 	 *
 	 * @return void
 	 */
 	function iron_gorilla_dequeue_preorders_sitewide_assets(): void {
+		wp_dequeue_style( 'woocommerce-pre-orders-main-css' );
+
 		if ( function_exists( 'is_woocommerce' ) && ( is_woocommerce() || is_cart() || is_checkout() || is_account_page() ) ) {
 			return;
 		}
 
-		wp_dequeue_style( 'woocommerce-pre-orders-main-css' );
 		wp_dequeue_style( 'jquery-ui' );
 		wp_dequeue_script( 'preorders-main-js' );
 		wp_dequeue_script( 'preorders-field-date-js' );
