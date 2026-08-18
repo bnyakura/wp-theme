@@ -1,0 +1,21 @@
+{
+    "name": "wp-theme/featured-products",
+    "title": "Featured Products",
+    "category": "design",
+    "icon": "cart",
+    "description": "White-section WooCommerce product grid built from the native [products] shortcode.",
+    "keywords": ["products", "woocommerce", "shop", "featured", "grid"],
+    "acf": {
+        "mode": "auto",
+        "renderTemplate": "render.php"
+    },
+    "supports": {
+        "align": ["wide", "full"],
+        "anchor": true,
+        "spacing": {
+            "padding": true,
+            "margin": true
+        }
+    },
+    "style": "file:./style.css"
+}

@@ -1274,3 +1274,162 @@ body.single-product {
 		font-weight: 700;
 	}
 }
+
+/*
+ * Featured Products block (blocks/featured-products) — this block sits on a
+ * white background inside an otherwise dark theme, and renders products via
+ * WooCommerce's own [products] shortcode rather than hand-built card markup
+ * (see blocks/armory-products, which queries products directly and can
+ * freely author its own <article> card). Because the DOM here comes from
+ * WooCommerce's templates, not this theme's, the card look-and-feel that
+ * block established — rounded bordered card, full-bleed square image,
+ * uppercase display-font title, hover lift, pill sale badge, pill
+ * add-to-cart button — has to be reproduced by restyling WooCommerce's
+ * existing hooks/classes (.woocommerce-loop-product__title, span.onsale,
+ * a.button, etc.) instead of duplicating that markup. Scoped to
+ * .wp-theme-featured-products so none of this leaks into the shop/cart/
+ * single-product pages, which stay dark and rely on WooCommerce's own
+ * default styling.
+ */
+.wp-theme-featured-products {
+
+	.woocommerce ul.products li.product {
+		display: flex;
+		flex-direction: column;
+		padding: 0;
+		overflow: hidden;
+		border-radius: 1rem;
+		border: 1px solid rgba(10, 10, 10, 0.08);
+		background: #fff;
+		transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+	}
+
+	.woocommerce ul.products li.product:hover {
+		transform: translateY(-4px);
+		border-color: rgba(58, 125, 68, 0.35);
+		box-shadow: 0 16px 30px rgba(10, 10, 10, 0.08);
+	}
+
+	.woocommerce ul.products li.product .woocommerce-loop-product__link {
+		display: flex;
+		flex-direction: column;
+		flex: 1;
+		position: relative;
+		color: var(--color-ink);
+		text-decoration: none;
+	}
+
+	/* Full-bleed square image (matches the Armory Products card image) */
+	.woocommerce ul.products li.product .woocommerce-loop-product__link img {
+		order: 1;
+		width: 100%;
+		aspect-ratio: 1 / 1;
+		margin: 0;
+		object-fit: cover;
+		background: #f5f5f5;
+		transition: transform 0.5s ease;
+	}
+
+	.woocommerce ul.products li.product .woocommerce-loop-product__link:hover img {
+		transform: scale(1.05);
+	}
+
+	.woocommerce ul.products li.product .woocommerce-loop-product__title {
+		order: 2;
+		margin: 0;
+		padding: 1.1rem 1.25rem 0;
+		font-family: var(--font-display);
+		font-size: 1.05rem;
+		font-weight: 400;
+		text-transform: uppercase;
+		letter-spacing: 0.03em;
+		color: var(--color-ink);
+	}
+
+	.woocommerce ul.products li.product .woocommerce-loop-product__link:hover .woocommerce-loop-product__title,
+	.woocommerce ul.products li.product .woocommerce-loop-product__link:focus-visible .woocommerce-loop-product__title {
+		color: var(--color-green);
+	}
+
+	.woocommerce ul.products li.product .woocommerce-loop-product__link:focus-visible {
+		outline: 2px solid var(--color-green);
+		outline-offset: -2px;
+	}
+
+	.woocommerce ul.products li.product .price {
+		order: 3;
+		margin: 0;
+		padding: 0.35rem 1.25rem 1.1rem;
+		font-size: 0.9rem;
+		font-weight: 600;
+		color: var(--color-ink);
+	}
+
+	.woocommerce ul.products li.product .price del {
+		color: var(--color-muted);
+		opacity: 1;
+	}
+
+	.woocommerce ul.products li.product .price ins {
+		text-decoration: none;
+		color: var(--color-green);
+	}
+
+	/* Sale badge — small pill in the image's top-left corner, matching the
+	 * Armory Products card badge rather than WooCommerce's default circle
+	 * (which would get clipped by this card's overflow:hidden corners). */
+	.woocommerce span.onsale {
+		position: absolute;
+		top: 0.75rem;
+		left: 0.75rem;
+		min-height: 0;
+		min-width: 0;
+		margin: 0;
+		padding: 0.3rem 0.7rem;
+		border-radius: 999px;
+		background: var(--color-green);
+		color: #fff;
+		font-size: 0.62rem;
+		font-weight: 700;
+		text-transform: uppercase;
+		letter-spacing: 0.08em;
+		line-height: 1;
+	}
+
+	.woocommerce ul.products li.product .button {
+		order: 4;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		margin: 0 1.25rem 1.25rem;
+		padding: 0.7rem 1.25rem;
+		border: none;
+		border-radius: 999px;
+		background: var(--color-green);
+		color: #fff;
+		font-size: 0.72rem;
+		font-weight: 700;
+		text-transform: uppercase;
+		letter-spacing: 0.08em;
+		text-align: center;
+		transition: background-color 0.2s ease;
+	}
+
+	.woocommerce ul.products li.product .button:hover {
+		background: var(--color-green-l);
+	}
+
+	.woocommerce ul.products li.product .button:focus-visible {
+		outline: 2px solid var(--color-green-d);
+		outline-offset: 2px;
+	}
+
+	.woocommerce ul.products li.product .button.loading {
+		opacity: 0.7;
+	}
+
+	.woocommerce ul.products li.product .star-rating {
+		order: 2;
+		margin: 1.1rem 1.25rem 0;
+	}
+}
