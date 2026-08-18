@@ -1,0 +1,21 @@
+{
+    "name": "wp-theme/irongorilla-full-width-media",
+    "title": "IronGorilla Full Width Image / Video",
+    "category": "design",
+    "icon": "format-video",
+    "description": "Full-bleed image or self-hosted background video section, with an optional heading/caption overlay.",
+    "keywords": ["image", "video", "media", "full width", "banner", "cover", "irongorilla"],
+    "acf": {
+        "mode": "auto",
+        "renderTemplate": "render.php"
+    },
+    "supports": {
+        "align": ["wide", "full"],
+        "anchor": true,
+        "spacing": {
+            "padding": true,
+            "margin": true
+        }
+    },
+    "style": "file:./style.css"
+}
