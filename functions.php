@@ -68,6 +68,13 @@ if( file_exists( $acf_block_defaults_file_path ) ) {
     require $acf_block_defaults_file_path;
 }
 
+// Define the path to the single product page file (related products
+// renderer + compatibility fixes used by single-product.php)
+$single_product_file_path = get_template_directory() . '/inc/single-product.php';
+if( file_exists( $single_product_file_path ) ) {
+    require $single_product_file_path;
+}
+
 
 
 

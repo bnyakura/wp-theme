@@ -54,6 +54,29 @@ if ( ! function_exists( 'custom_theme_allow_svg_mime_type' ) ) {
 }
 add_filter( 'upload_mimes', 'custom_theme_allow_svg_mime_type' );
 
+/**
+ * Skip WooCommerce's auto-appended shop grid when the Shop page's content
+ * already contains the Armory Products block.
+ *
+ * This theme has no add_theme_support('woocommerce') (see index.php), so on
+ * the Shop page WooCommerce falls back to appending its own product grid to
+ * the_content() via WC_Template_Loader::unsupported_theme_shop_content_filter().
+ * That runs unconditionally, so without this, products rendered by the block
+ * show up a second time via that auto-appended grid right below them.
+ */
+function iga_prevent_duplicate_shop_products() {
+	if ( ! function_exists( 'wc_get_page_id' ) || ! class_exists( 'WC_Template_Loader' ) ) {
+		return;
+	}
+
+	$shop_page_id = wc_get_page_id( 'shop' );
+
+	if ( $shop_page_id && has_block( 'wp-theme/armory-products', $shop_page_id ) ) {
+		remove_filter( 'the_content', array( 'WC_Template_Loader', 'unsupported_theme_shop_content_filter' ), 10 );
+	}
+}
+add_action( 'template_redirect', 'iga_prevent_duplicate_shop_products', 20 );
+
 
 
 
