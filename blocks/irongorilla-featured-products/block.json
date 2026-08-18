@@ -1,10 +1,10 @@
 {
-    "name": "wp-theme/featured-products",
-    "title": "Featured Products",
+    "name": "wp-theme/irongorilla-featured-products",
+    "title": "IronGorilla Featured Products",
     "category": "design",
     "icon": "cart",
     "description": "White-section WooCommerce product grid built from the native [products] shortcode.",
-    "keywords": ["products", "woocommerce", "shop", "featured", "grid"],
+    "keywords": ["products", "woocommerce", "shop", "featured", "grid", "irongorilla"],
     "acf": {
         "mode": "auto",
         "renderTemplate": "render.php"

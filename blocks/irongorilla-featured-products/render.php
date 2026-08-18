@@ -1,12 +1,12 @@
 <?php
 /**
- * Featured Products block — render template.
+ * IronGorilla Featured Products block — render template.
  *
  * Editor fields only choose [products] shortcode attributes; WooCommerce
  * itself still owns the product query, card markup, and cart/AJAX
  * behaviour via do_shortcode(). Colour/contrast overrides for that
  * shortcode's markup on this block's white background live in
- * src/input.css under .wp-theme-featured-products.
+ * src/input.css under .wp-theme-irongorilla-featured-products.
  *
  * @package custom-theme
  */
@@ -16,10 +16,7 @@ $subheading = get_field( 'subheading' );
 
 $allowed_visibility = array( 'visible', 'catalog', 'search', 'hidden', 'featured' );
 $visibility          = get_field( 'visibility' );
-$visibility          = in_array( $visibility, $allowed_visibility, true )
-	? $visibility
-	: 'visible';
-
+$visibility          = in_array( $visibility, $allowed_visibility, true ) ? $visibility : 'visible';
 
 // Editor-facing "Sort" labels mapped to valid WooCommerce orderby/order pairs
 // -- the shortcode must never receive the raw editor value directly.
@@ -51,7 +48,7 @@ $shortcode = sprintf(
 
 $wrapper_attributes = get_block_wrapper_attributes(
 	array(
-		'class' => 'wp-theme-featured-products bg-white',
+		'class' => 'wp-theme-irongorilla-featured-products bg-white',
 	)
 );
 ?>
@@ -73,7 +70,7 @@ $wrapper_attributes = get_block_wrapper_attributes(
 			</div>
 		<?php endif; ?>
 
-		<div class="wp-theme-featured-products__grid">
+		<div class="wp-theme-irongorilla-featured-products__grid">
 			<?php echo do_shortcode( $shortcode ); ?>
 		</div>
 

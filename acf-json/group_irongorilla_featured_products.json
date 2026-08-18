@@ -1,9 +1,9 @@
 {
-    "key": "group_featured_products",
-    "title": "Featured Products",
+    "key": "group_irongorilla_featured_products",
+    "title": "IronGorilla Featured Products",
     "fields": [
         {
-            "key": "field_featured_products_heading",
+            "key": "field_irongorilla_featured_products_heading",
             "label": "Heading",
             "name": "heading",
             "aria-label": "",
@@ -19,7 +19,7 @@
             "append": ""
         },
         {
-            "key": "field_featured_products_subheading",
+            "key": "field_irongorilla_featured_products_subheading",
             "label": "Subheading",
             "name": "subheading",
             "aria-label": "",
@@ -35,7 +35,7 @@
             "new_lines": ""
         },
         {
-            "key": "field_featured_products_visibility",
+            "key": "field_irongorilla_featured_products_visibility",
             "label": "Visibility",
             "name": "visibility",
             "aria-label": "",
@@ -60,7 +60,7 @@
             "placeholder": ""
         },
         {
-            "key": "field_featured_products_sort",
+            "key": "field_irongorilla_featured_products_sort",
             "label": "Sort",
             "name": "sort",
             "aria-label": "",
@@ -89,7 +89,7 @@
             "placeholder": ""
         },
         {
-            "key": "field_featured_products_limit",
+            "key": "field_irongorilla_featured_products_limit",
             "label": "Number of Products",
             "name": "limit",
             "aria-label": "",
@@ -105,7 +105,7 @@
             "placeholder": ""
         },
         {
-            "key": "field_featured_products_columns",
+            "key": "field_irongorilla_featured_products_columns",
             "label": "Columns",
             "name": "columns",
             "aria-label": "",
@@ -129,7 +129,7 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "wp-theme/featured-products"
+                "value": "wp-theme/irongorilla-featured-products"
             }
         ]
     ],

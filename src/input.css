@@ -1276,22 +1276,22 @@ body.single-product {
 }
 
 /*
- * Featured Products block (blocks/featured-products) — this block sits on a
- * white background inside an otherwise dark theme, and renders products via
- * WooCommerce's own [products] shortcode rather than hand-built card markup
- * (see blocks/armory-products, which queries products directly and can
- * freely author its own <article> card). Because the DOM here comes from
- * WooCommerce's templates, not this theme's, the card look-and-feel that
- * block established — rounded bordered card, full-bleed square image,
- * uppercase display-font title, hover lift, pill sale badge, pill
- * add-to-cart button — has to be reproduced by restyling WooCommerce's
- * existing hooks/classes (.woocommerce-loop-product__title, span.onsale,
- * a.button, etc.) instead of duplicating that markup. Scoped to
- * .wp-theme-featured-products so none of this leaks into the shop/cart/
- * single-product pages, which stay dark and rely on WooCommerce's own
- * default styling.
+ * IronGorilla Featured Products block (blocks/irongorilla-featured-products)
+ * — this block sits on a white background inside an otherwise dark theme,
+ * and renders products via WooCommerce's own [products] shortcode rather
+ * than hand-built card markup (see blocks/armory-products, which queries
+ * products directly and can freely author its own <article> card). Because
+ * the DOM here comes from WooCommerce's templates, not this theme's, the
+ * card look-and-feel that block established — rounded bordered card,
+ * full-bleed square image, uppercase display-font title, hover lift, pill
+ * sale badge, pill add-to-cart button — has to be reproduced by restyling
+ * WooCommerce's existing hooks/classes (.woocommerce-loop-product__title,
+ * span.onsale, a.button, etc.) instead of duplicating that markup. Scoped
+ * to .wp-theme-irongorilla-featured-products so none of this leaks into
+ * the shop/cart/single-product pages, which stay dark and rely on
+ * WooCommerce's own default styling.
  */
-.wp-theme-featured-products {
+.wp-theme-irongorilla-featured-products {
 
 	.woocommerce ul.products li.product {
 		display: flex;

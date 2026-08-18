@@ -1,6 +1,6 @@
-# Featured Products Block
+# IronGorilla Featured Products Block
 
-White-section WooCommerce product grid, reusable anywhere in the block editor. The editor configures content and query settings; the block builds a native WooCommerce `[products]` shortcode from those values and renders it with `do_shortcode()` — WooCommerce still owns the product query and card markup.
+White-section WooCommerce product grid, reusable anywhere in the block editor. Brand-prefixed so it stays distinct from WooCommerce's own core blocks in the inserter. The editor configures content and query settings; the block builds a native WooCommerce `[products]` shortcode from those values and renders it with `do_shortcode()` — WooCommerce still owns the product query and card markup.
 
 ## Fields
 
@@ -37,4 +37,4 @@ White-section WooCommerce product grid, reusable anywhere in the block editor. T
 
 This block always renders on a white background regardless of the surrounding dark theme. The heading/subheading reuse the site's existing `font-display` heading treatment and container width (`max-w-[1280px]`, same as the Armory Products block), recoloured for a light section (`text-ink` / `text-ink/65`).
 
-WooCommerce's `[products]` shortcode markup can't carry Tailwind classes directly (it's rendered by WooCommerce's own templates), so contrast/colour overrides for the product cards (title, price, sale badge, add-to-cart button, focus states) are scoped under `.wp-theme-featured-products` in `src/input.css`. Grid layout and responsive column collapsing are left to WooCommerce's own stylesheet — no custom breakpoints are introduced.
+The product cards match Armory Products' visual language — rounded bordered card, full-bleed square image that scales on hover, uppercase display-font title, pill sale badge, pill add-to-cart button — but since this block renders through WooCommerce's `[products]` shortcode rather than hand-built card markup, that look is reproduced by restyling WooCommerce's own hooks/classes (`.woocommerce-loop-product__title`, `span.onsale`, `a.button`, etc.) instead of duplicating markup. Those overrides are scoped under `.wp-theme-irongorilla-featured-products` in `src/input.css`. Grid layout and responsive column collapsing are left to WooCommerce's own stylesheet — no custom breakpoints are introduced.
