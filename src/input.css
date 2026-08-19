@@ -50,6 +50,24 @@
 }
 
 
+/*
+ * Header/footer logos — WooCommerce's global `.woocommerce img,
+ * .woocommerce-page img { height: auto; max-width: 100% }` rule
+ * (specificity 0,1,1) beats a lone Tailwind utility class like `.h-10` or
+ * `.h-[45px]` (specificity 0,1,0) on shop pages, so the logos lose their
+ * fixed height and stretch. The #id selectors outrank WooCommerce's rule
+ * regardless of stylesheet order.
+ */
+#site-header img {
+    height: 2.5rem;
+    width: auto;
+}
+
+#site-footer img {
+    height: 45px;
+    width: auto;
+}
+
 /* Desktop + Mobile Menu Links */
 .primary-menu a,
 .mobile-nav a {

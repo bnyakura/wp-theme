@@ -20,7 +20,7 @@ $footer_tagline = get_theme_mod( 'iga_footer_tagline', __( 'A community built ar
 
 <?php // Close header.php wrappers here if needed, e.g. </div><!-- #page -->. ?>
 
-<footer class="border-t border-line bg-s1 px-[5vw] pb-8 pt-[60px]">
+<footer id="site-footer" class="border-t border-line bg-s1 px-[5vw] pb-8 pt-[60px]">
 	<div class="mb-12 grid grid-cols-1 gap-10 min-[601px]:grid-cols-2 min-[1081px]:grid-cols-[2fr_1fr_1fr_1fr]">
 
 		<!-- Brand -->
