@@ -102,8 +102,42 @@ function iron_gorilla_customizer($wp_customize) {
         'section' => 'title_tagline',
         'type'    => 'text',
     ]);
+
+    $wp_customize->add_setting('iron_gorilla_whatsapp_group', [
+        'default'   => '',
+        'transport' => 'refresh',
+    ]);
+
+    $wp_customize->add_control('iron_gorilla_whatsapp_group', [
+        'label'       => __('WhatsApp Group Invite Link', 'iron-gorilla'),
+        'description' => __('Used by "Join Community" buttons site-wide, e.g. https://chat.whatsapp.com/xxxxxxxx', 'iron-gorilla'),
+        'section'     => 'title_tagline',
+        'type'        => 'url',
+    ]);
 }
 add_action('customize_register', 'iron_gorilla_customizer');
+
+/**
+ * The WhatsApp group invite link used by "Join Community" buttons site-wide.
+ */
+function iga_get_whatsapp_group_url() {
+    return get_theme_mod('iron_gorilla_whatsapp_group', '');
+}
+
+/**
+ * A wa.me chat link to the configured WhatsApp number, used by "Book Free
+ * Assessment" / "Book Assessment" buttons site-wide.
+ */
+function iga_get_whatsapp_number_url( $message = '' ) {
+    $number = get_theme_mod( 'iron_gorilla_whatsapp', '' ) ?: '27790614906';
+    $url    = 'https://wa.me/' . $number;
+
+    if ( $message ) {
+        $url .= '?text=' . rawurlencode( $message );
+    }
+
+    return $url;
+}
 
 
 

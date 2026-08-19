@@ -24,7 +24,7 @@ return array(
 			'description' => "Cape Town's most serious training community is enlisting. Built around iron, faith, and the belief that strength is forged — not born.",
 			'button_text' => 'Book Free Assessment',
 			'button_url'  => $book_url,
-			'secondary_button_text' => 'Enlist Now',
+			'secondary_button_text' => 'Join Community',
 		),
 		array(
 			'eyebrow'     => 'The Forge',
@@ -33,7 +33,7 @@ return array(
 			'description' => 'Open access training, hybrid group classes, and squads led by professional coaches. Walk in soft. Walk out steel.',
 			'button_text' => 'Book Free Assessment',
 			'button_url'  => $book_url,
-			'secondary_button_text' => 'Enlist Now',
+			'secondary_button_text' => 'Join Community',
 		),
 		array(
 			'eyebrow'     => 'The Standard',
@@ -42,7 +42,7 @@ return array(
 			'description' => "We don't chase motivation. We build standards. Every rep, every class, every member held to the same line.",
 			'button_text' => 'Book Free Assessment',
 			'button_url'  => $book_url,
-			'secondary_button_text' => 'Enlist Now',
+			'secondary_button_text' => 'Join Community',
 		),
 	),
 );

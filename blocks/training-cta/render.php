@@ -75,7 +75,7 @@ $wrapper_attributes = get_block_wrapper_attributes(
 			?>
 
 			<div class="flex flex-wrap justify-center gap-3">
-				<a href="<?php echo esc_url( $iga_training_urls['book'] ); ?>" class="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-green px-8 py-4 text-xs font-bold uppercase tracking-[0.12em] text-white transition hover:-translate-y-0.5 hover:bg-green-l hover:shadow-[0_10px_30px_rgba(58,125,68,0.35)]">
+				<a href="<?php echo esc_url( iga_get_whatsapp_number_url( "Hi Iron Gorilla Army, I'd like to book a free assessment." ) ); ?>" target="_blank" rel="noopener noreferrer" class="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-green px-8 py-4 text-xs font-bold uppercase tracking-[0.12em] text-white transition hover:-translate-y-0.5 hover:bg-green-l hover:shadow-[0_10px_30px_rgba(58,125,68,0.35)]">
 					<?php echo $iga_training_icon( 'calendar', 'h-5 w-5' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 					Book Free Assessment
 				</a>

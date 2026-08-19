@@ -265,8 +265,8 @@ $wrapper_attributes = get_block_wrapper_attributes(
 			<h2 class="font-display text-4xl uppercase leading-none tracking-[0.04em] text-white sm:text-5xl lg:text-6xl"><?php echo esc_html( $iga_contact_cta['title'] ); ?></h2>
 			<p class="mx-auto mt-5 max-w-2xl text-sm leading-7 text-white/50 min-[769px]:text-base"><?php echo esc_html( $iga_contact_cta['subtitle'] ); ?></p>
 			<div class="mt-8 flex flex-wrap justify-center gap-3">
-				<a href="<?php echo esc_url( home_url( '/training/' ) . '#pricing' ); ?>" class="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-green px-8 py-4 text-xs font-bold uppercase tracking-[0.12em] text-white transition hover:-translate-y-0.5 hover:bg-green-l hover:shadow-[0_10px_30px_rgba(58,125,68,0.35)]">
-					<?php echo $iga_contact_icon( 'medal', 'h-5 w-5' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?> Enlist Now
+				<a href="<?php echo esc_url( iga_get_whatsapp_group_url() ); ?>" target="_blank" rel="noopener noreferrer" class="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-green px-8 py-4 text-xs font-bold uppercase tracking-[0.12em] text-white transition hover:-translate-y-0.5 hover:bg-green-l hover:shadow-[0_10px_30px_rgba(58,125,68,0.35)]">
+					<?php echo $iga_contact_icon( 'medal', 'h-5 w-5' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?> Join Community
 				</a>
 				<a href="<?php echo esc_url( home_url( '/book/' ) ); ?>" class="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-white/15 px-8 py-4 text-xs font-bold uppercase tracking-[0.12em] text-white transition hover:border-white/30 hover:bg-white/5">
 					<?php echo $iga_contact_icon( 'calendar', 'h-5 w-5' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?> Book a Drop-In

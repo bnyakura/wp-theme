@@ -15,8 +15,7 @@ $iga_hero_image_url = static function ( $image_id, $default = '' ) {
     return $default;
 };
 
-$iga_hero_whatsapp_number = get_theme_mod( 'iron_gorilla_whatsapp', '' ) ?: '27790614906';
-$iga_hero_whatsapp_url    = 'https://wa.me/' . $iga_hero_whatsapp_number . '?text=' . rawurlencode( 'Hi Iron Gorilla Army, I want to find out more about joining The Forge.' );
+$iga_hero_whatsapp_group_url = iga_get_whatsapp_group_url();
 
 $iga_hero_default_slides = array(
     array(
@@ -27,7 +26,7 @@ $iga_hero_default_slides = array(
         'description'       => "Cape Town's most serious training community is enlisting. Built around iron, faith, and the belief that strength is forged — not born.",
         'button_text'       => 'Book Free Assessment',
         'button_url'        => home_url( '/book/' ),
-        'secondary_button_text' => 'Enlist Now',
+        'secondary_button_text' => 'Join Community',
     ),
     array(
         'background_image' => $iga_theme_uri . '/assets/images/forge-gym.png',
@@ -37,7 +36,7 @@ $iga_hero_default_slides = array(
         'description'       => 'Open access training, hybrid group classes, and squads led by professional coaches. Walk in soft. Walk out steel.',
         'button_text'       => 'Book Free Assessment',
         'button_url'        => home_url( '/book/' ),
-        'secondary_button_text' => 'Enlist Now',
+        'secondary_button_text' => 'Join Community',
     ),
     array(
         'background_image' => $iga_theme_uri . '/assets/images/cover_3.jpg',
@@ -47,7 +46,7 @@ $iga_hero_default_slides = array(
         'description'       => "We don't chase motivation. We build standards. Every rep, every class, every member held to the same line.",
         'button_text'       => 'Book Free Assessment',
         'button_url'        => home_url( '/book/' ),
-        'secondary_button_text' => 'Enlist Now',
+        'secondary_button_text' => 'Join Community',
     ),
 );
 
@@ -103,12 +102,18 @@ $wrapper_attributes = get_block_wrapper_attributes( array(
                     <?php if ( ( ! empty( $slide['button_text'] ) && ! empty( $slide['button_url'] ) ) || ! empty( $slide['secondary_button_text'] ) ) : ?>
                         <div class="hero-actions">
                             <?php if ( ! empty( $slide['button_text'] ) && ! empty( $slide['button_url'] ) ) : ?>
-                                <a class="hero-button" href="<?php echo esc_url( $slide['button_url'] ); ?>">
+                                <?php
+                                $iga_hero_is_assessment = in_array( trim( $slide['button_text'] ), array( 'Book Free Assessment', 'Book Assessment' ), true );
+                                $iga_hero_button_url    = $iga_hero_is_assessment
+                                    ? iga_get_whatsapp_number_url( "Hi Iron Gorilla Army, I'd like to book a free assessment." )
+                                    : $slide['button_url'];
+                                ?>
+                                <a class="hero-button" href="<?php echo esc_url( $iga_hero_button_url ); ?>" <?php echo $iga_hero_is_assessment ? 'target="_blank" rel="noopener noreferrer"' : ''; ?>>
                                     <?php echo esc_html( $slide['button_text'] ); ?>
                                 </a>
                             <?php endif; ?>
                             <?php if ( ! empty( $slide['secondary_button_text'] ) ) : ?>
-                                <a href="<?php echo esc_url( $iga_hero_whatsapp_url ); ?>" target="_blank" rel="noopener noreferrer" class="hero-button-text">
+                                <a href="<?php echo esc_url( $iga_hero_whatsapp_group_url ); ?>" target="_blank" rel="noopener noreferrer" class="hero-button-text">
                                     <?php echo esc_html( $slide['secondary_button_text'] ); ?>
                                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 11.6a8.25 8.25 0 0 1-12.2 7.25L3.75 20l1.15-4.15A8.25 8.25 0 1 1 20.25 11.6Zm-11-4.1c.2 3.7 3.1 6.6 6.8 6.8"/></svg>
                                 </a>

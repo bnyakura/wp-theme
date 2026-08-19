@@ -9,10 +9,10 @@ $iga_distinction_defaults = array(
         'tag_icon'   => 'fa-users',
         'title'      => 'Iron Gorilla Army',
         'body'       => 'We are a community built around iron and faith. The Army is the overarching culture, the standard, and the movement committed to growth and complete self-mastery.',
-        'cta_label'  => 'Enlist Now',
+        'cta_label'  => 'Join Community',
         'cta_icon'   => 'fa-medal',
         'cta_url'    => '',
-        'cta_action' => 'enlist-modal',
+        'cta_action' => 'whatsapp-group',
     ),
     array(
         'featured'   => true,
@@ -131,6 +131,11 @@ $wrapper_attributes = get_block_wrapper_attributes( array(
                             </a>
                         <?php elseif ( 'link' === $cta_action && $cta_url ) : ?>
                             <a href="<?php echo esc_url( $cta_url ); ?>" class="<?php echo esc_attr( $cta_classes ); ?>">
+                                <?php echo $cta_icon_html; ?>
+                                <?php echo esc_html( $card['cta_label'] ); ?>
+                            </a>
+                        <?php elseif ( 'whatsapp-group' === $cta_action || 'enlist-modal' === $cta_action ) : ?>
+                            <a href="<?php echo esc_url( iga_get_whatsapp_group_url() ); ?>" target="_blank" rel="noopener noreferrer" class="<?php echo esc_attr( $cta_classes ); ?>">
                                 <?php echo $cta_icon_html; ?>
                                 <?php echo esc_html( $card['cta_label'] ); ?>
                             </a>

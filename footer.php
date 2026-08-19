@@ -67,13 +67,14 @@ $footer_tagline = get_theme_mod( 'iga_footer_tagline', __( 'A community built ar
 			</h4>
 			<ul class="flex list-none flex-col gap-2.5">
 				<li>
-					<button
-						type="button"
-						data-modal-open="enlist-modal"
+					<a
+						href="<?php echo esc_url( iga_get_whatsapp_group_url() ); ?>"
+						target="_blank"
+						rel="noopener noreferrer"
 						class="cursor-pointer p-0 text-[0.95rem] text-muted-l transition-colors duration-200 hover:text-white"
 					>
-						<?php esc_html_e( 'Enlist Now', 'iga' ); ?>
-					</button>
+						<?php esc_html_e( 'Join Community', 'iga' ); ?>
+					</a>
 				</li>
 				<li>
 					<a href="<?php echo esc_url( home_url( '/book/' ) ); ?>" class="text-[0.95rem] text-muted-l transition-colors duration-200 hover:text-white">
@@ -158,11 +159,6 @@ $footer_whatsapp = get_theme_mod( 'iron_gorilla_whatsapp', '' );
 		<i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
 	</a>
 <?php endif; ?>
-
-<?php
-// Render the enlist modal so the footer trigger (and any other page) can open it.
-get_template_part( 'template-parts/modal', 'enlist' );
-?>
 
 <?php wp_footer(); ?>
 

@@ -34,8 +34,8 @@ return array(
 			'features'    => "Unlimited group sessions\nCoach-led programming\nCommunity events access\nNo lock-in contract",
 			'badge'       => 'Most Popular',
 			'primary'     => 1,
-			'cta_label'   => 'Enlist Now',
-			'cta_action'  => 'enlist-modal',
+			'cta_label'   => 'Join Community',
+			'cta_action'  => 'whatsapp-group',
 		),
 		array(
 			'rank'        => 'Squads',

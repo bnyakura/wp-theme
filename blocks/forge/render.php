@@ -3,8 +3,8 @@ $eyebrow    = get_field( 'eyebrow' );
 $title      = get_field( 'title' );
 $subtitle   = get_field( 'subtitle' );
 $pillars    = get_field( 'pillars' );
-$cta_label  = get_field( 'cta_primary_label' ) ?: __( 'Enlist Now', 'iga' );
-$cta_action = get_field( 'cta_primary_action' ) ?: 'enlist-modal';
+$cta_label  = get_field( 'cta_primary_label' ) ?: __( 'Join Community', 'iga' );
+$cta_action = get_field( 'cta_primary_action' ) ?: 'whatsapp-group';
 $cta2_label = get_field( 'cta_secondary_label' ) ?: __( 'Explore Programs', 'iga' );
 $cta2_url   = get_field( 'cta_secondary_url' ) ?: home_url( '/training/' );
 
@@ -90,6 +90,11 @@ $wrapper_attributes = get_block_wrapper_attributes( array(
             <?php if ( $cta_label ) : ?>
                 <?php if ( 'link' === $cta_action && ! empty( $cta_url ) ) : ?>
                     <a href="<?php echo esc_url( $cta_url ); ?>" class="inline-flex cursor-pointer items-center gap-2 rounded-full border border-transparent bg-green px-[38px] py-[15px] font-sans text-[0.9rem] font-bold uppercase tracking-[1px] text-white no-underline transition-all duration-[250ms] hover:-translate-y-0.5 hover:bg-green-l hover:shadow-[0_8px_24px_rgba(58,125,68,0.3)]">
+                        <i class="fa-solid fa-medal shrink-0 text-[0.9em] leading-none" aria-hidden="true"></i>
+                        <?php echo esc_html( $cta_label ); ?>
+                    </a>
+                <?php elseif ( in_array( $cta_action, array( 'whatsapp-group', 'enlist-modal' ), true ) ) : ?>
+                    <a href="<?php echo esc_url( iga_get_whatsapp_group_url() ); ?>" target="_blank" rel="noopener noreferrer" class="inline-flex cursor-pointer items-center gap-2 rounded-full border border-transparent bg-green px-[38px] py-[15px] font-sans text-[0.9rem] font-bold uppercase tracking-[1px] text-white no-underline transition-all duration-[250ms] hover:-translate-y-0.5 hover:bg-green-l hover:shadow-[0_8px_24px_rgba(58,125,68,0.3)]">
                         <i class="fa-solid fa-medal shrink-0 text-[0.9em] leading-none" aria-hidden="true"></i>
                         <?php echo esc_html( $cta_label ); ?>
                     </a>

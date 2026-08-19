@@ -75,7 +75,7 @@ function iga_pricing_tier_fields() {
 			'type'    => 'select',
 			'options' => [
 				'link'           => __( 'Link to a page (uses URL below)', 'iga' ),
-				'enlist-modal'   => __( 'Open “Enlist Now” modal', 'iga' ),
+				'whatsapp-group' => __( '“Join Community” — links to WhatsApp group', 'iga' ),
 				'packages-modal' => __( 'Open “Packages” modal ¹', 'iga' ),
 				'booking-modal'  => __( 'Open “Booking” modal ¹', 'iga' ),
 			],

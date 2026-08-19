@@ -67,6 +67,11 @@ function render_pricing_card( $tier ) {
                     <?php echo esc_html( $tier['cta_label'] ); ?>
                     <i class="fa-solid fa-arrow-right shrink-0 text-[0.9em] leading-none" aria-hidden="true"></i>
                 </a>
+            <?php elseif ( in_array( $tier['cta_action'] ?? '', array( 'whatsapp-group', 'enlist-modal' ), true ) ) : ?>
+                <a href="<?php echo esc_url( iga_get_whatsapp_group_url() ); ?>" target="_blank" rel="noopener noreferrer" class="<?php echo esc_attr( $cta_classes ); ?>">
+                    <?php echo esc_html( $tier['cta_label'] ); ?>
+                    <i class="fa-solid fa-arrow-right shrink-0 text-[0.9em] leading-none" aria-hidden="true"></i>
+                </a>
             <?php else : ?>
                 <button type="button" data-modal-open="<?php echo esc_attr( $tier['cta_action'] ?? '' ); ?>" class="<?php echo esc_attr( $cta_classes ); ?>">
                     <?php echo esc_html( $tier['cta_label'] ); ?>
@@ -109,8 +114,8 @@ $iga_pricing_default_monthly = array(
         'cadence'    => 'per month',
         'desc'       => 'Structured group training every week. The core membership for committed members who want community and accountability.',
         'features'   => "Unlimited group sessions\nCoach-led programming\nCommunity events access\nNo lock-in contract",
-        'cta_label'  => 'Enlist Now',
-        'cta_action' => 'enlist-modal',
+        'cta_label'  => 'Join Community',
+        'cta_action' => 'whatsapp-group',
     ),
     array(
         'sub'        => 'Personal Sessions · Pack of 4',

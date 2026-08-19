@@ -6,8 +6,8 @@
  */
 
 $iga_about_urls = array(
-	'enlist' => add_query_arg( 'subject', 'enlist', home_url( '/contact/' ) ),
-	'book'   => home_url( '/book/' ),
+	'community' => iga_get_whatsapp_group_url(),
+	'book'      => home_url( '/book/' ),
 );
 
 /**
@@ -59,14 +59,16 @@ $wrapper_attributes = get_block_wrapper_attributes(
 			<div class="mt-8 flex flex-wrap justify-center gap-3">
 
 				<a
-					href="<?php echo esc_url( $iga_about_urls['enlist'] ); ?>"
+					href="<?php echo esc_url( $iga_about_urls['community'] ); ?>"
+					target="_blank"
+					rel="noopener noreferrer"
 					class="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-green px-8 py-4 text-xs font-bold uppercase tracking-[0.12em] text-white transition duration-300 hover:-translate-y-0.5 hover:bg-green-l hover:shadow-[0_10px_30px_rgba(58,125,68,0.35)]"
 				>
 					<?php
 					echo $iga_about_icon( 'medal', 'h-5 w-5' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 					?>
 
-					Enlist Today
+					Join Community
 				</a>
 
 				<a

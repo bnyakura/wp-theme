@@ -19,9 +19,9 @@ return array(
 			'title'      => 'Iron Gorilla Army',
 			'body'       => 'We are a community built around iron and faith. The Army is the overarching culture, the standard, and the movement committed to growth and complete self-mastery.',
 			'featured'   => 0,
-			'cta_label'  => 'Enlist Now',
+			'cta_label'  => 'Join Community',
 			'cta_icon'   => 'fa-medal',
-			'cta_action' => 'enlist-modal',
+			'cta_action' => 'whatsapp-group',
 			'cta_url'    => '',
 		),
 		array(
