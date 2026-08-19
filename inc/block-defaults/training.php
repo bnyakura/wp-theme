@@ -58,7 +58,7 @@ return array(
 			'tab'             => 'monthly',
 			'icon'            => 'shield',
 			'reverse'         => 1,
-			'primary_label'   => 'Book a Session',
+			'primary_label'   => 'Book Assessment',
 			'primary_url'     => $book_url,
 			'secondary_label' => 'View Squads Pack',
 		),

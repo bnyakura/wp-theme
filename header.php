@@ -42,10 +42,10 @@
         ?>
         
         <!-- Legends Link -->
-        <a href="<?php echo esc_url(home_url('/league')); ?>" 
+        <!-- <a href="<?php echo esc_url(home_url('/league')); ?>" 
            class="relative px-2.5 py-1.5 text-[0.78rem] font-bold uppercase tracking-[1.2px] text-[#C47B2B] hover:text-[#D4893A] transition-all">
             Legends
-        </a>
+        </a> -->
     </nav>
 
     <!-- Header Actions -->
@@ -128,10 +128,10 @@
         ]);
         ?>
         
-        <a href="<?php echo esc_url(home_url('/league')); ?>" 
+        <!-- <a href="<?php echo esc_url(home_url('/league')); ?>" 
            class="font-['Bebas_Neue'] text-[1.55rem] tracking-[2px] py-[9px] border-b border-white/7 text-[#C47B2B] hover:text-[#D4893A] hover:pl-2 transition-all">
             Legends
-        </a>
+        </a> -->
     </nav>
 
     <div class="flex flex-col gap-2.5 mt-4 pt-4 border-t border-white/7">

@@ -46,6 +46,9 @@ $iga_training_urls = array(
 	'book' => home_url( '/book/' ),
 );
 
+$iga_training_whatsapp_number = get_theme_mod( 'iron_gorilla_whatsapp', '' ) ?: '27790614906';
+$iga_training_whatsapp_url    = 'https://wa.me/' . $iga_training_whatsapp_number . '?text=' . rawurlencode( "Hi Iron Gorilla Army, I'd like to book a Personal Coaching assessment." );
+
 $iga_training_tracks = array(
 	array(
 		'number'      => '01',
@@ -71,8 +74,8 @@ $iga_training_tracks = array(
 		'icon'        => 'shield',
 		'visual'      => 'bg-gradient-to-br from-[#111111] to-[#1A1A0A]',
 		'reverse'     => true,
-		'primary'     => 'Book a Session',
-		'primary_url' => $iga_training_urls['book'],
+		'primary'     => 'Book Assessment',
+		'primary_url' => $iga_training_whatsapp_url,
 		'secondary'   => 'View Squads Pack',
 	),
 	array(
@@ -114,6 +117,14 @@ if ( is_array( $iga_tracks_acf ) && ! empty( $iga_tracks_acf ) ) {
 		);
 	}
 }
+
+foreach ( $iga_training_tracks as &$iga_track ) {
+	if ( 'Personal Coaching' === $iga_track['title'] ) {
+		$iga_track['primary']     = 'Book Assessment';
+		$iga_track['primary_url'] = $iga_training_whatsapp_url;
+	}
+}
+unset( $iga_track );
 
 $wrapper_attributes = get_block_wrapper_attributes(
 	array(
@@ -157,7 +168,8 @@ $wrapper_attributes = get_block_wrapper_attributes(
 					<?php endif; ?>
 
 					<div class="mt-7 flex flex-wrap gap-3">
-						<a href="<?php echo esc_url( $track['primary_url'] ); ?>" class="inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-green px-6 py-3 text-xs font-bold uppercase tracking-[0.1em] text-white transition hover:bg-green-l">
+						<?php $iga_is_whatsapp = false !== strpos( $track['primary_url'], 'wa.me' ); ?>
+						<a href="<?php echo esc_url( $track['primary_url'] ); ?>" <?php echo $iga_is_whatsapp ? 'target="_blank" rel="noopener noreferrer"' : ''; ?> class="inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-green px-6 py-3 text-xs font-bold uppercase tracking-[0.1em] text-white transition hover:bg-green-l">
 							<?php echo esc_html( $track['primary'] ); ?>
 							<?php echo $iga_training_icon( 'arrow', 'h-4 w-4' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 						</a>
