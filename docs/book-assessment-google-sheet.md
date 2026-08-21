@@ -16,25 +16,43 @@ these steps once:
 2. Delete any starter code and paste:
 
    ```javascript
+   var SHEET_ID = 'PASTE_YOUR_SPREADSHEET_ID_HERE';
+
    function doPost(e) {
-     var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
-     var p = e.parameter;
+     try {
+       var sheet = SpreadsheetApp.openById(SHEET_ID).getSheets()[0];
+       var p = e.parameter;
 
-     sheet.appendRow([
-       p.submitted || new Date(),
-       p.first_name || '',
-       p.last_name || '',
-       p.email || '',
-       p.phone || '',
-       p.dob || '',
-       p.gender || ''
-     ]);
+       sheet.appendRow([
+         p.submitted || new Date(),
+         p.first_name || '',
+         p.last_name || '',
+         p.email || '',
+         p.phone || '',
+         p.dob || '',
+         p.gender || ''
+       ]);
 
-     return ContentService
-       .createTextOutput(JSON.stringify({ status: 'ok' }))
-       .setMimeType(ContentService.MimeType.JSON);
+       return ContentService
+         .createTextOutput(JSON.stringify({ status: 'ok' }))
+         .setMimeType(ContentService.MimeType.JSON);
+     } catch (err) {
+       return ContentService
+         .createTextOutput(JSON.stringify({ status: 'error', message: err.message }))
+         .setMimeType(ContentService.MimeType.JSON);
+     }
    }
    ```
+
+   Replace `PASTE_YOUR_SPREADSHEET_ID_HERE` with the ID from your Sheet's
+   URL — the long string between `/d/` and `/edit`, e.g. for
+   `https://docs.google.com/spreadsheets/d/1M5cB.../edit` the ID is `1M5cB...`.
+
+   Using `openById()` instead of `getActiveSpreadsheet()` means this works
+   whether the script is bound to the Sheet (opened via Extensions → Apps
+   Script) or a standalone script project — `getActiveSpreadsheet()` throws
+   with no useful error in the standalone case, which silently breaks the
+   sync.
 
 3. Click **Save**.
 
