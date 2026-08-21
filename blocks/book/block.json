@@ -1,10 +1,10 @@
 {
     "name": "wp-theme/book",
-    "title": "Book a Drop-In Page",
+    "title": "Book Assessment Page",
     "category": "design",
     "icon": "calendar",
-    "description": "Booking page: quick sign-up class cards or date-based session picker, with an email handler.",
-    "keywords": ["book", "booking", "drop-in", "session", "class", "schedule"],
+    "description": "Assessment booking page: name, email, phone, DOB and gender, saved to Google Sheets and handed off to WhatsApp.",
+    "keywords": ["book", "booking", "assessment", "whatsapp", "google sheet"],
     "acf": {
         "mode": "auto",
         "renderTemplate": "render.php"

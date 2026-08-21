@@ -102,13 +102,7 @@ $wrapper_attributes = get_block_wrapper_attributes( array(
                     <?php if ( ( ! empty( $slide['button_text'] ) && ! empty( $slide['button_url'] ) ) || ! empty( $slide['secondary_button_text'] ) ) : ?>
                         <div class="hero-actions">
                             <?php if ( ! empty( $slide['button_text'] ) && ! empty( $slide['button_url'] ) ) : ?>
-                                <?php
-                                $iga_hero_is_assessment = in_array( trim( $slide['button_text'] ), array( 'Book Free Assessment', 'Book Assessment' ), true );
-                                $iga_hero_button_url    = $iga_hero_is_assessment
-                                    ? iga_get_whatsapp_number_url( "Hi Iron Gorilla Army, I'd like to book a free assessment." )
-                                    : $slide['button_url'];
-                                ?>
-                                <a class="hero-button" href="<?php echo esc_url( $iga_hero_button_url ); ?>" <?php echo $iga_hero_is_assessment ? 'target="_blank" rel="noopener noreferrer"' : ''; ?>>
+                                <a class="hero-button" href="<?php echo esc_url( $slide['button_url'] ); ?>">
                                     <?php echo esc_html( $slide['button_text'] ); ?>
                                 </a>
                             <?php endif; ?>

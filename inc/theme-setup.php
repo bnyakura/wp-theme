@@ -114,8 +114,28 @@ function iron_gorilla_customizer($wp_customize) {
         'section'     => 'title_tagline',
         'type'        => 'url',
     ]);
+
+    $wp_customize->add_setting('iron_gorilla_assessment_sheet_webhook', [
+        'default'   => '',
+        'transport' => 'refresh',
+    ]);
+
+    $wp_customize->add_control('iron_gorilla_assessment_sheet_webhook', [
+        'label'       => __('Book Assessment — Google Sheet Webhook URL', 'iron-gorilla'),
+        'description' => __('The deployed Google Apps Script Web App URL that appends Book Assessment form submissions to a Google Sheet.', 'iron-gorilla'),
+        'section'     => 'title_tagline',
+        'type'        => 'url',
+    ]);
 }
 add_action('customize_register', 'iron_gorilla_customizer');
+
+/**
+ * The Google Apps Script Web App URL that Book Assessment submissions are
+ * posted to so they land in a Google Sheet.
+ */
+function iga_get_assessment_sheet_webhook_url() {
+    return get_theme_mod( 'iron_gorilla_assessment_sheet_webhook', '' );
+}
 
 /**
  * The WhatsApp group invite link used by "Join Community" buttons site-wide.

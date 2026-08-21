@@ -1,6 +1,6 @@
 <?php
 /**
- * Form handlers + shared data for the Book a Drop-In and Contact page blocks.
+ * Form handlers + shared data for the Book Assessment and Contact page blocks.
  *
  * The Book and Contact blocks render inside `the_content()`, i.e. after the
  * header has already been output. Classic POST processing therefore has to run
@@ -15,149 +15,39 @@
 defined( 'ABSPATH' ) || exit;
 
 /* -------------------------------------------------------------------------
- * Booking block — shared data (filterable, ships with the original content)
+ * Book Assessment block — shared data
  * ---------------------------------------------------------------------- */
 
-if ( ! function_exists( 'iga_booking_quick_classes' ) ) {
+if ( ! function_exists( 'iga_assessment_genders' ) ) {
 	/**
-	 * Quick sign-up class cards.
+	 * Gender select options, keyed by the value submitted from the form.
 	 *
-	 * @return array<int|string, array<string, mixed>>
+	 * @return array<string, string>
 	 */
-	function iga_booking_quick_classes() {
-		return apply_filters(
-			'iga_booking_quick_classes',
-			array(
-				'entrepreneurship' => array(
-					'name'        => 'Entrepreneurship Class',
-					'coach'       => 'Paul O',
-					'schedule'    => 'Mondays · 18:00',
-					'duration'    => '90 min',
-					'icon'        => 'brain',
-					'card_class'  => 'border-white/[0.09] hover:border-[#5AC2A8]/40 hover:bg-[#5AC2A8]/[0.06]',
-					'icon_class'  => 'border-[#5AC2A8]/30 bg-[#5AC2A8]/10 text-[#5AC2A8]',
-				),
-				'boxing'           => array(
-					'name'        => 'Boxing',
-					'coach'       => 'Rhema M',
-					'schedule'    => 'Mon · Tue · Thu evenings',
-					'duration'    => '60 min',
-					'icon'        => 'boxing',
-					'card_class'  => 'border-white/[0.09] hover:border-[#5A7EC2]/40 hover:bg-[#5A7EC2]/[0.06]',
-					'icon_class'  => 'border-[#5A7EC2]/30 bg-[#5A7EC2]/10 text-[#5A7EC2]',
-				),
-				'strength'         => array(
-					'name'        => 'Strength & Muscle',
-					'coach'       => 'Abongile M',
-					'schedule'    => 'Mon – Fri · 06:00 & 07:00',
-					'duration'    => '60 min',
-					'icon'        => 'dumbbell',
-					'card_class'  => 'border-white/[0.09] hover:border-[#4E9E5A]/40 hover:bg-[#4E9E5A]/[0.06]',
-					'icon_class'  => 'border-[#4E9E5A]/30 bg-[#4E9E5A]/10 text-[#4E9E5A]',
-				),
-				'hiit'             => array(
-					'name'        => 'Strength & HIIT',
-					'coach'       => 'Othniel M',
-					'schedule'    => 'Mon · Wed · 18:30 & 19:30',
-					'duration'    => '60 min',
-					'icon'        => 'bolt',
-					'card_class'  => 'border-white/[0.09] hover:border-[#C25A5A]/40 hover:bg-[#C25A5A]/[0.06]',
-					'icon_class'  => 'border-[#C25A5A]/30 bg-[#C25A5A]/10 text-[#C25A5A]',
-				),
-			)
+	function iga_assessment_genders() {
+		return array(
+			'male'             => 'Male',
+			'female'           => 'Female',
+			'prefer_not_to_say' => 'Prefer not to say',
 		);
-	}
-}
-
-if ( ! function_exists( 'iga_booking_schedule' ) ) {
-	/**
-	 * Weekly timetable. Keys are ISO weekday numbers (1 = Monday).
-	 *
-	 * @return array<int, array<int, array<string, mixed>>>
-	 */
-	function iga_booking_schedule() {
-		return apply_filters(
-			'iga_booking_schedule',
-			array(
-				1 => array(
-					array( 'time' => '06:00', 'duration' => 60, 'name' => 'Strength & Muscle', 'coach' => 'Abongile M', 'capacity' => 6, 'type' => 'strength' ),
-					array( 'time' => '07:00', 'duration' => 60, 'name' => 'Strength & Muscle', 'coach' => 'Abongile M', 'capacity' => 5, 'type' => 'strength' ),
-					array( 'time' => '18:00', 'duration' => 90, 'name' => 'Entrepreneurship Class', 'coach' => 'Paul O', 'capacity' => 10, 'type' => 'entrepreneurship' ),
-					array( 'time' => '18:00', 'duration' => 60, 'name' => 'Boxing', 'coach' => 'Rhema M', 'capacity' => 5, 'type' => 'boxing' ),
-					array( 'time' => '18:30', 'duration' => 60, 'name' => 'Strength & HIIT', 'coach' => 'Othniel M', 'capacity' => 5, 'type' => 'hiit' ),
-					array( 'time' => '19:00', 'duration' => 60, 'name' => 'Boxing', 'coach' => 'Rhema M', 'capacity' => 5, 'type' => 'boxing' ),
-					array( 'time' => '19:30', 'duration' => 60, 'name' => 'Strength & HIIT', 'coach' => 'Othniel M', 'capacity' => 5, 'type' => 'hiit' ),
-					array( 'time' => '20:00', 'duration' => 60, 'name' => 'Boxing', 'coach' => 'Rhema M', 'capacity' => 5, 'type' => 'boxing' ),
-				),
-				2 => array(
-					array( 'time' => '06:00', 'duration' => 60, 'name' => 'Strength & Muscle', 'coach' => 'Abongile M', 'capacity' => 6, 'type' => 'strength' ),
-					array( 'time' => '07:00', 'duration' => 60, 'name' => 'Strength & Muscle', 'coach' => 'Abongile M', 'capacity' => 5, 'type' => 'strength' ),
-					array( 'time' => '18:00', 'duration' => 60, 'name' => 'Boxing', 'coach' => 'Rhema M', 'capacity' => 5, 'type' => 'boxing' ),
-					array( 'time' => '19:00', 'duration' => 60, 'name' => 'Boxing', 'coach' => 'Rhema M', 'capacity' => 5, 'type' => 'boxing' ),
-					array( 'time' => '20:00', 'duration' => 60, 'name' => 'Boxing', 'coach' => 'Rhema M', 'capacity' => 5, 'type' => 'boxing' ),
-				),
-				3 => array(
-					array( 'time' => '06:00', 'duration' => 60, 'name' => 'Strength & Muscle', 'coach' => 'Abongile M', 'capacity' => 6, 'type' => 'strength' ),
-					array( 'time' => '07:00', 'duration' => 60, 'name' => 'Strength & Muscle', 'coach' => 'Abongile M', 'capacity' => 5, 'type' => 'strength' ),
-					array( 'time' => '18:30', 'duration' => 60, 'name' => 'Strength & HIIT', 'coach' => 'Othniel M', 'capacity' => 5, 'type' => 'hiit' ),
-					array( 'time' => '19:30', 'duration' => 60, 'name' => 'Strength & HIIT', 'coach' => 'Othniel M', 'capacity' => 5, 'type' => 'hiit' ),
-				),
-				4 => array(
-					array( 'time' => '06:00', 'duration' => 60, 'name' => 'Strength & Muscle', 'coach' => 'Abongile M', 'capacity' => 6, 'type' => 'strength' ),
-					array( 'time' => '07:00', 'duration' => 60, 'name' => 'Strength & Muscle', 'coach' => 'Abongile M', 'capacity' => 5, 'type' => 'strength' ),
-					array( 'time' => '18:00', 'duration' => 60, 'name' => 'Boxing', 'coach' => 'Rhema M', 'capacity' => 5, 'type' => 'boxing' ),
-					array( 'time' => '19:00', 'duration' => 60, 'name' => 'Boxing', 'coach' => 'Rhema M', 'capacity' => 5, 'type' => 'boxing' ),
-					array( 'time' => '20:00', 'duration' => 60, 'name' => 'Boxing', 'coach' => 'Rhema M', 'capacity' => 5, 'type' => 'boxing' ),
-				),
-				5 => array(
-					array( 'time' => '06:00', 'duration' => 60, 'name' => 'Strength & Muscle', 'coach' => 'Abongile M', 'capacity' => 6, 'type' => 'strength' ),
-					array( 'time' => '07:00', 'duration' => 60, 'name' => 'Strength & Muscle', 'coach' => 'Abongile M', 'capacity' => 5, 'type' => 'strength' ),
-				),
-				6 => array(),
-			)
-		);
-	}
-}
-
-if ( ! function_exists( 'iga_booking_next_dates' ) ) {
-	/**
-	 * The next 28 bookable weekdays (Monday–Friday) as DateTimeImmutable objects.
-	 *
-	 * @return array<int, DateTimeImmutable>
-	 */
-	function iga_booking_next_dates() {
-		$dates         = array();
-		$today         = new DateTimeImmutable( 'today', wp_timezone() );
-		$cursor        = $today;
-		$max           = 60;
-		$date_attempts = 0;
-
-		while ( count( $dates ) < 28 && $date_attempts < $max ) {
-			if ( 0 !== (int) $cursor->format( 'w' ) ) {
-				$dates[] = $cursor;
-			}
-			$cursor        = $cursor->modify( '+1 day' );
-			$date_attempts++;
-		}
-
-		return $dates;
 	}
 }
 
 /* -------------------------------------------------------------------------
- * Booking block — state
+ * Book Assessment block — state
  * ---------------------------------------------------------------------- */
 
-if ( ! function_exists( 'iga_booking_form_state' ) ) {
+if ( ! function_exists( 'iga_assessment_form_state' ) ) {
 	/**
-	 * Current booking form state: success booking, validation error, posted values.
+	 * Current assessment booking form state: success record, validation
+	 * error, posted values.
 	 *
-	 * Runs early on `template_redirect` so a POST submission is processed (and
-	 * redirected) before any output is sent.
+	 * Runs early on `template_redirect` so a POST submission is processed
+	 * (and redirected) before any output is sent.
 	 *
 	 * @return array<string, mixed>
 	 */
-	function iga_booking_form_state() {
+	function iga_assessment_form_state() {
 		static $state = null;
 
 		if ( null !== $state ) {
@@ -168,35 +58,33 @@ if ( ! function_exists( 'iga_booking_form_state' ) ) {
 			'success' => null,
 			'error'   => '',
 			'posted'  => array(
-				'name'    => '',
-				'phone'   => '',
-				'email'   => '',
-				'mode'    => '',
-				'class'   => '',
-				'date'    => '',
-				'session' => '',
-				'time'    => '',
+				'first_name' => '',
+				'last_name'  => '',
+				'email'      => '',
+				'phone'      => '',
+				'dob'        => '',
+				'gender'     => '',
 			),
 		);
 
 		/* Success screen — reads the transient stored on the redirect. */
-		if ( isset( $_GET['booking'], $_GET['booking_ref'] ) && 'success' === sanitize_key( wp_unslash( $_GET['booking'] ) ) ) {
-			$reference = sanitize_text_field( wp_unslash( $_GET['booking_ref'] ) );
-			$booking   = get_transient( 'iga_booking_' . md5( $reference ) );
+		if ( isset( $_GET['assessment'], $_GET['assessment_ref'] ) && 'success' === sanitize_key( wp_unslash( $_GET['assessment'] ) ) ) {
+			$reference = sanitize_text_field( wp_unslash( $_GET['assessment_ref'] ) );
+			$booking   = get_transient( 'iga_assessment_' . md5( $reference ) );
 
 			if ( is_array( $booking ) ) {
 				$state['success'] = $booking;
 			}
 		}
 
-		if ( 'POST' !== strtoupper( isset( $_SERVER['REQUEST_METHOD'] ) ? sanitize_text_field( wp_unslash( $_SERVER['REQUEST_METHOD'] ) ) : '' ) || empty( $_POST['iga_booking_submit'] ) ) {
+		if ( 'POST' !== strtoupper( isset( $_SERVER['REQUEST_METHOD'] ) ? sanitize_text_field( wp_unslash( $_SERVER['REQUEST_METHOD'] ) ) : '' ) || empty( $_POST['iga_assessment_submit'] ) ) {
 			return $state;
 		}
 
-		$nonce    = isset( $_POST['iga_booking_nonce'] ) ? sanitize_text_field( wp_unslash( $_POST['iga_booking_nonce'] ) ) : '';
+		$nonce    = isset( $_POST['iga_assessment_nonce'] ) ? sanitize_text_field( wp_unslash( $_POST['iga_assessment_nonce'] ) ) : '';
 		$honeypot = isset( $_POST['website'] ) ? sanitize_text_field( wp_unslash( $_POST['website'] ) ) : '';
 
-		if ( ! wp_verify_nonce( $nonce, 'iga_submit_booking' ) ) {
+		if ( ! wp_verify_nonce( $nonce, 'iga_submit_assessment' ) ) {
 			$state['error'] = 'Your session expired. Please refresh the page and try again.';
 			return $state;
 		}
@@ -206,144 +94,105 @@ if ( ! function_exists( 'iga_booking_form_state' ) ) {
 			return $state;
 		}
 
-		$mode  = isset( $_POST['booking_mode'] ) ? sanitize_key( wp_unslash( $_POST['booking_mode'] ) ) : '';
-		$name  = isset( $_POST['full_name'] ) ? sanitize_text_field( wp_unslash( $_POST['full_name'] ) ) : '';
-		$phone = isset( $_POST['phone'] ) ? sanitize_text_field( wp_unslash( $_POST['phone'] ) ) : '';
-		$email = isset( $_POST['email'] ) ? sanitize_email( wp_unslash( $_POST['email'] ) ) : '';
+		$first_name = isset( $_POST['first_name'] ) ? sanitize_text_field( wp_unslash( $_POST['first_name'] ) ) : '';
+		$last_name  = isset( $_POST['last_name'] ) ? sanitize_text_field( wp_unslash( $_POST['last_name'] ) ) : '';
+		$email      = isset( $_POST['email'] ) ? sanitize_email( wp_unslash( $_POST['email'] ) ) : '';
+		$phone      = isset( $_POST['phone'] ) ? sanitize_text_field( wp_unslash( $_POST['phone'] ) ) : '';
+		$dob        = isset( $_POST['dob'] ) ? sanitize_text_field( wp_unslash( $_POST['dob'] ) ) : '';
+		$gender     = isset( $_POST['gender'] ) ? sanitize_key( wp_unslash( $_POST['gender'] ) ) : '';
 
 		$state['posted'] = array(
-			'name'    => $name,
-			'phone'   => $phone,
-			'email'   => $email,
-			'mode'    => $mode,
-			'class'   => '',
-			'date'    => '',
-			'session' => '',
-			'time'    => '',
+			'first_name' => substr( $first_name, 0, 100 ),
+			'last_name'  => substr( $last_name, 0, 100 ),
+			'email'      => $email,
+			'phone'      => substr( $phone, 0, 30 ),
+			'dob'        => $dob,
+			'gender'     => $gender,
 		);
 
-		if ( ! $name || ! $phone || ! is_email( $email ) || ! in_array( $mode, array( 'quick', 'calendar' ), true ) ) {
-			$state['error'] = 'Please complete your name, WhatsApp number, and a valid email address.';
+		$genders   = iga_assessment_genders();
+		$dob_object = preg_match( '/^\d{4}-\d{2}-\d{2}$/', $dob )
+			? DateTimeImmutable::createFromFormat( '!Y-m-d', $dob, wp_timezone() )
+			: false;
+		$today      = new DateTimeImmutable( 'today', wp_timezone() );
+
+		if ( ! $first_name || ! $last_name || ! is_email( $email ) || ! $phone ) {
+			$state['error'] = 'Please complete your name, email, and phone number.';
+			return $state;
+		}
+
+		if ( ! $dob_object || $dob_object > $today || $dob_object < $today->modify( '-100 years' ) ) {
+			$state['error'] = 'Please enter a valid date of birth.';
+			return $state;
+		}
+
+		if ( ! isset( $genders[ $gender ] ) ) {
+			$state['error'] = 'Please select a gender.';
 			return $state;
 		}
 
 		$booking = array(
-			'mode'     => $mode,
-			'name'     => $name,
-			'phone'    => $phone,
-			'email'    => $email,
-			'date'     => '',
-			'session'  => '',
-			'coach'    => '',
-			'time'     => '',
-			'duration' => '',
+			'first_name' => $first_name,
+			'last_name'  => $last_name,
+			'email'      => $email,
+			'phone'      => $phone,
+			'dob'        => $dob_object->format( 'j F Y' ),
+			'gender'     => $genders[ $gender ],
 		);
 
-		if ( 'quick' === $mode ) {
-			$class_id  = isset( $_POST['booking_class'] ) ? sanitize_key( wp_unslash( $_POST['booking_class'] ) ) : '';
-			$classes   = iga_booking_quick_classes();
-
-			if ( ! isset( $classes[ $class_id ] ) ) {
-				$state['error'] = 'Please choose a class before submitting.';
-				return $state;
-			}
-
-			$class              = $classes[ $class_id ];
-			$booking['session'] = $class['name'];
-			$booking['coach']   = $class['coach'];
-			$booking['date']    = $class['schedule'];
-			$booking['time']    = 'Confirmed via WhatsApp';
-			$booking['duration'] = $class['duration'];
-
-			$state['posted']['class'] = $class_id;
-		} else {
-			$submitted_date    = isset( $_POST['booking_date'] ) ? sanitize_text_field( wp_unslash( $_POST['booking_date'] ) ) : '';
-			$submitted_session = isset( $_POST['booking_session'] ) ? sanitize_text_field( wp_unslash( $_POST['booking_session'] ) ) : '';
-			$submitted_time    = isset( $_POST['booking_time'] ) ? sanitize_text_field( wp_unslash( $_POST['booking_time'] ) ) : '';
-			$date_object       = preg_match( '/^\d{4}-\d{2}-\d{2}$/', $submitted_date )
-				? DateTimeImmutable::createFromFormat( '!Y-m-d', $submitted_date, wp_timezone() )
-				: false;
-			$today             = new DateTimeImmutable( 'today', wp_timezone() );
-			$last_booking_day  = $today->modify( '+35 days' );
-			$valid_session     = null;
-
-			if ( $date_object && $date_object >= $today && $date_object <= $last_booking_day && 0 !== (int) $date_object->format( 'w' ) ) {
-				$day_schedule = iga_booking_schedule();
-				$day_schedule = isset( $day_schedule[ (int) $date_object->format( 'w' ) ] ) ? $day_schedule[ (int) $date_object->format( 'w' ) ] : array();
-
-				foreach ( $day_schedule as $scheduled_session ) {
-					$session_time = DateTimeImmutable::createFromFormat( 'H:i', $scheduled_session['time'], wp_timezone() );
-					$display_time = $session_time ? $session_time->format( 'g:i A' ) : $scheduled_session['time'];
-
-					if ( $submitted_session === $scheduled_session['name'] && $submitted_time === $display_time ) {
-						$valid_session = $scheduled_session;
-						break;
-					}
-				}
-			}
-
-			if ( ! $valid_session ) {
-				$state['error'] = 'Please select a valid upcoming date and session before submitting.';
-				return $state;
-			}
-
-			$booking['date']     = $date_object->format( 'l, j F Y' );
-			$booking['session']  = $valid_session['name'];
-			$booking['coach']    = $valid_session['coach'];
-			$booking['time']     = $submitted_time;
-			$booking['duration'] = $valid_session['duration'] . ' min';
-
-			$state['posted']['date']    = $submitted_date;
-			$state['posted']['session'] = $submitted_session;
-			$state['posted']['time']    = $submitted_time;
+		/* Save to Google Sheets via an Apps Script Web App webhook (best effort). */
+		$sheet_webhook = iga_get_assessment_sheet_webhook_url();
+		if ( $sheet_webhook ) {
+			$sheet_response = wp_remote_post(
+				$sheet_webhook,
+				array(
+					'timeout' => 8,
+					'body'    => array(
+						'first_name' => $booking['first_name'],
+						'last_name'  => $booking['last_name'],
+						'email'      => $booking['email'],
+						'phone'      => $booking['phone'],
+						'dob'        => $booking['dob'],
+						'gender'     => $booking['gender'],
+						'submitted'  => current_time( 'mysql' ),
+					),
+				)
+			);
+			do_action( 'iga_assessment_sheet_synced', $booking, $sheet_response );
 		}
 
-		if ( ! $state['error'] ) {
-			$recipient = apply_filters( 'iga_booking_recipient', get_option( 'admin_email' ) );
-			$subject   = sprintf( 'New Forge booking: %s — %s', $booking['session'], $booking['name'] );
-			$message   = "A new booking was submitted from the Iron Gorilla Army website.\n\n";
-			$message  .= "Name: {$booking['name']}\n";
-			$message  .= "WhatsApp: {$booking['phone']}\n";
-			$message  .= "Email: {$booking['email']}\n";
-			$message  .= "Booking type: {$booking['mode']}\n";
-			$message  .= "Session: {$booking['session']}\n";
-			$message  .= "Coach: {$booking['coach']}\n";
-			$message  .= "Date / schedule: {$booking['date']}\n";
-			$message  .= "Time: {$booking['time']}\n";
-			$message  .= "Duration: {$booking['duration']}\n";
-			$headers   = array( 'Reply-To: ' . $booking['name'] . ' <' . $booking['email'] . '>' );
+		$whatsapp_message = "Hi Iron Gorilla Army, I'd like to book a free assessment.\n\n";
+		$whatsapp_message .= "Name: {$booking['first_name']} {$booking['last_name']}\n";
+		$whatsapp_message .= "Email: {$booking['email']}\n";
+		$whatsapp_message .= "Phone: {$booking['phone']}\n";
+		$whatsapp_message .= "Date of birth: {$booking['dob']}\n";
+		$whatsapp_message .= "Gender: {$booking['gender']}\n";
 
-			$mail_sent = wp_mail( $recipient, $subject, $message, $headers );
-			do_action( 'iga_booking_submitted', $booking, $mail_sent );
+		$booking['whatsapp_url'] = iga_get_whatsapp_number_url( $whatsapp_message );
 
-			if ( $mail_sent ) {
-				$reference = wp_generate_uuid4();
-				set_transient( 'iga_booking_' . md5( $reference ), $booking, 15 * MINUTE_IN_SECONDS );
+		do_action( 'iga_assessment_submitted', $booking );
 
-				$redirect_to = get_permalink();
-				if ( ! $redirect_to ) {
-					$redirect_to = home_url( '/' );
-				}
+		$reference = wp_generate_uuid4();
+		set_transient( 'iga_assessment_' . md5( $reference ), $booking, 15 * MINUTE_IN_SECONDS );
 
-				wp_safe_redirect(
-					add_query_arg(
-						array(
-							'booking'     => 'success',
-							'booking_ref' => $reference,
-						),
-						$redirect_to
-					)
-				);
-				exit;
-			}
-
-			$state['error'] = 'Something went wrong. Please try again or contact us on WhatsApp.';
+		$redirect_to = get_permalink();
+		if ( ! $redirect_to ) {
+			$redirect_to = home_url( '/' );
 		}
 
-		return $state;
+		wp_safe_redirect(
+			add_query_arg(
+				array(
+					'assessment'     => 'success',
+					'assessment_ref' => $reference,
+				),
+				$redirect_to
+			)
+		);
+		exit;
 	}
 }
-add_action( 'template_redirect', 'iga_booking_form_state', 10 );
+add_action( 'template_redirect', 'iga_assessment_form_state', 10 );
 
 /* -------------------------------------------------------------------------
  * Contact block — shared data

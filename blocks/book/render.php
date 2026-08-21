@@ -1,9 +1,11 @@
 <?php
 /**
- * Book a Drop-In block — render template.
+ * Book Assessment block — render template.
  *
- * Reads ACF fields and falls back to the original Iron Gorilla content, so
- * the page looks complete the moment the theme is activated.
+ * A short lead-capture form (name, email, phone, DOB, gender). On submit the
+ * details are saved to a Google Sheet (via the Apps Script webhook set in
+ * Appearance → Customize → Site Identity) and the visitor is handed off to
+ * WhatsApp with the details pre-filled, so a coach can confirm the booking.
  *
  * Form state (success / error / posted values) comes from the shared handler
  * in inc/page-forms.php, which runs on `template_redirect` so redirects keep
@@ -12,51 +14,37 @@
  * @package Iron_Gorilla
  */
 
-$state              = iga_booking_form_state();
-$iga_success_booking = $state['success'];
-$iga_booking_error   = $state['error'];
-$iga_quick_classes   = iga_booking_quick_classes();
-$iga_weekly_schedule = iga_booking_schedule();
-$iga_booking_dates   = iga_booking_next_dates();
-$iga_default_date    = $iga_booking_dates[0]->format( 'Y-m-d' );
+$state                = iga_assessment_form_state();
+$iga_success_booking  = $state['success'];
+$iga_assessment_error = $state['error'];
+$iga_posted           = $state['posted'];
+$iga_genders          = iga_assessment_genders();
 
 $iga_book_hero = array(
-	'eyebrow'   => get_field( 'hero_eyebrow' ),
-	'title'     => get_field( 'hero_title' ),
-	'subtitle'  => get_field( 'hero_subtitle' ),
-	'whatsapp'  => get_field( 'whatsapp_number' ),
+	'eyebrow'  => get_field( 'hero_eyebrow' ),
+	'title'    => get_field( 'hero_title' ),
+	'subtitle' => get_field( 'hero_subtitle' ),
 );
 
-$iga_book_hero['eyebrow']  = $iga_book_hero['eyebrow'] ?: 'Book a Drop-In';
+$iga_book_hero['eyebrow']  = $iga_book_hero['eyebrow'] ?: 'Book Assessment';
 $iga_book_hero['title']    = $iga_book_hero['title'] ?: 'Claim Your Spot. Show Up Ready.';
-$iga_book_hero['subtitle'] = $iga_book_hero['subtitle'] ?: "Your first session is free. Fill in your details and we'll confirm your booking personally within 24 hours.";
-$iga_book_hero['whatsapp'] = $iga_book_hero['whatsapp'] ?: '27790614906';
+$iga_book_hero['subtitle'] = $iga_book_hero['subtitle'] ?: "Your first session is free. Fill in your details and we'll confirm your booking personally on WhatsApp.";
 
 $iga_booking_icon = static function ( $name, $classes = 'h-5 w-5' ) {
 	$paths = array(
-		'bolt'     => '<path stroke-linecap="round" stroke-linejoin="round" d="m13.5 2.25-8.25 11.5h6l-.75 8 8.25-12h-6l.75-7.5Z"/>',
 		'calendar' => '<path stroke-linecap="round" stroke-linejoin="round" d="M6.75 2.25v3m10.5-3v3M3.75 9h16.5M5.25 4.5h13.5A1.5 1.5 0 0 1 20.25 6v13.5a1.5 1.5 0 0 1-1.5 1.5H5.25a1.5 1.5 0 0 1-1.5-1.5V6a1.5 1.5 0 0 1 1.5-1.5Z"/>',
-		'brain'    => '<path stroke-linecap="round" stroke-linejoin="round" d="M9.5 4.5A3 3 0 0 0 4 6.25a3 3 0 0 0-.25 5.5A3.5 3.5 0 0 0 7 17.5V18a3 3 0 0 0 5 2.25V3.75A3 3 0 0 0 9.5 4.5Zm5 0A3 3 0 0 1 20 6.25a3 3 0 0 1 .25 5.5A3.5 3.5 0 0 1 17 17.5V18a3 3 0 0 1-5 2.25V3.75a3 3 0 0 1 2.5.75Z"/>',
-		'boxing'   => '<path stroke-linecap="round" stroke-linejoin="round" d="M5.25 11.25V7.5A2.25 2.25 0 0 1 9.75 7v-1a2.25 2.25 0 0 1 4.5 0v1a2.25 2.25 0 0 1 4.5.5v5.25c0 4.5-2.75 8.25-7.5 8.25-4 0-7.5-3-7.5-7.5v-1.25a1.5 1.5 0 0 1 1.5-1.5Z"/>',
-		'dumbbell' => '<path stroke-linecap="round" stroke-linejoin="round" d="M6.75 6.75v10.5m10.5-10.5v10.5M3.75 9v6m16.5-6v6M6.75 12h10.5M2.25 10.5h1.5v3h-1.5v-3Zm18 0h1.5v3h-1.5v-3Z"/>',
-		'chevron'  => '<path stroke-linecap="round" stroke-linejoin="round" d="m9 18 6-6-6-6"/>',
 		'check'    => '<path stroke-linecap="round" stroke-linejoin="round" d="m5 12 4.25 4.25L19 6.5"/>',
 		'user'     => '<path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6.75a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.5 20.1a7.5 7.5 0 0 1 15 0 17.9 17.9 0 0 1-15 0Z"/>',
-		'clock'    => '<path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6l4 2m5-2a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>',
-		'info'     => '<path stroke-linecap="round" stroke-linejoin="round" d="M12 10.5v6m0-9h.01M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>',
+		'mail'     => '<path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75A2.25 2.25 0 0 1 4.5 4.5h15a2.25 2.25 0 0 1 2.25 2.25v10.5A2.25 2.25 0 0 1 19.5 19.5h-15a2.25 2.25 0 0 1-2.25-2.25V6.75Zm0 0 9.75 6.75 9.75-6.75"/>',
+		'phone'    => '<path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h1.5a2.25 2.25 0 0 0 2.25-2.25v-1.372a1.5 1.5 0 0 0-1.061-1.435l-4.05-1.215a1.5 1.5 0 0 0-1.559.44l-.812 1a12.03 12.03 0 0 1-5.235-5.235l1-.812a1.5 1.5 0 0 0 .44-1.559L8.508 4.311A1.5 1.5 0 0 0 7.073 3.25H5.7a2.25 2.25 0 0 0-2.25 2.25v1.25Z"/>',
 		'arrow'    => '<path stroke-linecap="round" stroke-linejoin="round" d="M19 12H5m5-5-5 5 5 5"/>',
 		'whatsapp' => '<path stroke-linecap="round" stroke-linejoin="round" d="M20.25 11.6a8.25 8.25 0 0 1-12.2 7.25L3.75 20l1.15-4.15A8.25 8.25 0 1 1 20.25 11.6Zm-11-4.1c.2 3.7 3.1 6.6 6.8 6.8"/>',
+		'chevron-down' => '<path stroke-linecap="round" stroke-linejoin="round" d="m6 9 6 6 6-6"/>',
 	);
 
 	$path = isset( $paths[ $name ] ) ? $paths[ $name ] : $paths['check'];
 	return sprintf( '<svg class="%1$s" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">%2$s</svg>', esc_attr( $classes ), $path );
 };
-
-$quick_fields = array(
-	array( 'Full Name', 'text', 'full_name', 'Your full name', 'name' ),
-	array( 'WhatsApp Number', 'tel', 'phone', '+27 XX XXX XXXX', 'tel' ),
-	array( 'Email Address', 'email', 'email', 'your@email.com', 'email' ),
-);
 
 $wrapper_attributes = get_block_wrapper_attributes(
 	array(
@@ -88,16 +76,16 @@ $wrapper_attributes = get_block_wrapper_attributes(
 						<?php echo $iga_booking_icon( 'check', 'h-9 w-9' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 					</div>
 					<h2 class="font-display text-5xl uppercase tracking-wide text-white">You're On The List.</h2>
-					<p class="mx-auto mt-4 max-w-md text-base leading-7 text-white/50">We'll confirm your spot personally via WhatsApp. Show up ready.</p>
+					<p class="mx-auto mt-4 max-w-md text-base leading-7 text-white/50">Taking you to WhatsApp to confirm your booking with a coach&hellip;</p>
 
 					<div class="mt-8 rounded-xl border border-green/40 bg-[#0F1F11] p-6 text-left">
-						<p class="mb-4 text-[10px] font-bold uppercase tracking-[0.2em] text-green-l">Your Booking</p>
+						<p class="mb-4 text-[10px] font-bold uppercase tracking-[0.2em] text-green-l">Your Details</p>
 						<?php
 						$success_rows = array(
-							array( 'calendar', $iga_success_booking['date'] ),
-							array( 'dumbbell', $iga_success_booking['session'] ),
-							array( 'user', $iga_success_booking['coach'] ),
-							array( 'clock', trim( $iga_success_booking['time'] . ' · ' . $iga_success_booking['duration'], ' ·' ) ),
+							array( 'user', trim( $iga_success_booking['first_name'] . ' ' . $iga_success_booking['last_name'] ) ),
+							array( 'mail', $iga_success_booking['email'] ),
+							array( 'phone', $iga_success_booking['phone'] ),
+							array( 'calendar', $iga_success_booking['dob'] . ' · ' . $iga_success_booking['gender'] ),
 						);
 						foreach ( $success_rows as $row ) :
 							if ( ! $row[1] ) {
@@ -111,327 +99,89 @@ $wrapper_attributes = get_block_wrapper_attributes(
 						<?php endforeach; ?>
 					</div>
 
-					<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="mt-8 inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-white/15 px-6 py-3 text-xs font-bold uppercase tracking-[0.1em] text-white transition hover:border-white/30 hover:bg-white/5">
+					<a id="iga-assessment-whatsapp" href="<?php echo esc_url( $iga_success_booking['whatsapp_url'] ); ?>" class="mt-8 inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-green px-8 py-4 text-xs font-bold uppercase tracking-[0.12em] text-white transition hover:-translate-y-0.5 hover:bg-green-l hover:shadow-[0_10px_30px_rgba(58,125,68,0.35)]">
+						<?php echo $iga_booking_icon( 'whatsapp', 'h-5 w-5' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+						Continue to WhatsApp
+					</a>
+					<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="mt-4 inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-white/15 px-6 py-3 text-xs font-bold uppercase tracking-[0.1em] text-white transition hover:border-white/30 hover:bg-white/5">
 						<?php echo $iga_booking_icon( 'arrow', 'h-4 w-4' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 						Back to Home
 					</a>
 				</div>
+				<script>
+				document.addEventListener('DOMContentLoaded', function () {
+					var link = document.getElementById('iga-assessment-whatsapp');
+					if (!link) return;
+					window.setTimeout(function () {
+						window.location.href = link.href;
+					}, 1200);
+				});
+				</script>
 			<?php else : ?>
-				<?php if ( $iga_booking_error ) : ?>
+				<?php if ( $iga_assessment_error ) : ?>
 					<div class="mb-6 rounded-xl border border-red-500/30 bg-red-500/10 px-5 py-4 text-sm leading-6 text-red-300" role="alert">
-						<?php echo esc_html( $iga_booking_error ); ?>
+						<?php echo esc_html( $iga_assessment_error ); ?>
 					</div>
 				<?php endif; ?>
 
-				<!-- Mode switcher -->
-				<div class="mb-9 grid grid-cols-2 gap-1 rounded-xl border border-white/10 bg-s2 p-1">
-					<button type="button" data-book-mode="quick" class="flex items-center justify-center gap-2 rounded-lg bg-green px-3 py-3 text-xs font-bold text-white transition">
-						<?php echo $iga_booking_icon( 'bolt', 'h-4 w-4' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-						Quick Sign-Up
-					</button>
-					<button type="button" data-book-mode="calendar" class="flex items-center justify-center gap-2 rounded-lg px-3 py-3 text-xs font-bold text-white/40 transition hover:text-white">
-						<?php echo $iga_booking_icon( 'calendar', 'h-4 w-4' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-						Pick a Date
-					</button>
-				</div>
+				<form method="post" action="<?php echo esc_url( get_permalink() ); ?>" class="space-y-5">
+					<?php wp_nonce_field( 'iga_submit_assessment', 'iga_assessment_nonce' ); ?>
+					<input type="hidden" name="iga_assessment_submit" value="1">
+					<div class="absolute -left-[9999px]" aria-hidden="true"><label>Website<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
 
-				<!-- Quick sign-up -->
-				<div data-book-panel="quick">
-					<div id="iga-quick-step-one">
-						<h2 class="mb-6 font-display text-4xl uppercase tracking-wide text-white">Which Class?</h2>
-						<div class="space-y-3">
-							<?php foreach ( $iga_quick_classes as $class_id => $class ) : ?>
-								<button type="button" data-quick-class="<?php echo esc_attr( $class_id ); ?>" class="flex w-full items-center gap-4 rounded-xl border bg-s2 p-4 text-left transition <?php echo esc_attr( $class['card_class'] ); ?>">
-									<span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border <?php echo esc_attr( $class['icon_class'] ); ?>">
-										<?php echo $iga_booking_icon( $class['icon'], 'h-5 w-5' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-									</span>
-									<span class="min-w-0 flex-1">
-										<strong class="block font-display text-2xl leading-none tracking-wide text-white"><?php echo esc_html( $class['name'] ); ?></strong>
-										<small class="mt-1 block text-xs text-white/55">Coach <?php echo esc_html( $class['coach'] . ' · ' . $class['schedule'] ); ?></small>
-										<small class="mt-1 block text-[10px] text-white/30"><?php echo esc_html( $class['duration'] ); ?></small>
-									</span>
-									<span class="text-white/30"><?php echo $iga_booking_icon( 'chevron', 'h-4 w-4' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
-								</button>
-							<?php endforeach; ?>
+					<div class="grid grid-cols-1 gap-5 min-[481px]:grid-cols-2">
+						<div>
+							<label for="assessment-first-name" class="mb-2 block text-[10px] font-bold uppercase tracking-[0.16em] text-white/40">First Name</label>
+							<input id="assessment-first-name" type="text" name="first_name" value="<?php echo esc_attr( $iga_posted['first_name'] ); ?>" placeholder="Your first name" autocomplete="given-name" required class="w-full rounded-xl border border-white/10 bg-s1 px-5 py-4 text-sm text-white outline-none transition placeholder:text-white/20 focus:border-green-l focus:ring-2 focus:ring-green/20">
+						</div>
+						<div>
+							<label for="assessment-last-name" class="mb-2 block text-[10px] font-bold uppercase tracking-[0.16em] text-white/40">Last Name</label>
+							<input id="assessment-last-name" type="text" name="last_name" value="<?php echo esc_attr( $iga_posted['last_name'] ); ?>" placeholder="Your last name" autocomplete="family-name" required class="w-full rounded-xl border border-white/10 bg-s1 px-5 py-4 text-sm text-white outline-none transition placeholder:text-white/20 focus:border-green-l focus:ring-2 focus:ring-green/20">
 						</div>
 					</div>
 
-					<div id="iga-quick-step-two" class="hidden">
-						<h2 class="mb-6 font-display text-4xl uppercase tracking-wide text-white">Almost There.</h2>
-						<div class="mb-7 flex items-center gap-4 rounded-xl border border-green/40 bg-[#0F1F11] p-4">
-							<span id="iga-quick-recap-icon" class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-green/30 bg-green/10 text-green-l"></span>
-							<span class="min-w-0 flex-1">
-								<strong id="iga-quick-recap-name" class="block font-display text-xl leading-none tracking-wide text-white"></strong>
-								<small id="iga-quick-recap-meta" class="mt-1 block text-xs text-white/55"></small>
-							</span>
-							<button type="button" data-quick-change class="text-xs text-white/40 transition hover:text-white">Change</button>
-						</div>
-
-						<form method="post" action="<?php echo esc_url( get_permalink() ); ?>" class="space-y-5">
-							<?php wp_nonce_field( 'iga_submit_booking', 'iga_booking_nonce' ); ?>
-							<input type="hidden" name="iga_booking_submit" value="1">
-							<input type="hidden" name="booking_mode" value="quick">
-							<input type="hidden" id="iga-quick-class-input" name="booking_class" value="">
-							<div class="absolute -left-[9999px]" aria-hidden="true"><label>Website<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
-							<?php foreach ( $quick_fields as $field ) : ?>
-								<div>
-									<label for="quick-<?php echo esc_attr( $field[2] ); ?>" class="mb-2 block text-[10px] font-bold uppercase tracking-[0.16em] text-white/40"><?php echo esc_html( $field[0] ); ?></label>
-									<input id="quick-<?php echo esc_attr( $field[2] ); ?>" type="<?php echo esc_attr( $field[1] ); ?>" name="<?php echo esc_attr( $field[2] ); ?>" placeholder="<?php echo esc_attr( $field[3] ); ?>" autocomplete="<?php echo esc_attr( $field[4] ); ?>" required class="w-full rounded-xl border border-white/10 bg-s1 px-5 py-4 text-sm text-white outline-none transition placeholder:text-white/20 focus:border-green-l focus:ring-2 focus:ring-green/20">
-								</div>
-							<?php endforeach; ?>
-							<div class="flex gap-3 rounded-r-xl border-l-2 border-green bg-s2 px-4 py-3 text-xs leading-6 text-white/40">
-								<span class="mt-1 shrink-0 text-green-l"><?php echo $iga_booking_icon( 'info', 'h-4 w-4' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
-								We confirm your spot via WhatsApp within 24 hours.
-							</div>
-							<button type="submit" class="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-green px-8 py-4 text-xs font-bold uppercase tracking-[0.12em] text-white transition hover:bg-green-l hover:shadow-[0_10px_30px_rgba(58,125,68,0.35)]">
-								<?php echo $iga_booking_icon( 'calendar', 'h-5 w-5' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-								Reserve My Spot
-							</button>
-							<p class="text-center text-[10px] leading-5 text-white/30">By submitting you agree to receive communications from Iron Gorilla Army.</p>
-						</form>
-						<button type="button" data-quick-change class="mt-5 inline-flex items-center gap-2 text-xs text-white/40 transition hover:text-white">
-							<?php echo $iga_booking_icon( 'arrow', 'h-4 w-4' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?> Back
-						</button>
-					</div>
-				</div>
-
-				<!-- Calendar booking -->
-				<div data-book-panel="calendar" class="hidden">
-					<div class="mb-9 flex items-start">
-						<div class="flex flex-col items-center gap-2">
-							<span id="iga-session-progress" class="flex h-9 w-9 items-center justify-center rounded-full border border-green bg-green text-white"><?php echo $iga_booking_icon( 'dumbbell', 'h-4 w-4' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
-							<small class="text-[9px] font-bold uppercase tracking-[0.14em] text-white">Session</small>
-						</div>
-						<span id="iga-progress-line" class="mt-[17px] h-0.5 flex-1 bg-white/10"></span>
-						<div class="flex flex-col items-center gap-2">
-							<span id="iga-user-progress" class="flex h-9 w-9 items-center justify-center rounded-full border border-white/15 bg-s3 text-white/30"><?php echo $iga_booking_icon( 'user', 'h-4 w-4' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
-							<small class="text-[9px] font-bold uppercase tracking-[0.14em] text-white/30">You</small>
-						</div>
+					<div>
+						<label for="assessment-email" class="mb-2 block text-[10px] font-bold uppercase tracking-[0.16em] text-white/40">Email Address</label>
+						<input id="assessment-email" type="email" name="email" value="<?php echo esc_attr( $iga_posted['email'] ); ?>" placeholder="your@email.com" autocomplete="email" required class="w-full rounded-xl border border-white/10 bg-s1 px-5 py-4 text-sm text-white outline-none transition placeholder:text-white/20 focus:border-green-l focus:ring-2 focus:ring-green/20">
 					</div>
 
-					<div id="iga-calendar-step-one">
-						<h2 class="mb-6 font-display text-4xl uppercase tracking-wide text-white">Pick a Session.</h2>
-						<div class="mb-7 overflow-hidden rounded-2xl border border-white/10 bg-s2">
-							<p class="border-b border-white/[0.06] px-4 py-3 text-center text-[9px] font-bold uppercase tracking-[0.16em] text-white/30">Swipe to browse</p>
-							<div id="iga-date-strip" class="flex snap-x snap-mandatory gap-1 overflow-x-auto px-[calc(50%-30px)] py-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-								<?php foreach ( $iga_booking_dates as $index => $date ) : ?>
-									<button type="button" data-book-date="<?php echo esc_attr( $date->format( 'Y-m-d' ) ); ?>" class="flex w-[60px] shrink-0 snap-center flex-col items-center gap-1 rounded-xl px-1 py-2 transition <?php echo 0 === $index ? 'bg-green/10 opacity-100' : 'opacity-40 hover:opacity-80'; ?>">
-										<span class="text-[9px] font-bold uppercase tracking-wide text-green-l"><?php echo esc_html( $date->format( 'D' ) ); ?></span>
-										<span class="flex h-10 w-10 items-center justify-center rounded-full font-display text-xl <?php echo 0 === $index ? 'bg-green text-white' : 'text-white'; ?>"><?php echo esc_html( $date->format( 'j' ) ); ?></span>
-										<span class="text-[8px] font-bold uppercase text-white/30"><?php echo esc_html( $date->format( 'Y-m-d' ) === $iga_booking_dates[0]->format( 'Y-m-d' ) ? 'Today' : $date->format( 'M' ) ); ?></span>
-									</button>
+					<div>
+						<label for="assessment-phone" class="mb-2 block text-[10px] font-bold uppercase tracking-[0.16em] text-white/40">Phone Number</label>
+						<input id="assessment-phone" type="tel" name="phone" value="<?php echo esc_attr( $iga_posted['phone'] ); ?>" placeholder="+27 XX XXX XXXX" autocomplete="tel" required class="w-full rounded-xl border border-white/10 bg-s1 px-5 py-4 text-sm text-white outline-none transition placeholder:text-white/20 focus:border-green-l focus:ring-2 focus:ring-green/20">
+					</div>
+
+					<div>
+						<label for="assessment-dob" class="mb-2 block text-[10px] font-bold uppercase tracking-[0.16em] text-white/40">Date of Birth</label>
+						<input id="assessment-dob" type="date" name="dob" value="<?php echo esc_attr( $iga_posted['dob'] ); ?>" max="<?php echo esc_attr( gmdate( 'Y-m-d' ) ); ?>" autocomplete="bday" required class="w-full rounded-xl border border-white/10 bg-s1 px-5 py-4 text-sm text-white outline-none transition placeholder:text-white/20 focus:border-green-l focus:ring-2 focus:ring-green/20 [color-scheme:dark]">
+					</div>
+
+					<div>
+						<label for="assessment-gender" class="mb-2 block text-[10px] font-bold uppercase tracking-[0.16em] text-white/40">Gender</label>
+						<div class="relative">
+							<select id="assessment-gender" name="gender" required class="w-full appearance-none rounded-xl border border-white/10 bg-s1 px-5 py-4 text-sm text-white outline-none transition focus:border-green-l focus:ring-2 focus:ring-green/20 [color-scheme:dark]">
+								<option value="" disabled <?php selected( $iga_posted['gender'], '' ); ?>>Select gender</option>
+								<?php foreach ( $iga_genders as $gender_value => $gender_label ) : ?>
+									<option value="<?php echo esc_attr( $gender_value ); ?>" <?php selected( $iga_posted['gender'], $gender_value ); ?>><?php echo esc_html( $gender_label ); ?></option>
 								<?php endforeach; ?>
-							</div>
+							</select>
+							<span class="pointer-events-none absolute right-5 top-1/2 -translate-y-1/2 text-white/40">
+								<?php echo $iga_booking_icon( 'chevron-down', 'h-4 w-4' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+							</span>
 						</div>
-						<p id="iga-selected-date-label" class="mb-4 text-[10px] font-bold uppercase tracking-[0.2em] text-green-l"></p>
-						<div id="iga-session-list" class="space-y-3"></div>
 					</div>
 
-					<div id="iga-calendar-step-two" class="hidden">
-						<h2 class="mb-6 font-display text-4xl uppercase tracking-wide text-white">Almost There.</h2>
-						<div class="mb-7 rounded-xl border border-green/40 bg-[#0F1F11] p-5">
-							<p class="mb-3 text-[10px] font-bold uppercase tracking-[0.2em] text-green-l">Your Session</p>
-							<div id="iga-calendar-recap" class="space-y-2 text-sm text-white/65"></div>
-						</div>
-
-						<form method="post" action="<?php echo esc_url( get_permalink() ); ?>" class="space-y-5">
-							<?php wp_nonce_field( 'iga_submit_booking', 'iga_booking_nonce' ); ?>
-							<input type="hidden" name="iga_booking_submit" value="1">
-							<input type="hidden" name="booking_mode" value="calendar">
-							<input type="hidden" id="iga-calendar-date" name="booking_date" value="">
-							<input type="hidden" id="iga-calendar-session" name="booking_session" value="">
-							<input type="hidden" id="iga-calendar-coach" name="booking_coach" value="">
-							<input type="hidden" id="iga-calendar-time" name="booking_time" value="">
-							<input type="hidden" id="iga-calendar-duration" name="booking_duration" value="">
-							<div class="absolute -left-[9999px]" aria-hidden="true"><label>Website<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
-							<?php foreach ( $quick_fields as $field ) : ?>
-								<div>
-									<label for="calendar-<?php echo esc_attr( $field[2] ); ?>" class="mb-2 block text-[10px] font-bold uppercase tracking-[0.16em] text-white/40"><?php echo esc_html( $field[0] ); ?></label>
-									<input id="calendar-<?php echo esc_attr( $field[2] ); ?>" type="<?php echo esc_attr( $field[1] ); ?>" name="<?php echo esc_attr( $field[2] ); ?>" placeholder="<?php echo esc_attr( $field[3] ); ?>" autocomplete="<?php echo esc_attr( $field[4] ); ?>" required class="w-full rounded-xl border border-white/10 bg-s1 px-5 py-4 text-sm text-white outline-none transition placeholder:text-white/20 focus:border-green-l focus:ring-2 focus:ring-green/20">
-								</div>
-							<?php endforeach; ?>
-							<div class="flex gap-3 rounded-r-xl border-l-2 border-green bg-s2 px-4 py-3 text-xs leading-6 text-white/40">
-								<span class="mt-1 shrink-0 text-green-l"><?php echo $iga_booking_icon( 'info', 'h-4 w-4' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
-								First session free. We confirm via WhatsApp within 24 hours.
-							</div>
-							<button type="submit" class="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-green px-8 py-4 text-xs font-bold uppercase tracking-[0.12em] text-white transition hover:bg-green-l hover:shadow-[0_10px_30px_rgba(58,125,68,0.35)]">
-								<?php echo $iga_booking_icon( 'calendar', 'h-5 w-5' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-								Book My Free Drop-In
-							</button>
-							<p class="text-center text-[10px] leading-5 text-white/30">By submitting you agree to receive communications from Iron Gorilla Army.</p>
-						</form>
-						<button type="button" id="iga-calendar-back" class="mt-5 inline-flex items-center gap-2 text-xs text-white/40 transition hover:text-white">
-							<?php echo $iga_booking_icon( 'arrow', 'h-4 w-4' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?> Back
-						</button>
+					<div class="flex gap-3 rounded-r-xl border-l-2 border-green bg-s2 px-4 py-3 text-xs leading-6 text-white/40">
+						<span class="mt-1 shrink-0 text-green-l"><?php echo $iga_booking_icon( 'whatsapp', 'h-4 w-4' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
+						After you press Book, we'll open WhatsApp with your details so a coach can confirm your slot.
 					</div>
-				</div>
+
+					<button type="submit" class="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-green px-8 py-4 text-xs font-bold uppercase tracking-[0.12em] text-white transition hover:bg-green-l hover:shadow-[0_10px_30px_rgba(58,125,68,0.35)]">
+						<?php echo $iga_booking_icon( 'calendar', 'h-5 w-5' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+						Book
+					</button>
+					<p class="text-center text-[10px] leading-5 text-white/30">By submitting you agree to receive communications from Iron Gorilla Army.</p>
+				</form>
 			<?php endif; ?>
 		</div>
 	</section>
 </div>
-
-<?php if ( ! is_array( $iga_success_booking ) ) : ?>
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-	var quickClasses = <?php echo wp_json_encode( $iga_quick_classes ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>;
-	var weeklySchedule = <?php echo wp_json_encode( $iga_weekly_schedule ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>;
-	var whatsappUrl = 'https://wa.me/' + <?php echo wp_json_encode( $iga_book_hero['whatsapp'] ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?> + '?text=' + encodeURIComponent("Hi, I'd like to book a Saturday session at The Forge.");
-	var iconPaths = {
-		entrepreneurship: 'brain', boxing: 'boxing', strength: 'dumbbell', hiit: 'bolt'
-	};
-
-	function setMode(mode) {
-		document.querySelectorAll('[data-book-panel]').forEach(function (panel) {
-			panel.classList.toggle('hidden', panel.getAttribute('data-book-panel') !== mode);
-		});
-		document.querySelectorAll('[data-book-mode]').forEach(function (button) {
-			var active = button.getAttribute('data-book-mode') === mode;
-			button.classList.toggle('bg-green', active);
-			button.classList.toggle('text-white', active);
-			button.classList.toggle('text-white/40', !active);
-		});
-	}
-
-	document.querySelectorAll('[data-book-mode]').forEach(function (button) {
-		button.addEventListener('click', function () { setMode(button.getAttribute('data-book-mode')); });
-	});
-
-	var quickOne = document.getElementById('iga-quick-step-one');
-	var quickTwo = document.getElementById('iga-quick-step-two');
-	var quickInput = document.getElementById('iga-quick-class-input');
-
-	document.querySelectorAll('[data-quick-class]').forEach(function (button) {
-		button.addEventListener('click', function () {
-			var id = button.getAttribute('data-quick-class');
-			var item = quickClasses[id];
-			if (!item) return;
-			quickInput.value = id;
-			document.getElementById('iga-quick-recap-name').textContent = item.name;
-			document.getElementById('iga-quick-recap-meta').textContent = 'Coach ' + item.coach + ' · ' + item.schedule;
-			document.getElementById('iga-quick-recap-icon').textContent = item.name.charAt(0);
-			quickOne.classList.add('hidden');
-			quickTwo.classList.remove('hidden');
-		});
-	});
-
-	document.querySelectorAll('[data-quick-change]').forEach(function (button) {
-		button.addEventListener('click', function () {
-			quickTwo.classList.add('hidden');
-			quickOne.classList.remove('hidden');
-		});
-	});
-
-	var selectedDate = <?php echo wp_json_encode( $iga_default_date ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>;
-	var sessionList = document.getElementById('iga-session-list');
-	var dateLabel = document.getElementById('iga-selected-date-label');
-	var calendarOne = document.getElementById('iga-calendar-step-one');
-	var calendarTwo = document.getElementById('iga-calendar-step-two');
-
-	function formatTime(time) {
-		var parts = time.split(':');
-		var hour = Number(parts[0]);
-		return (hour % 12 || 12) + ':' + parts[1] + ' ' + (hour >= 12 ? 'PM' : 'AM');
-	}
-
-	function formatDate(date) {
-		return new Date(date + 'T12:00:00').toLocaleDateString('en-ZA', {
-			weekday: 'long', day: 'numeric', month: 'long', year: 'numeric'
-		});
-	}
-
-	function makeText(tag, classes, text) {
-		var element = document.createElement(tag);
-		element.className = classes;
-		element.textContent = text;
-		return element;
-	}
-
-	function renderSessions() {
-		var day = new Date(selectedDate + 'T12:00:00').getDay();
-		var sessions = weeklySchedule[String(day)] || weeklySchedule[day] || [];
-		dateLabel.textContent = formatDate(selectedDate);
-		sessionList.replaceChildren();
-
-		if (day === 6) {
-			var appointment = document.createElement('div');
-			appointment.className = 'rounded-xl border border-green/40 bg-s2 p-5';
-			appointment.appendChild(makeText('h3', "font-display text-2xl tracking-wide text-white", 'Saturday — By Appointment'));
-			appointment.appendChild(makeText('p', 'mt-2 text-sm leading-6 text-white/45', "Saturday sessions are arranged personally. WhatsApp us and we'll lock in your time."));
-			var link = makeText('a', 'mt-5 inline-flex min-h-11 w-full items-center justify-center rounded-full bg-green px-6 py-3 text-xs font-bold uppercase tracking-wide text-white hover:bg-green-l', 'WhatsApp to Book');
-			link.href = whatsappUrl;
-			link.target = '_blank';
-			link.rel = 'noopener noreferrer';
-			appointment.appendChild(link);
-			sessionList.appendChild(appointment);
-			return;
-		}
-
-		if (!sessions.length) {
-			sessionList.appendChild(makeText('div', 'rounded-xl border border-white/10 bg-s2 p-5 text-sm text-white/45', 'No sessions this day. Please try a different date.'));
-			return;
-		}
-
-		sessions.forEach(function (session) {
-			var button = document.createElement('button');
-			button.type = 'button';
-			button.className = 'flex w-full items-center gap-4 rounded-xl border border-white/10 bg-s2 p-4 text-left transition hover:border-green/50 hover:bg-s3';
-			var icon = makeText('span', 'flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-green/30 bg-green/10 font-bold text-green-l', session.name.charAt(0));
-			var body = document.createElement('span');
-			body.className = 'min-w-0 flex-1';
-			body.appendChild(makeText('strong', "block font-display text-2xl leading-none tracking-wide text-white", formatTime(session.time)));
-			body.appendChild(makeText('small', 'mt-1 block truncate text-xs text-white/55', session.name + ' · ' + session.coach));
-			body.appendChild(makeText('small', 'mt-1 block text-[10px] text-white/30', session.duration + ' min · ' + session.capacity + ' spots'));
-			button.appendChild(icon);
-			button.appendChild(body);
-			button.addEventListener('click', function () { selectSession(session); });
-			sessionList.appendChild(button);
-		});
-	}
-
-	function selectSession(session) {
-		document.getElementById('iga-calendar-date').value = selectedDate;
-		document.getElementById('iga-calendar-session').value = session.name;
-		document.getElementById('iga-calendar-coach').value = session.coach;
-		document.getElementById('iga-calendar-time').value = formatTime(session.time);
-		document.getElementById('iga-calendar-duration').value = session.duration + ' min';
-
-		var recap = document.getElementById('iga-calendar-recap');
-		recap.replaceChildren(
-			makeText('p', '', formatDate(selectedDate)),
-			makeText('p', '', session.name),
-			makeText('p', '', 'Coach ' + session.coach),
-			makeText('p', '', formatTime(session.time) + ' · ' + session.duration + ' min')
-		);
-		calendarOne.classList.add('hidden');
-		calendarTwo.classList.remove('hidden');
-		document.getElementById('iga-progress-line').classList.add('bg-green');
-		document.getElementById('iga-user-progress').className = 'flex h-9 w-9 items-center justify-center rounded-full border border-green bg-green text-white';
-	}
-
-	document.querySelectorAll('[data-book-date]').forEach(function (button) {
-		button.addEventListener('click', function () {
-			selectedDate = button.getAttribute('data-book-date');
-			document.querySelectorAll('[data-book-date]').forEach(function (dateButton) {
-				var active = dateButton === button;
-				dateButton.classList.toggle('bg-green/10', active);
-				dateButton.classList.toggle('opacity-100', active);
-				dateButton.classList.toggle('opacity-40', !active);
-				var circle = dateButton.querySelector('span:nth-child(2)');
-				if (circle) {
-					circle.classList.toggle('bg-green', active);
-					circle.classList.toggle('text-white', true);
-				}
-			});
-			renderSessions();
-		});
-	});
-
-	document.getElementById('iga-calendar-back').addEventListener('click', function () {
-		calendarTwo.classList.add('hidden');
-		calendarOne.classList.remove('hidden');
-	});
-
-	renderSessions();
-});
-</script>
-<?php endif; ?>

@@ -52,8 +52,7 @@
     <div class="flex items-center gap-2 pl-8 border-l border-white/7 md:pl-8">
         
         <!-- Desktop Book Button -->
-        <a href="<?php echo esc_url( iga_get_whatsapp_number_url( "Hi Iron Gorilla Army, I'd like to book a free assessment." ) ); ?>"
-           target="_blank" rel="noopener noreferrer"
+        <a href="<?php echo esc_url( home_url( '/book/' ) ); ?>"
            class="hidden md:flex items-center gap-2 px-5 py-[10px] text-[0.8rem] font-bold uppercase tracking-[1px] rounded-full bg-[#3A7D44] text-white hover:bg-[#4E9E5A] hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(58,125,68,0.3)] transition-all no-underline">
             <i class="fa-regular fa-calendar-check"></i>
             Book Free Assessment
@@ -136,8 +135,7 @@
     </nav>
 
     <div class="flex flex-col gap-2.5 mt-4 pt-4 border-t border-white/7">
-        <a href="<?php echo esc_url( iga_get_whatsapp_number_url( "Hi Iron Gorilla Army, I'd like to book a free assessment." ) ); ?>"
-           target="_blank" rel="noopener noreferrer"
+        <a href="<?php echo esc_url( home_url( '/book/' ) ); ?>"
            class="flex items-center justify-center gap-2 px-5 py-4 text-[0.78rem] font-bold uppercase tracking-[0.5px] rounded-full bg-[#3A7D44] text-white no-underline">
             <i class="fa-regular fa-calendar-check"></i> Book Free Assessment
         </a>

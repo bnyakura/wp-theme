@@ -46,9 +46,6 @@ $iga_training_urls = array(
 	'book' => home_url( '/book/' ),
 );
 
-$iga_training_whatsapp_number = get_theme_mod( 'iron_gorilla_whatsapp', '' ) ?: '27790614906';
-$iga_training_whatsapp_url    = 'https://wa.me/' . $iga_training_whatsapp_number . '?text=' . rawurlencode( "Hi Iron Gorilla Army, I'd like to book a Personal Coaching assessment." );
-
 $iga_training_tracks = array(
 	array(
 		'number'      => '01',
@@ -75,7 +72,7 @@ $iga_training_tracks = array(
 		'visual'      => 'bg-gradient-to-br from-[#111111] to-[#1A1A0A]',
 		'reverse'     => true,
 		'primary'     => 'Book Assessment',
-		'primary_url' => $iga_training_whatsapp_url,
+		'primary_url' => $iga_training_urls['book'],
 		'secondary'   => 'View Squads Pack',
 	),
 	array(
@@ -121,7 +118,7 @@ if ( is_array( $iga_tracks_acf ) && ! empty( $iga_tracks_acf ) ) {
 foreach ( $iga_training_tracks as &$iga_track ) {
 	if ( 'Personal Coaching' === $iga_track['title'] ) {
 		$iga_track['primary']     = 'Book Assessment';
-		$iga_track['primary_url'] = $iga_training_whatsapp_url;
+		$iga_track['primary_url'] = $iga_training_urls['book'];
 	}
 }
 unset( $iga_track );
