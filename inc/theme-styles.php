@@ -35,7 +35,7 @@ if ( ! function_exists( 'custom_theme_enqueue_styles' ) ) {
 
 
 
-function iron_gorilla_enqueue_icons() {
+function cilla_skyn_enqueue_icons() {
 
     wp_enqueue_style(
         'font-awesome',
@@ -46,10 +46,30 @@ function iron_gorilla_enqueue_icons() {
 
 }
 
-add_action('wp_enqueue_scripts', 'iron_gorilla_enqueue_icons');
+add_action('wp_enqueue_scripts', 'cilla_skyn_enqueue_icons');
+
+if ( ! function_exists( 'cilla_skyn_enqueue_fonts' ) ) {
+	/**
+	 * Cormorant Garamond (serif headings) and Jost (sans body) back the
+	 * Cilla Skyn blocks' `font-serif` / `font-sans-cs` Tailwind utilities
+	 * (src/input.css @theme).
+	 *
+	 * @return void
+	 */
+	function cilla_skyn_enqueue_fonts(): void {
+		wp_enqueue_style(
+			'cilla-skyn-fonts',
+			'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Jost:wght@300;400;500;600&display=swap',
+			[],
+			null
+		);
+	}
+}
+add_action( 'wp_enqueue_scripts', 'cilla_skyn_enqueue_fonts' );
+add_action( 'enqueue_block_editor_assets', 'cilla_skyn_enqueue_fonts' );
 add_action( 'wp_enqueue_scripts', 'custom_theme_enqueue_styles' );
 
-if ( ! function_exists( 'iron_gorilla_dequeue_preorders_sitewide_assets' ) ) {
+if ( ! function_exists( 'cilla_skyn_dequeue_preorders_sitewide_assets' ) ) {
 	/**
 	 * Pre-Orders for WooCommerce enqueues its main.css / jquery-ui / main.js
 	 * on every front-end page (no is_woocommerce() guard in the plugin), and
@@ -63,7 +83,7 @@ if ( ! function_exists( 'iron_gorilla_dequeue_preorders_sitewide_assets' ) ) {
 	 *
 	 * @return void
 	 */
-	function iron_gorilla_dequeue_preorders_sitewide_assets(): void {
+	function cilla_skyn_dequeue_preorders_sitewide_assets(): void {
 		wp_dequeue_style( 'woocommerce-pre-orders-main-css' );
 
 		if ( function_exists( 'is_woocommerce' ) && ( is_woocommerce() || is_cart() || is_checkout() || is_account_page() ) ) {
@@ -75,7 +95,7 @@ if ( ! function_exists( 'iron_gorilla_dequeue_preorders_sitewide_assets' ) ) {
 		wp_dequeue_script( 'preorders-field-date-js' );
 	}
 }
-add_action( 'wp_enqueue_scripts', 'iron_gorilla_dequeue_preorders_sitewide_assets', 100 );
+add_action( 'wp_enqueue_scripts', 'cilla_skyn_dequeue_preorders_sitewide_assets', 100 );
 
 if ( ! function_exists( 'custom_theme_enqueue_editor_styles' ) ) {
 	/**
@@ -86,7 +106,7 @@ if ( ! function_exists( 'custom_theme_enqueue_editor_styles' ) ) {
 	 */
 	function custom_theme_enqueue_editor_styles(): void {
 		custom_theme_enqueue_styles();
-		iron_gorilla_enqueue_icons();
+		cilla_skyn_enqueue_icons();
 
 		wp_enqueue_style(
 			'iga-fonts',

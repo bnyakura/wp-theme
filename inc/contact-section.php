@@ -37,7 +37,7 @@ function iga_get_contact_section() {
 			],
 			'hq'     => [
 				'location' => get_theme_mod( 'iga_contact_location', "Unit 209 Salt Circle, Kent Str.\nSalt River, Cape Town" ),
-				'email'    => get_theme_mod( 'iga_contact_email', 'info@irongorilla.co.za' ),
+				'email'    => get_theme_mod( 'iga_contact_email', 'info@cillaskyn.co.za' ),
 				'phone'    => get_theme_mod( 'iga_contact_phone', '+27790614906' ),
 			],
 		]
@@ -86,7 +86,7 @@ function iga_contact_customize_register( $wp_customize ) {
 			'label'    => __( 'HQ email (displayed)', 'iga' ),
 			'type'     => 'text',
 			'sanitize' => 'sanitize_email',
-			'default'  => 'info@irongorilla.co.za',
+			'default'  => 'info@cillaskyn.co.za',
 		],
 		'iga_contact_phone'     => [
 			'label'    => __( 'HQ phone', 'iga' ),

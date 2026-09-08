@@ -30,6 +30,21 @@
     from { width: 0%; }
     to   { width: 100%; }
   }
+
+  /*
+   * Cilla Skyn design tokens (ported from NewProject/cilla-skyn-homepage.html).
+   * Namespaced separately from the site-wide dark/gym tokens above since
+   * the cilla-* blocks render their own light cream section background
+   * regardless of the surrounding page.
+   */
+  --color-cream: #F4ECE0;
+  --color-cream-dark: #ECE0CD;
+  --color-cs-ink: #1B1712;
+  --color-gold: #B08D57;
+  --color-gold-light: #D8BE93;
+
+  --font-serif: "Cormorant Garamond", serif;
+  --font-sans-cs: "Jost", sans-serif;
 }
 
 /*
@@ -1294,38 +1309,32 @@ body.single-product {
 }
 
 /*
- * IronGorilla Featured Products block (blocks/irongorilla-featured-products)
- * — this block sits on a white background inside an otherwise dark theme,
+ * Cilla Skyn Best Sellers block (blocks/cilla-skyn-best-sellers) — this
+ * block sits on a light cream background inside an otherwise dark theme,
  * and renders products via WooCommerce's own [products] shortcode rather
- * than hand-built card markup (see blocks/armory-products, which queries
- * products directly and can freely author its own <article> card). Because
- * the DOM here comes from WooCommerce's templates, not this theme's, the
- * card look-and-feel that block established — rounded bordered card,
- * full-bleed square image, uppercase display-font title, hover lift, pill
- * sale badge, pill add-to-cart button — has to be reproduced by restyling
- * WooCommerce's existing hooks/classes (.woocommerce-loop-product__title,
- * span.onsale, a.button, etc.) instead of duplicating that markup. Scoped
- * to .wp-theme-irongorilla-featured-products so none of this leaks into
- * the shop/cart/single-product pages, which stay dark and rely on
- * WooCommerce's own default styling.
+ * than hand-built card markup. Because the DOM here comes from
+ * WooCommerce's templates, not this theme's, the mockup's card
+ * look-and-feel — plain bordered card, full-bleed 4:5 image, serif-free
+ * uppercase-free title, ink outline "Shop Now" button — has to be
+ * reproduced by restyling WooCommerce's existing hooks/classes
+ * (.woocommerce-loop-product__title, span.onsale, a.button, etc.) instead
+ * of duplicating that markup. Scoped to .wp-theme-cilla-skyn-best-sellers
+ * so none of this leaks into the shop/cart/single-product pages, which
+ * stay dark and rely on WooCommerce's own default styling.
  */
-.wp-theme-irongorilla-featured-products {
+.wp-theme-cilla-skyn-best-sellers {
 
 	.woocommerce ul.products li.product {
 		display: flex;
 		flex-direction: column;
 		padding: 0;
 		overflow: hidden;
-		border-radius: 1rem;
-		border: 1px solid rgba(10, 10, 10, 0.08);
-		background: #fff;
-		transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+		background: transparent;
+		transition: transform 0.3s ease;
 	}
 
 	.woocommerce ul.products li.product:hover {
 		transform: translateY(-4px);
-		border-color: rgba(58, 125, 68, 0.35);
-		box-shadow: 0 16px 30px rgba(10, 10, 10, 0.08);
 	}
 
 	.woocommerce ul.products li.product .woocommerce-loop-product__link {
@@ -1333,69 +1342,65 @@ body.single-product {
 		flex-direction: column;
 		flex: 1;
 		position: relative;
-		color: var(--color-ink);
+		color: var(--color-cs-ink);
 		text-decoration: none;
 	}
 
-	/* Full-bleed square image (matches the Armory Products card image) */
+	/* 4:5 image (matches the mockup's aspect-[4/5] product tile) */
 	.woocommerce ul.products li.product .woocommerce-loop-product__link img {
 		order: 1;
 		width: 100%;
-		aspect-ratio: 1 / 1;
-		margin: 0;
+		aspect-ratio: 4 / 5;
+		margin: 0 0 1rem;
 		object-fit: cover;
-		background: #f5f5f5;
+		background: linear-gradient(to bottom, var(--color-cream-dark), var(--color-gold-light));
 		transition: transform 0.5s ease;
 	}
 
 	.woocommerce ul.products li.product .woocommerce-loop-product__link:hover img {
-		transform: scale(1.05);
+		transform: scale(1.03);
 	}
 
 	.woocommerce ul.products li.product .woocommerce-loop-product__title {
 		order: 2;
-		margin: 0;
-		padding: 1.1rem 1.25rem 0;
-		font-family: var(--font-display);
-		font-size: 1.05rem;
-		font-weight: 400;
-		text-transform: uppercase;
-		letter-spacing: 0.03em;
-		color: var(--color-ink);
+		margin: 0 0 0.25rem;
+		padding: 0;
+		font-family: var(--font-sans-cs);
+		font-size: 0.875rem;
+		font-weight: 500;
+		color: var(--color-cs-ink);
 	}
 
 	.woocommerce ul.products li.product .woocommerce-loop-product__link:hover .woocommerce-loop-product__title,
 	.woocommerce ul.products li.product .woocommerce-loop-product__link:focus-visible .woocommerce-loop-product__title {
-		color: var(--color-green);
+		color: var(--color-gold);
 	}
 
 	.woocommerce ul.products li.product .woocommerce-loop-product__link:focus-visible {
-		outline: 2px solid var(--color-green);
-		outline-offset: -2px;
+		outline: 2px solid var(--color-gold);
+		outline-offset: 2px;
 	}
 
 	.woocommerce ul.products li.product .price {
 		order: 3;
-		margin: 0;
-		padding: 0.35rem 1.25rem 1.1rem;
-		font-size: 0.9rem;
-		font-weight: 600;
-		color: var(--color-ink);
+		margin: 0 0 0.75rem;
+		padding: 0;
+		font-size: 0.875rem;
+		font-weight: 500;
+		color: var(--color-cs-ink);
 	}
 
 	.woocommerce ul.products li.product .price del {
-		color: var(--color-muted);
+		color: color-mix(in srgb, var(--color-cs-ink) 55%, transparent);
 		opacity: 1;
 	}
 
 	.woocommerce ul.products li.product .price ins {
 		text-decoration: none;
-		color: var(--color-green);
+		color: var(--color-cs-ink);
 	}
 
-	/* Sale badge — small pill in the image's top-left corner, matching the
-	 * Armory Products card badge rather than WooCommerce's default circle
-	 * (which would get clipped by this card's overflow:hidden corners). */
+	/* Sale badge — small pill in the image's top-left corner */
 	.woocommerce span.onsale {
 		position: absolute;
 		top: 0.75rem;
@@ -1405,8 +1410,8 @@ body.single-product {
 		margin: 0;
 		padding: 0.3rem 0.7rem;
 		border-radius: 999px;
-		background: var(--color-green);
-		color: #fff;
+		background: var(--color-cs-ink);
+		color: var(--color-cream);
 		font-size: 0.62rem;
 		font-weight: 700;
 		text-transform: uppercase;
@@ -1414,31 +1419,31 @@ body.single-product {
 		line-height: 1;
 	}
 
+	/* Outline "Shop Now" button (matches the mockup's border-ink button) */
 	.woocommerce ul.products li.product .button {
 		order: 4;
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		margin: 0 1.25rem 1.25rem;
-		padding: 0.7rem 1.25rem;
-		border: none;
-		border-radius: 999px;
-		background: var(--color-green);
-		color: #fff;
-		font-size: 0.72rem;
-		font-weight: 700;
-		text-transform: uppercase;
-		letter-spacing: 0.08em;
+		margin: 0;
+		padding: 0.65rem 1rem;
+		border: 1px solid var(--color-cs-ink);
+		border-radius: 0;
+		background: transparent;
+		color: var(--color-cs-ink);
+		font-size: 0.75rem;
+		letter-spacing: 0.02em;
 		text-align: center;
-		transition: background-color 0.2s ease;
+		transition: background-color 0.2s ease, color 0.2s ease;
 	}
 
 	.woocommerce ul.products li.product .button:hover {
-		background: var(--color-green-l);
+		background: var(--color-cs-ink);
+		color: var(--color-cream);
 	}
 
 	.woocommerce ul.products li.product .button:focus-visible {
-		outline: 2px solid var(--color-green-d);
+		outline: 2px solid var(--color-gold);
 		outline-offset: 2px;
 	}
 
@@ -1448,6 +1453,6 @@ body.single-product {
 
 	.woocommerce ul.products li.product .star-rating {
 		order: 2;
-		margin: 1.1rem 1.25rem 0;
+		margin: 0 0 0.5rem;
 	}
 }

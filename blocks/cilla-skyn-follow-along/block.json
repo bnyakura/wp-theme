@@ -1,0 +1,21 @@
+{
+    "name": "wp-theme/cilla-skyn-follow-along",
+    "title": "Cilla Skyn Follow Along",
+    "category": "design",
+    "icon": "camera",
+    "description": "An Instagram-style tile grid mixing colour-block captions and a quote tile.",
+    "keywords": ["instagram", "social", "grid", "follow", "cilla skyn"],
+    "acf": {
+        "mode": "auto",
+        "renderTemplate": "render.php"
+    },
+    "supports": {
+        "align": ["wide", "full"],
+        "anchor": true,
+        "spacing": {
+            "padding": true,
+            "margin": true
+        }
+    },
+    "style": "file:./style.css"
+}

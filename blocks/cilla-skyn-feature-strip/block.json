@@ -1,0 +1,21 @@
+{
+    "name": "wp-theme/cilla-skyn-feature-strip",
+    "title": "Cilla Skyn Feature Strip",
+    "category": "design",
+    "icon": "editor-ul",
+    "description": "A row of icon + text trust badges, e.g. Barrier-first care, African botanicals.",
+    "keywords": ["features", "trust badges", "icons", "cilla skyn"],
+    "acf": {
+        "mode": "auto",
+        "renderTemplate": "render.php"
+    },
+    "supports": {
+        "align": ["wide", "full"],
+        "anchor": true,
+        "spacing": {
+            "padding": true,
+            "margin": true
+        }
+    },
+    "style": "file:./style.css"
+}

@@ -1,0 +1,21 @@
+{
+    "name": "wp-theme/cilla-skyn-best-sellers",
+    "title": "Cilla Skyn Best Sellers",
+    "category": "design",
+    "icon": "cart",
+    "description": "Cream-section WooCommerce product grid built from the native [products] shortcode.",
+    "keywords": ["products", "woocommerce", "shop", "best sellers", "grid", "cilla skyn"],
+    "acf": {
+        "mode": "auto",
+        "renderTemplate": "render.php"
+    },
+    "supports": {
+        "align": ["wide", "full"],
+        "anchor": true,
+        "spacing": {
+            "padding": true,
+            "margin": true
+        }
+    },
+    "style": "file:./style.css"
+}

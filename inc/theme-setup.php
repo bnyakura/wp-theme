@@ -56,7 +56,7 @@ add_filter( 'upload_mimes', 'custom_theme_allow_svg_mime_type' );
 
 /**
  * Skip WooCommerce's auto-appended shop grid when the Shop page's content
- * already contains the Armory Products block.
+ * already contains the Best Sellers block.
  *
  * This theme has no add_theme_support('woocommerce') (see index.php), so on
  * the Shop page WooCommerce falls back to appending its own product grid to
@@ -71,7 +71,7 @@ function iga_prevent_duplicate_shop_products() {
 
 	$shop_page_id = wc_get_page_id( 'shop' );
 
-	if ( $shop_page_id && has_block( 'wp-theme/armory-products', $shop_page_id ) ) {
+	if ( $shop_page_id && has_block( 'wp-theme/cilla-skyn-best-sellers', $shop_page_id ) ) {
 		remove_filter( 'the_content', array( 'WC_Template_Loader', 'unsupported_theme_shop_content_filter' ), 10 );
 	}
 }
@@ -82,66 +82,66 @@ add_action( 'template_redirect', 'iga_prevent_duplicate_shop_products', 20 );
 
 
 // Add scrolled class via body class (optional enhancement)
-function iron_gorilla_header_classes($classes) {
+function cilla_skyn_header_classes($classes) {
     if (is_admin_bar_showing()) {
         $classes[] = 'admin-bar';
     }
     return $classes;
 }
-add_filter('body_class', 'iron_gorilla_header_classes');
+add_filter('body_class', 'cilla_skyn_header_classes');
 
 
-function iron_gorilla_customizer($wp_customize) {
-    $wp_customize->add_setting('iron_gorilla_whatsapp', [
+function cilla_skyn_customizer($wp_customize) {
+    $wp_customize->add_setting('cilla_skyn_whatsapp', [
         'default'   => '',
         'transport' => 'refresh',
     ]);
 
-    $wp_customize->add_control('iron_gorilla_whatsapp', [
-        'label'   => __('WhatsApp Number', 'iron-gorilla'),
+    $wp_customize->add_control('cilla_skyn_whatsapp', [
+        'label'   => __('WhatsApp Number', 'cilla-skyn'),
         'section' => 'title_tagline',
         'type'    => 'text',
     ]);
 
-    $wp_customize->add_setting('iron_gorilla_whatsapp_group', [
+    $wp_customize->add_setting('cilla_skyn_whatsapp_group', [
         'default'   => '',
         'transport' => 'refresh',
     ]);
 
-    $wp_customize->add_control('iron_gorilla_whatsapp_group', [
-        'label'       => __('WhatsApp Group Invite Link', 'iron-gorilla'),
-        'description' => __('Used by "Join Community" buttons site-wide, e.g. https://chat.whatsapp.com/xxxxxxxx', 'iron-gorilla'),
+    $wp_customize->add_control('cilla_skyn_whatsapp_group', [
+        'label'       => __('WhatsApp Group Invite Link', 'cilla-skyn'),
+        'description' => __('Used by "Join Community" buttons site-wide, e.g. https://chat.whatsapp.com/xxxxxxxx', 'cilla-skyn'),
         'section'     => 'title_tagline',
         'type'        => 'url',
     ]);
 
-    $wp_customize->add_setting('iron_gorilla_assessment_sheet_webhook', [
+    $wp_customize->add_setting('cilla_skyn_assessment_sheet_webhook', [
         'default'   => '',
         'transport' => 'refresh',
     ]);
 
-    $wp_customize->add_control('iron_gorilla_assessment_sheet_webhook', [
-        'label'       => __('Book Assessment — Google Sheet Webhook URL', 'iron-gorilla'),
-        'description' => __('The deployed Google Apps Script Web App URL that appends Book Assessment form submissions to a Google Sheet.', 'iron-gorilla'),
+    $wp_customize->add_control('cilla_skyn_assessment_sheet_webhook', [
+        'label'       => __('Book Assessment — Google Sheet Webhook URL', 'cilla-skyn'),
+        'description' => __('The deployed Google Apps Script Web App URL that appends Book Assessment form submissions to a Google Sheet.', 'cilla-skyn'),
         'section'     => 'title_tagline',
         'type'        => 'url',
     ]);
 }
-add_action('customize_register', 'iron_gorilla_customizer');
+add_action('customize_register', 'cilla_skyn_customizer');
 
 /**
  * The Google Apps Script Web App URL that Book Assessment submissions are
  * posted to so they land in a Google Sheet.
  */
 function iga_get_assessment_sheet_webhook_url() {
-    return get_theme_mod( 'iron_gorilla_assessment_sheet_webhook', '' );
+    return get_theme_mod( 'cilla_skyn_assessment_sheet_webhook', '' );
 }
 
 /**
  * The WhatsApp group invite link used by "Join Community" buttons site-wide.
  */
 function iga_get_whatsapp_group_url() {
-    return get_theme_mod('iron_gorilla_whatsapp_group', '');
+    return get_theme_mod('cilla_skyn_whatsapp_group', '');
 }
 
 /**
@@ -149,7 +149,7 @@ function iga_get_whatsapp_group_url() {
  * Assessment" / "Book Assessment" buttons site-wide.
  */
 function iga_get_whatsapp_number_url( $message = '' ) {
-    $number = get_theme_mod( 'iron_gorilla_whatsapp', '' ) ?: '27790614906';
+    $number = get_theme_mod( 'cilla_skyn_whatsapp', '' ) ?: '27790614906';
     $url    = 'https://wa.me/' . $number;
 
     if ( $message ) {
@@ -215,7 +215,7 @@ function iga_customize_register( $wp_customize ) {
 	$wp_customize->add_setting(
 		'iga_instagram_url',
 		[
-			'default'           => 'https://www.instagram.com/irongorillaarmy',
+			'default'           => 'https://www.instagram.com/cillaskyn',
 			'sanitize_callback' => 'esc_url_raw',
 		]
 	);

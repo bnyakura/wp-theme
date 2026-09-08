@@ -1,0 +1,235 @@
+{
+    "key": "group_cilla_skyn_follow_along",
+    "title": "Cilla Skyn Follow Along",
+    "fields": [
+        {
+            "key": "field_cilla_skyn_follow_along_heading",
+            "label": "Heading",
+            "name": "heading",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": { "width": "33", "class": "", "id": "" },
+            "default_value": "Follow Along",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_cilla_skyn_follow_along_handle",
+            "label": "Handle",
+            "name": "handle",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": { "width": "34", "class": "", "id": "" },
+            "default_value": "@cillaskyn",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_cilla_skyn_follow_along_cta_label",
+            "label": "CTA Label",
+            "name": "cta_label",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": { "width": "16", "class": "", "id": "" },
+            "default_value": "Follow us on Instagram",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_cilla_skyn_follow_along_cta_url",
+            "label": "CTA URL",
+            "name": "cta_url",
+            "aria-label": "",
+            "type": "url",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": { "width": "17", "class": "", "id": "" },
+            "default_value": "#",
+            "placeholder": ""
+        },
+        {
+            "key": "field_cilla_skyn_follow_along_tiles",
+            "label": "Tiles",
+            "name": "tiles",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "One tile per row.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": { "width": "", "class": "", "id": "" },
+            "layout": "block",
+            "min": 0,
+            "max": 0,
+            "collapsed": "field_cilla_skyn_follow_along_tiles_caption",
+            "button_label": "Add Tile",
+            "sub_fields": [
+                {
+                    "key": "field_cilla_skyn_follow_along_tiles_type",
+                    "label": "Type",
+                    "name": "type",
+                    "aria-label": "",
+                    "type": "select",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": { "width": "20", "class": "", "id": "" },
+                    "choices": { "caption": "Caption", "quote": "Quote" },
+                    "default_value": "caption",
+                    "return_format": "value",
+                    "multiple": 0,
+                    "allow_null": 0,
+                    "ui": 0,
+                    "ajax": 0,
+                    "placeholder": ""
+                },
+                {
+                    "key": "field_cilla_skyn_follow_along_tiles_color",
+                    "label": "Color",
+                    "name": "color",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "Hex background colour.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": { "width": "20", "class": "", "id": "" },
+                    "default_value": "#DED0B4",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
+                    "key": "field_cilla_skyn_follow_along_tiles_caption",
+                    "label": "Caption",
+                    "name": "caption",
+                    "aria-label": "",
+                    "type": "textarea",
+                    "instructions": "Shown for Caption tiles. One line break renders as <br>.",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_cilla_skyn_follow_along_tiles_type",
+                                "operator": "==",
+                                "value": "caption"
+                            }
+                        ]
+                    ],
+                    "wrapper": { "width": "30", "class": "", "id": "" },
+                    "default_value": "",
+                    "maxlength": "",
+                    "rows": 2,
+                    "placeholder": "",
+                    "new_lines": ""
+                },
+                {
+                    "key": "field_cilla_skyn_follow_along_tiles_show_icon",
+                    "label": "Show Instagram Icon",
+                    "name": "show_icon",
+                    "aria-label": "",
+                    "type": "true_false",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_cilla_skyn_follow_along_tiles_type",
+                                "operator": "==",
+                                "value": "caption"
+                            }
+                        ]
+                    ],
+                    "wrapper": { "width": "30", "class": "", "id": "" },
+                    "message": "",
+                    "default_value": 1,
+                    "ui": 1,
+                    "ui_on_text": "",
+                    "ui_off_text": ""
+                },
+                {
+                    "key": "field_cilla_skyn_follow_along_tiles_quote",
+                    "label": "Quote",
+                    "name": "quote",
+                    "aria-label": "",
+                    "type": "textarea",
+                    "instructions": "Shown for Quote tiles.",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_cilla_skyn_follow_along_tiles_type",
+                                "operator": "==",
+                                "value": "quote"
+                            }
+                        ]
+                    ],
+                    "wrapper": { "width": "50", "class": "", "id": "" },
+                    "default_value": "",
+                    "maxlength": "",
+                    "rows": 2,
+                    "placeholder": "",
+                    "new_lines": ""
+                },
+                {
+                    "key": "field_cilla_skyn_follow_along_tiles_attribution",
+                    "label": "Attribution",
+                    "name": "attribution",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "Shown for Quote tiles.",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_cilla_skyn_follow_along_tiles_type",
+                                "operator": "==",
+                                "value": "quote"
+                            }
+                        ]
+                    ],
+                    "wrapper": { "width": "30", "class": "", "id": "" },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                }
+            ]
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "wp-theme/cilla-skyn-follow-along"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "An Instagram-style tile grid mixing colour-block captions and a quote tile.",
+    "show_in_rest": 0,
+    "modified": 0
+}

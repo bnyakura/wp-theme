@@ -9,7 +9,7 @@
  * before the template loads), and expose their state through getter functions
  * the block render templates read.
  *
- * @package Iron_Gorilla
+ * @package Cilla_Skyn
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -161,7 +161,7 @@ if ( ! function_exists( 'iga_assessment_form_state' ) ) {
 			do_action( 'iga_assessment_sheet_synced', $booking, $sheet_response );
 		}
 
-		$whatsapp_message = "Hi Iron Gorilla Army, I'd like to book a free assessment.\n\n";
+		$whatsapp_message = "Hi Cilla Skyn, I'd like to book a free assessment.\n\n";
 		$whatsapp_message .= "Name: {$booking['first_name']} {$booking['last_name']}\n";
 		$whatsapp_message .= "Email: {$booking['email']}\n";
 		$whatsapp_message .= "Phone: {$booking['phone']}\n";
@@ -208,11 +208,11 @@ if ( ! function_exists( 'iga_contact_details' ) ) {
 		return apply_filters(
 			'iga_contact_details',
 			array(
-				'email'      => 'info@irongorilla.co.za',
+				'email'      => 'info@cillaskyn.co.za',
 				'phone'      => '+27790614906',
 				'phone_text' => '+27 79 061 4906',
 				'whatsapp'   => '27790614906',
-				'instagram'  => 'https://www.instagram.com/irongorillaarmy',
+				'instagram'  => 'https://www.instagram.com/cillaskyn',
 				'address'    => 'Unit 209 Salt Circle, Kent Str., Salt River, Cape Town',
 			)
 		);
@@ -323,8 +323,8 @@ if ( ! function_exists( 'iga_contact_form_state' ) ) {
 					'message' => $state['posted']['message'],
 				);
 				$recipient     = apply_filters( 'iga_contact_recipient', get_option( 'admin_email' ) );
-				$mail_subject  = sprintf( 'Iron Gorilla dispatch: %s — %s', $subject_label, $submission['name'] );
-				$mail_message  = "A new dispatch was submitted from the Iron Gorilla Army website.\n\n";
+				$mail_subject  = sprintf( 'Cilla Skyn dispatch: %s — %s', $subject_label, $submission['name'] );
+				$mail_message  = "A new dispatch was submitted from the Cilla Skyn website.\n\n";
 				$mail_message .= "Name: {$submission['name']}\n";
 				$mail_message .= "Email: {$submission['email']}\n";
 				$mail_message .= "Phone: " . ( $submission['phone'] ? $submission['phone'] : 'Not supplied' ) . "\n";

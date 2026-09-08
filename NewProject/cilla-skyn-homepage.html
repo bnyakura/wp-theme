@@ -1,0 +1,392 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Cilla Skyn — Skin For A Brighter Tomorrow</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          cream: '#F4ECE0',
+          'cream-dark': '#ECE0CD',
+          ink: '#1B1712',
+          gold: '#B08D57',
+          'gold-light': '#D8BE93',
+        },
+        fontFamily: {
+          serif: ['"Cormorant Garamond"', 'serif'],
+          sans: ['Jost', 'sans-serif'],
+        },
+      },
+    },
+  };
+</script>
+<style>
+  body { background-color: #F4ECE0; }
+  .tracking-widest2 { letter-spacing: 0.22em; }
+  .bottle-icon { filter: drop-shadow(0 6px 10px rgba(0,0,0,0.15)); }
+</style>
+</head>
+<body class="font-sans text-ink antialiased">
+
+  <!-- Announcement Bar -->
+  <div class="relative bg-cream text-[11px] tracking-widest2 uppercase text-ink/70 py-2 px-6 text-center border-b border-ink/10">
+    <span>Thoughtfully formulated. Purposefully layered. Inspired by nature.</span>
+    <span class="hidden md:flex absolute right-6 top-1/2 -translate-y-1/2 items-center gap-3 normal-case tracking-normal text-ink/60">
+      <span>Worldwide Shipping</span>
+      <span class="text-ink/30">|</span>
+      <span>A More Radiant You</span>
+    </span>
+  </div>
+
+  <!-- Header -->
+  <header class="bg-cream border-b border-ink/10">
+    <div class="max-w-[1400px] mx-auto flex items-center justify-between px-6 md:px-10 py-4">
+      <div class="leading-none">
+        <h1 class="font-serif text-2xl md:text-3xl tracking-[0.15em]">CILLA SKYN<sup class="text-[10px] align-super">™</sup></h1>
+        <p class="text-[9px] tracking-widest2 text-ink/60 mt-1">SKIN FOR A BRIGHTER TOMORROW</p>
+      </div>
+
+      <nav class="hidden lg:flex items-center gap-8 text-[13px] tracking-wide text-ink/80">
+        <a href="#" class="hover:text-ink transition">Shop</a>
+        <a href="#" class="hover:text-ink transition">Our Icons</a>
+        <a href="#" class="hover:text-ink transition">Skin Solutions</a>
+        <a href="#" class="hover:text-ink transition">The Baby Collection</a>
+        <a href="#" class="hover:text-ink transition">About</a>
+        <a href="#" class="hover:text-ink transition">Contact</a>
+        <a href="#" class="hover:text-ink transition">The Edit</a>
+      </nav>
+
+      <div class="flex items-center gap-5 text-ink">
+        <button aria-label="Search" class="hover:opacity-60 transition">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-[18px] h-[18px]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3" stroke-linecap="round"/></svg>
+        </button>
+        <button aria-label="Account" class="hover:opacity-60 transition">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-[18px] h-[18px]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 4-6 8-6s8 2 8 6" stroke-linecap="round"/></svg>
+        </button>
+        <button aria-label="Cart" class="relative hover:opacity-60 transition">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-[18px] h-[18px]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path d="M6 8h12l-1 12H7L6 8z"/><path d="M9 8V6a3 3 0 016 0v2" stroke-linecap="round"/></svg>
+          <span class="absolute -top-2 -right-2 bg-ink text-cream text-[9px] w-4 h-4 rounded-full flex items-center justify-center">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="relative overflow-hidden">
+    <div class="absolute inset-0">
+      <img src="assets/ingredients-flatlay.jpg" alt="Cilla Skyn natural botanical ingredients" class="w-full h-full object-cover" />
+      <div class="absolute inset-0 bg-gradient-to-r from-cream via-cream/85 to-cream/20"></div>
+    </div>
+
+    <div class="relative max-w-[1400px] mx-auto px-6 md:px-10 py-20 md:py-28 grid grid-cols-1 md:grid-cols-12 gap-8 min-h-[560px]">
+      <div class="md:col-span-7 flex flex-col justify-center">
+        <p class="text-[11px] tracking-widest2 uppercase text-ink/60 mb-4">Nature Meets A Brighter You</p>
+        <h2 class="font-serif text-5xl md:text-6xl leading-[1.08] mb-6 max-w-xl">Layered in the<br/>Essence of Nature.</h2>
+        <p class="text-ink/70 max-w-md mb-8 leading-relaxed">
+          Cilla Skyn™ is a modern African skincare brand blending powerful botanicals and advanced science to reveal healthy, radiant skin — for today and generations to come.
+        </p>
+        <div class="flex flex-wrap gap-4 mb-10">
+          <a href="#bestsellers" class="inline-flex items-center gap-2 bg-ink text-cream text-[13px] tracking-wide px-7 py-3.5 hover:bg-ink/85 transition">
+            Shop Best Sellers <span aria-hidden="true">→</span>
+          </a>
+          <a href="#" class="inline-flex items-center gap-2 border border-ink text-ink text-[13px] tracking-wide px-7 py-3.5 hover:bg-ink hover:text-cream transition">
+            Explore Rituals
+          </a>
+        </div>
+        <p class="text-[11px] tracking-widest2 uppercase text-ink/50 flex items-center gap-3">
+          <span class="w-8 h-px bg-ink/40"></span> African Roots. Radiant Tomorrows.
+        </p>
+      </div>
+
+      <div class="md:col-span-5 hidden md:flex flex-col justify-center items-end text-right">
+        <ul class="text-[12px] tracking-widest2 uppercase text-ink/70 space-y-2">
+          <li>Skin</li>
+          <li>People</li>
+          <li>Plants</li>
+          <li>A Brighter Tomorrow</li>
+        </ul>
+        <span class="block w-8 h-px bg-ink/40 mt-4"></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Best Sellers -->
+  <section id="bestsellers" class="bg-cream py-16 md:py-20">
+    <div class="max-w-[1400px] mx-auto px-6 md:px-10">
+      <div class="flex items-end justify-between mb-10">
+        <div>
+          <h3 class="font-serif text-3xl md:text-4xl mb-2">Best Sellers</h3>
+          <p class="text-ink/60 text-sm">Discover the icons our community keeps coming back to.</p>
+        </div>
+        <a href="#" class="hidden md:inline-block text-[13px] underline underline-offset-4 hover:text-gold transition whitespace-nowrap">View All Products →</a>
+      </div>
+
+      <div class="relative">
+        <button aria-label="Previous" class="hidden md:flex absolute -left-5 top-1/3 -translate-y-1/2 w-9 h-9 rounded-full border border-ink/30 items-center justify-center bg-cream hover:bg-ink hover:text-cream transition z-10">←</button>
+        <button aria-label="Next" class="hidden md:flex absolute -right-5 top-1/3 -translate-y-1/2 w-9 h-9 rounded-full border border-ink/30 items-center justify-center bg-cream hover:bg-ink hover:text-cream transition z-10">→</button>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-5 md:gap-6">
+
+          <!-- Product Card Template -->
+          <article class="group">
+            <div class="aspect-[4/5] mb-4 bg-gradient-to-b from-[#EDE1CC] to-[#DFCDA9] flex items-center justify-center overflow-hidden">
+              <svg class="bottle-icon w-16 h-24 md:w-20 md:h-28" viewBox="0 0 60 100" fill="none">
+                <rect x="18" y="30" width="24" height="55" rx="4" fill="#F4ECE0" stroke="#8A6D3F" stroke-width="1.5"/>
+                <rect x="22" y="15" width="16" height="18" rx="2" fill="#B08D57"/>
+                <rect x="14" y="10" width="32" height="8" rx="2" fill="#1B1712"/>
+              </svg>
+            </div>
+            <h4 class="text-sm font-medium mb-1">Ceramide Cocoon™</h4>
+            <p class="text-xs text-ink/60 mb-2">Intensive barrier repair cream</p>
+            <p class="text-sm font-medium mb-3">R 580</p>
+            <button class="w-full border border-ink text-[12px] tracking-wide py-2.5 hover:bg-ink hover:text-cream transition">Shop Now</button>
+          </article>
+
+          <article class="group">
+            <div class="aspect-[4/5] mb-4 bg-gradient-to-b from-[#EFE3C7] to-[#D9B96B] flex items-center justify-center overflow-hidden">
+              <svg class="bottle-icon w-16 h-24 md:w-20 md:h-28" viewBox="0 0 60 100" fill="none">
+                <path d="M22 35 L38 35 L36 88 Q30 92 24 88 Z" fill="#E8C063" stroke="#8A6D3F" stroke-width="1.5"/>
+                <rect x="20" y="12" width="20" height="24" rx="3" fill="#1B1712"/>
+                <circle cx="30" cy="12" r="4" fill="#B08D57"/>
+              </svg>
+            </div>
+            <h4 class="text-sm font-medium mb-1">Golden Hour™</h4>
+            <p class="text-xs text-ink/60 mb-2">Radiance facial oil</p>
+            <p class="text-sm font-medium mb-3">R 520</p>
+            <button class="w-full border border-ink text-[12px] tracking-wide py-2.5 hover:bg-ink hover:text-cream transition">Shop Now</button>
+          </article>
+
+          <article class="group">
+            <div class="aspect-[4/5] mb-4 bg-gradient-to-b from-[#E7EDDD] to-[#C9D8B4] flex items-center justify-center overflow-hidden">
+              <svg class="bottle-icon w-16 h-24 md:w-20 md:h-28" viewBox="0 0 60 100" fill="none">
+                <rect x="16" y="32" width="28" height="52" rx="6" fill="#D9E4C6" stroke="#7C8A67" stroke-width="1.5"/>
+                <rect x="21" y="14" width="18" height="20" rx="2" fill="#F4ECE0" stroke="#7C8A67" stroke-width="1.5"/>
+                <rect x="24" y="8" width="12" height="8" rx="2" fill="#B08D57"/>
+              </svg>
+            </div>
+            <h4 class="text-sm font-medium mb-1">Clarity Reset™</h4>
+            <p class="text-xs text-ink/60 mb-2">Purifying gel cleanser</p>
+            <p class="text-sm font-medium mb-3">R 480</p>
+            <button class="w-full border border-ink text-[12px] tracking-wide py-2.5 hover:bg-ink hover:text-cream transition">Shop Now</button>
+          </article>
+
+          <article class="group">
+            <div class="aspect-[4/5] mb-4 bg-gradient-to-b from-[#EDE4D2] to-[#D2B888] flex items-center justify-center overflow-hidden">
+              <svg class="bottle-icon w-16 h-24 md:w-20 md:h-28" viewBox="0 0 60 100" fill="none">
+                <rect x="17" y="34" width="26" height="50" rx="13" fill="#EADFC4" stroke="#8A6D3F" stroke-width="1.5"/>
+                <rect x="20" y="18" width="20" height="18" rx="3" fill="#B08D57"/>
+              </svg>
+            </div>
+            <h4 class="text-sm font-medium mb-1">Oat Therapy™</h4>
+            <p class="text-xs text-ink/60 mb-2">Soothing moisture balm</p>
+            <p class="text-sm font-medium mb-3">R 460</p>
+            <button class="w-full border border-ink text-[12px] tracking-wide py-2.5 hover:bg-ink hover:text-cream transition">Shop Now</button>
+          </article>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Shop by Concern -->
+  <section class="bg-cream-dark py-16 md:py-20">
+    <div class="max-w-[1400px] mx-auto px-6 md:px-10">
+      <h3 class="font-serif text-3xl md:text-4xl mb-2">Shop by Concern</h3>
+      <p class="text-ink/60 text-sm mb-10">Real solutions for your skin's unique journey.</p>
+
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-5">
+        <a href="#" class="group block">
+          <div class="aspect-square mb-3 bg-[#E4CDBB] overflow-hidden"></div>
+          <h5 class="text-sm font-medium leading-tight">Dryness &amp; Dehydration</h5>
+          <p class="text-xs text-ink/55 mt-1 mb-2">Replenish. Restore. Rebalance.</p>
+          <span class="text-xs group-hover:translate-x-1 inline-block transition">→</span>
+        </a>
+        <a href="#" class="group block">
+          <div class="aspect-square mb-3 bg-[#D8BFA0] overflow-hidden"></div>
+          <h5 class="text-sm font-medium leading-tight">Uneven Tone</h5>
+          <p class="text-xs text-ink/55 mt-1 mb-2">A more even, radiant you.</p>
+          <span class="text-xs group-hover:translate-x-1 inline-block transition">→</span>
+        </a>
+        <a href="#" class="group block">
+          <div class="aspect-square mb-3 bg-[#C9A98A] overflow-hidden"></div>
+          <h5 class="text-sm font-medium leading-tight">Blemishes &amp; Congestion</h5>
+          <p class="text-xs text-ink/55 mt-1 mb-2">Clearer skin, calmer days.</p>
+          <span class="text-xs group-hover:translate-x-1 inline-block transition">→</span>
+        </a>
+        <a href="#" class="group block">
+          <div class="aspect-square mb-3 bg-[#E0CBAE] overflow-hidden"></div>
+          <h5 class="text-sm font-medium leading-tight">Sensitive Barrier Care</h5>
+          <p class="text-xs text-ink/55 mt-1 mb-2">Kind care. Lasting strength.</p>
+          <span class="text-xs group-hover:translate-x-1 inline-block transition">→</span>
+        </a>
+        <a href="#" class="group block">
+          <div class="aspect-square mb-3 bg-[#CDB295] overflow-hidden"></div>
+          <h5 class="text-sm font-medium leading-tight">Dullness &amp; Texture</h5>
+          <p class="text-xs text-ink/55 mt-1 mb-2">Smoother. Brighter. Renewed.</p>
+          <span class="text-xs group-hover:translate-x-1 inline-block transition">→</span>
+        </a>
+        <a href="#" class="group block">
+          <div class="aspect-square mb-3 bg-[#DCC7AB] overflow-hidden"></div>
+          <h5 class="text-sm font-medium leading-tight">Body Nourishment</h5>
+          <p class="text-xs text-ink/55 mt-1 mb-2">Head to toe hydration.</p>
+          <span class="text-xs group-hover:translate-x-1 inline-block transition">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Feature Strip -->
+  <section class="bg-cream border-y border-ink/10 py-10">
+    <div class="max-w-[1400px] mx-auto px-6 md:px-10 grid grid-cols-2 md:grid-cols-4 gap-8">
+      <div class="flex items-center gap-3">
+        <svg class="w-6 h-6 text-gold shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 20c8-1 12-7 12-16-9 0-14 5-14 12 0 1.5.7 3 2 4z"/></svg>
+        <div>
+          <p class="text-sm font-medium">Barrier-first care</p>
+          <p class="text-xs text-ink/55">Stronger skin, brighter tomorrows.</p>
+        </div>
+      </div>
+      <div class="flex items-center gap-3">
+        <svg class="w-6 h-6 text-gold shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3c3 3 3 7 0 10-3-3-3-7 0-10z"/><path d="M12 13v8"/></svg>
+        <div>
+          <p class="text-sm font-medium">African botanicals</p>
+          <p class="text-xs text-ink/55">Rooted in nature's wisdom.</p>
+        </div>
+      </div>
+      <div class="flex items-center gap-3">
+        <svg class="w-6 h-6 text-gold shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 3h6M10 3v5l-5 9a2 2 0 002 3h10a2 2 0 002-3l-5-9V3"/></svg>
+        <div>
+          <p class="text-sm font-medium">Modern actives</p>
+          <p class="text-xs text-ink/55">Proven ingredients, real results.</p>
+        </div>
+      </div>
+      <div class="flex items-center gap-3">
+        <svg class="w-6 h-6 text-gold shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 12c2-3 4-3 6 0s4 3 6 0 4-3 4 0M4 18c2-3 4-3 6 0s4 3 6 0 4-3 4 0"/></svg>
+        <div>
+          <p class="text-sm font-medium">Sensorial textures</p>
+          <p class="text-xs text-ink/55">Skincare that feels as good as it works.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Follow Along -->
+  <section class="bg-cream py-16 md:py-20">
+    <div class="max-w-[1400px] mx-auto px-6 md:px-10">
+      <div class="flex items-end justify-between mb-10">
+        <div>
+          <h3 class="font-serif text-3xl md:text-4xl mb-1">Follow Along</h3>
+          <p class="text-ink/60 text-sm">@cillaskyn</p>
+        </div>
+        <a href="#" class="hidden md:inline-block text-[13px] underline underline-offset-4 hover:text-gold transition whitespace-nowrap">Follow us on Instagram →</a>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-6 gap-4">
+        <div class="relative aspect-square bg-[#DED0B4] flex items-end p-3">
+          <p class="text-[11px] tracking-widest2 uppercase leading-snug">Good Skin<br/>Brighter Days</p>
+          <svg class="absolute top-2 right-2 w-4 h-4 text-ink/70" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+        </div>
+        <div class="relative aspect-square bg-[#E7DCC7] flex items-center justify-center p-4 text-center">
+          <p class="font-serif italic text-sm leading-snug">"Skincare is a form of self-respect."<br/><span class="not-italic text-[10px] tracking-widest2 uppercase block mt-2">— Cilla Skyn</span></p>
+        </div>
+        <div class="relative aspect-square bg-[#C7A98C] flex items-end p-3">
+          <p class="text-[11px] tracking-widest2 uppercase leading-snug">Rituals That<br/>Radiate</p>
+          <svg class="absolute top-2 right-2 w-4 h-4 text-cream/90" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+        </div>
+        <div class="relative aspect-square bg-[#EDE4D2] flex items-end p-3">
+          <p class="text-[11px] tracking-widest2 uppercase leading-snug">Nature<br/>In Layer</p>
+          <svg class="absolute top-2 right-2 w-4 h-4 text-ink/70" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+        </div>
+        <div class="relative aspect-square bg-[#D9E0C6] flex items-end p-3">
+          <p class="text-[11px] tracking-widest2 uppercase leading-snug">Beauty Grows<br/>Here</p>
+        </div>
+        <div class="relative aspect-square bg-[#DFCBAE] flex items-end p-3">
+          <p class="text-[11px] tracking-widest2 uppercase leading-snug">African Roots<br/>Radiant Tomorrows</p>
+          <svg class="absolute top-2 right-2 w-4 h-4 text-ink/70" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-cream-dark pt-16 pb-6 border-t border-ink/10">
+    <div class="max-w-[1400px] mx-auto px-6 md:px-10">
+      <div class="grid grid-cols-1 md:grid-cols-[1.6fr_1fr_1fr_1fr_1.4fr] gap-10 pb-12">
+
+        <div>
+          <h4 class="font-serif text-2xl tracking-[0.15em] mb-1">CILLA SKYN<sup class="text-[9px]">™</sup></h4>
+          <p class="text-[9px] tracking-widest2 text-ink/60 mb-4">SKIN FOR A BRIGHTER TOMORROW</p>
+          <p class="text-sm text-ink/65 leading-relaxed mb-5 max-w-xs">Modern African skincare. Powered by nature. Made for real skin. For today and generations to come.</p>
+          <div class="flex items-center gap-4 text-ink/70">
+            <a href="#" aria-label="Instagram" class="hover:text-ink"><svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>
+            <a href="#" aria-label="Facebook" class="hover:text-ink"><svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 9h3V6h-3a3 3 0 00-3 3v2H9v3h2v6h3v-6h3l1-3h-4V9a1 1 0 011-1z"/></svg></a>
+            <a href="#" aria-label="TikTok" class="hover:text-ink"><svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 4v11.5a3.5 3.5 0 11-3-3.46M14 4a5 5 0 005 5"/></svg></a>
+            <a href="#" aria-label="Pinterest" class="hover:text-ink"><svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M10 17c1-4 1.5-6 1.5-8a2 2 0 114 0c0 1.5-1 3.5-1.5 5"/></svg></a>
+            <a href="#" aria-label="YouTube" class="hover:text-ink"><svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="6" width="18" height="12" rx="3"/><path d="M11 10l4 2-4 2v-4z" fill="currentColor" stroke="none"/></svg></a>
+          </div>
+        </div>
+
+        <div>
+          <h6 class="text-sm font-medium mb-4">Shop</h6>
+          <ul class="space-y-2.5 text-sm text-ink/65">
+            <li><a href="#" class="hover:text-ink">All Products</a></li>
+            <li><a href="#" class="hover:text-ink">Best Sellers</a></li>
+            <li><a href="#" class="hover:text-ink">The Baby Collection</a></li>
+            <li><a href="#" class="hover:text-ink">Bundles &amp; Sets</a></li>
+            <li><a href="#" class="hover:text-ink">Gift Cards</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h6 class="text-sm font-medium mb-4">Help</h6>
+          <ul class="space-y-2.5 text-sm text-ink/65">
+            <li><a href="#" class="hover:text-ink">Shipping &amp; Delivery</a></li>
+            <li><a href="#" class="hover:text-ink">Returns &amp; Exchanges</a></li>
+            <li><a href="#" class="hover:text-ink">FAQs</a></li>
+            <li><a href="#" class="hover:text-ink">Track Your Order</a></li>
+            <li><a href="#" class="hover:text-ink">Contact Us</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h6 class="text-sm font-medium mb-4">About</h6>
+          <ul class="space-y-2.5 text-sm text-ink/65">
+            <li><a href="#" class="hover:text-ink">Our Story</a></li>
+            <li><a href="#" class="hover:text-ink">Our Ingredients</a></li>
+            <li><a href="#" class="hover:text-ink">Sustainability</a></li>
+            <li><a href="#" class="hover:text-ink">The Edit</a></li>
+            <li><a href="#" class="hover:text-ink">Press</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h6 class="text-sm font-medium mb-4">Join the Cilla Skyn journal.</h6>
+          <p class="text-sm text-ink/65 mb-4 leading-relaxed">Be the first to know about new launches, exclusive offers and skincare rituals.</p>
+          <form class="flex" onsubmit="return false;">
+            <input type="email" placeholder="Your email address" class="flex-1 min-w-0 bg-cream border border-ink/25 px-3 py-2.5 text-sm placeholder:text-ink/40 focus:outline-none focus:border-ink" />
+            <button type="submit" class="bg-ink text-cream text-sm px-5 py-2.5 hover:bg-ink/85 transition shrink-0">Sign Up</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="border-t border-ink/10 pt-6 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-ink/55">
+        <p>© 2024 Cilla Skyn™. All rights reserved.</p>
+        <p>Skin for a brighter tomorrow</p>
+        <div class="flex items-center gap-4">
+          <a href="#" class="hover:text-ink">Terms</a>
+          <a href="#" class="hover:text-ink">Privacy</a>
+          <a href="#" class="hover:text-ink">Cookies</a>
+          <svg class="w-3.5 h-3.5 text-gold" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 20c8-1 12-7 12-16-9 0-14 5-14 12 0 1.5.7 3 2 4z"/></svg>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

@@ -14,7 +14,7 @@ $logo_url = $logo_id
 	? wp_get_attachment_image_url( $logo_id, 'full' )
 	: get_theme_file_uri( 'assets/images/logo.png' );
 
-$instagram_url  = get_theme_mod( 'iga_instagram_url', 'https://www.instagram.com/irongorillaarmy' );
+$instagram_url  = get_theme_mod( 'iga_instagram_url', 'https://www.instagram.com/cillaskyn' );
 $footer_tagline = get_theme_mod( 'iga_footer_tagline', __( 'A community built around iron and faith. Salt River, Cape Town. Forging people of discipline, purpose, and strength since 2022.', 'iga' ) );
 ?>
 
@@ -118,7 +118,7 @@ $footer_tagline = get_theme_mod( 'iga_footer_tagline', __( 'A community built ar
 			<?php
 			printf(
 				/* translators: %s: current year. */
-				esc_html__( '© %s Iron Gorilla Army. All rights reserved.', 'iga' ),
+				esc_html__( '© %s Cilla Skyn. All rights reserved.', 'iga' ),
 				esc_html( date_i18n( 'Y' ) )
 			);
 			?>&nbsp;&nbsp;
@@ -145,12 +145,12 @@ $footer_tagline = get_theme_mod( 'iga_footer_tagline', __( 'A community built ar
 
 <?php
 // Floating WhatsApp button, shown site-wide (matches the original site's <WhatsApp /> in its root layout).
-$footer_whatsapp = get_theme_mod( 'iron_gorilla_whatsapp', '' );
+$footer_whatsapp = get_theme_mod( 'cilla_skyn_whatsapp', '' );
 ?>
 
 <?php if ( $footer_whatsapp ) : ?>
 	<a
-		href="https://wa.me/<?php echo esc_attr( $footer_whatsapp ); ?>?text=<?php echo urlencode( 'Hi Iron Gorilla Army, I want to find out more about joining The Forge.' ); ?>"
+		href="https://wa.me/<?php echo esc_attr( $footer_whatsapp ); ?>?text=<?php echo urlencode( 'Hi Cilla Skyn, I want to find out more about joining The Forge.' ); ?>"
 		target="_blank"
 		rel="noopener noreferrer"
 		aria-label="Chat on WhatsApp"

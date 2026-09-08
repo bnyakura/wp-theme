@@ -59,11 +59,11 @@
         </a>
 
         <!-- WhatsApp -->
-        <?php $whatsapp = get_theme_mod('iron_gorilla_whatsapp', ''); ?>
+        <?php $whatsapp = get_theme_mod('cilla_skyn_whatsapp', ''); ?>
 
         <?php if ($whatsapp) : ?>
 
-            <a href="https://wa.me/<?php echo esc_attr($whatsapp); ?>?text=<?php echo urlencode('Hi Iron Gorilla Army, I want to find out more about joining The Forge.'); ?>"
+            <a href="https://wa.me/<?php echo esc_attr($whatsapp); ?>?text=<?php echo urlencode('Hi Cilla Skyn, I want to find out more about joining The Forge.'); ?>"
             target="_blank"
             rel="noopener noreferrer"
             class="flex md:hidden items-center justify-center w-[38px] h-[38px] rounded-lg border border-white/14 text-[#25D366] hover:bg-[#25D366]/10 hover:border-[#25D366]/40 transition-all"

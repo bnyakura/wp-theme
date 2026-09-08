@@ -1,0 +1,21 @@
+{
+    "name": "wp-theme/cilla-skyn-shop-by-concern",
+    "title": "Cilla Skyn Shop by Concern",
+    "category": "design",
+    "icon": "grid-view",
+    "description": "A grid of skin-concern category tiles, each with a colour swatch, title, subtitle, and link.",
+    "keywords": ["concern", "category", "grid", "skincare", "cilla skyn"],
+    "acf": {
+        "mode": "auto",
+        "renderTemplate": "render.php"
+    },
+    "supports": {
+        "align": ["wide", "full"],
+        "anchor": true,
+        "spacing": {
+            "padding": true,
+            "margin": true
+        }
+    },
+    "style": "file:./style.css"
+}

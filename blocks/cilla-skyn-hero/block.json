@@ -1,0 +1,21 @@
+{
+    "name": "wp-theme/cilla-skyn-hero",
+    "title": "Cilla Skyn Hero",
+    "category": "design",
+    "icon": "cover-image",
+    "description": "Full-bleed cream hero banner with a botanical background image, heading, two buttons, and a vertical side list.",
+    "keywords": ["hero", "banner", "cilla skyn", "cream", "cover"],
+    "acf": {
+        "mode": "auto",
+        "renderTemplate": "render.php"
+    },
+    "supports": {
+        "align": ["wide", "full"],
+        "anchor": true,
+        "spacing": {
+            "padding": true,
+            "margin": true
+        }
+    },
+    "style": "file:./style.css"
+}
