@@ -6,159 +6,134 @@
  * Anything opened in header.php (e.g. a #page wrapper div) must be closed
  * here, before wp_footer().
  *
- * @package IGA
+ * @package custom-theme
  */
 
-$logo_id  = get_theme_mod( 'custom_logo' );
-$logo_url = $logo_id
-	? wp_get_attachment_image_url( $logo_id, 'full' )
-	: get_theme_file_uri( 'assets/images/logo.png' );
+$cilla_skyn_logo_id  = get_theme_mod( 'custom_logo' );
+$cilla_skyn_logo_url = $cilla_skyn_logo_id ? wp_get_attachment_image_url( $cilla_skyn_logo_id, 'full' ) : '';
 
 $instagram_url  = get_theme_mod( 'iga_instagram_url', 'https://www.instagram.com/cillaskyn' );
-$footer_tagline = get_theme_mod( 'iga_footer_tagline', __( 'A community built around iron and faith. Salt River, Cape Town. Forging people of discipline, purpose, and strength since 2022.', 'iga' ) );
+$footer_tagline = get_theme_mod( 'iga_footer_tagline', __( 'Modern African skincare. Powered by nature. Made for real skin. For today and generations to come.', 'custom-theme' ) );
 ?>
 
-<?php // Close header.php wrappers here if needed, e.g. </div><!-- #page -->. ?>
+<footer id="site-footer" class="border-t border-cs-ink/10 bg-cream-dark pb-6 pt-16 font-sans-cs text-cs-ink">
+	<div class="mx-auto max-w-[1400px] px-6 md:px-10">
 
-<footer id="site-footer" class="border-t border-line bg-s1 px-[5vw] pb-8 pt-[60px]">
-	<div class="mb-12 grid grid-cols-1 gap-10 min-[601px]:grid-cols-2 min-[1081px]:grid-cols-[2fr_1fr_1fr_1fr]">
+		<div class="grid grid-cols-1 gap-10 pb-12 md:grid-cols-[1.6fr_1fr_1fr_1fr_1.4fr]">
 
-		<!-- Brand -->
-		<div class="min-[601px]:col-span-2 min-[1081px]:col-span-1">
-			<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="mb-5 flex items-center gap-[15px] transition-opacity duration-200 hover:opacity-85">
-				<img
-					src="<?php echo esc_url( $logo_url ); ?>"
-					alt="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>"
-					width="45"
-					height="45"
-					class="block h-[45px] w-auto rounded-lg"
-				/>
-				<span class="mt-1 font-display text-[1.8rem] uppercase tracking-[2px] text-white">
-					Iron <span class="text-green-l">Gorilla</span> Army
-				</span>
-			</a>
-			<p class="max-w-[300px] text-[0.95rem] leading-[1.7] text-muted">
-				<?php echo esc_html( $footer_tagline ); ?>
+			<!-- Brand -->
+			<div>
+				<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="mb-1 flex items-center gap-3 no-underline">
+					<?php if ( $cilla_skyn_logo_url ) : ?>
+						<img src="<?php echo esc_url( $cilla_skyn_logo_url ); ?>" alt="<?php bloginfo( 'name' ); ?>" class="h-9 w-auto">
+					<?php endif; ?>
+					<span class="font-serif text-2xl tracking-[0.15em]"><?php bloginfo( 'name' ); ?><sup class="text-[9px]">&trade;</sup></span>
+				</a>
+				<p class="mb-4 text-[9px] uppercase tracking-[0.22em] text-cs-ink/60">
+					<?php echo esc_html( get_theme_mod( 'cilla_skyn_tagline', __( 'Skin for a Brighter Tomorrow', 'custom-theme' ) ) ); ?>
+				</p>
+				<p class="mb-5 max-w-xs text-sm leading-relaxed text-cs-ink/65"><?php echo esc_html( $footer_tagline ); ?></p>
+				<div class="flex items-center gap-4 text-cs-ink/70">
+					<a href="<?php echo esc_url( $instagram_url ); ?>" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="hover:text-cs-ink">
+						<svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+					</a>
+					<a href="#" aria-label="Facebook" class="hover:text-cs-ink">
+						<svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 9h3V6h-3a3 3 0 00-3 3v2H9v3h2v6h3v-6h3l1-3h-4V9a1 1 0 011-1z"/></svg>
+					</a>
+					<a href="#" aria-label="TikTok" class="hover:text-cs-ink">
+						<svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 4v11.5a3.5 3.5 0 11-3-3.46M14 4a5 5 0 005 5"/></svg>
+					</a>
+					<a href="#" aria-label="Pinterest" class="hover:text-cs-ink">
+						<svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M10 17c1-4 1.5-6 1.5-8a2 2 0 114 0c0 1.5-1 3.5-1.5 5"/></svg>
+					</a>
+					<a href="#" aria-label="YouTube" class="hover:text-cs-ink">
+						<svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="6" width="18" height="12" rx="3"/><path d="M11 10l4 2-4 2v-4z" fill="currentColor" stroke="none"/></svg>
+					</a>
+				</div>
+			</div>
+
+			<!-- Shop -->
+			<nav aria-label="<?php esc_attr_e( 'Footer shop navigation', 'custom-theme' ); ?>">
+				<h6 class="mb-4 text-sm font-medium"><?php esc_html_e( 'Shop', 'custom-theme' ); ?></h6>
+				<?php
+				wp_nav_menu(
+					array(
+						'theme_location' => 'footer',
+						'container'      => false,
+						'menu_class'     => 'cilla-skyn-footer-menu space-y-2.5 text-sm',
+						'fallback_cb'    => 'iga_footer_nav_fallback',
+						'depth'          => 1,
+					)
+				);
+				?>
+			</nav>
+
+			<!-- Help -->
+			<div>
+				<h6 class="mb-4 text-sm font-medium"><?php esc_html_e( 'Help', 'custom-theme' ); ?></h6>
+				<ul class="space-y-2.5 text-sm text-cs-ink/65">
+					<li><a href="#" class="hover:text-cs-ink"><?php esc_html_e( 'Shipping & Delivery', 'custom-theme' ); ?></a></li>
+					<li><a href="#" class="hover:text-cs-ink"><?php esc_html_e( 'Returns & Exchanges', 'custom-theme' ); ?></a></li>
+					<li><a href="#" class="hover:text-cs-ink"><?php esc_html_e( 'FAQs', 'custom-theme' ); ?></a></li>
+					<li><a href="#" class="hover:text-cs-ink"><?php esc_html_e( 'Track Your Order', 'custom-theme' ); ?></a></li>
+					<li><a href="<?php echo esc_url( home_url( '/contact/' ) ); ?>" class="hover:text-cs-ink"><?php esc_html_e( 'Contact Us', 'custom-theme' ); ?></a></li>
+				</ul>
+			</div>
+
+			<!-- About -->
+			<div>
+				<h6 class="mb-4 text-sm font-medium"><?php esc_html_e( 'About', 'custom-theme' ); ?></h6>
+				<ul class="space-y-2.5 text-sm text-cs-ink/65">
+					<li><a href="#" class="hover:text-cs-ink"><?php esc_html_e( 'Our Story', 'custom-theme' ); ?></a></li>
+					<li><a href="#" class="hover:text-cs-ink"><?php esc_html_e( 'Our Ingredients', 'custom-theme' ); ?></a></li>
+					<li><a href="#" class="hover:text-cs-ink"><?php esc_html_e( 'Sustainability', 'custom-theme' ); ?></a></li>
+					<li><a href="#" class="hover:text-cs-ink"><?php esc_html_e( 'The Edit', 'custom-theme' ); ?></a></li>
+					<li><a href="#" class="hover:text-cs-ink"><?php esc_html_e( 'Press', 'custom-theme' ); ?></a></li>
+				</ul>
+			</div>
+
+			<!-- Newsletter -->
+			<div>
+				<h6 class="mb-4 text-sm font-medium">
+					<?php
+					printf(
+						/* translators: %s: site name. */
+						esc_html__( 'Join the %s journal.', 'custom-theme' ),
+						esc_html( get_bloginfo( 'name' ) )
+					);
+					?>
+				</h6>
+				<p class="mb-4 text-sm leading-relaxed text-cs-ink/65"><?php esc_html_e( 'Be the first to know about new launches, exclusive offers and skincare rituals.', 'custom-theme' ); ?></p>
+				<form class="flex" onsubmit="return false;">
+					<label class="sr-only" for="cilla-skyn-newsletter-email"><?php esc_html_e( 'Your email address', 'custom-theme' ); ?></label>
+					<input id="cilla-skyn-newsletter-email" type="email" placeholder="<?php esc_attr_e( 'Your email address', 'custom-theme' ); ?>" class="min-w-0 flex-1 border border-cs-ink/25 bg-cream px-3 py-2.5 text-sm placeholder:text-cs-ink/40 focus:border-cs-ink focus:outline-none">
+					<button type="submit" class="shrink-0 bg-cs-ink px-5 py-2.5 text-sm text-cream transition hover:bg-cs-ink/85"><?php esc_html_e( 'Sign Up', 'custom-theme' ); ?></button>
+				</form>
+			</div>
+		</div>
+
+		<!-- Bottom bar -->
+		<div class="flex flex-col items-center justify-between gap-3 border-t border-cs-ink/10 pt-6 text-xs text-cs-ink/55 md:flex-row">
+			<p>
+				<?php
+				printf(
+					/* translators: %s: current year. */
+					esc_html__( '© %s %s. All rights reserved.', 'custom-theme' ),
+					esc_html( date_i18n( 'Y' ) ),
+					esc_html( get_bloginfo( 'name' ) )
+				);
+				?>
 			</p>
-		</div>
-
-		<!-- Navigate -->
-		<nav aria-label="<?php esc_attr_e( 'Footer navigation', 'iga' ); ?>">
-			<h4 class="mb-4 font-display text-[0.8rem] font-bold uppercase tracking-[2px] text-green-l">
-				<?php esc_html_e( 'Navigate', 'iga' ); ?>
-			</h4>
-			<?php
-			wp_nav_menu(
-				[
-					'theme_location' => 'footer',
-					'container'      => false,
-					'menu_class'     => 'flex list-none flex-col gap-2.5',
-					'fallback_cb'    => 'iga_footer_nav_fallback',
-					'depth'          => 1,
-				]
-			);
-			?>
-		</nav>
-
-		<!-- Get In -->
-		<div>
-			<h4 class="mb-4 font-display text-[0.8rem] font-bold uppercase tracking-[2px] text-green-l">
-				<?php esc_html_e( 'Get In', 'iga' ); ?>
-			</h4>
-			<ul class="flex list-none flex-col gap-2.5">
-				<li>
-					<a
-						href="<?php echo esc_url( iga_get_whatsapp_group_url() ); ?>"
-						target="_blank"
-						rel="noopener noreferrer"
-						class="cursor-pointer p-0 text-[0.95rem] text-muted-l transition-colors duration-200 hover:text-white"
-					>
-						<?php esc_html_e( 'Join Community', 'iga' ); ?>
-					</a>
-				</li>
-				<li>
-					<a href="<?php echo esc_url( home_url( '/book/' ) ); ?>" class="text-[0.95rem] text-muted-l transition-colors duration-200 hover:text-white">
-						<?php esc_html_e( 'Book Drop-In', 'iga' ); ?>
-					</a>
-				</li>
-				<li>
-					<a href="<?php echo esc_url( home_url( '/contact/' ) ); ?>" class="text-[0.95rem] text-muted-l transition-colors duration-200 hover:text-white">
-						<?php esc_html_e( 'Contact Us', 'iga' ); ?>
-					</a>
-				</li>
-			</ul>
-		</div>
-
-		<!-- Find Us -->
-		<div>
-			<h4 class="mb-4 font-display text-[0.8rem] font-bold uppercase tracking-[2px] text-green-l">
-				<?php esc_html_e( 'Find Us', 'iga' ); ?>
-			</h4>
-			<address class="text-[0.95rem] not-italic leading-[1.8] text-muted-l">
-				Unit 209 Salt Circle, Kent Str.<br />
-				Salt River, Cape Town
-			</address>
-			<ul class="mt-4 flex list-none flex-col">
-				<li class="flex justify-between text-[0.9rem] text-muted-l">
-					<span><?php esc_html_e( 'Mon – Sat', 'iga' ); ?></span>
-					<span class="text-white"><?php esc_html_e( '6AM – 9PM', 'iga' ); ?></span>
-				</li>
-				<li class="mt-2 flex justify-between text-[0.9rem] text-muted">
-					<span><?php esc_html_e( 'Sunday', 'iga' ); ?></span>
-					<span><?php esc_html_e( 'Closed', 'iga' ); ?></span>
-				</li>
-			</ul>
-		</div>
-
-	</div>
-
-	<!-- Bottom bar -->
-	<div class="flex flex-col items-start gap-3 border-t border-line pt-6 min-[601px]:flex-row min-[601px]:flex-wrap min-[601px]:items-center min-[601px]:justify-between">
-		<p class="text-[0.85rem] text-muted">
-			<?php
-			printf(
-				/* translators: %s: current year. */
-				esc_html__( '© %s Cilla Skyn. All rights reserved.', 'iga' ),
-				esc_html( date_i18n( 'Y' ) )
-			);
-			?>&nbsp;&nbsp;
-			<a href="<?php echo esc_url( home_url( '/terms/' ) ); ?>" class="text-[0.8rem] text-muted"><?php esc_html_e( 'Terms', 'iga' ); ?></a>
-			&middot;
-			<a href="<?php echo esc_url( home_url( '/privacy/' ) ); ?>" class="text-[0.8rem] text-muted"><?php esc_html_e( 'Privacy', 'iga' ); ?></a>
-			&middot;
-			<a href="<?php echo esc_url( home_url( '/refund/' ) ); ?>" class="text-[0.8rem] text-muted"><?php esc_html_e( 'Refunds', 'iga' ); ?></a>
-		</p>
-
-		<div class="flex gap-3">
-			<a
-				href="<?php echo esc_url( $instagram_url ); ?>"
-				target="_blank"
-				rel="noopener noreferrer"
-				aria-label="Instagram"
-				class="flex h-10 w-10 items-center justify-center rounded-full border border-line-strong text-base text-muted transition-all duration-200 hover:border-white/30 hover:bg-s3 hover:text-white"
-			>
-				<i class="fa-brands fa-instagram" aria-hidden="true"></i>
-			</a>
+			<p><?php echo esc_html( get_theme_mod( 'cilla_skyn_tagline', __( 'Skin for a Brighter Tomorrow', 'custom-theme' ) ) ); ?></p>
+			<div class="flex items-center gap-4">
+				<a href="<?php echo esc_url( home_url( '/terms/' ) ); ?>" class="hover:text-cs-ink"><?php esc_html_e( 'Terms', 'custom-theme' ); ?></a>
+				<a href="<?php echo esc_url( home_url( '/privacy/' ) ); ?>" class="hover:text-cs-ink"><?php esc_html_e( 'Privacy', 'custom-theme' ); ?></a>
+				<a href="<?php echo esc_url( home_url( '/cookies/' ) ); ?>" class="hover:text-cs-ink"><?php esc_html_e( 'Cookies', 'custom-theme' ); ?></a>
+				<svg class="h-3.5 w-3.5 text-gold" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 20c8-1 12-7 12-16-9 0-14 5-14 12 0 1.5.7 3 2 4z"/></svg>
+			</div>
 		</div>
 	</div>
 </footer>
-
-<?php
-// Floating WhatsApp button, shown site-wide (matches the original site's <WhatsApp /> in its root layout).
-$footer_whatsapp = get_theme_mod( 'cilla_skyn_whatsapp', '' );
-?>
-
-<?php if ( $footer_whatsapp ) : ?>
-	<a
-		href="https://wa.me/<?php echo esc_attr( $footer_whatsapp ); ?>?text=<?php echo urlencode( 'Hi Cilla Skyn, I want to find out more about joining The Forge.' ); ?>"
-		target="_blank"
-		rel="noopener noreferrer"
-		aria-label="Chat on WhatsApp"
-		class="fixed bottom-7 right-7 z-900 flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-2xl text-white shadow-[0_4px_20px_rgba(37,211,102,0.45)] transition duration-200 hover:scale-110 hover:shadow-[0_6px_28px_rgba(37,211,102,0.6)] max-[768px]:bottom-5 max-[768px]:right-4 max-[768px]:h-12 max-[768px]:w-12 max-[768px]:text-xl"
-	>
-		<i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
-	</a>
-<?php endif; ?>
 
 <?php wp_footer(); ?>
 

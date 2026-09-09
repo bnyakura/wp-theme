@@ -48,11 +48,15 @@
 }
 
 /*
- * Base layer — restores the original global stylesheet's html/body defaults
- * (dark background, DM Sans, off-white text, 1.6 line-height, no horizontal
- * scroll). Tailwind preflight does NOT set these, and without them the whole
- * site renders on a white page. The original's `body { padding-top: 80px }`
- * is deliberately omitted until the fixed header is converted.
+ * Base layer — site-wide defaults. Tailwind preflight does NOT set these,
+ * and without them the whole site renders on a plain white page.
+ *
+ * The page background/typography default to the Cilla Skyn cream palette
+ * now that header.php/footer.php and all current blocks use it — pages
+ * built from WooCommerce's own templates (shop/cart/checkout/single
+ * product) still opt back into the original dark theme by wrapping
+ * themselves in their own bg-ink section (see page-cart.php,
+ * page-checkout.php, single-product.php, index.php's WC product branch).
  */
 @layer base {
   html {
@@ -60,7 +64,7 @@
   }
 
   body {
-    @apply overflow-x-hidden bg-ink font-sans leading-[1.6] text-off antialiased;
+    @apply overflow-x-hidden bg-cream font-sans-cs leading-[1.6] text-cs-ink antialiased;
   }
 }
 
@@ -83,79 +87,30 @@
     width: auto;
 }
 
-/* Desktop + Mobile Menu Links */
-.primary-menu a,
-.mobile-nav a {
-
-    position: relative;
+/* Desktop + mobile primary nav links (header.php) — Cilla Skyn cream header. */
+.cilla-skyn-primary-menu a {
+    color: color-mix(in srgb, var(--color-cs-ink) 80%, transparent);
     text-decoration: none;
-
-    color: #888888;
-
-    font-size: 0.78rem;
-    font-weight: 600;
-
-    text-transform: uppercase;
-    letter-spacing: 1.2px;
-
-    padding: 6px 10px;
-
-    border-radius: 6px;
-
-    transition: all 0.2s ease;
+    transition: color 0.2s ease;
 }
 
-
-/* Hover */
-.primary-menu a:hover,
-.mobile-nav a:hover {
-
-    color: #fff;
-
-    background: rgba(255,255,255,0.05);
-
+.cilla-skyn-primary-menu a:hover,
+.cilla-skyn-primary-menu .current-menu-item a,
+.cilla-skyn-primary-menu .current_page_item a {
+    color: var(--color-cs-ink);
 }
 
-
-/* Active Menu Item */
-.primary-menu .current-menu-item a,
-.primary-menu .current_page_item a,
-.mobile-nav .current-menu-item a,
-.mobile-nav .current_page_item a {
-
-    color: #fff;
-
-}
-
-
-/* Active underline */
-.primary-menu .current-menu-item a::after,
-.primary-menu .current_page_item a::after,
-.mobile-nav .current-menu-item a::after,
-.mobile-nav .current_page_item a::after {
-
-    content: '';
-
-    position: absolute;
-
-    bottom: -2px;
-
-    left: 10px;
-
-    right: 10px;
-
-    height: 2px;
-
-    background: #3A7D44;
-
-    border-radius: 2px;
-
-}
-
-.mobile-nav a {
+.cilla-skyn-mobile-nav a {
     display: block;
-    width: 100%;
-    padding: 12px 15px;
+    padding: 0.85rem 0;
+    border-bottom: 1px solid color-mix(in srgb, var(--color-cs-ink) 10%, transparent);
+    color: var(--color-cs-ink);
+    text-decoration: none;
+}
+
+.cilla-skyn-mobile-nav .current-menu-item a,
+.cilla-skyn-mobile-nav .current_page_item a {
+    color: var(--color-gold);
 }
 
 /*

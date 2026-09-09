@@ -51,20 +51,21 @@
             "button_label": "Add Concern",
             "sub_fields": [
                 {
-                    "key": "field_cilla_skyn_shop_by_concern_concerns_swatch_color",
-                    "label": "Swatch Color",
-                    "name": "swatch_color",
+                    "key": "field_cilla_skyn_shop_by_concern_concerns_product",
+                    "label": "Product",
+                    "name": "product",
                     "aria-label": "",
-                    "type": "text",
-                    "instructions": "Hex value, e.g. #E4CDBB.",
+                    "type": "post_object",
+                    "instructions": "The tile shows this product's image and links to its product page.",
                     "required": 0,
                     "conditional_logic": 0,
-                    "wrapper": { "width": "25", "class": "", "id": "" },
-                    "default_value": "#E4CDBB",
-                    "maxlength": "",
-                    "placeholder": "",
-                    "prepend": "",
-                    "append": ""
+                    "wrapper": { "width": "30", "class": "", "id": "" },
+                    "post_type": ["product"],
+                    "taxonomy": [],
+                    "return_format": "id",
+                    "multiple": 0,
+                    "allow_null": 1,
+                    "ui": 1
                 },
                 {
                     "key": "field_cilla_skyn_shop_by_concern_concerns_title",
@@ -72,7 +73,7 @@
                     "name": "title",
                     "aria-label": "",
                     "type": "text",
-                    "instructions": "",
+                    "instructions": "The concern/category label, e.g. \"Dryness & Dehydration\" — independent of the product's own name.",
                     "required": 0,
                     "conditional_logic": 0,
                     "wrapper": { "width": "35", "class": "", "id": "" },
@@ -91,25 +92,12 @@
                     "instructions": "",
                     "required": 0,
                     "conditional_logic": 0,
-                    "wrapper": { "width": "40", "class": "", "id": "" },
+                    "wrapper": { "width": "35", "class": "", "id": "" },
                     "default_value": "",
                     "maxlength": "",
                     "placeholder": "",
                     "prepend": "",
                     "append": ""
-                },
-                {
-                    "key": "field_cilla_skyn_shop_by_concern_concerns_url",
-                    "label": "URL",
-                    "name": "url",
-                    "aria-label": "",
-                    "type": "url",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": { "width": "", "class": "", "id": "" },
-                    "default_value": "",
-                    "placeholder": ""
                 }
             ]
         }

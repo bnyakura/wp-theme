@@ -7,7 +7,9 @@
     "keywords": ["features", "trust badges", "icons", "cilla skyn"],
     "acf": {
         "mode": "auto",
-        "renderTemplate": "render.php"
+        "renderTemplate": "render.php",
+        "blockVersion": 3,
+        "autoInlineEditing": true
     },
     "supports": {
         "align": ["wide", "full"],

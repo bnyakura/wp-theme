@@ -1,18 +1,8 @@
 document.addEventListener('DOMContentLoaded', function () {
-    const header = document.getElementById('site-header');
     const menuBtn = document.getElementById('mobile-menu-btn');
     const closeBtn = document.getElementById('mobile-close-btn');
     const overlay = document.getElementById('mobile-overlay');
     const drawer = document.getElementById('mobile-drawer');
-
-    // Scroll effect
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 20) {
-            header.classList.add('!bg-[#0A0A0A]/95', '!border-white/10');
-        } else {
-            header.classList.remove('!bg-[#0A0A0A]/95', '!border-white/10');
-        }
-    });
 
     function openMobileMenu() {
         drawer.classList.remove('translate-x-full');

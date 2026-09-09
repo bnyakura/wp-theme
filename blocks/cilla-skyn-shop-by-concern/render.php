@@ -2,9 +2,10 @@
 /**
  * Cilla Skyn Shop by Concern block — render template.
  *
- * A grid of skin-concern category tiles (flat colour swatch, title,
- * subtitle, arrow link) — mirrors NewProject/cilla-skyn-homepage.html's
- * "Shop by Concern" section.
+ * A grid of skin-concern category tiles (product image, title, subtitle,
+ * arrow link) — mirrors NewProject/cilla-skyn-homepage.html's "Shop by
+ * Concern" section, with each tile's flat colour swatch replaced by a
+ * WooCommerce product's image, and the tile linking to that product.
  *
  * @package custom-theme
  */
@@ -31,9 +32,26 @@ $wrapper_attributes = get_block_wrapper_attributes(
 
 		<?php if ( ! empty( $concerns ) ) : ?>
 			<div class="grid grid-cols-2 gap-5 min-[768px]:grid-cols-3 min-[1080px]:grid-cols-6">
-				<?php foreach ( $concerns as $concern ) : ?>
-					<a href="<?php echo esc_url( $concern['url'] ?: '#' ); ?>" class="group block">
-						<div class="mb-3 aspect-square overflow-hidden" style="background-color: <?php echo esc_attr( $concern['swatch_color'] ?: '#E4CDBB' ); ?>;"></div>
+				<?php
+				foreach ( $concerns as $concern ) :
+					$product = ! empty( $concern['product'] ) && function_exists( 'wc_get_product' ) ? wc_get_product( $concern['product'] ) : null;
+
+					$tile_url   = $product ? get_permalink( $product->get_id() ) : '#';
+					$image_id   = $product ? $product->get_image_id() : 0;
+					$image_url  = $image_id ? wp_get_attachment_image_url( $image_id, 'large' ) : ( function_exists( 'wc_placeholder_img_src' ) ? wc_placeholder_img_src( 'large' ) : '' );
+					$image_alt  = $product ? $product->get_name() : '';
+					?>
+					<a href="<?php echo esc_url( $tile_url ); ?>" class="group block">
+						<div class="mb-3 aspect-square overflow-hidden bg-cream">
+							<?php if ( $image_url ) : ?>
+								<img
+									src="<?php echo esc_url( $image_url ); ?>"
+									alt="<?php echo esc_attr( $image_alt ); ?>"
+									class="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+									loading="lazy"
+								>
+							<?php endif; ?>
+						</div>
 						<h3 class="text-sm font-medium leading-tight"><?php echo esc_html( $concern['title'] ); ?></h3>
 						<?php if ( ! empty( $concern['subtitle'] ) ) : ?>
 							<p class="mb-2 mt-1 text-xs text-cs-ink/55"><?php echo esc_html( $concern['subtitle'] ); ?></p>

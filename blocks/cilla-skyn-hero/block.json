@@ -7,7 +7,9 @@
     "keywords": ["hero", "banner", "cilla skyn", "cream", "cover"],
     "acf": {
         "mode": "auto",
-        "renderTemplate": "render.php"
+        "renderTemplate": "render.php",
+        "blockVersion": 3,
+        "autoInlineEditing": true
     },
     "supports": {
         "align": ["wide", "full"],

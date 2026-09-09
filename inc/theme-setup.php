@@ -167,39 +167,39 @@ function iga_get_whatsapp_number_url( $message = '' ) {
 
 
 /**
- * Apply Tailwind classes to footer menu links.
+ * Apply Tailwind classes to footer "Shop" menu links (footer.php).
  *
- * wp_nav_menu() has no link-class argument, so this filter keeps the
- * markup identical to the old React NAV list.
+ * wp_nav_menu() has no link-class argument.
  */
 function iga_footer_menu_link_atts( $atts, $item, $args ) {
 	if ( 'footer' === $args->theme_location ) {
-		$atts['class'] = 'text-[0.95rem] text-muted-l transition-colors duration-200 hover:text-white';
+		$atts['class'] = 'text-cs-ink/65 hover:text-cs-ink';
 	}
 	return $atts;
 }
 add_filter( 'nav_menu_link_attributes', 'iga_footer_menu_link_atts', 10, 3 );
 
 /**
- * Fallback footer nav when no menu is assigned to the "footer" location.
- * Mirrors the hardcoded NAV array from the React site so the footer works
- * before menus are configured in wp-admin.
+ * Fallback for the footer's "Shop" column when no menu is assigned to the
+ * "footer" location, so the footer isn't empty before menus are configured
+ * in wp-admin.
  */
 function iga_footer_nav_fallback() {
+	$shop_url = function_exists( 'wc_get_page_permalink' ) ? wc_get_page_permalink( 'shop' ) : home_url( '/' );
+
 	$items = [
-		[ 'label' => __( 'About', 'iga' ), 'path' => '/about/' ],
-		[ 'label' => __( 'The Forge', 'iga' ), 'path' => '/training/' ],
-		[ 'label' => __( 'Armory', 'iga' ), 'path' => '/armory/' ],
-		[ 'label' => __( 'FAQ', 'iga' ), 'path' => '/faq/' ],
-		[ 'label' => __( 'Contact', 'iga' ), 'path' => '/contact/' ],
-		[ 'label' => __( 'Legends', 'iga' ), 'path' => '/league/' ],
+		[ 'label' => __( 'All Products', 'custom-theme' ), 'url' => $shop_url ],
+		[ 'label' => __( 'Best Sellers', 'custom-theme' ), 'url' => '#' ],
+		[ 'label' => __( 'The Baby Collection', 'custom-theme' ), 'url' => '#' ],
+		[ 'label' => __( 'Bundles & Sets', 'custom-theme' ), 'url' => '#' ],
+		[ 'label' => __( 'Gift Cards', 'custom-theme' ), 'url' => '#' ],
 	];
 
-	echo '<ul class="flex list-none flex-col gap-2.5">';
+	echo '<ul class="cilla-skyn-footer-menu space-y-2.5 text-sm">';
 	foreach ( $items as $item ) {
 		printf(
-			'<li><a href="%s" class="text-[0.95rem] text-muted-l transition-colors duration-200 hover:text-white">%s</a></li>',
-			esc_url( home_url( $item['path'] ) ),
+			'<li><a href="%s" class="text-cs-ink/65 hover:text-cs-ink">%s</a></li>',
+			esc_url( $item['url'] ),
 			esc_html( $item['label'] )
 		);
 	}

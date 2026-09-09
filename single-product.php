@@ -33,7 +33,7 @@ while ( have_posts() ) :
 	$in_stock = $product->is_in_stock();
 	$cats     = wc_get_product_category_list( $product->get_id() );
 	?>
-	<section class="bg-ink px-4.5 pb-24 pt-32 font-sans text-off antialiased min-[481px]:px-6 min-[1081px]:px-[5vw]">
+	<section class="bg-ink px-4.5 pb-24 pt-16 font-sans text-off antialiased min-[481px]:px-6 min-[1081px]:px-[5vw]">
 		<div class="mx-auto max-w-[1280px]">
 
 			<nav class="wp-theme-single-product-breadcrumb mb-8 text-xs uppercase tracking-[0.14em] text-white/40">

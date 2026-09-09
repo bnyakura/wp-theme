@@ -30,9 +30,8 @@ if ( have_posts() ) :
 		if ( function_exists( 'is_product' ) && is_product() ) {
 			// WooCommerce's fallback product template is injected with
 			// show_title=0 -- it expects the theme to render the title
-			// itself, and needs top padding to clear the fixed header
-			// (unlike our ACF blocks, which already build in their own).
-			the_title( '<h1 class="px-[5vw] pt-32 pb-4 font-display text-3xl uppercase tracking-wide text-white">', '</h1>' );
+			// itself.
+			the_title( '<h1 class="px-[5vw] pt-16 pb-4 font-display text-3xl uppercase tracking-wide text-white">', '</h1>' );
 		}
 
 		the_content();

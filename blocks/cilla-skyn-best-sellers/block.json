@@ -7,7 +7,9 @@
     "keywords": ["products", "woocommerce", "shop", "best sellers", "grid", "cilla skyn"],
     "acf": {
         "mode": "auto",
-        "renderTemplate": "render.php"
+        "renderTemplate": "render.php",
+        "blockVersion": 3,
+        "autoInlineEditing": true
     },
     "supports": {
         "align": ["wide", "full"],
