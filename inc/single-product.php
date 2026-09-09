@@ -48,7 +48,7 @@ if ( ! function_exists( 'iga_render_related_products' ) ) {
 		}
 		?>
 		<div class="mx-auto mb-10 max-w-2xl text-center">
-			<h2 class="font-display text-3xl uppercase leading-none tracking-[0.04em] text-white sm:text-4xl">
+			<h2 class="font-serif text-3xl leading-none text-cs-ink sm:text-4xl">
 				<?php esc_html_e( 'You May Also Like', 'iga' ); ?>
 			</h2>
 		</div>
@@ -65,8 +65,8 @@ if ( ! function_exists( 'iga_render_related_products' ) ) {
 				$image_id  = $related_product->get_image_id();
 				$image_url = $image_id ? wp_get_attachment_image_url( $image_id, 'medium_large' ) : wc_placeholder_img_src( 'medium_large' );
 				?>
-				<article class="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-line bg-s1 transition duration-300 hover:-translate-y-1 hover:border-green/50">
-					<a href="<?php echo esc_url( get_permalink( $related_id ) ); ?>" class="relative block aspect-square overflow-hidden bg-s2">
+				<article class="group relative flex h-full flex-col overflow-hidden border border-cs-ink/10 bg-cream-dark transition duration-300 hover:-translate-y-1 hover:border-cs-ink/30">
+					<a href="<?php echo esc_url( get_permalink( $related_id ) ); ?>" class="relative block aspect-square overflow-hidden bg-cream">
 						<img
 							src="<?php echo esc_url( $image_url ); ?>"
 							alt="<?php echo esc_attr( $related_product->get_name() ); ?>"
@@ -75,12 +75,12 @@ if ( ! function_exists( 'iga_render_related_products' ) ) {
 						>
 					</a>
 					<div class="flex flex-1 flex-col p-5">
-						<h3 class="font-display text-lg uppercase tracking-wide text-white">
-							<a href="<?php echo esc_url( get_permalink( $related_id ) ); ?>" class="hover:text-green-l">
+						<h3 class="font-sans-cs text-sm font-medium text-cs-ink">
+							<a href="<?php echo esc_url( get_permalink( $related_id ) ); ?>" class="hover:text-gold">
 								<?php echo esc_html( $related_product->get_name() ); ?>
 							</a>
 						</h3>
-						<div class="mt-2 text-sm text-white/70"><?php echo wp_kses_post( $related_product->get_price_html() ); ?></div>
+						<div class="mt-2 text-sm text-cs-ink/70"><?php echo wp_kses_post( $related_product->get_price_html() ); ?></div>
 					</div>
 				</article>
 			<?php endforeach; ?>

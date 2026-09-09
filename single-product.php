@@ -33,10 +33,10 @@ while ( have_posts() ) :
 	$in_stock = $product->is_in_stock();
 	$cats     = wc_get_product_category_list( $product->get_id() );
 	?>
-	<section class="bg-ink px-4.5 pb-24 pt-16 font-sans text-off antialiased min-[481px]:px-6 min-[1081px]:px-[5vw]">
+	<section class="bg-cream px-4.5 pb-24 pt-16 font-sans-cs text-cs-ink antialiased min-[481px]:px-6 min-[1081px]:px-[5vw]">
 		<div class="mx-auto max-w-[1280px]">
 
-			<nav class="wp-theme-single-product-breadcrumb mb-8 text-xs uppercase tracking-[0.14em] text-white/40">
+			<nav class="wp-theme-single-product-breadcrumb mb-8 text-xs uppercase tracking-[0.14em] text-cs-ink/40">
 				<?php woocommerce_breadcrumb(); ?>
 			</nav>
 
@@ -51,24 +51,24 @@ while ( have_posts() ) :
 				<div class="flex flex-col justify-center">
 
 					<?php if ( $cats ) : ?>
-						<div class="mb-2 text-[0.7rem] font-bold uppercase tracking-[0.18em] text-green-l"><?php echo wp_kses_post( $cats ); ?></div>
+						<div class="mb-2 text-[0.7rem] font-bold uppercase tracking-[0.18em] text-gold"><?php echo wp_kses_post( $cats ); ?></div>
 					<?php endif; ?>
 
-					<h1 class="font-display text-4xl uppercase leading-none tracking-[0.03em] text-white sm:text-5xl">
+					<h1 class="font-serif text-4xl leading-none text-cs-ink sm:text-5xl">
 						<?php the_title(); ?>
 					</h1>
 
 					<div class="mt-5 flex items-center gap-3">
-						<div class="wp-theme-single-product-price text-2xl text-white/90"><?php echo wp_kses_post( $product->get_price_html() ); ?></div>
+						<div class="wp-theme-single-product-price text-2xl text-cs-ink/90"><?php echo wp_kses_post( $product->get_price_html() ); ?></div>
 						<?php if ( $on_sale ) : ?>
-							<span class="rounded-full bg-green px-3 py-1 text-[0.65rem] font-bold uppercase tracking-[0.12em] text-white"><?php esc_html_e( 'Sale', 'iga' ); ?></span>
+							<span class="rounded-full bg-cs-ink px-3 py-1 text-[0.65rem] font-bold uppercase tracking-[0.12em] text-cream"><?php esc_html_e( 'Sale', 'iga' ); ?></span>
 						<?php elseif ( ! $in_stock ) : ?>
-							<span class="rounded-full bg-white/10 px-3 py-1 text-[0.65rem] font-bold uppercase tracking-[0.12em] text-white/60"><?php esc_html_e( 'Out of Stock', 'iga' ); ?></span>
+							<span class="rounded-full bg-cs-ink/10 px-3 py-1 text-[0.65rem] font-bold uppercase tracking-[0.12em] text-cs-ink/60"><?php esc_html_e( 'Out of Stock', 'iga' ); ?></span>
 						<?php endif; ?>
 					</div>
 
 					<?php if ( $product->get_short_description() ) : ?>
-						<div class="mt-6 max-w-md text-sm leading-7 text-white/60">
+						<div class="mt-6 max-w-md text-sm leading-7 text-cs-ink/60">
 							<?php echo apply_filters( 'woocommerce_short_description', $product->get_short_description() ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 						</div>
 					<?php endif; ?>
@@ -77,7 +77,7 @@ while ( have_posts() ) :
 						<?php woocommerce_template_single_add_to_cart(); ?>
 					</div>
 
-					<div class="wp-theme-single-product-meta mt-8 border-t border-line pt-6">
+					<div class="wp-theme-single-product-meta mt-8 border-t border-cs-ink/10 pt-6">
 						<?php woocommerce_template_single_meta(); ?>
 					</div>
 
