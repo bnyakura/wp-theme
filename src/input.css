@@ -1394,3 +1394,265 @@ body.single-product {
 		margin: 0 0 0.5rem;
 	}
 }
+
+/*
+ * Shop page (page-shop.php) — restyles WooCommerce's own default archive
+ * markup (still rendered via the_content()'s unsupported_theme_shop_
+ * content_filter(), since this theme has no add_theme_support(
+ * 'woocommerce')) to match the Cilla Skyn cream theme. The card
+ * look-and-feel mirrors the single product page's "You May Also Like"
+ * grid (inc/single-product.php) for consistency across the two
+ * product-grid surfaces. Scoped to .wp-theme-shop-page so it stays clear
+ * of the Best Sellers block above, which sits on a plain (borderless,
+ * transparent-card) light section instead.
+ */
+.wp-theme-shop-page {
+
+	/*
+	 * Every nested rule below is written under .woocommerce, mirroring
+	 * WooCommerce's own selector prefix (e.g. ".woocommerce ul.products
+	 * li.product .onsale"), so our extra .wp-theme-shop-page class always
+	 * makes these at least one class more specific than WooCommerce's
+	 * built-in rules -- without this, ties in specificity only happen to
+	 * resolve in our favour because the theme stylesheet loads after
+	 * WooCommerce's, which is fragile, and some WC rules (e.g. the
+	 * .onsale position) are MORE specific than a bare ".wp-theme-shop-page
+	 * .onsale" and would win outright.
+	 */
+	.woocommerce {
+		display: grid;
+		grid-template-columns: 1fr auto;
+		align-items: center;
+		column-gap: 1rem;
+
+		.woocommerce-notices-wrapper {
+			grid-column: 1 / -1;
+		}
+
+		.woocommerce-notices-wrapper:empty {
+			display: none;
+		}
+
+		.woocommerce-result-count {
+			margin: 0;
+			font-size: 0.8rem;
+			color: color-mix(in srgb, var(--color-cs-ink) 60%, transparent);
+		}
+
+		.woocommerce-ordering {
+			margin: 0;
+		}
+
+		.woocommerce-ordering .orderby {
+			padding: 0.55rem 0.9rem;
+			border: 1px solid color-mix(in srgb, var(--color-cs-ink) 20%, transparent);
+			border-radius: 0;
+			background: var(--color-cream);
+			color: var(--color-cs-ink);
+			font-size: 0.8rem;
+		}
+
+		.woocommerce-ordering .orderby:focus {
+			outline: none;
+			border-color: var(--color-cs-ink);
+		}
+
+		/* Product grid — WooCommerce floats li.product by default; switch to
+		   a real grid so cards line up in even rows regardless of content
+		   length. */
+		ul.products {
+			grid-column: 1 / -1;
+			display: grid;
+			grid-template-columns: repeat(2, 1fr);
+			gap: 1.5rem;
+			margin: 2.5rem 0 0;
+			padding: 0;
+			list-style: none;
+		}
+
+		/* WooCommerce's clearfix (content:" "; display:table) on ::before/
+		   ::after is only needed for its float-based layout -- once
+		   ul.products is display:grid those generated boxes become real
+		   grid items and occupy the first cell, pushing the actual first
+		   product into the second column. */
+		ul.products::before,
+		ul.products::after {
+			content: none;
+		}
+
+		@media (min-width: 640px) {
+			ul.products {
+				grid-template-columns: repeat(3, 1fr);
+			}
+		}
+
+		@media (min-width: 1024px) {
+			ul.products {
+				grid-template-columns: repeat(4, 1fr);
+			}
+		}
+
+		ul.products li.product {
+			display: flex;
+			flex-direction: column;
+			width: auto !important;
+			float: none !important;
+			margin: 0 !important;
+			padding: 0;
+			overflow: hidden;
+			border: 1px solid color-mix(in srgb, var(--color-cs-ink) 10%, transparent);
+			background: var(--color-cream-dark);
+			transition: transform 0.3s ease, border-color 0.3s ease;
+		}
+
+		ul.products li.product:hover {
+			transform: translateY(-4px);
+			border-color: color-mix(in srgb, var(--color-cs-ink) 30%, transparent);
+		}
+
+		ul.products li.product .woocommerce-loop-product__link {
+			display: flex;
+			flex-direction: column;
+			flex: 1;
+			position: relative;
+			padding: 0 1.1rem 1.1rem;
+			color: var(--color-cs-ink);
+			text-decoration: none;
+		}
+
+		ul.products li.product .woocommerce-loop-product__link img {
+			order: 1;
+			width: calc(100% + 2.2rem);
+			aspect-ratio: 1 / 1;
+			margin: 0 -1.1rem 1rem;
+			object-fit: cover;
+			background: var(--color-cream);
+			transition: transform 0.5s ease;
+		}
+
+		ul.products li.product:hover .woocommerce-loop-product__link img {
+			transform: scale(1.03);
+		}
+
+		ul.products li.product .woocommerce-loop-product__title {
+			order: 2;
+			margin: 0 0 0.35rem;
+			padding: 0;
+			font-family: var(--font-sans-cs);
+			font-size: 0.875rem;
+			font-weight: 500;
+			color: var(--color-cs-ink);
+		}
+
+		ul.products li.product .woocommerce-loop-product__link:hover .woocommerce-loop-product__title {
+			color: var(--color-gold);
+		}
+
+		ul.products li.product .price {
+			order: 3;
+			margin: 0;
+			padding: 0;
+			font-size: 0.85rem;
+			color: var(--color-cs-ink);
+		}
+
+		ul.products li.product .price del {
+			color: color-mix(in srgb, var(--color-cs-ink) 50%, transparent);
+			opacity: 1;
+		}
+
+		ul.products li.product .price ins {
+			text-decoration: none;
+			color: var(--color-cs-ink);
+		}
+
+		ul.products li.product .star-rating {
+			order: 2;
+			margin: 0 0 0.35rem;
+		}
+
+		ul.products li.product .onsale {
+			position: absolute;
+			top: 0.75rem;
+			left: 0.75rem;
+			right: auto;
+			min-height: 0;
+			min-width: 0;
+			margin: 0;
+			padding: 0.3rem 0.7rem;
+			border-radius: 999px;
+			background: var(--color-cs-ink);
+			color: var(--color-cream);
+			font-size: 0.62rem;
+			font-weight: 700;
+			text-transform: uppercase;
+			letter-spacing: 0.08em;
+			line-height: 1;
+		}
+
+		ul.products li.product > a.button {
+			order: 4;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			margin: 0 1.1rem 1.1rem;
+			padding: 0.65rem 1rem;
+			border: 1px solid var(--color-cs-ink);
+			border-radius: 999px;
+			background: transparent;
+			color: var(--color-cs-ink);
+			font-size: 0.75rem;
+			letter-spacing: 0.02em;
+			text-align: center;
+			text-decoration: none;
+			transition: background-color 0.2s ease, color 0.2s ease;
+		}
+
+		ul.products li.product > a.button:hover {
+			background: var(--color-cs-ink);
+			color: var(--color-cream);
+		}
+
+		ul.products li.product > a.button.loading {
+			opacity: 0.7;
+		}
+
+		.woocommerce-pagination {
+			grid-column: 1 / -1;
+			margin: 3rem 0 0;
+		}
+
+		.woocommerce-pagination ul.page-numbers {
+			display: flex;
+			gap: 0.5rem;
+			list-style: none;
+			margin: 0;
+			padding: 0;
+		}
+
+		.woocommerce-pagination .page-numbers a,
+		.woocommerce-pagination .page-numbers span {
+			display: flex;
+			height: 2.25rem;
+			width: 2.25rem;
+			align-items: center;
+			justify-content: center;
+			border: 1px solid color-mix(in srgb, var(--color-cs-ink) 15%, transparent);
+			border-radius: 999px;
+			font-size: 0.8rem;
+			color: var(--color-cs-ink);
+			text-decoration: none;
+		}
+
+		.woocommerce-pagination .page-numbers .current {
+			border-color: var(--color-cs-ink);
+			background: var(--color-cs-ink);
+			color: var(--color-cream);
+		}
+
+		.woocommerce-pagination .page-numbers a:hover {
+			border-color: var(--color-gold);
+			color: var(--color-gold);
+		}
+	}
+}
