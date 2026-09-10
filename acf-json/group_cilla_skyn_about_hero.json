@@ -3,6 +3,63 @@
     "title": "Cilla Skyn About Hero",
     "fields": [
         {
+            "key": "field_cilla_skyn_about_hero_background_image",
+            "label": "Background Image",
+            "name": "background_image",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "Optional. Renders full-bleed behind the text with a soft cream wash over it to keep the copy readable. Leave empty for a plain cream panel.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": { "width": "", "class": "", "id": "" },
+            "return_format": "id",
+            "preview_size": "medium",
+            "library": "all",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": ""
+        },
+        {
+            "key": "field_cilla_skyn_about_hero_overlay_color",
+            "label": "Background Overlay Color",
+            "name": "overlay_color",
+            "aria-label": "",
+            "type": "color_picker",
+            "instructions": "Wash placed over the Background Image so the text stays readable. Click the swatch and drag the opacity slider at the bottom of the picker to adjust how strong the wash is — a fully transparent colour shows the photo untouched. Only used when a Background Image is set.",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_cilla_skyn_about_hero_background_image",
+                        "operator": "!=",
+                        "value": ""
+                    }
+                ]
+            ],
+            "wrapper": { "width": "50", "class": "", "id": "" },
+            "default_value": "rgba(244, 236, 224, 0.8)",
+            "enable_opacity": 1,
+            "return_format": "string"
+        },
+        {
+            "key": "field_cilla_skyn_about_hero_text_color",
+            "label": "Text Color",
+            "name": "text_color",
+            "aria-label": "",
+            "type": "color_picker",
+            "instructions": "Overrides the Heading, Intro, Description and Tagline colour — useful for light text over a dark Background Image. Doesn't affect the Eyebrow, which always stays the brand gold accent.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": { "width": "50", "class": "", "id": "" },
+            "default_value": "#1B1712",
+            "enable_opacity": 0,
+            "return_format": "string"
+        },
+        {
             "key": "field_cilla_skyn_about_hero_eyebrow",
             "label": "Eyebrow",
             "name": "eyebrow",
@@ -39,32 +96,32 @@
             "label": "Intro",
             "name": "intro",
             "aria-label": "",
-            "type": "textarea",
-            "instructions": "First, short brand-statement paragraph.",
+            "type": "wysiwyg",
+            "instructions": "First, short brand-statement paragraph. Full rich-text editor: bold/italic, headings, lists, links. Use \"Add Media\" to insert images or files, or paste a YouTube/Vimeo link on its own line to embed a video.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": { "width": "", "class": "", "id": "" },
             "default_value": "Cilla Skyn™ is a modern African skincare brand creating thoughtful, sensorial formulations inspired by nature and refined by science.",
-            "maxlength": "",
-            "rows": 3,
-            "placeholder": "",
-            "new_lines": ""
+            "tabs": "all",
+            "toolbar": "full",
+            "media_upload": 1,
+            "delay": 0
         },
         {
             "key": "field_cilla_skyn_about_hero_description",
             "label": "Description",
             "name": "description",
             "aria-label": "",
-            "type": "textarea",
-            "instructions": "Second, supporting paragraph.",
+            "type": "wysiwyg",
+            "instructions": "Second, supporting paragraph. Full rich-text editor: bold/italic, headings, lists, links. Use \"Add Media\" to insert images or files, or paste a YouTube/Vimeo link on its own line to embed a video.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": { "width": "", "class": "", "id": "" },
             "default_value": "We believe skincare should do more than simply sit on the skin. It should feel considered, purposeful and beautifully balanced — from the ingredients chosen to the textures experienced and the rituals created around them.",
-            "maxlength": "",
-            "rows": 3,
-            "placeholder": "",
-            "new_lines": ""
+            "tabs": "all",
+            "toolbar": "full",
+            "media_upload": 1,
+            "delay": 0
         },
         {
             "key": "field_cilla_skyn_about_hero_tagline",

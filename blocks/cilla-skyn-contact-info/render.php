@@ -27,9 +27,18 @@ $cilla_skyn_contact_icon = static function ( $type ) {
 	);
 };
 
-$heading    = get_field( 'heading' ) ?: 'Get in Touch';
-$subheading = get_field( 'subheading' ) ?: "Questions about a product or your order? We're here to help.";
-$methods    = get_field( 'methods' );
+$heading = get_field( 'heading' ) ?: 'Get in Touch';
+$methods = get_field( 'methods' );
+
+/*
+ * Subheading is a WYSIWYG field (bold/headings/lists/links/images/video
+ * embeds/file links) — fetched unformatted (3rd arg `false`) and run
+ * through the same `the_content` pipeline WordPress uses for post
+ * content (wpautop, shortcodes, oEmbed), rather than ACF's own wysiwyg
+ * formatting, to avoid double-wrapping paragraphs in <p> tags.
+ */
+$subheading_raw = get_field( 'subheading', false, false ) ?: "Questions about a product or your order? We're here to help.";
+$subheading     = apply_filters( 'the_content', $subheading_raw );
 
 $wrapper_attributes = get_block_wrapper_attributes(
 	array(
@@ -43,8 +52,10 @@ $wrapper_attributes = get_block_wrapper_attributes(
 		<?php if ( $heading ) : ?>
 			<h2 class="mb-2 text-center font-serif text-3xl min-[768px]:text-4xl"><?php echo esc_html( $heading ); ?></h2>
 		<?php endif; ?>
-		<?php if ( $subheading ) : ?>
-			<p class="mb-10 text-center text-sm text-cs-ink/60"><?php echo esc_html( $subheading ); ?></p>
+		<?php if ( trim( wp_strip_all_tags( $subheading ) ) || false !== strpos( $subheading, '<img' ) || false !== strpos( $subheading, '<iframe' ) ) : ?>
+			<div class="cilla-skyn-contact-info-subheading mx-auto mb-10 max-w-2xl text-center text-sm text-cs-ink/60">
+				<?php echo $subheading; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+			</div>
 		<?php endif; ?>
 
 		<?php if ( ! empty( $methods ) ) : ?>

@@ -1,1 +1,118 @@
-/* Styled via Tailwind utility classes in render.php. */
+/*
+ * Rich-text styling for the Subheading WYSIWYG field's output
+ * (blocks/cilla-skyn-contact-info/render.php). Hand-written rather than
+ * Tailwind utility classes, since this markup comes from the block editor
+ * and can't carry them — same reasoning as the Best Sellers block's
+ * WooCommerce shortcode overrides (see the main theme README §3/§12).
+ * Scoped under .cilla-skyn-contact-info-subheading so it never leaks into
+ * other WYSIWYG fields added elsewhere later.
+ */
+
+.cilla-skyn-contact-info-subheading {
+	color: var(--color-cs-ink);
+}
+
+.cilla-skyn-contact-info-subheading > *:first-child {
+	margin-top: 0;
+}
+
+.cilla-skyn-contact-info-subheading > *:last-child {
+	margin-bottom: 0;
+}
+
+.cilla-skyn-contact-info-subheading p {
+	margin: 0 0 1em;
+	line-height: 1.6;
+}
+
+.cilla-skyn-contact-info-subheading h1,
+.cilla-skyn-contact-info-subheading h2,
+.cilla-skyn-contact-info-subheading h3,
+.cilla-skyn-contact-info-subheading h4,
+.cilla-skyn-contact-info-subheading h5,
+.cilla-skyn-contact-info-subheading h6 {
+	margin: 1.4em 0 0.5em;
+	font-family: var(--font-serif);
+	font-weight: 400;
+	line-height: 1.2;
+	color: var(--color-cs-ink);
+}
+
+.cilla-skyn-contact-info-subheading h1 { font-size: 1.75rem; }
+.cilla-skyn-contact-info-subheading h2 { font-size: 1.5rem; }
+.cilla-skyn-contact-info-subheading h3 { font-size: 1.25rem; }
+.cilla-skyn-contact-info-subheading h4,
+.cilla-skyn-contact-info-subheading h5,
+.cilla-skyn-contact-info-subheading h6 { font-size: 1.05rem; }
+
+.cilla-skyn-contact-info-subheading strong,
+.cilla-skyn-contact-info-subheading b {
+	font-weight: 600;
+	color: var(--color-cs-ink);
+}
+
+.cilla-skyn-contact-info-subheading em,
+.cilla-skyn-contact-info-subheading i {
+	font-style: italic;
+}
+
+.cilla-skyn-contact-info-subheading a {
+	color: var(--color-cs-ink);
+	text-decoration: underline;
+	text-decoration-color: var(--color-gold);
+	text-underline-offset: 2px;
+}
+
+.cilla-skyn-contact-info-subheading a:hover {
+	color: var(--color-gold);
+}
+
+.cilla-skyn-contact-info-subheading ul,
+.cilla-skyn-contact-info-subheading ol {
+	margin: 0 0 1em;
+	padding-left: 1.25em;
+	text-align: left;
+}
+
+.cilla-skyn-contact-info-subheading li {
+	margin-bottom: 0.35em;
+}
+
+.cilla-skyn-contact-info-subheading blockquote {
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 2px solid var(--color-gold);
+	font-style: italic;
+	color: color-mix(in srgb, var(--color-cs-ink) 70%, transparent);
+}
+
+.cilla-skyn-contact-info-subheading img {
+	max-width: 100%;
+	height: auto;
+	margin: 1em auto;
+	display: block;
+}
+
+.cilla-skyn-contact-info-subheading iframe,
+.cilla-skyn-contact-info-subheading video,
+.cilla-skyn-contact-info-subheading .wp-video,
+.cilla-skyn-contact-info-subheading .wp-audio-shortcode {
+	max-width: 100%;
+	margin: 1em auto;
+}
+
+/*
+ * add_theme_support('responsive-embeds') (inc/theme-setup.php) makes core
+ * wrap a pasted YouTube/Vimeo URL's resulting <iframe> in a
+ * .wp-embed-responsive-wrapper div — keep it fluid rather than a fixed
+ * embed width/height leaking past the column.
+ */
+.cilla-skyn-contact-info-subheading .wp-embed-responsive-wrapper {
+	max-width: 100%;
+}
+
+.cilla-skyn-contact-info-subheading .wp-embed-responsive-wrapper iframe {
+	width: 100%;
+	height: auto;
+	aspect-ratio: 16 / 9;
+}

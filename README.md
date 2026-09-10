@@ -192,10 +192,10 @@ this page):
 
 | Block | Folder | What it renders |
 |---|---|---|
-| **About Hero** | `blocks/cilla-skyn-about-hero` | Centered brand-statement intro: eyebrow, heading, two paragraphs, closing tagline |
+| **About Hero** | `blocks/cilla-skyn-about-hero` | Centered brand-statement intro: optional background image with a colour-picker overlay wash, a colour-picker text colour, eyebrow, heading, two rich-text (WYSIWYG) paragraphs, closing tagline |
 | **Our Story** | `blocks/cilla-skyn-our-story` | Founder-story section: eyebrow, heading, paragraph repeater, pronunciation note, closing line |
 | **Formulation Approach** | `blocks/cilla-skyn-formulation-approach` | Formulation-philosophy section: eyebrow, heading, paragraph repeater, three-line principles strip |
-| **Contact Info** | `blocks/cilla-skyn-contact-info` | Row of contact-method cards (WhatsApp, Instagram, Email, Phone) with icon, label, value, link — usable on any page |
+| **Contact Info** | `blocks/cilla-skyn-contact-info` | Heading + rich-text subheading (WYSIWYG — bold, headings, images, video embeds, files) + row of contact-method cards (WhatsApp, Instagram, Email, Phone) with icon, label, value, link — usable on any page |
 
 **About page, additional pages** (Our Ingredients / Sustainability / The
 Edit / Press aren't in the docx's About Us copy, but each has its own nav
@@ -520,6 +520,7 @@ those two tasks and wasn't done here.
 | A WooCommerce-looking `.hidden` utility fights with the header nav on non-WooCommerce pages | Already handled — `cilla_skyn_dequeue_preorders_sitewide_assets()` in `inc/theme-styles.php` dequeues the offending plugin CSS outside WooCommerce pages |
 | Contact Form block always shows an error, or messages never arrive | `wp_mail()` needs working outgoing mail on the host — install/configure an SMTP plugin (e.g. WP Mail SMTP) with real credentials, then send a test submission. Check spam too |
 | Contact Form block shows "Your session expired" immediately | A page-caching plugin is caching the nonce in the form's HTML — exclude that page from caching, or exclude the block's markup |
+| A field shows literal `<br>`/HTML tags as visible text instead of formatting | That field is a plain Text/Textarea field (intentionally escaped with `esc_html()` — see every block's `render.php`), not rich text — typing HTML into it doesn't do anything. The fields in this theme that support real formatting (bold, headings, images, video embeds, files) are the **Contact Info** block's **Subheading** and the **About Hero** block's **Intro**/**Description** (§5) — use their "Add Media"/toolbar buttons rather than typing tags by hand. See either block's own README for how to add the same capability to another field |
 
 ---
 

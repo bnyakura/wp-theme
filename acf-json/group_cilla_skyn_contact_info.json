@@ -23,16 +23,16 @@
             "label": "Subheading",
             "name": "subheading",
             "aria-label": "",
-            "type": "textarea",
-            "instructions": "",
+            "type": "wysiwyg",
+            "instructions": "Full rich-text editor: bold/italic, headings, lists, links. Use \"Add Media\" to insert images or files, or paste a YouTube/Vimeo link on its own line to embed a video.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": { "width": "", "class": "", "id": "" },
             "default_value": "Questions about a product or your order? We're here to help.",
-            "maxlength": "",
-            "rows": 2,
-            "placeholder": "",
-            "new_lines": ""
+            "tabs": "all",
+            "toolbar": "full",
+            "media_upload": 1,
+            "delay": 0
         },
         {
             "key": "field_cilla_skyn_contact_info_methods",

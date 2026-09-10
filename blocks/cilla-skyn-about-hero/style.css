@@ -1,1 +1,126 @@
-/* Styled via Tailwind utility classes in render.php. */
+/*
+ * Rich-text styling for the Intro/Description WYSIWYG fields' output
+ * (blocks/cilla-skyn-about-hero/render.php). Hand-written rather than
+ * Tailwind utility classes, since this markup comes from the block editor
+ * and can't carry them — same reasoning as the Contact Info block's
+ * Subheading field (see that block's style.css) and the Best Sellers
+ * block's WooCommerce shortcode overrides (main theme README §3/§12).
+ * Scoped under .cilla-skyn-about-hero-content so it never leaks into
+ * other WYSIWYG fields elsewhere.
+ */
+
+.cilla-skyn-about-hero-content {
+	color: inherit;
+	text-align: center;
+}
+
+.cilla-skyn-about-hero-content > *:first-child {
+	margin-top: 0;
+}
+
+.cilla-skyn-about-hero-content > *:last-child {
+	margin-bottom: 0;
+}
+
+.cilla-skyn-about-hero-content p {
+	margin: 0 0 1em;
+	line-height: 1.6;
+}
+
+.cilla-skyn-about-hero-content h1,
+.cilla-skyn-about-hero-content h2,
+.cilla-skyn-about-hero-content h3,
+.cilla-skyn-about-hero-content h4,
+.cilla-skyn-about-hero-content h5,
+.cilla-skyn-about-hero-content h6 {
+	margin: 1.2em 0 0.5em;
+	font-family: var(--font-serif);
+	font-weight: 400;
+	line-height: 1.2;
+	/* Inherit the Text Color field's inline colour (render.php) rather
+	   than a fixed value, so a heading typed inside this WYSIWYG field
+	   follows the same manual colour override as the surrounding text. */
+	color: inherit;
+}
+
+.cilla-skyn-about-hero-content h1 { font-size: 1.75rem; }
+.cilla-skyn-about-hero-content h2 { font-size: 1.5rem; }
+.cilla-skyn-about-hero-content h3 { font-size: 1.25rem; }
+.cilla-skyn-about-hero-content h4,
+.cilla-skyn-about-hero-content h5,
+.cilla-skyn-about-hero-content h6 { font-size: 1.05rem; }
+
+.cilla-skyn-about-hero-content strong,
+.cilla-skyn-about-hero-content b {
+	font-weight: 600;
+	color: inherit;
+}
+
+.cilla-skyn-about-hero-content em,
+.cilla-skyn-about-hero-content i {
+	font-style: italic;
+}
+
+.cilla-skyn-about-hero-content a {
+	color: inherit;
+	text-decoration: underline;
+	text-decoration-color: var(--color-gold);
+	text-underline-offset: 2px;
+}
+
+.cilla-skyn-about-hero-content a:hover {
+	color: var(--color-gold);
+}
+
+.cilla-skyn-about-hero-content ul,
+.cilla-skyn-about-hero-content ol {
+	margin: 0 0 1em;
+	padding-left: 1.25em;
+	text-align: left;
+	display: inline-block;
+}
+
+.cilla-skyn-about-hero-content li {
+	margin-bottom: 0.35em;
+}
+
+.cilla-skyn-about-hero-content blockquote {
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 2px solid var(--color-gold);
+	font-style: italic;
+	text-align: left;
+	color: inherit;
+	opacity: 0.7;
+}
+
+.cilla-skyn-about-hero-content img {
+	max-width: 100%;
+	height: auto;
+	margin: 1em auto;
+	display: block;
+}
+
+.cilla-skyn-about-hero-content iframe,
+.cilla-skyn-about-hero-content video,
+.cilla-skyn-about-hero-content .wp-video,
+.cilla-skyn-about-hero-content .wp-audio-shortcode {
+	max-width: 100%;
+	margin: 1em auto;
+}
+
+/*
+ * add_theme_support('responsive-embeds') (inc/theme-setup.php) makes core
+ * wrap a pasted YouTube/Vimeo URL's resulting <iframe> in a
+ * .wp-embed-responsive-wrapper div — keep it fluid rather than a fixed
+ * embed width/height leaking past the column.
+ */
+.cilla-skyn-about-hero-content .wp-embed-responsive-wrapper {
+	max-width: 100%;
+}
+
+.cilla-skyn-about-hero-content .wp-embed-responsive-wrapper iframe {
+	width: 100%;
+	height: auto;
+	aspect-ratio: 16 / 9;
+}
