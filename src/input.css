@@ -52,11 +52,13 @@
  * and without them the whole site renders on a plain white page.
  *
  * The page background/typography default to the Cilla Skyn cream palette
- * now that header.php/footer.php and all current blocks use it — pages
- * built from WooCommerce's own templates (shop/cart/checkout/single
- * product) still opt back into the original dark theme by wrapping
- * themselves in their own bg-ink section (see page-cart.php,
- * page-checkout.php, single-product.php, index.php's WC product branch).
+ * now that header.php/footer.php and all current blocks use it. WooCommerce's
+ * own templates (shop/cart/checkout/single product/my account) also render
+ * in this same cream palette via their own page-{slug}.php files (see
+ * page-shop.php, page-cart.php, page-checkout.php, page-my-account.php,
+ * single-product.php), each restyling WooCommerce's default markup with
+ * its own scoped rules further down this file — none of them use the old
+ * dark gym-era tokens below.
  */
 @layer base {
   html {
@@ -1247,18 +1249,362 @@ body.single-product {
 }
 
 /*
- * Cilla Skyn Best Sellers block (blocks/cilla-skyn-best-sellers) — this
- * block sits on a light cream background inside an otherwise dark theme,
- * and renders products via WooCommerce's own [products] shortcode rather
- * than hand-built card markup. Because the DOM here comes from
- * WooCommerce's templates, not this theme's, the mockup's card
- * look-and-feel — plain bordered card, full-bleed 4:5 image, serif-free
- * uppercase-free title, ink outline "Shop Now" button — has to be
- * reproduced by restyling WooCommerce's existing hooks/classes
- * (.woocommerce-loop-product__title, span.onsale, a.button, etc.) instead
- * of duplicating that markup. Scoped to .wp-theme-cilla-skyn-best-sellers
- * so none of this leaks into the shop/cart/single-product pages, which
- * stay dark and rely on WooCommerce's own default styling.
+ * My Account page (page-my-account.php) — restyles WooCommerce's classic
+ * [woocommerce_my_account] shortcode output. Unlike the Cart/Checkout
+ * pages above, this isn't a React-hydrated WooCommerce Blocks component —
+ * it's plain server-rendered markup using WooCommerce's long-standing
+ * `.woocommerce-MyAccount-*` classes (dashboard/orders/downloads/
+ * addresses/edit-account) and its general `.woocommerce` form/table/
+ * notice classes (shared with the login/register forms shown when
+ * logged out). Nested under `.woocommerce`, mirroring WooCommerce's own
+ * selector prefix, for the same specificity reasons as the Shop page
+ * block below.
+ */
+.wp-theme-account-page {
+
+	.woocommerce {
+
+		/* Nav + content two-column layout (WooCommerce ships no layout CSS
+		   of its own for these — they're just two sibling elements). */
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: 2.5rem;
+		align-items: start;
+
+		@media (min-width: 768px) {
+			grid-template-columns: 220px 1fr;
+		}
+
+		/* Notices (login errors, "address saved", "logged out", etc.) */
+		.woocommerce-notices-wrapper:empty {
+			display: none;
+		}
+
+		.woocommerce-message,
+		.woocommerce-error,
+		.woocommerce-info {
+			margin: 0 0 1.75rem;
+			padding: 1rem 1.25rem;
+			list-style: none;
+			border: 1px solid color-mix(in srgb, var(--color-cs-ink) 15%, transparent);
+			background: var(--color-cream-dark);
+			color: var(--color-cs-ink);
+			font-size: 0.875rem;
+		}
+
+		.woocommerce-error {
+			border-color: color-mix(in srgb, var(--color-cs-ink) 35%, transparent);
+		}
+
+		.woocommerce-message .button,
+		.woocommerce-error .button,
+		.woocommerce-info .button {
+			margin-left: 0.75rem;
+		}
+
+		/* Navigation sidebar */
+		.woocommerce-MyAccount-navigation ul {
+			margin: 0;
+			padding: 0;
+			list-style: none;
+			border-top: 1px solid color-mix(in srgb, var(--color-cs-ink) 10%, transparent);
+		}
+
+		.woocommerce-MyAccount-navigation-link {
+			border-bottom: 1px solid color-mix(in srgb, var(--color-cs-ink) 10%, transparent);
+		}
+
+		.woocommerce-MyAccount-navigation-link a {
+			display: block;
+			padding: 0.85rem 0.25rem;
+			font-size: 0.8rem;
+			text-transform: uppercase;
+			letter-spacing: 0.08em;
+			color: color-mix(in srgb, var(--color-cs-ink) 65%, transparent);
+			text-decoration: none;
+		}
+
+		.woocommerce-MyAccount-navigation-link a:hover {
+			color: var(--color-gold);
+		}
+
+		.woocommerce-MyAccount-navigation-link.is-active a {
+			color: var(--color-cs-ink);
+			font-weight: 600;
+		}
+
+		.woocommerce-MyAccount-navigation-link--customer-logout a {
+			color: color-mix(in srgb, var(--color-cs-ink) 50%, transparent);
+		}
+
+		/* Content column */
+		.woocommerce-MyAccount-content > p {
+			margin: 0 0 1rem;
+			line-height: 1.7;
+			color: color-mix(in srgb, var(--color-cs-ink) 75%, transparent);
+		}
+
+		.woocommerce-MyAccount-content a {
+			color: var(--color-cs-ink);
+			text-decoration: underline;
+			text-decoration-color: var(--color-gold);
+			text-underline-offset: 2px;
+		}
+
+		.woocommerce-MyAccount-content a:hover {
+			color: var(--color-gold);
+		}
+
+		.woocommerce-MyAccount-content h2 {
+			margin: 0 0 1.25rem;
+			font-family: var(--font-serif);
+			font-size: 1.6rem;
+			font-weight: 400;
+			color: var(--color-cs-ink);
+		}
+
+		/* Orders / downloads tables */
+		table.shop_table {
+			width: 100%;
+			margin: 0 0 1.5rem;
+			border-collapse: collapse;
+		}
+
+		table.shop_table thead th {
+			padding: 0 0 0.75rem;
+			border-bottom: 1px solid color-mix(in srgb, var(--color-cs-ink) 15%, transparent);
+			font-size: 0.7rem;
+			font-weight: 700;
+			text-transform: uppercase;
+			letter-spacing: 0.08em;
+			text-align: left;
+			color: color-mix(in srgb, var(--color-cs-ink) 65%, transparent);
+		}
+
+		table.shop_table tbody td {
+			padding: 1rem 0.5rem 1rem 0;
+			border-bottom: 1px solid color-mix(in srgb, var(--color-cs-ink) 10%, transparent);
+			font-size: 0.85rem;
+			color: var(--color-cs-ink);
+		}
+
+		table.shop_table tbody td::before {
+			font-weight: 600;
+			color: color-mix(in srgb, var(--color-cs-ink) 65%, transparent);
+		}
+
+		table.shop_table .button {
+			margin: 0.2rem 0.3rem 0.2rem 0;
+		}
+
+		/* Addresses (billing/shipping) */
+		.woocommerce-Addresses {
+			display: grid;
+			grid-template-columns: 1fr;
+			gap: 2rem;
+
+			@media (min-width: 640px) {
+				grid-template-columns: 1fr 1fr;
+			}
+		}
+
+		.woocommerce-Address-title {
+			display: flex;
+			align-items: baseline;
+			justify-content: space-between;
+			gap: 1rem;
+			margin: 0 0 0.75rem;
+		}
+
+		.woocommerce-Address-title h2,
+		.woocommerce-Address-title h3 {
+			margin: 0;
+			font-family: var(--font-serif);
+			font-size: 1.25rem;
+			font-weight: 400;
+			color: var(--color-cs-ink);
+		}
+
+		.woocommerce-Address-title .edit {
+			font-size: 0.75rem;
+			text-transform: uppercase;
+			letter-spacing: 0.05em;
+			color: var(--color-gold);
+		}
+
+		.woocommerce-Address address {
+			font-style: normal;
+			line-height: 1.7;
+			color: color-mix(in srgb, var(--color-cs-ink) 75%, transparent);
+		}
+
+		/* Forms — edit address, edit account, login, register */
+		form .form-row {
+			margin: 0 0 1.1rem;
+		}
+
+		form .form-row label {
+			display: block;
+			margin: 0 0 0.4rem;
+			font-size: 0.75rem;
+			text-transform: uppercase;
+			letter-spacing: 0.06em;
+			color: color-mix(in srgb, var(--color-cs-ink) 65%, transparent);
+		}
+
+		form .form-row .required {
+			color: var(--color-gold);
+			text-decoration: none;
+		}
+
+		form .input-text,
+		form select,
+		form textarea {
+			width: 100%;
+			padding: 0.75rem 0.9rem;
+			border: 1px solid color-mix(in srgb, var(--color-cs-ink) 20%, transparent);
+			border-radius: 0;
+			background: var(--color-cream);
+			color: var(--color-cs-ink);
+			font-size: 0.9rem;
+		}
+
+		form .input-text:focus,
+		form select:focus,
+		form textarea:focus {
+			outline: none;
+			border-color: var(--color-cs-ink);
+		}
+
+		form .select2-container .select2-selection--single {
+			height: auto;
+			padding: 0.75rem 0.9rem;
+			border: 1px solid color-mix(in srgb, var(--color-cs-ink) 20%, transparent);
+			border-radius: 0;
+			background: var(--color-cream);
+		}
+
+		.woocommerce-form-row,
+		fieldset {
+			margin: 0 0 1.1rem;
+			border: none;
+			padding: 0;
+		}
+
+		fieldset legend {
+			margin: 0 0 0.75rem;
+			font-family: var(--font-serif);
+			font-size: 1.1rem;
+			color: var(--color-cs-ink);
+		}
+
+		/* Login/Register two-column layout when both are shown together */
+		.u-columns.woocommerce-columns {
+			display: grid;
+			grid-template-columns: 1fr;
+			gap: 2.5rem;
+
+			@media (min-width: 768px) {
+				grid-template-columns: 1fr 1fr;
+			}
+		}
+
+		.woocommerce-form-login__rememberme {
+			display: flex;
+			align-items: center;
+			gap: 0.5rem;
+			margin: 0 0 1.1rem;
+			font-size: 0.85rem;
+			color: color-mix(in srgb, var(--color-cs-ink) 75%, transparent);
+		}
+
+		.woocommerce-LostPassword {
+			margin: 1rem 0 0;
+			font-size: 0.8rem;
+		}
+
+		/* Buttons — Save changes, Place order, Pay, Cancel, Log in, Register */
+		.woocommerce-Button,
+		button.button,
+		input.button,
+		a.button {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			padding: 0.75rem 1.5rem;
+			border: 1px solid var(--color-cs-ink);
+			border-radius: 0;
+			background: var(--color-cs-ink);
+			color: var(--color-cream);
+			font-size: 0.75rem;
+			font-weight: 600;
+			letter-spacing: 0.03em;
+			text-decoration: none;
+			cursor: pointer;
+			transition: background-color 0.2s ease, color 0.2s ease;
+		}
+
+		.woocommerce-Button:hover,
+		button.button:hover,
+		input.button:hover,
+		a.button:hover {
+			background: var(--color-gold);
+			border-color: var(--color-gold);
+			color: var(--color-cs-ink);
+		}
+
+		/* Secondary/outline actions (e.g. order "Cancel", downloads list) */
+		a.button.cancel,
+		table.shop_table .button:not(.view):not(.pay) {
+			background: transparent;
+			color: var(--color-cs-ink);
+		}
+
+		a.button.cancel:hover,
+		table.shop_table .button:not(.view):not(.pay):hover {
+			background: var(--color-cs-ink);
+			color: var(--color-cream);
+		}
+
+		/* Single order view — order meta list + totals table */
+		.woocommerce-order-overview {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 1.5rem 2.5rem;
+			margin: 0 0 2rem;
+			padding: 1.25rem 0;
+			border-top: 1px solid color-mix(in srgb, var(--color-cs-ink) 15%, transparent);
+			border-bottom: 1px solid color-mix(in srgb, var(--color-cs-ink) 15%, transparent);
+			list-style: none;
+		}
+
+		.woocommerce-order-overview li {
+			font-size: 0.85rem;
+			color: color-mix(in srgb, var(--color-cs-ink) 65%, transparent);
+		}
+
+		.woocommerce-order-overview li strong {
+			display: block;
+			margin-top: 0.2rem;
+			font-size: 0.95rem;
+			font-weight: 600;
+			color: var(--color-cs-ink);
+		}
+	}
+}
+
+/*
+ * Cilla Skyn Best Sellers block (blocks/cilla-skyn-best-sellers) — renders
+ * products via WooCommerce's own [products] shortcode rather than
+ * hand-built card markup. Because the DOM here comes from WooCommerce's
+ * templates, not this theme's, the mockup's card look-and-feel — plain
+ * borderless card, full-bleed 4:5 image, serif-free uppercase-free title,
+ * ink outline "Shop Now" button — has to be reproduced by restyling
+ * WooCommerce's existing hooks/classes (.woocommerce-loop-product__title,
+ * span.onsale, a.button, etc.) instead of duplicating that markup. Scoped
+ * to .wp-theme-cilla-skyn-best-sellers so none of this leaks into the
+ * Shop/single-product pages, which get their own near-identical but
+ * bordered-card treatment further down this file (.wp-theme-shop-page).
  */
 .wp-theme-cilla-skyn-best-sellers {
 

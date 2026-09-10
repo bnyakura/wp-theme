@@ -277,8 +277,8 @@ by every page. Both were redesigned to match the Cilla Skyn homepage design
 (§12) as the blocks. Unlike the old dark chrome, the header is a normal
 static-flow element (not `fixed`), so it no longer overlaps page content —
 see the note on WooCommerce template padding in §13 if you're wondering why
-`page-cart.php`/`page-checkout.php`/`single-product.php` use `pt-16`
-instead of the old `pt-32`.
+`page-shop.php`/`page-cart.php`/`page-checkout.php`/`page-my-account.php`/`single-product.php`
+use `pt-16` instead of the old `pt-32`.
 
 **Header** (`header.php`):
 
@@ -348,6 +348,18 @@ anymore — the WhatsApp UI didn't fit the Cilla Skyn design and was removed.
 
 - **Cart icon** (`header.php`) links to `wc_get_cart_url()` and shows the
   live cart count when WooCommerce is active.
+- **My Account page** (`page-my-account.php`) restyles WooCommerce's
+  classic `[woocommerce_my_account]` shortcode output (dashboard,
+  orders/downloads tables, addresses, edit-account form, login/register
+  when logged out) to match the Cilla Skyn cream palette — see the
+  "My Account page" rules in `src/input.css`, scoped under
+  `.wp-theme-account-page`. Unlike Cart/Checkout (React-hydrated
+  WooCommerce Blocks components), this is plain server-rendered markup
+  using WooCommerce's long-standing `.woocommerce-MyAccount-*` and
+  `.woocommerce` form/table classes. Before this file existed, `/my-account/`
+  fell through to `page.php`'s bare `the_content()` branch — no title, no
+  padding, none of WooCommerce's markup restyled — which is why it
+  rendered unstyled.
 - **Best Sellers block** (§5) builds a `[products]` shortcode from its
   fields and renders it with `do_shortcode()` — WooCommerce owns the
   product query and card markup; `src/input.css` restyles WooCommerce's
@@ -478,15 +490,19 @@ currently-wired functionality:
 - **`assets/js/modal.js`, `hero-slider.js`, `pricing-tabs.js`** — still
   enqueued site-wide by `inc/theme-js.php`, but no markup on the front end
   triggers them anymore (harmless no-ops, just dead weight).
-- **WooCommerce templates keep the old dark theme on purpose** —
-  `page-cart.php`, `page-checkout.php`, `single-product.php`, and
-  index.php's WooCommerce product-title branch all wrap themselves in their
-  own `bg-ink` section rather than adopting the Cilla Skyn cream palette;
-  restyling the shop/cart/checkout/product experience wasn't part of the
-  header/footer redesign. Their top padding was changed from `pt-32` to
-  `pt-16` when the header stopped being `fixed` (§8) — the old value
-  compensated for the header being removed from document flow, which no
-  longer applies.
+- **`index.php`'s WooCommerce product-title branch** still renders in the
+  old dark gym palette (`text-white`, `font-display`/Bebas Neue) rather
+  than the Cilla Skyn cream theme — but it's dead weight, not a live bug:
+  `single-product.php` (cream-themed, restyled — see below) is higher
+  priority in WordPress's template hierarchy for the `product` post type
+  and always wins for an actual single-product page, so this branch in
+  practice never renders. Left as-is since removing it means touching
+  `index.php`'s Loop logic for no visible benefit.
+- `page-shop.php`, `page-cart.php`, `page-checkout.php`,
+  `page-my-account.php` and `single-product.php` all use `pt-16` rather
+  than `pt-32` for their top padding — the old value compensated for the
+  header being removed from document flow when it was still `fixed`; that
+  no longer applies now that it's a normal static-flow element (§8).
 - **`cilla_skyn_whatsapp` / `cilla_skyn_whatsapp_group` Customizer
   settings** (`inc/theme-setup.php`) — still registered, but nothing in
   the header or footer surfaces them since the WhatsApp UI was removed
