@@ -1,0 +1,23 @@
+{
+    "name": "wp-theme/cilla-skyn-contact-form",
+    "title": "Cilla Skyn Contact Form",
+    "category": "design",
+    "icon": "email",
+    "description": "A working, no-account-required contact form (name, email, phone, subject, message) that emails the site admin — for the Contact Us page.",
+    "keywords": ["contact", "form", "message", "cilla skyn"],
+    "acf": {
+        "mode": "auto",
+        "renderTemplate": "render.php",
+        "blockVersion": 3,
+        "autoInlineEditing": true
+    },
+    "supports": {
+        "align": ["wide", "full"],
+        "anchor": true,
+        "spacing": {
+            "padding": true,
+            "margin": true
+        }
+    },
+    "style": "file:./style.css"
+}

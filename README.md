@@ -64,7 +64,7 @@ orphaned.
 2. In wp-admin: **Appearance → Themes → Activate**.
 3. Build the CSS (next section) — the site is unstyled until this has run
    at least once.
-4. Go to **Custom Fields → Field Groups** and confirm the 9 groups listed
+4. Go to **Custom Fields → Field Groups** and confirm the 18 groups listed
    under [§6](#6-field-groups-acfscf-local-json) show up (they load
    automatically from `acf-json/`, no manual sync needed on a fresh
    install).
@@ -84,8 +84,11 @@ orphaned.
    See [§17](#17-content--product-catalog-reference-source-docx) for the
    client's intended nav structure (Shop All / Face Care / Body Care / Hero
    Ingredients / About Us).
-9. Set the WhatsApp number and Instagram URL under **Appearance → Customize
-   → Site Identity** (§8).
+9. Set the WhatsApp number under **Appearance → Customize → Site
+   Identity** (§8).
+10. **Theme Options → Footer** → fill in the Social Links, Help Links,
+    About Links, Legal Links and newsletter copy (§7/§8) — the footer
+    renders its original design content until this is saved once.
 
 Fonts (Bebas Neue + DM Sans for the site chrome, Cormorant Garamond + Jost
 for the Cilla Skyn blocks) and Font Awesome are enqueued from CDNs — no
@@ -193,9 +196,35 @@ this page):
 | **Formulation Approach** | `blocks/cilla-skyn-formulation-approach` | Formulation-philosophy section: eyebrow, heading, paragraph repeater, three-line principles strip |
 | **Contact Info** | `blocks/cilla-skyn-contact-info` | Row of contact-method cards (WhatsApp, Instagram, Email, Phone) with icon, label, value, link — usable on any page |
 
+**About page, additional pages** (Our Ingredients / Sustainability / The
+Edit / Press aren't in the docx's About Us copy, but each has its own nav
+entry — see §17 — so each gets its own page built from one of these):
+
+| Block | Folder | Page | What it renders |
+|---|---|---|---|
+| **Ingredients** | `blocks/cilla-skyn-ingredients` | Our Ingredients | Grid of hero-ingredient cards: photo, name, description |
+| **Pillars** | `blocks/cilla-skyn-pillars` | Sustainability | Grid of icon + title + description commitment cards |
+| **Editorial Grid** | `blocks/cilla-skyn-editorial-grid` | The Edit | Grid of article/journal teaser tiles: photo, tag, title, excerpt, link |
+| **Press** | `blocks/cilla-skyn-press` | Press | "As Seen In" logo strip + press quote mentions — ships empty, see the block's own README before adding content |
+
+**Help pages** (none of these are in the docx or homepage mockup — the
+docx only lists Help as 5 nav labels with no page content, so every
+default below was written for these blocks, not supplied by the client):
+
+| Block | Folder | Page | What it renders |
+|---|---|---|---|
+| **Content Sections** | `blocks/cilla-skyn-content-sections` | Shipping & Delivery, Returns & Exchanges | Generic narrow-column policy content: heading, intro, titled sections |
+| **FAQ** | `blocks/cilla-skyn-faq` | FAQs | No-JS accordion of question/answer pairs |
+| **Order Tracking** | `blocks/cilla-skyn-order-tracking` | Track Your Order | Heading/description + button to WooCommerce's My Account → Orders |
+| **Contact Form** | `blocks/cilla-skyn-contact-form` | Contact Us | Working contact form (name/email/phone/subject/message) that emails the site admin — pair with Contact Info above |
+
 To edit a block's fields, add it in the Block Editor and open the block
 settings panel — every field has a label and description pulled straight
-from its ACF field group.
+from its ACF field group. **Before publishing any of the pages above**,
+read that block's own README — several ship with placeholder content
+that's explicitly flagged as needing review (generic shipping-policy
+copy, example FAQs, etc.), and the Press and Pillars blocks specifically
+warn against publishing unverified claims (see their READMEs).
 
 ---
 
@@ -217,17 +246,23 @@ Field definitions live as local JSON under `acf-json/` (one
 ## 7. Theme Options (ACF options pages)
 
 `inc/acf-options.php` registers a **Theme Options** menu (top-level, below
-Comments) with three empty sub-pages ready for future site-wide fields:
+Comments) with three sub-pages:
 
-- **General**
-- **Header**
-- **Footer**
+- **General** — empty, ready for future site-wide fields.
+- **Header** — empty, ready for future site-wide fields.
+- **Footer** — the **Cilla Skyn Footer** field group
+  (`acf-json/group_cilla_skyn_footer_options.json`): Social Links, Help
+  Links, About Links, Legal Links and the newsletter heading/description —
+  see §8 for what each controls. This is the main way to edit the footer
+  without touching code.
 
-(No fields are attached to these pages yet — add field groups located to
-`options` in ACF and they'll appear here.)
+Add more field groups located to `options`/a specific sub-page's
+`menu_slug` (`theme-options-general`, `theme-options-header`,
+`theme-options-footer`) in ACF and they'll appear on the matching
+sub-page.
 
 Site-wide settings that already exist live in the **Customizer** instead
-(§8): logo, Instagram URL, WhatsApp number, footer tagline.
+(§8): logo, WhatsApp number, footer brand tagline/description.
 
 ---
 
@@ -267,17 +302,29 @@ instead of the old `pt-32`.
   were all removed — none of them appear in the Cilla Skyn design, and the
   last one referenced a modal from the now-deleted `pricing` block.
 
-**Footer** (`footer.php`) — 5 columns matching the design:
+**Footer** (`footer.php`) — 5 columns matching the design. Everything
+except Brand's wordmark/tagline and Shop is now editable from
+**Theme Options → Footer** in wp-admin (the **Cilla Skyn Footer** field
+group, §7) — no code changes needed to add/remove a link, swap a URL, or
+show/hide a social icon:
 
 | Column | Where to edit |
 |---|---|
-| **Brand** | Wordmark (site title), tagline (`cilla_skyn_tagline` theme mod), description (`iga_footer_tagline` theme mod), social links (Instagram from `iga_instagram_url`; Facebook/TikTok/Pinterest/YouTube are static `#` placeholders — no theme mods yet) |
+| **Brand** | Wordmark (site title, automatic) and tagline (`cilla_skyn_tagline` theme mod — **Customize → Site Identity**, shared with the header announcement bar) stay Customizer-controlled. Description (`iga_footer_tagline` theme mod, same Customizer section) and **Social Links** (Theme Options → Footer — one row per icon: pick a **Platform** from Instagram/Facebook/TikTok/Pinterest/YouTube and its **URL**; a row with no URL, or no row at all for a platform, simply doesn't render that icon — no more dead `#` links) |
 | **Shop** | **Appearance → Menus** → assign a menu to **Footer Navigation**. Until one is assigned, a fallback (`iga_footer_nav_fallback()` in `inc/theme-setup.php`) renders: All Products (links to the real Shop page), Best Sellers, The Baby Collection, Bundles & Sets, Gift Cards (the last four are `#` placeholders) |
-| **Help** | Static links in `footer.php` (`#` placeholders except **Contact Us**, which points at `/contact/`) — edit directly, or wire up real pages |
-| **About** | Static `#` placeholder links in `footer.php` — edit directly |
-| **Newsletter** | Static form, no ESP wired up (`onsubmit="return false"` like the design mockup) — connect it to Mailchimp/Klaviyo/etc. before relying on it |
-| Legal links | `/terms/`, `/privacy/`, `/cookies/` — create those pages |
+| **Help** | **Theme Options → Footer → Help Links** — a repeater of **Label** + **URL** rows, add/remove/reorder freely. Ships with the design's original 5 links (`Shipping & Delivery`/`Returns & Exchanges`/`FAQs`/`Track Your Order` as `#` placeholders, `Contact Us` → `/contact/`) as the fallback shown until the field is first saved |
+| **About** | **Theme Options → Footer → About Links** — same repeater pattern. Ships with `Our Story` → `/about/` (the About page built from the blocks in §5) plus 4 `#` placeholders (`Our Ingredients`/`Sustainability`/`The Edit`/`Press`) |
+| **Newsletter** | **Theme Options → Footer → Newsletter Heading/Description** (plain text fields). The form itself has no ESP wired up (`onsubmit="return false"` like the design mockup) — connect it to Mailchimp/Klaviyo/etc. before relying on it |
+| Legal links | **Theme Options → Footer → Legal Links** — repeater, ships with Terms/Privacy/Cookies pointing at `/terms/`, `/privacy/`, `/cookies/` (create those pages) |
 | Copyright | Automatic (`date_i18n( 'Y' )` + site title) |
+
+All four footer repeaters (Social Links, Help Links, About Links, Legal
+Links) fall back to the design's original content — hardcoded directly in
+`footer.php`, not via `inc/block-defaults/` — until the field group is
+saved for the first time on **Theme Options → Footer**, exactly like a
+block's fields never render blank (§4). The `iga_instagram_url` Customizer
+setting that used to control the footer's Instagram icon was removed —
+that icon is now just the `instagram` row in Social Links.
 
 Both navigation menu locations (`primary_navigation`, `footer`) are
 registered in `inc/theme-setup.php`. The `cilla_skyn_whatsapp` /
@@ -308,6 +355,15 @@ anymore — the WhatsApp UI didn't fit the Cilla Skyn design and was removed.
   template that renders their `<form>` markup** — the Book/Contact/Homepage
   Contact blocks that used them were removed. See
   [§13](#13-known-legacyorphaned-code).
+- **Contact Form block** (§5) has its own, unrelated handler —
+  `inc/cilla-skyn-contact-form.php` — following the same
+  `template_redirect` + nonce + honeypot + `wp_mail()` pattern as
+  `page-forms.php` above, but written fresh for Cilla Skyn rather than
+  reviving that gym-era file (its subject options don't fit a skincare
+  store). Emails `get_option( 'admin_email' )` by default (filterable via
+  `cilla_skyn_contact_recipient`) — **requires working outgoing mail on
+  the host** (an SMTP plugin, on most setups) to actually arrive; see the
+  block's own README.
 
 ---
 
@@ -340,6 +396,7 @@ by `inc/theme-styles.php` so previews match the live site):
 | `inc/acf-json.php` | Points ACF's local-JSON load/save path at `acf-json/` |
 | `inc/acf-options.php` | Registers the Theme Options menu + General/Header/Footer sub-pages |
 | `inc/page-forms.php` | Booking + contact form handlers (§9) — currently orphaned, see §13 |
+| `inc/cilla-skyn-contact-form.php` | Contact Form block's handler (§5/§9) — active, unrelated to `page-forms.php` above |
 | `inc/acf-block-defaults.php` | Pre-fills block editor forms with each block's shipped fallback content (§4) |
 | `inc/single-product.php` | WooCommerce single-product related-products renderer + tab fixes |
 
@@ -445,10 +502,14 @@ those two tasks and wasn't done here.
 | Field group changes don't appear on the front end | Click **Sync** on the field group under **Custom Fields → Field Groups** |
 | Best Sellers block shows no products | WooCommerce isn't active, or no products match the block's Visibility/Sort settings |
 | Products render twice on the Shop page | Make sure only one Best Sellers block is on that page — `iga_prevent_duplicate_shop_products()` only guards against WooCommerce's own auto-appended grid, not duplicate blocks |
-| WhatsApp icon missing | Set **WhatsApp Number** under Customize → Site Identity |
+| WhatsApp number needs updating | The header/footer no longer show a WhatsApp icon (§8 — removed, didn't fit the Cilla Skyn design). WhatsApp now only appears via the **Contact Info** block's **Methods** repeater (§5) — edit the WhatsApp row's Value/URL directly on that block instance, not in the Customizer |
 | Footer nav shows links to pages that don't exist | No menu assigned to the **Footer Navigation** location yet — assign one, or edit the fallback in `iga_footer_nav_fallback()` (§8) |
+| Footer Help/About/Legal links or social icons don't match what's saved in Theme Options → Footer | Click **Sync** on the **Cilla Skyn Footer** field group under **Custom Fields → Field Groups**, then re-save Theme Options → Footer |
+| A footer social icon isn't showing | That platform's row in **Theme Options → Footer → Social Links** has no URL, or there's no row for it at all — a platform only renders once it has a URL (§8) |
 | Clicking "View Memberships" in the mobile menu does nothing / console error | Known issue — see [§13](#13-known-legacyorphaned-code) |
 | A WooCommerce-looking `.hidden` utility fights with the header nav on non-WooCommerce pages | Already handled — `cilla_skyn_dequeue_preorders_sitewide_assets()` in `inc/theme-styles.php` dequeues the offending plugin CSS outside WooCommerce pages |
+| Contact Form block always shows an error, or messages never arrive | `wp_mail()` needs working outgoing mail on the host — install/configure an SMTP plugin (e.g. WP Mail SMTP) with real credentials, then send a test submission. Check spam too |
+| Contact Form block shows "Your session expired" immediately | A page-caching plugin is caching the nonce in the form's HTML — exclude that page from caching, or exclude the block's markup |
 
 ---
 
@@ -603,13 +664,38 @@ a 7th row in the block editor (the Repeater has no row limit).
 **Contact information** (docx: "Contact Information") — WhatsApp
 `+27 64 911 1932`, Instagram `@Cillaskyn`, Email `Info@cillaskyn.co.za`.
 These already ship as the **Contact Info** block's (§5) default rows, and
-the WhatsApp number/Instagram URL can also be set globally under
-**Appearance → Customize → Site Identity** (§8) for the header/footer.
+as the **Social Links**/WhatsApp defaults on **Theme Options → Footer**
+(§7/§8). The `cilla_skyn_whatsapp` Customizer setting also still exists
+but nothing currently surfaces it (§8) — don't rely on it.
 
 **About Us copy** (docx: "About Us — Hero Statement / Our Story /
 Our Formulation Approach") — this is the About-page block stack in §5
 (About Hero → Our Story → Formulation Approach) verbatim; no further setup
 needed beyond adding the 3 blocks to the About page.
+
+**Footer's Help/About columns** (§8) point at `#` placeholders, or in
+About's case, `/about/`, until the pages below exist — once you've built
+each page, go back to **Theme Options → Footer** and update the matching
+**Help Links**/**About Links** row's URL to the real page:
+
+| Footer link | Build with |
+|---|---|
+| Help → Shipping & Delivery | Content Sections block (§5), duplicated/relabelled |
+| Help → Returns & Exchanges | Content Sections block (§5), duplicated/relabelled |
+| Help → FAQs | FAQ block (§5) |
+| Help → Track Your Order | Order Tracking block (§5) |
+| Help → Contact Us | Contact Info + Contact Form blocks (§5) |
+| About → Our Ingredients | Ingredients block (§5) |
+| About → Sustainability | Pillars block (§5) |
+| About → The Edit | Editorial Grid block (§5) |
+| About → Press | Press block (§5) — **read its README before adding content** |
+
+None of this content is in the docx — these 9 pages match the footer's
+existing Help/About column link *labels* (§8), which were already in this
+codebase as `#` placeholders before any page content existed for them.
+Every block above ships with clearly-flagged placeholder content (see each
+block's own README) precisely because there was nothing in the source
+document to draw from.
 
 ---
 

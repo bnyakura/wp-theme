@@ -1,0 +1,23 @@
+{
+    "name": "wp-theme/cilla-skyn-press",
+    "title": "Cilla Skyn Press",
+    "category": "design",
+    "icon": "megaphone",
+    "description": "\"As Seen In\" publication logos plus press quote mentions — for the Press page.",
+    "keywords": ["press", "media", "as seen in", "about", "cilla skyn"],
+    "acf": {
+        "mode": "auto",
+        "renderTemplate": "render.php",
+        "blockVersion": 3,
+        "autoInlineEditing": true
+    },
+    "supports": {
+        "align": ["wide", "full"],
+        "anchor": true,
+        "spacing": {
+            "padding": true,
+            "margin": true
+        }
+    },
+    "style": "file:./style.css"
+}

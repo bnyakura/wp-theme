@@ -1,0 +1,23 @@
+{
+    "name": "wp-theme/cilla-skyn-faq",
+    "title": "Cilla Skyn FAQ",
+    "category": "design",
+    "icon": "editor-help",
+    "description": "A no-JS accordion of frequently asked questions, for the FAQs page.",
+    "keywords": ["faq", "questions", "accordion", "help", "cilla skyn"],
+    "acf": {
+        "mode": "auto",
+        "renderTemplate": "render.php",
+        "blockVersion": 3,
+        "autoInlineEditing": true
+    },
+    "supports": {
+        "align": ["wide", "full"],
+        "anchor": true,
+        "spacing": {
+            "padding": true,
+            "margin": true
+        }
+    },
+    "style": "file:./style.css"
+}

@@ -12,8 +12,96 @@
 $cilla_skyn_logo_id  = get_theme_mod( 'custom_logo' );
 $cilla_skyn_logo_url = $cilla_skyn_logo_id ? wp_get_attachment_image_url( $cilla_skyn_logo_id, 'full' ) : '';
 
-$instagram_url  = get_theme_mod( 'iga_instagram_url', 'https://www.instagram.com/cillaskyn' );
 $footer_tagline = get_theme_mod( 'iga_footer_tagline', __( 'Modern African skincare. Powered by nature. Made for real skin. For today and generations to come.', 'custom-theme' ) );
+
+/*
+ * Editable footer content — Theme Options → Footer (Custom Fields → Field
+ * Groups → "Cilla Skyn Footer", acf-json/group_cilla_skyn_footer_options.json).
+ * Falls back to the design's original content when a field has never been
+ * saved (ACF's own default_value doesn't cover Repeater fields).
+ */
+$cilla_skyn_social_links = get_field( 'social_links', 'option' );
+if ( ! $cilla_skyn_social_links ) {
+	$cilla_skyn_social_links = array(
+		array(
+			'platform' => 'instagram',
+			'url'      => 'https://www.instagram.com/Cillaskyn',
+		),
+	);
+}
+
+$cilla_skyn_help_links = get_field( 'help_links', 'option' );
+if ( ! $cilla_skyn_help_links ) {
+	$cilla_skyn_help_links = array(
+		array(
+			'label' => __( 'Shipping & Delivery', 'custom-theme' ),
+			'url'   => '#',
+		),
+		array(
+			'label' => __( 'Returns & Exchanges', 'custom-theme' ),
+			'url'   => '#',
+		),
+		array(
+			'label' => __( 'FAQs', 'custom-theme' ),
+			'url'   => '#',
+		),
+		array(
+			'label' => __( 'Track Your Order', 'custom-theme' ),
+			'url'   => '#',
+		),
+		array(
+			'label' => __( 'Contact Us', 'custom-theme' ),
+			'url'   => home_url( '/contact/' ),
+		),
+	);
+}
+
+$cilla_skyn_about_links = get_field( 'about_links', 'option' );
+if ( ! $cilla_skyn_about_links ) {
+	$cilla_skyn_about_links = array(
+		array(
+			'label' => __( 'Our Story', 'custom-theme' ),
+			'url'   => home_url( '/about/' ),
+		),
+		array(
+			'label' => __( 'Our Ingredients', 'custom-theme' ),
+			'url'   => '#',
+		),
+		array(
+			'label' => __( 'Sustainability', 'custom-theme' ),
+			'url'   => '#',
+		),
+		array(
+			'label' => __( 'The Edit', 'custom-theme' ),
+			'url'   => '#',
+		),
+		array(
+			'label' => __( 'Press', 'custom-theme' ),
+			'url'   => '#',
+		),
+	);
+}
+
+$cilla_skyn_legal_links = get_field( 'legal_links', 'option' );
+if ( ! $cilla_skyn_legal_links ) {
+	$cilla_skyn_legal_links = array(
+		array(
+			'label' => __( 'Terms', 'custom-theme' ),
+			'url'   => home_url( '/terms/' ),
+		),
+		array(
+			'label' => __( 'Privacy', 'custom-theme' ),
+			'url'   => home_url( '/privacy/' ),
+		),
+		array(
+			'label' => __( 'Cookies', 'custom-theme' ),
+			'url'   => home_url( '/cookies/' ),
+		),
+	);
+}
+
+$cilla_skyn_newsletter_heading     = get_field( 'newsletter_heading', 'option' ) ?: __( 'Join the Cilla Skyn journal.', 'custom-theme' );
+$cilla_skyn_newsletter_description = get_field( 'newsletter_description', 'option' ) ?: __( 'Be the first to know about new launches, exclusive offers and skincare rituals.', 'custom-theme' );
 ?>
 
 <footer id="site-footer" class="border-t border-cs-ink/10 bg-cream-dark pb-6 pt-16 font-sans-cs text-cs-ink">
@@ -33,23 +121,21 @@ $footer_tagline = get_theme_mod( 'iga_footer_tagline', __( 'Modern African skinc
 					<?php echo esc_html( get_theme_mod( 'cilla_skyn_tagline', __( 'Skin for a Brighter Tomorrow', 'custom-theme' ) ) ); ?>
 				</p>
 				<p class="mb-5 max-w-xs text-sm leading-relaxed text-cs-ink/65"><?php echo esc_html( $footer_tagline ); ?></p>
-				<div class="flex items-center gap-4 text-cs-ink/70">
-					<a href="<?php echo esc_url( $instagram_url ); ?>" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="hover:text-cs-ink">
-						<svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
-					</a>
-					<a href="#" aria-label="Facebook" class="hover:text-cs-ink">
-						<svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 9h3V6h-3a3 3 0 00-3 3v2H9v3h2v6h3v-6h3l1-3h-4V9a1 1 0 011-1z"/></svg>
-					</a>
-					<a href="#" aria-label="TikTok" class="hover:text-cs-ink">
-						<svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 4v11.5a3.5 3.5 0 11-3-3.46M14 4a5 5 0 005 5"/></svg>
-					</a>
-					<a href="#" aria-label="Pinterest" class="hover:text-cs-ink">
-						<svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M10 17c1-4 1.5-6 1.5-8a2 2 0 114 0c0 1.5-1 3.5-1.5 5"/></svg>
-					</a>
-					<a href="#" aria-label="YouTube" class="hover:text-cs-ink">
-						<svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="6" width="18" height="12" rx="3"/><path d="M11 10l4 2-4 2v-4z" fill="currentColor" stroke="none"/></svg>
-					</a>
-				</div>
+				<?php if ( ! empty( $cilla_skyn_social_links ) ) : ?>
+					<div class="flex items-center gap-4 text-cs-ink/70">
+						<?php foreach ( $cilla_skyn_social_links as $social_link ) : ?>
+							<?php
+							$icon = cilla_skyn_footer_social_icon( $social_link['platform'] ?? '' );
+							if ( ! $icon || empty( $social_link['url'] ) ) {
+								continue;
+							}
+							?>
+							<a href="<?php echo esc_url( $social_link['url'] ); ?>" target="_blank" rel="noopener noreferrer" aria-label="<?php echo esc_attr( ucfirst( $social_link['platform'] ) ); ?>" class="hover:text-cs-ink">
+								<?php echo $icon; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+							</a>
+						<?php endforeach; ?>
+					</div>
+				<?php endif; ?>
 			</div>
 
 			<!-- Shop -->
@@ -69,41 +155,37 @@ $footer_tagline = get_theme_mod( 'iga_footer_tagline', __( 'Modern African skinc
 			</nav>
 
 			<!-- Help -->
-			<div>
-				<h6 class="mb-4 text-sm font-medium"><?php esc_html_e( 'Help', 'custom-theme' ); ?></h6>
-				<ul class="space-y-2.5 text-sm text-cs-ink/65">
-					<li><a href="#" class="hover:text-cs-ink"><?php esc_html_e( 'Shipping & Delivery', 'custom-theme' ); ?></a></li>
-					<li><a href="#" class="hover:text-cs-ink"><?php esc_html_e( 'Returns & Exchanges', 'custom-theme' ); ?></a></li>
-					<li><a href="#" class="hover:text-cs-ink"><?php esc_html_e( 'FAQs', 'custom-theme' ); ?></a></li>
-					<li><a href="#" class="hover:text-cs-ink"><?php esc_html_e( 'Track Your Order', 'custom-theme' ); ?></a></li>
-					<li><a href="<?php echo esc_url( home_url( '/contact/' ) ); ?>" class="hover:text-cs-ink"><?php esc_html_e( 'Contact Us', 'custom-theme' ); ?></a></li>
-				</ul>
-			</div>
+			<?php if ( ! empty( $cilla_skyn_help_links ) ) : ?>
+				<div>
+					<h6 class="mb-4 text-sm font-medium"><?php esc_html_e( 'Help', 'custom-theme' ); ?></h6>
+					<ul class="space-y-2.5 text-sm text-cs-ink/65">
+						<?php foreach ( $cilla_skyn_help_links as $link ) : ?>
+							<?php if ( ! empty( $link['label'] ) ) : ?>
+								<li><a href="<?php echo esc_url( $link['url'] ?: '#' ); ?>" class="hover:text-cs-ink"><?php echo esc_html( $link['label'] ); ?></a></li>
+							<?php endif; ?>
+						<?php endforeach; ?>
+					</ul>
+				</div>
+			<?php endif; ?>
 
 			<!-- About -->
-			<div>
-				<h6 class="mb-4 text-sm font-medium"><?php esc_html_e( 'About', 'custom-theme' ); ?></h6>
-				<ul class="space-y-2.5 text-sm text-cs-ink/65">
-					<li><a href="#" class="hover:text-cs-ink"><?php esc_html_e( 'Our Story', 'custom-theme' ); ?></a></li>
-					<li><a href="#" class="hover:text-cs-ink"><?php esc_html_e( 'Our Ingredients', 'custom-theme' ); ?></a></li>
-					<li><a href="#" class="hover:text-cs-ink"><?php esc_html_e( 'Sustainability', 'custom-theme' ); ?></a></li>
-					<li><a href="#" class="hover:text-cs-ink"><?php esc_html_e( 'The Edit', 'custom-theme' ); ?></a></li>
-					<li><a href="#" class="hover:text-cs-ink"><?php esc_html_e( 'Press', 'custom-theme' ); ?></a></li>
-				</ul>
-			</div>
+			<?php if ( ! empty( $cilla_skyn_about_links ) ) : ?>
+				<div>
+					<h6 class="mb-4 text-sm font-medium"><?php esc_html_e( 'About', 'custom-theme' ); ?></h6>
+					<ul class="space-y-2.5 text-sm text-cs-ink/65">
+						<?php foreach ( $cilla_skyn_about_links as $link ) : ?>
+							<?php if ( ! empty( $link['label'] ) ) : ?>
+								<li><a href="<?php echo esc_url( $link['url'] ?: '#' ); ?>" class="hover:text-cs-ink"><?php echo esc_html( $link['label'] ); ?></a></li>
+							<?php endif; ?>
+						<?php endforeach; ?>
+					</ul>
+				</div>
+			<?php endif; ?>
 
 			<!-- Newsletter -->
 			<div>
-				<h6 class="mb-4 text-sm font-medium">
-					<?php
-					printf(
-						/* translators: %s: site name. */
-						esc_html__( 'Join the %s journal.', 'custom-theme' ),
-						esc_html( get_bloginfo( 'name' ) )
-					);
-					?>
-				</h6>
-				<p class="mb-4 text-sm leading-relaxed text-cs-ink/65"><?php esc_html_e( 'Be the first to know about new launches, exclusive offers and skincare rituals.', 'custom-theme' ); ?></p>
+				<h6 class="mb-4 text-sm font-medium"><?php echo esc_html( $cilla_skyn_newsletter_heading ); ?></h6>
+				<p class="mb-4 text-sm leading-relaxed text-cs-ink/65"><?php echo esc_html( $cilla_skyn_newsletter_description ); ?></p>
 				<form class="flex" onsubmit="return false;">
 					<label class="sr-only" for="cilla-skyn-newsletter-email"><?php esc_html_e( 'Your email address', 'custom-theme' ); ?></label>
 					<input id="cilla-skyn-newsletter-email" type="email" placeholder="<?php esc_attr_e( 'Your email address', 'custom-theme' ); ?>" class="min-w-0 flex-1 border border-cs-ink/25 bg-cream px-3 py-2.5 text-sm placeholder:text-cs-ink/40 focus:border-cs-ink focus:outline-none">
@@ -126,9 +208,11 @@ $footer_tagline = get_theme_mod( 'iga_footer_tagline', __( 'Modern African skinc
 			</p>
 			<p><?php echo esc_html( get_theme_mod( 'cilla_skyn_tagline', __( 'Skin for a Brighter Tomorrow', 'custom-theme' ) ) ); ?></p>
 			<div class="flex items-center gap-4">
-				<a href="<?php echo esc_url( home_url( '/terms/' ) ); ?>" class="hover:text-cs-ink"><?php esc_html_e( 'Terms', 'custom-theme' ); ?></a>
-				<a href="<?php echo esc_url( home_url( '/privacy/' ) ); ?>" class="hover:text-cs-ink"><?php esc_html_e( 'Privacy', 'custom-theme' ); ?></a>
-				<a href="<?php echo esc_url( home_url( '/cookies/' ) ); ?>" class="hover:text-cs-ink"><?php esc_html_e( 'Cookies', 'custom-theme' ); ?></a>
+				<?php foreach ( $cilla_skyn_legal_links as $link ) : ?>
+					<?php if ( ! empty( $link['label'] ) ) : ?>
+						<a href="<?php echo esc_url( $link['url'] ?: '#' ); ?>" class="hover:text-cs-ink"><?php echo esc_html( $link['label'] ); ?></a>
+					<?php endif; ?>
+				<?php endforeach; ?>
 				<svg class="h-3.5 w-3.5 text-gold" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 20c8-1 12-7 12-16-9 0-14 5-14 12 0 1.5.7 3 2 4z"/></svg>
 			</div>
 		</div>

@@ -1,0 +1,23 @@
+{
+    "name": "wp-theme/cilla-skyn-order-tracking",
+    "title": "Cilla Skyn Order Tracking",
+    "category": "design",
+    "icon": "location-alt",
+    "description": "Centered heading, description and a button to the WooCommerce order history — for the Track Your Order page.",
+    "keywords": ["track order", "orders", "woocommerce", "help", "cilla skyn"],
+    "acf": {
+        "mode": "auto",
+        "renderTemplate": "render.php",
+        "blockVersion": 3,
+        "autoInlineEditing": true
+    },
+    "supports": {
+        "align": ["wide", "full"],
+        "anchor": true,
+        "spacing": {
+            "padding": true,
+            "margin": true
+        }
+    },
+    "style": "file:./style.css"
+}

@@ -1,0 +1,23 @@
+{
+    "name": "wp-theme/cilla-skyn-ingredients",
+    "title": "Cilla Skyn Ingredients",
+    "category": "design",
+    "icon": "carrot",
+    "description": "Grid of hero-ingredient cards (photo, name, description) — for the Our Ingredients page.",
+    "keywords": ["ingredients", "about", "cilla skyn"],
+    "acf": {
+        "mode": "auto",
+        "renderTemplate": "render.php",
+        "blockVersion": 3,
+        "autoInlineEditing": true
+    },
+    "supports": {
+        "align": ["wide", "full"],
+        "anchor": true,
+        "spacing": {
+            "padding": true,
+            "margin": true
+        }
+    },
+    "style": "file:./style.css"
+}

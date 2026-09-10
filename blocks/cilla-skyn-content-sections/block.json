@@ -1,0 +1,23 @@
+{
+    "name": "wp-theme/cilla-skyn-content-sections",
+    "title": "Cilla Skyn Content Sections",
+    "category": "design",
+    "icon": "list-view",
+    "description": "Narrow-column policy/info page content: heading, intro and a repeater of titled sections. For Shipping & Delivery, Returns & Exchanges, or any similar text-heavy page.",
+    "keywords": ["shipping", "returns", "policy", "help", "cilla skyn"],
+    "acf": {
+        "mode": "auto",
+        "renderTemplate": "render.php",
+        "blockVersion": 3,
+        "autoInlineEditing": true
+    },
+    "supports": {
+        "align": ["wide", "full"],
+        "anchor": true,
+        "spacing": {
+            "padding": true,
+            "margin": true
+        }
+    },
+    "style": "file:./style.css"
+}

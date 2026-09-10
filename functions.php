@@ -61,6 +61,12 @@ if( file_exists( $page_forms_file_path ) ) {
     require $page_forms_file_path;
 }
 
+// Define the path to the Cilla Skyn Contact Form block's handler
+$cilla_skyn_contact_form_file_path = get_template_directory() . '/inc/cilla-skyn-contact-form.php';
+if( file_exists( $cilla_skyn_contact_form_file_path ) ) {
+    require $cilla_skyn_contact_form_file_path;
+}
+
 // Define the path to the ACF block field defaults file (pre-fills the block
 // editor forms with the theme's shipped content instead of blank fields)
 $acf_block_defaults_file_path = get_template_directory() . '/inc/acf-block-defaults.php';

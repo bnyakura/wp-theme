@@ -1,0 +1,23 @@
+{
+    "name": "wp-theme/cilla-skyn-pillars",
+    "title": "Cilla Skyn Pillars",
+    "category": "design",
+    "icon": "star-filled",
+    "description": "Grid of icon + title + description commitment cards — for the Sustainability page, or any \"our values\" style content.",
+    "keywords": ["sustainability", "values", "commitments", "about", "cilla skyn"],
+    "acf": {
+        "mode": "auto",
+        "renderTemplate": "render.php",
+        "blockVersion": 3,
+        "autoInlineEditing": true
+    },
+    "supports": {
+        "align": ["wide", "full"],
+        "anchor": true,
+        "spacing": {
+            "padding": true,
+            "margin": true
+        }
+    },
+    "style": "file:./style.css"
+}

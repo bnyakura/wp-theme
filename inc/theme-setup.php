@@ -206,29 +206,39 @@ function iga_footer_nav_fallback() {
 	echo '</ul>';
 }
 
+if ( ! function_exists( 'cilla_skyn_footer_social_icon' ) ) {
+	/**
+	 * Inline SVG for one footer social icon.
+	 *
+	 * Used by footer.php to render the Brand column's icon row from the
+	 * "Social Links" repeater on Theme Options → Footer (§16/§17 in the
+	 * theme README) — one icon per row whose Platform matches a key here
+	 * and whose URL isn't empty.
+	 *
+	 * @param string $platform One of the Social Links repeater's Platform choices.
+	 * @return string SVG markup, or an empty string for an unrecognised platform.
+	 */
+	function cilla_skyn_footer_social_icon( string $platform ): string {
+		$icons = array(
+			'instagram' => '<rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/>',
+			'facebook'  => '<path d="M14 9h3V6h-3a3 3 0 00-3 3v2H9v3h2v6h3v-6h3l1-3h-4V9a1 1 0 011-1z"/>',
+			'tiktok'    => '<path d="M14 4v11.5a3.5 3.5 0 11-3-3.46M14 4a5 5 0 005 5"/>',
+			'pinterest' => '<circle cx="12" cy="12" r="9"/><path d="M10 17c1-4 1.5-6 1.5-8a2 2 0 114 0c0 1.5-1 3.5-1.5 5"/>',
+			'youtube'   => '<rect x="3" y="6" width="18" height="12" rx="3"/><path d="M11 10l4 2-4 2v-4z" fill="currentColor" stroke="none"/>',
+		);
 
+		if ( ! isset( $icons[ $platform ] ) ) {
+			return '';
+		}
+
+		return '<svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">' . $icons[ $platform ] . '</svg>';
+	}
+}
 
 /**
  * Customizer settings (replaces the SOCIAL constant from lib/links).
  */
 function iga_customize_register( $wp_customize ) {
-	$wp_customize->add_setting(
-		'iga_instagram_url',
-		[
-			'default'           => 'https://www.instagram.com/cillaskyn',
-			'sanitize_callback' => 'esc_url_raw',
-		]
-	);
-
-	$wp_customize->add_control(
-		'iga_instagram_url',
-		[
-			'label'   => __( 'Instagram URL', 'iga' ),
-			'section' => 'title_tagline',
-			'type'    => 'url',
-		]
-	);
-
 	$wp_customize->add_setting(
 		'iga_footer_tagline',
 		[

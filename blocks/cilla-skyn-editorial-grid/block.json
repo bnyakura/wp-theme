@@ -1,0 +1,23 @@
+{
+    "name": "wp-theme/cilla-skyn-editorial-grid",
+    "title": "Cilla Skyn Editorial Grid",
+    "category": "design",
+    "icon": "admin-post",
+    "description": "Grid of article/journal teaser tiles (image, tag, title, excerpt, link) — for The Edit page.",
+    "keywords": ["the edit", "journal", "articles", "blog", "about", "cilla skyn"],
+    "acf": {
+        "mode": "auto",
+        "renderTemplate": "render.php",
+        "blockVersion": 3,
+        "autoInlineEditing": true
+    },
+    "supports": {
+        "align": ["wide", "full"],
+        "anchor": true,
+        "spacing": {
+            "padding": true,
+            "margin": true
+        }
+    },
+    "style": "file:./style.css"
+}
