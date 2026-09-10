@@ -620,6 +620,16 @@ blocks in this repo were added.
 Then just add the block in the Block Editor — it appears in the inserter
 under the "design" category, prefixed "Cilla Skyn" so it's easy to find.
 
+**Avoid `conditional_logic` on a field that depends on an Image/File/
+Gallery field's value** (e.g. "only show Field B once Image Field A has a
+value") **inside an ACF Block.** It's the standard, documented ACF pattern
+and works fine on normal post-edit screens, but it doesn't reliably fire
+inside a Block's own settings form — the field can end up permanently
+hidden even after the image is set (see [About Hero](blocks/cilla-skyn-about-hero/README.md)'s
+Background Overlay Color, which shipped this way and had to be changed to
+always-visible). If a field only makes sense once another field has a
+value, say so in its `instructions` text instead of trying to hide it.
+
 ---
 
 ## 17. Content & product catalog reference (source docx)

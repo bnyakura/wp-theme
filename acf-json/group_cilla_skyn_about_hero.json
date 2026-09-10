@@ -29,17 +29,9 @@
             "name": "overlay_color",
             "aria-label": "",
             "type": "color_picker",
-            "instructions": "Wash placed over the Background Image so the text stays readable. Click the swatch and drag the opacity slider at the bottom of the picker to adjust how strong the wash is — a fully transparent colour shows the photo untouched. Only used when a Background Image is set.",
+            "instructions": "Wash placed over the Background Image so the text stays readable. Click the swatch and drag the opacity slider at the bottom of the picker to adjust how strong the wash is — a fully transparent colour shows the photo untouched. Has no visible effect until a Background Image is set above.",
             "required": 0,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_cilla_skyn_about_hero_background_image",
-                        "operator": "!=",
-                        "value": ""
-                    }
-                ]
-            ],
+            "conditional_logic": 0,
             "wrapper": { "width": "50", "class": "", "id": "" },
             "default_value": "rgba(244, 236, 224, 0.8)",
             "enable_opacity": 1,
