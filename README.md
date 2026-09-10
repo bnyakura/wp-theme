@@ -180,7 +180,7 @@ Every block:
 
 | Block | Folder | What it renders |
 |---|---|---|
-| **Hero** | `blocks/cilla-skyn-hero` | Full-bleed cream hero: background image, eyebrow, heading, description, two buttons, vertical side-label list |
+| **Hero** | `blocks/cilla-skyn-hero` | Full-bleed cream hero: background image with a configurable overlay (gradient/solid/none, colour-picker), eyebrow, heading, description, two buttons, vertical side-label list |
 | **Best Sellers** | `blocks/cilla-skyn-best-sellers` | WooCommerce product grid, built from the native `[products]` shortcode with editor-configurable heading/visibility/sort/limit/columns |
 | **Shop by Concern** | `blocks/cilla-skyn-shop-by-concern` | Grid of skin-concern category tiles (product photo, title, subtitle, link) |
 | **Feature Strip** | `blocks/cilla-skyn-feature-strip` | Row of icon + text trust badges |

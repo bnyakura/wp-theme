@@ -16,6 +16,26 @@ $image_id  = get_field( 'image' );
 $image_url = $image_id ? wp_get_attachment_image_url( (int) $image_id, 'full' ) : $theme_uri . '/assets/images/cilla-skyn-hero.jpg';
 $image_alt = $image_id ? get_post_meta( (int) $image_id, '_wp_attachment_image_alt', true ) : 'Cilla Skyn natural botanical ingredients';
 
+/*
+ * Overlay sitting on top of the Background Image so the text stays
+ * readable — either the original design's left-to-right gradient, a flat
+ * solid-colour wash, or none at all. `$overlay_style_css` becomes the
+ * overlay <div>'s whole inline `style` attribute value (or '' to render
+ * no overlay div).
+ */
+$overlay_style = get_field( 'overlay_style' ) ?: 'gradient';
+
+$overlay_style_css = '';
+if ( 'solid' === $overlay_style ) {
+	$overlay_color     = get_field( 'overlay_color' ) ?: 'rgba(244, 236, 224, 0.85)';
+	$overlay_style_css = 'background-color: ' . $overlay_color . ';';
+} elseif ( 'gradient' === $overlay_style ) {
+	$gradient_start     = get_field( 'gradient_start_color' ) ?: 'rgba(244, 236, 224, 1)';
+	$gradient_end       = get_field( 'gradient_end_color' ) ?: 'rgba(244, 236, 224, 0.2)';
+	$gradient_direction = get_field( 'gradient_direction' ) ?: 'to right';
+	$overlay_style_css  = 'background-image: linear-gradient(' . $gradient_direction . ', ' . $gradient_start . ', ' . $gradient_end . ');';
+}
+
 $eyebrow     = get_field( 'eyebrow' ) ?: 'Nature Meets A Brighter You';
 $heading     = get_field( 'heading' ) ?: 'Layered in the Essence of Nature.';
 $description = get_field( 'description' ) ?: 'Cilla Skyn™ is a modern African skincare brand blending powerful botanicals and advanced science to reveal healthy, radiant skin — for today and generations to come.';
@@ -44,7 +64,9 @@ $wrapper_attributes = get_block_wrapper_attributes(
 			loading="eager"
 			decoding="async"
 		>
-		<div class="absolute inset-0 bg-gradient-to-r from-cream via-cream/85 to-cream/20"></div>
+		<?php if ( $overlay_style_css ) : ?>
+			<div class="absolute inset-0" style="<?php echo esc_attr( $overlay_style_css ); ?>"></div>
+		<?php endif; ?>
 	</div>
 
 	<div class="relative mx-auto grid min-h-[560px] max-w-[1400px] grid-cols-1 gap-8 px-6 py-20 min-[768px]:grid-cols-12 min-[768px]:px-10 min-[768px]:py-28">

@@ -24,6 +24,129 @@
             "mime_types": ""
         },
         {
+            "key": "field_cilla_skyn_hero_overlay_style",
+            "label": "Background Overlay Style",
+            "name": "overlay_style",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "What sits over the Background Image to keep the text readable.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": { "width": "34", "class": "", "id": "" },
+            "choices": {
+                "gradient": "Gradient (original design)",
+                "solid": "Solid Colour",
+                "none": "None (raw photo)"
+            },
+            "default_value": "gradient",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_cilla_skyn_hero_overlay_color",
+            "label": "Overlay Color",
+            "name": "overlay_color",
+            "aria-label": "",
+            "type": "color_picker",
+            "instructions": "Used when Background Overlay Style is set to \"Solid Colour\". Click the swatch and use the picker's own opacity slider.",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_cilla_skyn_hero_overlay_style",
+                        "operator": "==",
+                        "value": "solid"
+                    }
+                ]
+            ],
+            "wrapper": { "width": "33", "class": "", "id": "" },
+            "default_value": "rgba(244, 236, 224, 0.85)",
+            "enable_opacity": 1,
+            "return_format": "string"
+        },
+        {
+            "key": "field_cilla_skyn_hero_gradient_start_color",
+            "label": "Gradient Start Colour",
+            "name": "gradient_start_color",
+            "aria-label": "",
+            "type": "color_picker",
+            "instructions": "Used when Background Overlay Style is set to \"Gradient\". The end nearest the text — usually fully (or almost fully) opaque.",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_cilla_skyn_hero_overlay_style",
+                        "operator": "==",
+                        "value": "gradient"
+                    }
+                ]
+            ],
+            "wrapper": { "width": "33", "class": "", "id": "" },
+            "default_value": "rgba(244, 236, 224, 1)",
+            "enable_opacity": 1,
+            "return_format": "string"
+        },
+        {
+            "key": "field_cilla_skyn_hero_gradient_end_color",
+            "label": "Gradient End Colour",
+            "name": "gradient_end_color",
+            "aria-label": "",
+            "type": "color_picker",
+            "instructions": "Used when Background Overlay Style is set to \"Gradient\". The end where the photo shows through most — usually low opacity.",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_cilla_skyn_hero_overlay_style",
+                        "operator": "==",
+                        "value": "gradient"
+                    }
+                ]
+            ],
+            "wrapper": { "width": "33", "class": "", "id": "" },
+            "default_value": "rgba(244, 236, 224, 0.2)",
+            "enable_opacity": 1,
+            "return_format": "string"
+        },
+        {
+            "key": "field_cilla_skyn_hero_gradient_direction",
+            "label": "Gradient Direction",
+            "name": "gradient_direction",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "Used when Background Overlay Style is set to \"Gradient\".",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_cilla_skyn_hero_overlay_style",
+                        "operator": "==",
+                        "value": "gradient"
+                    }
+                ]
+            ],
+            "wrapper": { "width": "33", "class": "", "id": "" },
+            "choices": {
+                "to right": "Left → Right (original design)",
+                "to left": "Right → Left",
+                "to bottom": "Top → Bottom",
+                "to top": "Bottom → Top",
+                "to bottom right": "Diagonal ↘",
+                "to top right": "Diagonal ↗"
+            },
+            "default_value": "to right",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
             "key": "field_cilla_skyn_hero_eyebrow",
             "label": "Eyebrow",
             "name": "eyebrow",
