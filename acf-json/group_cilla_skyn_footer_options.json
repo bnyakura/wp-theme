@@ -59,6 +59,53 @@
             ]
         },
         {
+            "key": "field_cilla_skyn_footer_options_shop_links",
+            "label": "Shop Links",
+            "name": "shop_links",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "One row per link in the footer's Shop column.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": { "width": "50", "class": "", "id": "" },
+            "layout": "table",
+            "min": 0,
+            "max": 0,
+            "collapsed": "",
+            "button_label": "Add Link",
+            "sub_fields": [
+                {
+                    "key": "field_cilla_skyn_footer_options_shop_links_label",
+                    "label": "Label",
+                    "name": "label",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": { "width": "40", "class": "", "id": "" },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
+                    "key": "field_cilla_skyn_footer_options_shop_links_url",
+                    "label": "URL",
+                    "name": "url",
+                    "aria-label": "",
+                    "type": "url",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": { "width": "60", "class": "", "id": "" },
+                    "default_value": "",
+                    "placeholder": ""
+                }
+            ]
+        },
+        {
             "key": "field_cilla_skyn_footer_options_help_links",
             "label": "Help Links",
             "name": "help_links",
@@ -248,7 +295,7 @@
     "instruction_placement": "label",
     "hide_on_screen": "",
     "active": true,
-    "description": "Editable content for the site footer: social icons, Help/About link columns, newsletter copy and the bottom legal links.",
+    "description": "Editable content for the site footer: social icons, Shop/Help/About link columns, newsletter copy and the bottom legal links.",
     "show_in_rest": 0,
     "modified": 0
 }

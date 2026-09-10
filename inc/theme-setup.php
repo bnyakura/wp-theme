@@ -31,7 +31,6 @@ if ( ! function_exists( 'custom_theme_setup' ) ) {
 		register_nav_menus(
 			array(
 				'primary_navigation' => esc_html__( 'Primary Navigation', 'custom-theme' ),
-				'footer'             => esc_html__( 'Footer Navigation', 'custom-theme' ),
 			)
 		);
 	}
@@ -165,46 +164,6 @@ function iga_get_whatsapp_number_url( $message = '' ) {
 
 
 
-
-/**
- * Apply Tailwind classes to footer "Shop" menu links (footer.php).
- *
- * wp_nav_menu() has no link-class argument.
- */
-function iga_footer_menu_link_atts( $atts, $item, $args ) {
-	if ( 'footer' === $args->theme_location ) {
-		$atts['class'] = 'text-cs-ink/65 hover:text-cs-ink';
-	}
-	return $atts;
-}
-add_filter( 'nav_menu_link_attributes', 'iga_footer_menu_link_atts', 10, 3 );
-
-/**
- * Fallback for the footer's "Shop" column when no menu is assigned to the
- * "footer" location, so the footer isn't empty before menus are configured
- * in wp-admin.
- */
-function iga_footer_nav_fallback() {
-	$shop_url = function_exists( 'wc_get_page_permalink' ) ? wc_get_page_permalink( 'shop' ) : home_url( '/' );
-
-	$items = [
-		[ 'label' => __( 'All Products', 'custom-theme' ), 'url' => $shop_url ],
-		[ 'label' => __( 'Best Sellers', 'custom-theme' ), 'url' => '#' ],
-		[ 'label' => __( 'The Baby Collection', 'custom-theme' ), 'url' => '#' ],
-		[ 'label' => __( 'Bundles & Sets', 'custom-theme' ), 'url' => '#' ],
-		[ 'label' => __( 'Gift Cards', 'custom-theme' ), 'url' => '#' ],
-	];
-
-	echo '<ul class="cilla-skyn-footer-menu space-y-2.5 text-sm">';
-	foreach ( $items as $item ) {
-		printf(
-			'<li><a href="%s" class="text-cs-ink/65 hover:text-cs-ink">%s</a></li>',
-			esc_url( $item['url'] ),
-			esc_html( $item['label'] )
-		);
-	}
-	echo '</ul>';
-}
 
 if ( ! function_exists( 'cilla_skyn_footer_social_icon' ) ) {
 	/**

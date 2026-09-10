@@ -30,6 +30,33 @@ if ( ! $cilla_skyn_social_links ) {
 	);
 }
 
+$cilla_skyn_shop_links = get_field( 'shop_links', 'option' );
+if ( ! $cilla_skyn_shop_links ) {
+	$shop_url              = function_exists( 'wc_get_page_permalink' ) ? wc_get_page_permalink( 'shop' ) : home_url( '/' );
+	$cilla_skyn_shop_links = array(
+		array(
+			'label' => __( 'All Products', 'custom-theme' ),
+			'url'   => $shop_url,
+		),
+		array(
+			'label' => __( 'Best Sellers', 'custom-theme' ),
+			'url'   => '#',
+		),
+		array(
+			'label' => __( 'The Baby Collection', 'custom-theme' ),
+			'url'   => '#',
+		),
+		array(
+			'label' => __( 'Bundles & Sets', 'custom-theme' ),
+			'url'   => '#',
+		),
+		array(
+			'label' => __( 'Gift Cards', 'custom-theme' ),
+			'url'   => '#',
+		),
+	);
+}
+
 $cilla_skyn_help_links = get_field( 'help_links', 'option' );
 if ( ! $cilla_skyn_help_links ) {
 	$cilla_skyn_help_links = array(
@@ -139,20 +166,18 @@ $cilla_skyn_newsletter_description = get_field( 'newsletter_description', 'optio
 			</div>
 
 			<!-- Shop -->
-			<nav aria-label="<?php esc_attr_e( 'Footer shop navigation', 'custom-theme' ); ?>">
-				<h6 class="mb-4 text-sm font-medium"><?php esc_html_e( 'Shop', 'custom-theme' ); ?></h6>
-				<?php
-				wp_nav_menu(
-					array(
-						'theme_location' => 'footer',
-						'container'      => false,
-						'menu_class'     => 'cilla-skyn-footer-menu space-y-2.5 text-sm',
-						'fallback_cb'    => 'iga_footer_nav_fallback',
-						'depth'          => 1,
-					)
-				);
-				?>
-			</nav>
+			<?php if ( ! empty( $cilla_skyn_shop_links ) ) : ?>
+				<nav aria-label="<?php esc_attr_e( 'Footer shop navigation', 'custom-theme' ); ?>">
+					<h6 class="mb-4 text-sm font-medium"><?php esc_html_e( 'Shop', 'custom-theme' ); ?></h6>
+					<ul class="space-y-2.5 text-sm text-cs-ink/65">
+						<?php foreach ( $cilla_skyn_shop_links as $link ) : ?>
+							<?php if ( ! empty( $link['label'] ) ) : ?>
+								<li><a href="<?php echo esc_url( $link['url'] ?: '#' ); ?>" class="hover:text-cs-ink"><?php echo esc_html( $link['label'] ); ?></a></li>
+							<?php endif; ?>
+						<?php endforeach; ?>
+					</ul>
+				</nav>
+			<?php endif; ?>
 
 			<!-- Help -->
 			<?php if ( ! empty( $cilla_skyn_help_links ) ) : ?>

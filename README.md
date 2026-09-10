@@ -79,16 +79,17 @@ orphaned.
    first time.
 7. **Settings → Reading** → set the homepage to the homepage you built in
    step 5.
-8. **Appearance → Menus** → assign menus to the **Primary Navigation** and
-   **Footer Navigation** locations (registered in `inc/theme-setup.php`).
-   See [§17](#17-content--product-catalog-reference-source-docx) for the
+8. **Appearance → Menus** → assign a menu to the **Primary Navigation**
+   location (registered in `inc/theme-setup.php`). See
+   [§17](#17-content--product-catalog-reference-source-docx) for the
    client's intended nav structure (Shop All / Face Care / Body Care / Hero
-   Ingredients / About Us).
+   Ingredients / About Us). The footer has no menu location of its own —
+   see step 10.
 9. Set the WhatsApp number under **Appearance → Customize → Site
    Identity** (§8).
-10. **Theme Options → Footer** → fill in the Social Links, Help Links,
-    About Links, Legal Links and newsletter copy (§7/§8) — the footer
-    renders its original design content until this is saved once.
+10. **Theme Options → Footer** → fill in the Shop Links, Social Links,
+    Help Links, About Links, Legal Links and newsletter copy (§7/§8) — the
+    footer renders its original design content until this is saved once.
 
 Fonts (Bebas Neue + DM Sans for the site chrome, Cormorant Garamond + Jost
 for the Cilla Skyn blocks) and Font Awesome are enqueued from CDNs — no
@@ -251,10 +252,11 @@ Comments) with three sub-pages:
 - **General** — empty, ready for future site-wide fields.
 - **Header** — empty, ready for future site-wide fields.
 - **Footer** — the **Cilla Skyn Footer** field group
-  (`acf-json/group_cilla_skyn_footer_options.json`): Social Links, Help
-  Links, About Links, Legal Links and the newsletter heading/description —
-  see §8 for what each controls. This is the main way to edit the footer
-  without touching code.
+  (`acf-json/group_cilla_skyn_footer_options.json`): Shop Links, Social
+  Links, Help Links, About Links, Legal Links and the newsletter
+  heading/description — see §8 for what each controls. This is the **only**
+  way to edit the footer's links; unlike the header, the footer has no
+  WordPress nav menu of its own.
 
 Add more field groups located to `options`/a specific sub-page's
 `menu_slug` (`theme-options-general`, `theme-options-header`,
@@ -303,28 +305,36 @@ instead of the old `pt-32`.
   last one referenced a modal from the now-deleted `pricing` block.
 
 **Footer** (`footer.php`) — 5 columns matching the design. Everything
-except Brand's wordmark/tagline and Shop is now editable from
+except Brand's wordmark/tagline is now editable from
 **Theme Options → Footer** in wp-admin (the **Cilla Skyn Footer** field
 group, §7) — no code changes needed to add/remove a link, swap a URL, or
-show/hide a social icon:
+show/hide a social icon. Unlike the header's `primary_navigation`, the
+footer has **no WordPress nav menu of its own** — every column is an ACF
+repeater on that one options page:
 
 | Column | Where to edit |
 |---|---|
 | **Brand** | Wordmark (site title, automatic) and tagline (`cilla_skyn_tagline` theme mod — **Customize → Site Identity**, shared with the header announcement bar) stay Customizer-controlled. Description (`iga_footer_tagline` theme mod, same Customizer section) and **Social Links** (Theme Options → Footer — one row per icon: pick a **Platform** from Instagram/Facebook/TikTok/Pinterest/YouTube and its **URL**; a row with no URL, or no row at all for a platform, simply doesn't render that icon — no more dead `#` links) |
-| **Shop** | **Appearance → Menus** → assign a menu to **Footer Navigation**. Until one is assigned, a fallback (`iga_footer_nav_fallback()` in `inc/theme-setup.php`) renders: All Products (links to the real Shop page), Best Sellers, The Baby Collection, Bundles & Sets, Gift Cards (the last four are `#` placeholders) |
+| **Shop** | **Theme Options → Footer → Shop Links** — same repeater pattern as Help/About. Ships with `All Products` → the real Shop page, plus 4 `#` placeholders (`Best Sellers`/`The Baby Collection`/`Bundles & Sets`/`Gift Cards`) as the fallback shown until the field is first saved |
 | **Help** | **Theme Options → Footer → Help Links** — a repeater of **Label** + **URL** rows, add/remove/reorder freely. Ships with the design's original 5 links (`Shipping & Delivery`/`Returns & Exchanges`/`FAQs`/`Track Your Order` as `#` placeholders, `Contact Us` → `/contact/`) as the fallback shown until the field is first saved |
 | **About** | **Theme Options → Footer → About Links** — same repeater pattern. Ships with `Our Story` → `/about/` (the About page built from the blocks in §5) plus 4 `#` placeholders (`Our Ingredients`/`Sustainability`/`The Edit`/`Press`) |
 | **Newsletter** | **Theme Options → Footer → Newsletter Heading/Description** (plain text fields). The form itself has no ESP wired up (`onsubmit="return false"` like the design mockup) — connect it to Mailchimp/Klaviyo/etc. before relying on it |
 | Legal links | **Theme Options → Footer → Legal Links** — repeater, ships with Terms/Privacy/Cookies pointing at `/terms/`, `/privacy/`, `/cookies/` (create those pages) |
 | Copyright | Automatic (`date_i18n( 'Y' )` + site title) |
 
-All four footer repeaters (Social Links, Help Links, About Links, Legal
-Links) fall back to the design's original content — hardcoded directly in
-`footer.php`, not via `inc/block-defaults/` — until the field group is
-saved for the first time on **Theme Options → Footer**, exactly like a
-block's fields never render blank (§4). The `iga_instagram_url` Customizer
-setting that used to control the footer's Instagram icon was removed —
-that icon is now just the `instagram` row in Social Links.
+All five footer repeaters (Shop Links, Social Links, Help Links, About
+Links, Legal Links) fall back to the design's original content — hardcoded
+directly in `footer.php`, not via `inc/block-defaults/` — until the field
+group is saved for the first time on **Theme Options → Footer**, exactly
+like a block's fields never render blank (§4). Two things that used to
+control parts of the footer were retired since they're now covered by
+these repeaters: the `iga_instagram_url` Customizer setting (the
+Instagram icon is now just the `instagram` row in Social Links), and the
+**Footer Navigation** nav menu location (the Shop column is now Shop
+Links, alongside every other column, instead of being the one column
+edited via **Appearance → Menus**) — along with its
+`iga_footer_nav_fallback()` and `iga_footer_menu_link_atts()` helpers in
+`inc/theme-setup.php`, which had no other purpose.
 
 Both navigation menu locations (`primary_navigation`, `footer`) are
 registered in `inc/theme-setup.php`. The `cilla_skyn_whatsapp` /
@@ -503,8 +513,8 @@ those two tasks and wasn't done here.
 | Best Sellers block shows no products | WooCommerce isn't active, or no products match the block's Visibility/Sort settings |
 | Products render twice on the Shop page | Make sure only one Best Sellers block is on that page — `iga_prevent_duplicate_shop_products()` only guards against WooCommerce's own auto-appended grid, not duplicate blocks |
 | WhatsApp number needs updating | The header/footer no longer show a WhatsApp icon (§8 — removed, didn't fit the Cilla Skyn design). WhatsApp now only appears via the **Contact Info** block's **Methods** repeater (§5) — edit the WhatsApp row's Value/URL directly on that block instance, not in the Customizer |
-| Footer nav shows links to pages that don't exist | No menu assigned to the **Footer Navigation** location yet — assign one, or edit the fallback in `iga_footer_nav_fallback()` (§8) |
-| Footer Help/About/Legal links or social icons don't match what's saved in Theme Options → Footer | Click **Sync** on the **Cilla Skyn Footer** field group under **Custom Fields → Field Groups**, then re-save Theme Options → Footer |
+| Footer links go nowhere or point at pages that don't exist | That row's URL is still the shipped `#` placeholder — edit it on **Theme Options → Footer** (§8) |
+| Footer Shop/Help/About/Legal links or social icons don't match what's saved in Theme Options → Footer | Click **Sync** on the **Cilla Skyn Footer** field group under **Custom Fields → Field Groups**, then re-save Theme Options → Footer |
 | A footer social icon isn't showing | That platform's row in **Theme Options → Footer → Social Links** has no URL, or there's no row for it at all — a platform only renders once it has a URL (§8) |
 | Clicking "View Memberships" in the mobile menu does nothing / console error | Known issue — see [§13](#13-known-legacyorphaned-code) |
 | A WooCommerce-looking `.hidden` utility fights with the header nav on non-WooCommerce pages | Already handled — `cilla_skyn_dequeue_preorders_sitewide_assets()` in `inc/theme-styles.php` dequeues the offending plugin CSS outside WooCommerce pages |
