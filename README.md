@@ -360,6 +360,18 @@ anymore — the WhatsApp UI didn't fit the Cilla Skyn design and was removed.
   fell through to `page.php`'s bare `the_content()` branch — no title, no
   padding, none of WooCommerce's markup restyled — which is why it
   rendered unstyled.
+- **The Orders/Downloads/Addresses/Account Details sub-pages** (e.g.
+  `/my-account/orders/`) are the *same* page as My Account above — WooCommerce
+  rewrites each to the same page with a query var rather than a separate
+  page, so `page-my-account.php` and its CSS cover all of them automatically,
+  no per-endpoint template needed. The one thing that does need endpoint-
+  aware code is the on-page `<h1>`: `the_title()` alone would print "My
+  account" on every sub-page, so `page-my-account.php` resolves the current
+  endpoint (`WC()->query->get_query_vars()` + `$wp->query_vars`, the same
+  check `is_wc_endpoint_url()` uses internally) and looks its label up in
+  `wc_get_account_menu_items()` — the same source the account nav itself
+  reads from, so a plugin-added endpoint (e.g. Subscriptions) still gets a
+  correct title without any extra work.
 - **Best Sellers block** (§5) builds a `[products]` shortcode from its
   fields and renders it with `do_shortcode()` — WooCommerce owns the
   product query and card markup; `src/input.css` restyles WooCommerce's

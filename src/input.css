@@ -1590,6 +1590,102 @@ body.single-product {
 			font-weight: 600;
 			color: var(--color-cs-ink);
 		}
+
+		/* Single order view — line items + totals table (separate markup
+		   from the Orders list's table.shop_table.my_account_orders). */
+		table.order_details tfoot th,
+		table.order_details tfoot td {
+			padding: 0.6rem 0.5rem 0.6rem 0;
+			font-size: 0.85rem;
+		}
+
+		table.order_details tfoot tr:last-child th,
+		table.order_details tfoot tr:last-child td {
+			border-top: 1px solid color-mix(in srgb, var(--color-cs-ink) 15%, transparent);
+			padding-top: 1rem;
+			font-weight: 700;
+			color: var(--color-cs-ink);
+		}
+
+		/* Single order view — billing/shipping columns (own markup,
+		   distinct from the Addresses tab's .woocommerce-Addresses). */
+		.woocommerce-customer-details {
+			display: grid;
+			grid-template-columns: 1fr;
+			gap: 2rem;
+			margin: 2rem 0 0;
+
+			@media (min-width: 640px) {
+				grid-template-columns: 1fr 1fr;
+			}
+		}
+
+		.woocommerce-customer-details address {
+			font-style: normal;
+			line-height: 1.7;
+			color: color-mix(in srgb, var(--color-cs-ink) 75%, transparent);
+		}
+
+		.woocommerce-customer-details h2 {
+			margin: 0 0 0.75rem;
+			font-family: var(--font-serif);
+			font-size: 1.25rem;
+			font-weight: 400;
+			color: var(--color-cs-ink);
+		}
+
+		/* Downloads tab — remaining-count text under the file link */
+		.download-remaining,
+		.download-expires {
+			display: block;
+			margin-top: 0.2rem;
+			font-size: 0.75rem;
+			color: color-mix(in srgb, var(--color-cs-ink) 55%, transparent);
+		}
+
+		/* Orders/Downloads list pagination (matches the Shop page's) */
+		.woocommerce-pagination ul.page-numbers {
+			display: flex;
+			gap: 0.5rem;
+			list-style: none;
+			margin: 0;
+			padding: 0;
+		}
+
+		.woocommerce-pagination .page-numbers a,
+		.woocommerce-pagination .page-numbers span {
+			display: flex;
+			height: 2.25rem;
+			width: 2.25rem;
+			align-items: center;
+			justify-content: center;
+			border: 1px solid color-mix(in srgb, var(--color-cs-ink) 15%, transparent);
+			border-radius: 999px;
+			font-size: 0.8rem;
+			color: var(--color-cs-ink);
+			text-decoration: none;
+		}
+
+		.woocommerce-pagination .page-numbers .current {
+			border-color: var(--color-cs-ink);
+			background: var(--color-cs-ink);
+			color: var(--color-cream);
+		}
+
+		.woocommerce-pagination .page-numbers a:hover {
+			border-color: var(--color-gold);
+			color: var(--color-gold);
+		}
+
+		/* Empty-state messages (e.g. "You have not set up this type of
+		   address yet.", "No order has been made yet.") can land as a
+		   direct child of either the page content or an Addresses column,
+		   not just .woocommerce-MyAccount-content -- catch both. */
+		.woocommerce-Address > p {
+			margin: 0;
+			line-height: 1.7;
+			color: color-mix(in srgb, var(--color-cs-ink) 65%, transparent);
+		}
 	}
 }
 
