@@ -1,0 +1,23 @@
+{
+    "name": "wp-theme/cilla-skyn-formulation-approach",
+    "title": "Cilla Skyn Formulation Approach",
+    "category": "design",
+    "icon": "chart-bar",
+    "description": "Formulation philosophy section for the About page: heading, paragraphs and a three-line principles strip.",
+    "keywords": ["about", "formulation", "philosophy", "cilla skyn"],
+    "acf": {
+        "mode": "auto",
+        "renderTemplate": "render.php",
+        "blockVersion": 3,
+        "autoInlineEditing": true
+    },
+    "supports": {
+        "align": ["wide", "full"],
+        "anchor": true,
+        "spacing": {
+            "padding": true,
+            "margin": true
+        }
+    },
+    "style": "file:./style.css"
+}

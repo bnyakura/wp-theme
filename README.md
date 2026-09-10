@@ -8,10 +8,12 @@ types driving the front end.
 
 This theme was originally built for a gym brand ("Iron Gorilla Army") and
 has since been rebranded and re-blocked for **Cilla Skyn**, a skincare
-brand. The current block library (`blocks/cilla-skyn-*`) implements the
-Cilla Skyn homepage design (`NewProject/cilla-skyn-homepage.html`). A
-substantial amount of code from the earlier gym-site build still exists in
-`inc/` and `template-parts/` as **unused legacy content** — see
+brand. The block library (`blocks/cilla-skyn-*`) implements both the
+Cilla Skyn homepage design (`NewProject/cilla-skyn-homepage.html`) and the
+About page copy from `NewProject/Cilla Skyn Website Layout.docx` (there's
+no static mockup for the About page — only the docx). A substantial amount
+of code from the earlier gym-site build still exists in `inc/` and
+`template-parts/` as **unused legacy content** — see
 [§12](#12-theme-structure-inc) for exactly what's still wired up versus
 orphaned.
 
@@ -34,6 +36,8 @@ orphaned.
 13. [Known legacy/orphaned code](#13-known-legacyorphaned-code)
 14. [Troubleshooting](#14-troubleshooting)
 15. [File map](#15-file-map)
+16. [Adding a block section: full walkthrough](#16-adding-a-block-section-full-walkthrough)
+17. [Content & product catalog reference (source docx)](#17-content--product-catalog-reference-source-docx)
 
 ---
 
@@ -60,17 +64,27 @@ orphaned.
 2. In wp-admin: **Appearance → Themes → Activate**.
 3. Build the CSS (next section) — the site is unstyled until this has run
    at least once.
-4. Go to **Custom Fields → Field Groups** and confirm the 5 groups listed
+4. Go to **Custom Fields → Field Groups** and confirm the 9 groups listed
    under [§6](#6-field-groups-acfscf-local-json) show up (they load
    automatically from `acf-json/`, no manual sync needed on a fresh
    install).
-5. Create a homepage and add the 5 `cilla-skyn-*` blocks from
+5. Create a homepage and add the 5 homepage `cilla-skyn-*` blocks from
    [§5](#5-block-reference) to it, in order: Hero, Best Sellers, Shop by
    Concern, Feature Strip, Follow Along.
-6. **Settings → Reading** → set the homepage to that page.
-7. **Appearance → Menus** → assign menus to the **Primary Navigation** and
+6. Create an About page and add the 3 About-page `cilla-skyn-*` blocks
+   from [§5](#5-block-reference) to it, in order: About Hero, Our Story,
+   Formulation Approach. Add a Contact Info block to that page (or a
+   separate Contact page) too. See [§16](#16-adding-a-block-section-full-walkthrough)
+   for the full add-a-block walkthrough if you're adding any block for the
+   first time.
+7. **Settings → Reading** → set the homepage to the homepage you built in
+   step 5.
+8. **Appearance → Menus** → assign menus to the **Primary Navigation** and
    **Footer Navigation** locations (registered in `inc/theme-setup.php`).
-8. Set the WhatsApp number and Instagram URL under **Appearance → Customize
+   See [§17](#17-content--product-catalog-reference-source-docx) for the
+   client's intended nav structure (Shop All / Face Care / Body Care / Hero
+   Ingredients / About Us).
+9. Set the WhatsApp number and Instagram URL under **Appearance → Customize
    → Site Identity** (§8).
 
 Fonts (Bebas Neue + DM Sans for the site chrome, Cormorant Garamond + Jost
@@ -125,10 +139,15 @@ content is one or more of this theme's Gutenberg blocks, added and arranged
 in the Block Editor like any other block. `index.php` simply calls
 `the_content()`.
 
-The current block library is a single set of **homepage section blocks**,
-meant to be stacked on one page top-to-bottom to build the Cilla Skyn
-homepage: Hero → Best Sellers → Shop by Concern → Feature Strip → Follow
-Along.
+The block library is two stacks of **page section blocks**, each meant to
+be stacked top-to-bottom on its own page:
+
+- **Homepage**: Hero → Best Sellers → Shop by Concern → Feature Strip →
+  Follow Along (ported from `NewProject/cilla-skyn-homepage.html`).
+- **About page**: About Hero → Our Story → Formulation Approach, plus
+  Contact Info wherever contact details should appear (ported from
+  `NewProject/Cilla Skyn Website Layout.docx`'s About Us copy — there's no
+  About section in the homepage HTML mockup, only in the docx).
 
 Every block:
 
@@ -137,9 +156,11 @@ Every block:
   new block folder is enough, no extra PHP required.
 - Renders via ACF's `renderTemplate` (`render.php` in the block folder),
   reading fields with `get_field()`.
-- **Falls back to the Cilla Skyn mockup's copy**
-  (`NewProject/cilla-skyn-homepage.html`) for any field left empty — via
-  each field's `default_value` in its `acf-json/group_*.json`, and via
+- **Falls back to the source copy** — the homepage mockup
+  (`NewProject/cilla-skyn-homepage.html`) for homepage blocks, the docx
+  (`NewProject/Cilla Skyn Website Layout.docx`) for About-page and Contact
+  Info blocks — for any field left empty. This works via each field's
+  `default_value` in its `acf-json/group_*.json`, and via
   `inc/block-defaults/<slug>.php` for repeater fields (ACF has no
   `default_value` support for repeaters — see `inc/acf-block-defaults.php`
   for how those are stitched together) — so a freshly-added block is never
@@ -151,13 +172,26 @@ Every block:
 
 ## 5. Block reference
 
+**Homepage** (order matches `NewProject/cilla-skyn-homepage.html`):
+
 | Block | Folder | What it renders |
 |---|---|---|
 | **Hero** | `blocks/cilla-skyn-hero` | Full-bleed cream hero: background image, eyebrow, heading, description, two buttons, vertical side-label list |
 | **Best Sellers** | `blocks/cilla-skyn-best-sellers` | WooCommerce product grid, built from the native `[products]` shortcode with editor-configurable heading/visibility/sort/limit/columns |
-| **Shop by Concern** | `blocks/cilla-skyn-shop-by-concern` | Grid of skin-concern category tiles (colour swatch, title, subtitle, link) |
+| **Shop by Concern** | `blocks/cilla-skyn-shop-by-concern` | Grid of skin-concern category tiles (product photo, title, subtitle, link) |
 | **Feature Strip** | `blocks/cilla-skyn-feature-strip` | Row of icon + text trust badges |
-| **Follow Along** | `blocks/cilla-skyn-follow-along` | Instagram-style tile grid mixing colour-block captions and a quote tile |
+| **Follow Along** | `blocks/cilla-skyn-follow-along` | Instagram-style tile grid mixing product/colour-block captions and a quote tile |
+
+**About page** (order matches the About Us copy in
+`NewProject/Cilla Skyn Website Layout.docx`; there's no static mockup for
+this page):
+
+| Block | Folder | What it renders |
+|---|---|---|
+| **About Hero** | `blocks/cilla-skyn-about-hero` | Centered brand-statement intro: eyebrow, heading, two paragraphs, closing tagline |
+| **Our Story** | `blocks/cilla-skyn-our-story` | Founder-story section: eyebrow, heading, paragraph repeater, pronunciation note, closing line |
+| **Formulation Approach** | `blocks/cilla-skyn-formulation-approach` | Formulation-philosophy section: eyebrow, heading, paragraph repeater, three-line principles strip |
+| **Contact Info** | `blocks/cilla-skyn-contact-info` | Row of contact-method cards (WhatsApp, Instagram, Email, Phone) with icon, label, value, link — usable on any page |
 
 To edit a block's fields, add it in the Block Editor and open the block
 settings panel — every field has a label and description pulled straight
@@ -451,14 +485,136 @@ wp-theme/
 │       ├── style.css              # Block-scoped styles, auto-enqueued when the block is used
 │       └── README.md              # Field-by-field reference for that block
 ├── template-parts/                # Orphaned legacy markup — see §13
-├── NewProject/                    # Cilla Skyn homepage design reference (static HTML mockup)
+├── NewProject/                    # Design source: cilla-skyn-homepage.html (homepage mockup) +
+│                                   # "Cilla Skyn Website Layout.docx" (About page copy + product
+│                                   # catalog reference — see §17)
 └── assets/
     ├── css/tailwind.css           # COMPILED output (do not edit by hand)
     ├── images/                    # Bundled fallback/demo images
     └── js/                        # header.js (active), modal.js/hero-slider.js/pricing-tabs.js (orphaned), reveal.js — §10
 ```
 
+---
+
+## 16. Adding a block section: full walkthrough
+
+Every `cilla-skyn-*` block follows the exact same 6-file recipe. Use this
+if you need to add another section beyond the ones in [§5](#5-block-reference)
+(e.g. a Testimonials or FAQ block) — it's also exactly how the 4 About-page
+blocks in this repo were added.
+
+1. **`blocks/cilla-skyn-<slug>/block.json`** — copy an existing block's
+   file and change `name`, `title`, `icon`, `description`, `keywords`.
+   Keep `"acf": { "mode": "auto", "renderTemplate": "render.php" }` and
+   `"style": "file:./style.css"` — no registration code is needed anywhere
+   else, `inc/acf-blocks.php` auto-discovers every `blocks/*/block.json`
+   on `acf/init`.
+2. **`blocks/cilla-skyn-<slug>/render.php`** — read fields with
+   `get_field( 'name' ) ?: 'fallback copy'` for scalar fields (text,
+   textarea, image, url, select), and `get_field( 'name' )` + `foreach`
+   for Repeaters. Wrap the section in
+   `get_block_wrapper_attributes( array( 'class' => 'wp-theme-cilla-skyn-<slug> ...' ) )`
+   so the block gets a stable CSS hook and picks up `align`/`spacing`
+   block supports. Use the existing `cilla-skyn-*` Tailwind tokens
+   (§12) — `bg-cream`/`bg-cream-dark`, `text-cs-ink`, `text-gold`,
+   `font-serif`/`font-sans-cs` — never the dark gym-era tokens.
+3. **`blocks/cilla-skyn-<slug>/style.css`** — leave as the placeholder
+   comment (`/* Styled via Tailwind utility classes in render.php. */`)
+   unless the block genuinely needs CSS Tailwind can't express (like Best
+   Sellers' WooCommerce shortcode overrides, which live in `src/input.css`
+   instead — see that block's own README).
+4. **`blocks/cilla-skyn-<slug>/README.md`** — a fields table (name, type,
+   required, description) plus a short **Notes** section. This is the
+   file a client or another developer reads to understand the block
+   without opening the code.
+5. **`acf-json/group_cilla_skyn_<slug>.json`** — the field definitions.
+   Copy an existing group, rename `key`/`title`, and change the
+   `location` block's `value` to `wp-theme/cilla-skyn-<slug>`. Give every
+   scalar field a `default_value` with real fallback copy (never leave a
+   field blank on purpose) — `inc/acf-json.php` makes this load
+   automatically, no manual Sync needed on a fresh install. Field keys
+   only need to be unique across the whole site; the `field_cilla_skyn_<slug>_<name>`
+   convention just avoids collisions by construction.
+6. **`inc/block-defaults/cilla-skyn-<slug>.php`** — **only needed if the
+   block has a Repeater field.** ACF's `default_value` setting doesn't
+   support Repeaters at all, so this file returns a
+   `'field_<repeater_key>' => array( array( 'sub_field_name' => 'value', ... ), ... )`
+   map instead; `inc/acf-block-defaults.php` globs every file in this
+   directory and serves the rows whenever that Repeater is still empty.
+   Use `sub_field_name` (not `sub_field_key`) here — `custom_theme_remap_repeater_row_keys()`
+   converts it internally. Skip this file entirely for blocks with only
+   scalar fields (e.g. [About Hero](blocks/cilla-skyn-about-hero/README.md)).
+
+Then just add the block in the Block Editor — it appears in the inserter
+under the "design" category, prefixed "Cilla Skyn" so it's easy to find.
+
+---
+
+## 17. Content & product catalog reference (source docx)
+
+`NewProject/Cilla Skyn Website Layout.docx` is the client's own content
+brief. Everything in it that describes a **page section** is now a block
+(§5); everything else in it describes **WooCommerce setup** (products,
+categories, navigation) that has to be done in wp-admin rather than in a
+block, since this theme has no custom post types for products — it's all
+native WooCommerce. This section is a map from that document to where its
+content actually lives in this theme, for whoever populates the store.
+
+**Top navigation** (docx: "Top Navigation") — set up as the **Primary
+Navigation** menu (§8):
+
+| Menu item | Notes |
+|---|---|
+| Shop All | Link to the Shop page — should list every product |
+| Face Care | Sub-items: Serums, Face Cleanser, Moisturisers — create these as WooCommerce product categories and link to their archive pages |
+| Body Care | Sub-items: Body Cleanser, Body Lotion, Body Cream, Body Scrubs, Bath Salts — same, as product categories |
+| Hero Ingredients | No content supplied yet in the docx ("I will share in a separate sheet") — link to a placeholder page until that's provided |
+| About Us | Link to the About page built from the blocks in §5 |
+
+The header's nav menu (`header.php`) renders a flat `wp_nav_menu()` with no
+dropdown styling for nested items yet — if you assign a menu with
+Face Care/Body Care sub-items, style the resulting `.sub-menu` markup
+before relying on it to show dropdowns.
+
+**Product catalog** (docx: "Cilla Skyn product list by category") — the
+full SKU list (Face Cleansers, Facial Serums & Treatments, Face
+Moisturisers & Creams, Facial Oils, Face + Body Treatments/Masks, Body
+Lotions & Creams, Body Oils, Body Cleansers, Body Scrubs & Polishes, Bath
+Soaks & Bath Treatments) is the client's real product range. Create each
+as a WooCommerce product, assigned to a matching product category — the
+**Best Sellers** block (§5) and the **Shop by Concern** block's tile
+**Product** field (§5) both pull directly from real WooCommerce products,
+so nothing on the front end shows real content until these exist.
+
+**Shop by concern mapping** (docx: "Shop by concerns") — the document maps
+specific products to 7 concern groupings, each with a "Primary Role"/
+"Positioning" note (e.g. under "Oily & Acne Prone": Clarity Reset
+Clarifying Gel Face Wash → "Oil, congestion, blemishes"). The
+**Shop by Concern** block (§5) ships with the 6-tile version of this from
+the docx's own "Recommended website 'Shop by Concern'" summary (Oily &
+Acne Prone, Sensitive & Eczema Prone, Dry & Dehydrated, Uneven Tone & Dark
+Marks, Texture & Ageing, Firmness & Body Texture) — once products exist,
+pick one representative product per tile in the block editor (the block's
+own README explains the **Product**/**Title**/**Subtitle** fields). The
+7th grouping in the docx, "Body Wellness & Bath Rituals", isn't one of the
+6 recommended tiles — fold it into an existing tile's product pick, or add
+a 7th row in the block editor (the Repeater has no row limit).
+
+**Contact information** (docx: "Contact Information") — WhatsApp
+`+27 64 911 1932`, Instagram `@Cillaskyn`, Email `Info@cillaskyn.co.za`.
+These already ship as the **Contact Info** block's (§5) default rows, and
+the WhatsApp number/Instagram URL can also be set globally under
+**Appearance → Customize → Site Identity** (§8) for the header/footer.
+
+**About Us copy** (docx: "About Us — Hero Statement / Our Story /
+Our Formulation Approach") — this is the About-page block stack in §5
+(About Hero → Our Story → Formulation Approach) verbatim; no further setup
+needed beyond adding the 3 blocks to the About page.
+
+---
+
 **Handing over to the client:** give them this README plus, for any block
 they're actively editing, that block's own `README.md` for the field-level
-detail. Empty fields fall back to the Cilla Skyn mockup content, so nothing
-a client does in the Block Editor can leave a page blank.
+detail. Empty fields fall back to the source design's own content (the
+homepage mockup or the docx — §16/§17), so nothing a client does in the
+Block Editor can leave a page blank.

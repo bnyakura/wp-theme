@@ -1,0 +1,23 @@
+{
+    "name": "wp-theme/cilla-skyn-about-hero",
+    "title": "Cilla Skyn About Hero",
+    "category": "design",
+    "icon": "lightbulb",
+    "description": "Centered brand-statement intro for the About page: eyebrow, heading, two paragraphs and a closing tagline.",
+    "keywords": ["about", "brand statement", "cilla skyn", "hero"],
+    "acf": {
+        "mode": "auto",
+        "renderTemplate": "render.php",
+        "blockVersion": 3,
+        "autoInlineEditing": true
+    },
+    "supports": {
+        "align": ["wide", "full"],
+        "anchor": true,
+        "spacing": {
+            "padding": true,
+            "margin": true
+        }
+    },
+    "style": "file:./style.css"
+}

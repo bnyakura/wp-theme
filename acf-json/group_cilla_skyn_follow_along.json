@@ -115,12 +115,37 @@
                     "append": ""
                 },
                 {
+                    "key": "field_cilla_skyn_follow_along_tiles_product",
+                    "label": "Product",
+                    "name": "product",
+                    "aria-label": "",
+                    "type": "post_object",
+                    "instructions": "Shown for Caption tiles. Pulls the product's photo, name and link into the tile automatically. Leave empty to use the manual Caption + Color fields instead.",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_cilla_skyn_follow_along_tiles_type",
+                                "operator": "==",
+                                "value": "caption"
+                            }
+                        ]
+                    ],
+                    "wrapper": { "width": "30", "class": "", "id": "" },
+                    "post_type": [ "product" ],
+                    "taxonomy": [],
+                    "allow_null": 1,
+                    "multiple": 0,
+                    "return_format": "id",
+                    "ui": 1
+                },
+                {
                     "key": "field_cilla_skyn_follow_along_tiles_caption",
                     "label": "Caption",
                     "name": "caption",
                     "aria-label": "",
                     "type": "textarea",
-                    "instructions": "Shown for Caption tiles. One line break renders as <br>.",
+                    "instructions": "Shown for Caption tiles. Overrides the product name when a Product is selected above; used on its own (with Color) when it isn't. One line break renders as <br>.",
                     "required": 0,
                     "conditional_logic": [
                         [

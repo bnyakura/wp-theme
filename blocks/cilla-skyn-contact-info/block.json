@@ -1,0 +1,23 @@
+{
+    "name": "wp-theme/cilla-skyn-contact-info",
+    "title": "Cilla Skyn Contact Info",
+    "category": "design",
+    "icon": "email-alt",
+    "description": "Row of contact methods (WhatsApp, Instagram, Email, Phone) with icon, label and link — for the About or Contact page.",
+    "keywords": ["contact", "whatsapp", "instagram", "email", "cilla skyn"],
+    "acf": {
+        "mode": "auto",
+        "renderTemplate": "render.php",
+        "blockVersion": 3,
+        "autoInlineEditing": true
+    },
+    "supports": {
+        "align": ["wide", "full"],
+        "anchor": true,
+        "spacing": {
+            "padding": true,
+            "margin": true
+        }
+    },
+    "style": "file:./style.css"
+}

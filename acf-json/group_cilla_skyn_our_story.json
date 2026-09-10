@@ -1,0 +1,123 @@
+{
+    "key": "group_cilla_skyn_our_story",
+    "title": "Cilla Skyn Our Story",
+    "fields": [
+        {
+            "key": "field_cilla_skyn_our_story_eyebrow",
+            "label": "Eyebrow",
+            "name": "eyebrow",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Small uppercase label above the heading.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": { "width": "", "class": "", "id": "" },
+            "default_value": "Our Story",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_cilla_skyn_our_story_heading",
+            "label": "Heading",
+            "name": "heading",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Main serif headline.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": { "width": "", "class": "", "id": "" },
+            "default_value": "A Name Rooted in Love & Legacy",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_cilla_skyn_our_story_paragraphs",
+            "label": "Paragraphs",
+            "name": "paragraphs",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "One row per paragraph, rendered in order.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": { "width": "", "class": "", "id": "" },
+            "layout": "block",
+            "min": 0,
+            "max": 0,
+            "collapsed": "field_cilla_skyn_our_story_paragraphs_paragraph",
+            "button_label": "Add Paragraph",
+            "sub_fields": [
+                {
+                    "key": "field_cilla_skyn_our_story_paragraphs_paragraph",
+                    "label": "Paragraph",
+                    "name": "paragraph",
+                    "aria-label": "",
+                    "type": "textarea",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": { "width": "", "class": "", "id": "" },
+                    "default_value": "",
+                    "maxlength": "",
+                    "rows": 3,
+                    "placeholder": "",
+                    "new_lines": ""
+                }
+            ]
+        },
+        {
+            "key": "field_cilla_skyn_our_story_pronunciation",
+            "label": "Pronunciation Note",
+            "name": "pronunciation",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Small italic line under the story.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": { "width": "", "class": "", "id": "" },
+            "default_value": "CILLA SKYN™ is pronounced SILL-UH SKIN.",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_cilla_skyn_our_story_closing_line",
+            "label": "Closing Line",
+            "name": "closing_line",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "Small uppercase closing line under a short rule. One line break renders as <br>.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": { "width": "", "class": "", "id": "" },
+            "default_value": "A name inspired by love and legacy.\nA modern African skincare story.",
+            "maxlength": "",
+            "rows": 2,
+            "placeholder": "",
+            "new_lines": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "wp-theme/cilla-skyn-our-story"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "Founder story section for the About page.",
+    "show_in_rest": 0,
+    "modified": 0
+}

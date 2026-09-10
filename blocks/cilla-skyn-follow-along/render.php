@@ -2,9 +2,11 @@
 /**
  * Cilla Skyn Follow Along block — render template.
  *
- * An Instagram-style tile grid mixing flat colour-block captions with a
- * quote tile — mirrors NewProject/cilla-skyn-homepage.html's "Follow
- * Along" section.
+ * An Instagram-style tile grid mixing product photo tiles with a quote
+ * tile — mirrors the approved Cilla Skyn design mockup. Caption tiles pull
+ * their photo, name and link straight from a selected WooCommerce product
+ * when one is set; otherwise they fall back to the flat colour + manual
+ * caption used before real product photography existed.
  *
  * @package custom-theme
  */
@@ -55,12 +57,33 @@ $wrapper_attributes = get_block_wrapper_attributes(
 							</p>
 						</div>
 					<?php else : ?>
-						<div class="relative flex aspect-square items-end p-3" style="background-color: <?php echo esc_attr( $tile['color'] ?: '#DED0B4' ); ?>;">
-							<p class="text-[11px] uppercase leading-snug tracking-[0.22em]"><?php echo nl2br( esc_html( $tile['caption'] ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></p>
-							<?php if ( ! empty( $tile['show_icon'] ) ) : ?>
-								<?php echo $instagram_icon; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+						<?php
+						$product   = ! empty( $tile['product'] ) ? wc_get_product( $tile['product'] ) : null;
+						$image_url = $product ? wp_get_attachment_image_url( $product->get_image_id(), 'large' ) : '';
+						$caption   = $tile['caption'] ?: ( $product ? $product->get_name() : '' );
+						$link      = $product ? get_permalink( $product->get_id() ) : '';
+						$tag       = $link ? 'a' : 'div';
+						?>
+						<<?php echo esc_html( $tag ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+
+							<?php if ( $link ) : ?>href="<?php echo esc_url( $link ); ?>"<?php endif; ?>
+							class="group relative flex aspect-square items-end overflow-hidden p-3"
+							<?php if ( ! $image_url ) : ?>style="background-color: <?php echo esc_attr( $tile['color'] ?: '#DED0B4' ); ?>;"<?php endif; ?>
+						>
+							<?php if ( $image_url ) : ?>
+								<img
+									src="<?php echo esc_url( $image_url ); ?>"
+									alt="<?php echo esc_attr( $caption ); ?>"
+									class="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-105"
+									loading="lazy"
+								>
+								<div class="absolute inset-0 bg-gradient-to-t from-cs-ink/70 via-cs-ink/0 to-transparent"></div>
 							<?php endif; ?>
-						</div>
+							<p class="relative text-[11px] uppercase leading-snug tracking-[0.22em] <?php echo $image_url ? 'text-cream' : ''; ?>"><?php echo nl2br( esc_html( $caption ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></p>
+							<?php if ( ! empty( $tile['show_icon'] ) ) : ?>
+								<span class="relative <?php echo $image_url ? 'text-cream' : ''; ?>"><?php echo $instagram_icon; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
+							<?php endif; ?>
+						</<?php echo esc_html( $tag ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
 					<?php endif; ?>
 				<?php endforeach; ?>
 			</div>

@@ -1,0 +1,23 @@
+{
+    "name": "wp-theme/cilla-skyn-our-story",
+    "title": "Cilla Skyn Our Story",
+    "category": "design",
+    "icon": "book",
+    "description": "Founder story section for the About page: eyebrow, heading, story paragraphs, pronunciation note and closing line.",
+    "keywords": ["about", "our story", "founder", "cilla skyn"],
+    "acf": {
+        "mode": "auto",
+        "renderTemplate": "render.php",
+        "blockVersion": 3,
+        "autoInlineEditing": true
+    },
+    "supports": {
+        "align": ["wide", "full"],
+        "anchor": true,
+        "spacing": {
+            "padding": true,
+            "margin": true
+        }
+    },
+    "style": "file:./style.css"
+}
