@@ -1337,30 +1337,49 @@ body.single-product {
 			color: color-mix(in srgb, var(--color-cs-ink) 50%, transparent);
 		}
 
-		/* Content column */
+		/*
+		 * Content column, headings and links — deliberately NOT scoped
+		 * under .woocommerce-MyAccount-content: that wrapper only exists
+		 * once a customer is actually logged in. The logged-out Login/
+		 * Register forms (shown on EVERY account endpoint — Orders,
+		 * Downloads, Addresses, Account Details all redirect to this same
+		 * login screen for a guest) render a bare `<h2>Login</h2>` and
+		 * plain links directly inside `.woocommerce`, with no
+		 * MyAccount-content wrapper around them at all — scoping these
+		 * rules to that wrapper left the login screen's heading and the
+		 * "Lost your password?" link completely unstyled.
+		 */
 		.woocommerce-MyAccount-content > p {
 			margin: 0 0 1rem;
 			line-height: 1.7;
 			color: color-mix(in srgb, var(--color-cs-ink) 75%, transparent);
 		}
 
-		.woocommerce-MyAccount-content a {
+		a {
 			color: var(--color-cs-ink);
 			text-decoration: underline;
 			text-decoration-color: var(--color-gold);
 			text-underline-offset: 2px;
 		}
 
-		.woocommerce-MyAccount-content a:hover {
+		a:hover {
 			color: var(--color-gold);
 		}
 
-		.woocommerce-MyAccount-content h2 {
+		h2 {
 			margin: 0 0 1.25rem;
 			font-family: var(--font-serif);
 			font-size: 1.6rem;
 			font-weight: 400;
 			color: var(--color-cs-ink);
+		}
+
+		/* Checkboxes (Remember me on login, address/account forms) */
+		input[type="checkbox"] {
+			width: 1.05rem;
+			height: 1.05rem;
+			margin: 0;
+			accent-color: var(--color-cs-ink);
 		}
 
 		/* Orders / downloads tables */
@@ -1381,16 +1400,45 @@ body.single-product {
 			color: color-mix(in srgb, var(--color-cs-ink) 65%, transparent);
 		}
 
-		table.shop_table tbody td {
+		/*
+		 * tbody th, not just tbody td: the Orders table's order-number
+		 * cell is a `<th scope="row">` (WooCommerce's own semantic
+		 * markup), not a `<td>` -- without this it fell back to the
+		 * browser's bold+centered default `<th>` styling instead of
+		 * matching the rest of the row. Confirmed against the actual
+		 * rendered markup, not assumed.
+		 */
+		table.shop_table tbody td,
+		table.shop_table tbody th {
 			padding: 1rem 0.5rem 1rem 0;
 			border-bottom: 1px solid color-mix(in srgb, var(--color-cs-ink) 10%, transparent);
 			font-size: 0.85rem;
+			font-weight: 400;
+			text-align: left;
 			color: var(--color-cs-ink);
 		}
 
-		table.shop_table tbody td::before {
+		table.shop_table tbody td::before,
+		table.shop_table tbody th::before {
 			font-weight: 600;
 			color: color-mix(in srgb, var(--color-cs-ink) 65%, transparent);
+		}
+
+		/*
+		 * WooCommerce's own woocommerce-smallscreen.css (which does the
+		 * actual table -> stacked-rows transform below 768px, adding
+		 * `content: attr(data-title) ": "` before each cell) only
+		 * targets `td::before`, not `th::before` -- so without this, the
+		 * Orders table's order-number cell would be the one row on
+		 * mobile silently missing its "Order:" label while every other
+		 * cell shows one.
+		 */
+		@media (max-width: 768px) {
+			table.shop_table_responsive tbody th::before {
+				content: attr(data-title) ": ";
+				font-weight: 700;
+				float: left;
+			}
 		}
 
 		table.shop_table .button {
@@ -1430,6 +1478,7 @@ body.single-product {
 			text-transform: uppercase;
 			letter-spacing: 0.05em;
 			color: var(--color-gold);
+			text-decoration: none;
 		}
 
 		.woocommerce-Address address {

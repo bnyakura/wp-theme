@@ -360,6 +360,33 @@ anymore — the WhatsApp UI didn't fit the Cilla Skyn design and was removed.
   fell through to `page.php`'s bare `the_content()` branch — no title, no
   padding, none of WooCommerce's markup restyled — which is why it
   rendered unstyled.
+- **The logged-out Login/Register screen is a separate case from the
+  logged-in dashboard.** Every account endpoint (`/my-account/`,
+  `/orders/`, `/downloads/`, `/edit-address/`, `/edit-account/`) shows
+  this same bare login form to a signed-out visitor instead of its normal
+  content — and its `<h2>Login</h2>` heading and links render directly
+  inside `.woocommerce`, with **no** `.woocommerce-MyAccount-content`
+  wrapper around them (that wrapper only exists once actually logged in).
+  Heading/link colour rules are written against `.woocommerce` itself for
+  this reason, not `.woocommerce-MyAccount-content` — scoping them to the
+  wrapper left the login heading and "Lost your password?" link
+  completely unstyled on every one of those URLs. Confirmed by fetching
+  the live pages directly (`curl`) and diffing their actual markup
+  against these CSS rules, since a logged-out request is the only view of
+  this theme's account pages fetchable without a real session.
+- **Two more gaps found by generating a real logged-in session locally**
+  (`wp_generate_auth_cookie()` via a one-off bootstrapped script, WP-CLI
+  not being available here) and diffing the actual authenticated Orders/
+  Downloads/Addresses/Account Details markup against these CSS rules:
+  - The Orders table's order-number cell is a `<th scope="row">`, not a
+    `<td>` — `table.shop_table tbody td` alone left it on the browser's
+    bold+centered `<th>` default instead of matching the rest of the row.
+  - WooCommerce's own `woocommerce-smallscreen.css` (the ≤768px
+    stacked-rows transform) only adds its `content: attr(data-title)`
+    label prefix to `td::before`, not `th::before` — so without an
+    explicit `th::before` rule, that same order-number cell would be the
+    one row silently missing its "Order:" label on mobile while every
+    other cell shows one.
 - **The Orders/Downloads/Addresses/Account Details sub-pages** (e.g.
   `/my-account/orders/`) are the *same* page as My Account above — WooCommerce
   rewrites each to the same page with a query var rather than a separate
