@@ -337,10 +337,12 @@ edited via **Appearance → Menus**) — along with its
 `inc/theme-setup.php`, which had no other purpose.
 
 Both navigation menu locations (`primary_navigation`, `footer`) are
-registered in `inc/theme-setup.php`. The `cilla_skyn_whatsapp` /
-`cilla_skyn_whatsapp_group` Customizer settings still exist
-(`inc/theme-setup.php`) but nothing in the header/footer surfaces them
-anymore — the WhatsApp UI didn't fit the Cilla Skyn design and was removed.
+registered in `inc/theme-setup.php`. The `cilla_skyn_whatsapp` Customizer
+setting now drives the floating WhatsApp chat button (§9) — set the real
+number under **Customize → Site Identity → WhatsApp Number**. The
+`cilla_skyn_whatsapp_group` setting still exists but nothing surfaces it —
+it was for a "Join Community" WhatsApp group link that didn't fit the
+Cilla Skyn design and was removed.
 
 ---
 
@@ -425,6 +427,29 @@ anymore — the WhatsApp UI didn't fit the Cilla Skyn design and was removed.
   `cilla_skyn_contact_recipient`) — **requires working outgoing mail on
   the host** (an SMTP plugin, on most setups) to actually arrive; see the
   block's own README.
+- **Floating WhatsApp chat button** — a fixed icon in the bottom-right
+  corner of every page (markup in `footer.php`, right after `</footer>`;
+  behaviour in `assets/js/whatsapp-chat.js`, §10). Clicking it opens a
+  small panel with a textarea; Send builds a `wa.me` link — via
+  `iga_get_whatsapp_number_url()` (`inc/theme-setup.php`), the same
+  helper the Book Assessment flow already used — from the number set
+  under **Customize → Site Identity → WhatsApp Number**
+  (`cilla_skyn_whatsapp`), with the typed message pre-filled, and opens
+  it in a new tab. **There's no WhatsApp Business API integration** —
+  that needs a paid, approved API account, well beyond a `wa.me` link —
+  so "Send" hands off to WhatsApp itself (app or web); the visitor still
+  taps Send inside WhatsApp. This is the standard "click-to-chat" pattern
+  every `wa.me`-based chat widget uses, same as every other WhatsApp
+  button already in this theme (Book Assessment, Contact Info block).
+  **Fixing this button also fixed a real bug**: `iga_get_whatsapp_number_url()`'s
+  fallback number (used whenever the Customizer field is empty) was
+  `27790614906` — a leftover number from the theme's original gym-brand
+  build. Once this button made the link visible/clickable site-wide, an
+  unset Customizer field would have silently sent real customer messages
+  to the wrong WhatsApp account. The fallback is now Cilla Skyn's real
+  number (`27649111932`, from the docx / Contact Info block's default) —
+  set the real number in the Customizer regardless, rather than relying
+  on this fallback long-term.
 
 ---
 
@@ -440,6 +465,7 @@ by `inc/theme-styles.php` so previews match the live site):
 | `assets/js/hero-slider.js` | Autoplay slide carousel behaviour | Enqueued, but the `hero` block that used it was removed — see §13 |
 | `assets/js/reveal.js` | Scroll-triggered reveal animations (`.reveal`/`.active`) | Enqueued; harmless if unused (no-ops without `.reveal` elements) |
 | `assets/js/pricing-tabs.js` | Monthly / Drop-In tab toggle | Enqueued, but the `pricing` block that used it was removed — see §13 |
+| `assets/js/whatsapp-chat.js` | Floating WhatsApp chat button (§9): panel open/close (click, Escape, click-outside), builds the `wa.me` link on Send | Active |
 
 ---
 
@@ -542,11 +568,12 @@ currently-wired functionality:
   than `pt-32` for their top padding — the old value compensated for the
   header being removed from document flow when it was still `fixed`; that
   no longer applies now that it's a normal static-flow element (§8).
-- **`cilla_skyn_whatsapp` / `cilla_skyn_whatsapp_group` Customizer
-  settings** (`inc/theme-setup.php`) — still registered, but nothing in
-  the header or footer surfaces them since the WhatsApp UI was removed
-  (§8). Harmless if left as-is; remove the `add_setting`/`add_control`
-  calls if you want them gone from the Customizer entirely.
+- **`cilla_skyn_whatsapp_group` Customizer setting** (`inc/theme-setup.php`)
+  — still registered, but nothing surfaces it; it was for a "Join
+  Community" WhatsApp group link that didn't fit the Cilla Skyn design.
+  Harmless if left as-is; remove the `add_setting`/`add_control` calls if
+  you want it gone from the Customizer entirely. (`cilla_skyn_whatsapp`
+  itself, the WhatsApp *number*, is active — see §9.)
 
 None of this causes PHP errors or blocks the site from working — it's
 inert weight left over from the block-library cleanup and the header/footer
@@ -619,7 +646,7 @@ wp-theme/
 └── assets/
     ├── css/tailwind.css           # COMPILED output (do not edit by hand)
     ├── images/                    # Bundled fallback/demo images
-    └── js/                        # header.js (active), modal.js/hero-slider.js/pricing-tabs.js (orphaned), reveal.js — §10
+    └── js/                        # header.js/whatsapp-chat.js (active), modal.js/hero-slider.js/pricing-tabs.js (orphaned), reveal.js — §10
 ```
 
 ---
@@ -740,10 +767,12 @@ a 7th row in the block editor (the Repeater has no row limit).
 
 **Contact information** (docx: "Contact Information") — WhatsApp
 `+27 64 911 1932`, Instagram `@Cillaskyn`, Email `Info@cillaskyn.co.za`.
-These already ship as the **Contact Info** block's (§5) default rows, and
-as the **Social Links**/WhatsApp defaults on **Theme Options → Footer**
-(§7/§8). The `cilla_skyn_whatsapp` Customizer setting also still exists
-but nothing currently surfaces it (§8) — don't rely on it.
+These already ship as the **Contact Info** block's (§5) default rows, as
+the **Social Links**/WhatsApp defaults on **Theme Options → Footer**
+(§7/§8), and as the fallback number for the floating WhatsApp chat button
+(§9) — set the real number once under **Customize → Site Identity →
+WhatsApp Number** (`cilla_skyn_whatsapp`) rather than relying on that
+fallback long-term.
 
 **About Us copy** (docx: "About Us — Hero Statement / Our Story /
 Our Formulation Approach") — this is the About-page block stack in §5

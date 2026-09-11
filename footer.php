@@ -244,6 +244,68 @@ $cilla_skyn_newsletter_description = get_field( 'newsletter_description', 'optio
 	</div>
 </footer>
 
+<?php
+/*
+ * Floating WhatsApp chat button — a fixed icon in the bottom-right corner
+ * of every page. Clicking it opens a small panel with a textarea; on
+ * Send, assets/js/whatsapp-chat.js builds a wa.me link (the number
+ * configured under Customize -> Site Identity -> WhatsApp Number,
+ * iga_get_whatsapp_number_url() in inc/theme-setup.php, same helper the
+ * Book Assessment flow uses) with the typed message pre-filled and opens
+ * it in a new tab. There's no WhatsApp Business API integration here --
+ * that needs a paid, approved API account -- so "Send" hands off to
+ * WhatsApp itself (app or web) with the message ready to go; the visitor
+ * still taps Send inside WhatsApp. This is the standard "click-to-chat"
+ * pattern every wa.me-based chat widget uses.
+ */
+$cilla_skyn_whatsapp_base_url = iga_get_whatsapp_number_url();
+?>
+<div class="fixed bottom-6 right-6 z-50 font-sans-cs">
+	<div
+		id="whatsapp-chat-panel"
+		hidden
+		role="dialog"
+		aria-modal="false"
+		aria-labelledby="whatsapp-chat-heading"
+		class="absolute bottom-[calc(100%+0.75rem)] right-0 w-[min(90vw,20rem)] border border-cs-ink/10 bg-cream shadow-xl"
+	>
+		<div class="flex items-center justify-between gap-3 bg-cs-ink px-4 py-3 text-cream">
+			<p id="whatsapp-chat-heading" class="font-serif text-base"><?php esc_html_e( 'Chat with us', 'custom-theme' ); ?></p>
+			<button type="button" id="whatsapp-chat-close" class="text-cream/70 hover:text-cream" aria-label="<?php esc_attr_e( 'Close chat', 'custom-theme' ); ?>">
+				<svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg>
+			</button>
+		</div>
+		<form id="whatsapp-chat-form" data-whatsapp-url="<?php echo esc_url( $cilla_skyn_whatsapp_base_url ); ?>" class="flex flex-col gap-3 p-4">
+			<label for="whatsapp-chat-message" class="text-sm leading-relaxed text-cs-ink/70">
+				<?php esc_html_e( "Send us a message on WhatsApp — we'll pick up right where you leave off.", 'custom-theme' ); ?>
+			</label>
+			<textarea
+				id="whatsapp-chat-message"
+				name="message"
+				rows="4"
+				placeholder="<?php esc_attr_e( 'Type your message…', 'custom-theme' ); ?>"
+				class="w-full resize-none border border-cs-ink/25 bg-cream px-3 py-2.5 text-sm placeholder:text-cs-ink/40 focus:border-cs-ink focus:outline-none"
+			></textarea>
+			<button type="submit" class="inline-flex items-center justify-center gap-2 bg-[#25D366] px-5 py-2.5 text-sm font-medium text-white transition hover:bg-[#1DA851]">
+				<?php esc_html_e( 'Send on WhatsApp', 'custom-theme' ); ?> <span aria-hidden="true">→</span>
+			</button>
+		</form>
+	</div>
+
+	<button
+		type="button"
+		id="whatsapp-chat-toggle"
+		aria-expanded="false"
+		aria-controls="whatsapp-chat-panel"
+		aria-label="<?php esc_attr_e( 'Chat on WhatsApp', 'custom-theme' ); ?>"
+		class="flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-lg transition hover:bg-[#1DA851]"
+	>
+		<svg class="h-7 w-7" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true">
+			<path d="M16.01 3C9.38 3 4 8.36 4 14.97c0 2.2.6 4.27 1.64 6.05L4 29l8.2-1.6a13.1 13.1 0 003.8.57h.01c6.63 0 12.01-5.36 12.01-11.97C28.02 8.36 22.64 3 16.01 3zm0 21.86h-.01a10.9 10.9 0 01-3.63-.63l-.28-.13-4.87.95.98-4.75-.16-.29a9.8 9.8 0 01-1.6-5.36C6.44 9.55 10.62 5.38 16.01 5.38c5.4 0 9.64 4.17 9.64 9.6 0 5.42-4.24 9.88-9.64 9.88zm5.4-7.24c-.3-.15-1.75-.86-2.02-.96-.27-.1-.47-.15-.66.15-.2.3-.76.96-.93 1.15-.17.2-.34.22-.64.08-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.48-1.75-1.65-2.05-.17-.3-.02-.46.13-.6.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.66-1.6-.9-2.18-.24-.58-.48-.5-.66-.51h-.56c-.2 0-.52.08-.79.37-.27.3-1.03 1-1.03 2.45s1.06 2.85 1.2 3.05c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.62.71.23 1.35.2 1.86.12.57-.08 1.75-.71 2-1.4.24-.68.24-1.27.17-1.4-.07-.13-.27-.2-.57-.35z"/>
+		</svg>
+	</button>
+</div>
+
 <?php wp_footer(); ?>
 
 </body>

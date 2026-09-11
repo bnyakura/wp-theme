@@ -158,10 +158,20 @@ function iga_get_whatsapp_group_url() {
 
 /**
  * A wa.me chat link to the configured WhatsApp number, used by "Book Free
- * Assessment" / "Book Assessment" buttons site-wide.
+ * Assessment" / "Book Assessment" buttons site-wide and the floating
+ * WhatsApp chat button (footer.php).
+ *
+ * The fallback number here is Cilla Skyn's real WhatsApp number from
+ * NewProject/Cilla Skyn Website Layout.docx's "Contact Information"
+ * section (also the Contact Info block's default) -- this used to be a
+ * leftover number from the theme's original gym-brand build
+ * ('27790614906'), which would have silently sent real customer messages
+ * to the wrong WhatsApp account once this URL became visible/clickable
+ * on the front end. Set the real number under Customize -> Site Identity
+ * -> WhatsApp Number to override this fallback.
  */
 function iga_get_whatsapp_number_url( $message = '' ) {
-    $number = get_theme_mod( 'cilla_skyn_whatsapp', '' ) ?: '27790614906';
+    $number = get_theme_mod( 'cilla_skyn_whatsapp', '' ) ?: '27649111932';
     $url    = 'https://wa.me/' . $number;
 
     if ( $message ) {
