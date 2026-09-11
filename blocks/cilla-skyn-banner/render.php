@@ -53,6 +53,24 @@ $image_fit_classes = array(
 );
 $image_fit_class = $image_fit_classes[ get_field( 'image_fit' ) ] ?? 'object-cover';
 
+/*
+ * Which part of the image stays visible once Image Fit crops it (CSS
+ * object-position) — same literal-class-name-map reasoning as Image Fit
+ * above, so Tailwind's content scanner can see every possible class.
+ */
+$image_position_classes = array(
+	'left-top'     => 'object-left-top',
+	'top'          => 'object-top',
+	'right-top'    => 'object-right-top',
+	'left'         => 'object-left',
+	'center'       => 'object-center',
+	'right'        => 'object-right',
+	'left-bottom'  => 'object-left-bottom',
+	'bottom'       => 'object-bottom',
+	'right-bottom' => 'object-right-bottom',
+);
+$image_position_class = $image_position_classes[ get_field( 'image_position' ) ] ?? 'object-center';
+
 $overlay_color = get_field( 'overlay_color' );
 $text_color    = get_field( 'text_color' );
 $text_style    = $text_color ? sprintf( ' style="color: %s;"', esc_attr( $text_color ) ) : '';
@@ -97,7 +115,7 @@ $wrapper_attributes = get_block_wrapper_attributes(
 				<img
 					src="<?php echo esc_url( $image_url ); ?>"
 					alt="<?php echo esc_attr( $image_alt ); ?>"
-					class="h-full w-full <?php echo esc_attr( $image_fit_class ); ?>"
+					class="h-full w-full <?php echo esc_attr( $image_fit_class ); ?> <?php echo esc_attr( $image_position_class ); ?>"
 					loading="lazy"
 					decoding="async"
 				>

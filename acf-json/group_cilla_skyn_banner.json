@@ -91,6 +91,35 @@
             "placeholder": ""
         },
         {
+            "key": "field_cilla_skyn_banner_image_position",
+            "label": "Image Position",
+            "name": "image_position",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "Which part of the image stays in view when Image Fit crops it (CSS object-position) — nudge the visible area up/down/left/right, or to a corner. Leave empty for Center.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": { "width": "", "class": "", "id": "" },
+            "choices": {
+                "left-top": "Top Left",
+                "top": "Top",
+                "right-top": "Top Right",
+                "left": "Left",
+                "center": "Center (default)",
+                "right": "Right",
+                "left-bottom": "Bottom Left",
+                "bottom": "Bottom",
+                "right-bottom": "Bottom Right"
+            },
+            "default_value": "",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 1,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
             "key": "field_cilla_skyn_banner_overlay_color",
             "label": "Background Overlay Color",
             "name": "overlay_color",
