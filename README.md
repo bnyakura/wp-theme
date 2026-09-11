@@ -193,6 +193,7 @@ this page):
 | Block | Folder | What it renders |
 |---|---|---|
 | **About Hero** | `blocks/cilla-skyn-about-hero` | Centered brand-statement intro: optional background image with a colour-picker overlay wash, a colour-picker text colour, eyebrow, heading, two rich-text (WYSIWYG) paragraphs, closing tagline |
+| **Banner** | `blocks/cilla-skyn-banner` | Same layout as About Hero (optional background image, eyebrow, heading, two rich-text paragraphs, tagline), but every field is truly optional — none carry a `default_value`, so an empty field just omits that section instead of falling back to default copy. Usable on any page |
 | **Our Story** | `blocks/cilla-skyn-our-story` | Founder-story section: eyebrow, heading, paragraph repeater, pronunciation note, closing line |
 | **Formulation Approach** | `blocks/cilla-skyn-formulation-approach` | Formulation-philosophy section: eyebrow, heading, paragraph repeater, three-line principles strip |
 | **Contact Info** | `blocks/cilla-skyn-contact-info` | Heading + rich-text subheading (WYSIWYG — bold, headings, images, video embeds, files) + row of contact-method cards (WhatsApp, Instagram, Email, Phone) with icon, label, value, link — usable on any page |

@@ -20,12 +20,17 @@ get_header();
 while ( have_posts() ) :
 	the_post();
 	?>
-	<section class="wp-theme-shop-page bg-cream px-4.5 pb-24 pt-16 font-sans-cs text-cs-ink antialiased min-[481px]:px-6 min-[1081px]:px-[5vw]">
+	<section class="wp-theme-shop-page bg-cream px-4.5 pb-24 font-sans-cs text-cs-ink antialiased min-[481px]:px-6 min-[1081px]:px-[5vw]">
 		<div class="mx-auto max-w-[1280px]">
-			<h1 class="mb-10 font-serif text-4xl leading-none sm:text-5xl">
-				<?php the_title(); ?>
-			</h1>
-			<?php the_content(); ?>
+			<?php
+			/*
+			 * No the_title() heading here on purpose -- the Cilla Skyn Banner
+			 * block at the top of this page's content already renders its own
+			 * <h1> Heading field, so printing the WordPress page title too
+			 * would put two <h1>s on the page and show "Shop" twice.
+			 */
+			the_content();
+			?>
 		</div>
 	</section>
 	<?php

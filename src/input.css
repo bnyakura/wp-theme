@@ -70,6 +70,28 @@
   }
 }
 
+/*
+ * Full-width block alignment breakout. `add_theme_support('align-wide')`
+ * (inc/theme-setup.php) turns on the Wide/Full alignment options in the
+ * block toolbar, but WordPress core never ships the CSS that actually
+ * makes ".alignfull" span the viewport -- themes have to supply it. Most
+ * regular pages (page.php's bare the_content(), see that file's own
+ * comment) have no container to break out of, so this rule is invisible
+ * there, but page-shop.php wraps the_content() in a `.mx-auto
+ * max-w-[1280px]` div for the product grid -- without this rule, a
+ * full-width block like Cilla Skyn Banner would get clipped to that same
+ * 1280px column instead of spanning edge-to-edge like it does on pages
+ * with no wrapper. Safe to use `100vw` here since `body` above already sets
+ * `overflow-x-hidden`, so a scrollbar's width can't cause horizontal
+ * scroll/jitter.
+ */
+.alignfull {
+  width: 100vw;
+  max-width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+}
+
 
 /*
  * Header/footer logos — WooCommerce's global `.woocommerce img,
