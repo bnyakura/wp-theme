@@ -1264,15 +1264,31 @@ body.single-product {
 
 	.woocommerce {
 
-		/* Nav + content two-column layout (WooCommerce ships no layout CSS
-		   of its own for these — they're just two sibling elements). */
-		display: grid;
-		grid-template-columns: 1fr;
+		/*
+		 * Nav + content two-column layout (WooCommerce ships no layout CSS
+		 * of its own for these — they're just two sibling elements). This
+		 * can't be a plain 2-column grid on `.woocommerce` itself: that
+		 * only has exactly 2 children (nav, content) once logged in — on
+		 * the logged-out Login/Register screen, `.woocommerce`'s direct
+		 * children are instead .woocommerce-notices-wrapper, <h2>Login</h2>
+		 * and <form>, and grid auto-placement scattered those 3 across a
+		 * 2-column layout (the form landing in the narrow 220px column,
+		 * a big empty gap where the nav would've been) instead of
+		 * stacking them. Defaulting to a plain flex-column and only
+		 * switching to a row split when a nav actually exists fixes both
+		 * cases with the one ruleset — confirmed against a real
+		 * screenshot of the logged-out view, not assumed.
+		 */
+		display: flex;
+		flex-direction: column;
 		gap: 2.5rem;
-		align-items: start;
+		align-items: stretch;
 
 		@media (min-width: 768px) {
-			grid-template-columns: 220px 1fr;
+			&:has(.woocommerce-MyAccount-navigation) {
+				flex-direction: row;
+				align-items: flex-start;
+			}
 		}
 
 		/* Notices (login errors, "address saved", "logged out", etc.) */
@@ -1302,7 +1318,27 @@ body.single-product {
 			margin-left: 0.75rem;
 		}
 
-		/* Navigation sidebar */
+		/*
+		 * Navigation sidebar — explicit sizing since flexbox (unlike the
+		 * grid-template-columns this replaced) doesn't size children on
+		 * its own.
+		 */
+		.woocommerce-MyAccount-navigation {
+			width: 100%;
+		}
+
+		.woocommerce-MyAccount-content {
+			min-width: 0;
+			flex: 1;
+		}
+
+		@media (min-width: 768px) {
+			.woocommerce-MyAccount-navigation {
+				width: 220px;
+				flex-shrink: 0;
+			}
+		}
+
 		.woocommerce-MyAccount-navigation ul {
 			margin: 0;
 			padding: 0;
@@ -1426,14 +1462,27 @@ body.single-product {
 
 		/*
 		 * WooCommerce's own woocommerce-smallscreen.css (which does the
-		 * actual table -> stacked-rows transform below 768px, adding
-		 * `content: attr(data-title) ": "` before each cell) only
-		 * targets `td::before`, not `th::before` -- so without this, the
-		 * Orders table's order-number cell would be the one row on
-		 * mobile silently missing its "Order:" label while every other
-		 * cell shows one.
+		 * actual table -> stacked-rows transform below 768px) has a rule
+		 * `table.shop_table_responsive tbody th { display: none }` --
+		 * confirmed by an actual mobile-width screenshot showing the
+		 * Orders table's order-number cell (a `<th scope="row">`, WC's
+		 * own semantic markup) missing *entirely* below 768px, not just
+		 * missing its "Order:" label as an earlier pass here assumed.
+		 * WooCommerce only ever intended that rule for a genuine table
+		 * row-header column with no equivalent in its own templates, but
+		 * the Orders table uses `scope="row"` on what is, content-wise,
+		 * a perfectly normal data cell — so it needs the exact same
+		 * mobile treatment as td below: `display: block` (this selector
+		 * is one class more specific than WC's, so no !important needed)
+		 * plus the `content: attr(data-title) ": "` label every other
+		 * cell gets automatically because it's a td.
 		 */
 		@media (max-width: 768px) {
+			table.shop_table_responsive tbody th {
+				display: block;
+				text-align: right;
+			}
+
 			table.shop_table_responsive tbody th::before {
 				content: attr(data-title) ": ";
 				font-weight: 700;
@@ -1445,7 +1494,16 @@ body.single-product {
 			margin: 0.2rem 0.3rem 0.2rem 0;
 		}
 
-		/* Addresses (billing/shipping) */
+		/*
+		 * Addresses (billing/shipping). This div also carries WooCommerce's
+		 * own legacy `.col2-set` float-column class, which adds a
+		 * `content:" "` clearfix on ::before/::after -- confirmed with a
+		 * real screenshot that once the container is display:grid, those
+		 * generated boxes become real (empty) grid items and occupy the
+		 * first cell, pushing Billing into row 1 column 2 and Shipping
+		 * into row 2 column 1 instead of the two cards sitting side by
+		 * side. Same fix as the Shop page's product grid below.
+		 */
 		.woocommerce-Addresses {
 			display: grid;
 			grid-template-columns: 1fr;
@@ -1456,12 +1514,30 @@ body.single-product {
 			}
 		}
 
+		.woocommerce-Addresses::before,
+		.woocommerce-Addresses::after {
+			content: none;
+		}
+
 		.woocommerce-Address-title {
 			display: flex;
 			align-items: baseline;
 			justify-content: space-between;
 			gap: 1rem;
 			margin: 0 0 0.75rem;
+		}
+
+		/*
+		 * Same generated-clearfix-becomes-a-real-item issue as
+		 * .woocommerce-Addresses above: WooCommerce's own CSS puts a
+		 * `content:" "` clearfix on this element's ::before/::after
+		 * (for its original float:left/float:right heading+edit-link
+		 * layout) which would otherwise become 2 extra, empty flex items
+		 * here, breaking the heading/edit-link space-between spacing.
+		 */
+		.woocommerce-Address-title::before,
+		.woocommerce-Address-title::after {
+			content: none;
 		}
 
 		.woocommerce-Address-title h2,
@@ -1547,8 +1623,21 @@ body.single-product {
 			color: var(--color-cs-ink);
 		}
 
-		/* Login/Register two-column layout when both are shown together */
-		.u-columns.woocommerce-columns {
+		/*
+		 * Login/Register two-column layout, when registration is enabled
+		 * (woocommerce_enable_myaccount_registration option) and both
+		 * forms show together. WooCommerce's own template
+		 * (templates/myaccount/form-login.php) wraps them in
+		 * `<div class="u-columns col2-set" id="customer_login">` — not
+		 * `.woocommerce-columns`, which was this rule's original (wrong,
+		 * never actually matching anything) selector; fixed to the real
+		 * one. Also carries the same `.col2-set` clearfix-becomes-a-real-
+		 * grid-item issue as .woocommerce-Addresses above (confirmed
+		 * there with a screenshot, not re-verified here since
+		 * registration is disabled on this install — same WooCommerce
+		 * class, same fix applies either way).
+		 */
+		#customer_login.col2-set {
 			display: grid;
 			grid-template-columns: 1fr;
 			gap: 2.5rem;
@@ -1556,6 +1645,11 @@ body.single-product {
 			@media (min-width: 768px) {
 				grid-template-columns: 1fr 1fr;
 			}
+		}
+
+		#customer_login.col2-set::before,
+		#customer_login.col2-set::after {
+			content: none;
 		}
 
 		.woocommerce-form-login__rememberme {
@@ -1683,14 +1777,27 @@ body.single-product {
 			color: var(--color-cs-ink);
 		}
 
-		/* Downloads tab — remaining-count text under the file link */
-		.download-remaining,
-		.download-expires {
-			display: block;
-			margin-top: 0.2rem;
-			font-size: 0.75rem;
-			color: color-mix(in srgb, var(--color-cs-ink) 55%, transparent);
-		}
+		/*
+		 * NOTE: there is deliberately no `.download-remaining`/
+		 * `.download-expires` rule here. An earlier pass added one
+		 * (`display: block; margin-top: ...`) on the assumption these
+		 * were small caption spans "under the file link" — that's how
+		 * WooCommerce's now-deprecated `myaccount/my-downloads.php`
+		 * list template rendered a download's remaining-count. The
+		 * template this theme's install actually uses,
+		 * `order/order-downloads.php`, is table-based, and
+		 * `download-remaining`/`download-expires` are the CLASS NAMES OF
+		 * THE `<td>` CELLS THEMSELVES (confirmed by dumping getComputedStyle()
+		 * for every cell in the rendered table, after a screenshot showed
+		 * the "Downloads remaining"/"Expires" columns stacked on top of
+		 * each other instead of side by side): the old rule's
+		 * `display: block` was overriding those two cells' `table-cell`
+		 * display, breaking them out of the table's column layout
+		 * entirely while `download-product`/`download-file` stayed
+		 * normal columns. They need no special styling at all — the
+		 * generic `table.shop_table tbody td` rule above already covers
+		 * them correctly, same as every other cell in this table.
+		 */
 
 		/* Orders/Downloads list pagination (matches the Shop page's) */
 		.woocommerce-pagination ul.page-numbers {

@@ -90,7 +90,7 @@ $wrapper_attributes = get_block_wrapper_attributes(
 			<img
 				src="<?php echo esc_url( $image_url ); ?>"
 				alt="<?php echo esc_attr( $image_alt ); ?>"
-				class="h-full w-full object-cover"
+				class="h-full w-full object-cover object-top min-[768px]:object-center"
 				loading="eager"
 				decoding="async"
 			>
@@ -100,8 +100,8 @@ $wrapper_attributes = get_block_wrapper_attributes(
 		<?php endif; ?>
 	</div>
 
-	<div class="relative mx-auto grid min-h-[560px] max-w-[1400px] grid-cols-1 gap-8 px-6 py-20 min-[768px]:grid-cols-12 min-[768px]:px-10 min-[768px]:py-28">
-		<div class="flex flex-col justify-center min-[768px]:col-span-7">
+	<div class="relative mx-auto grid min-h-[1320px] max-w-[1400px] grid-cols-1 gap-8 px-6 py-20 min-[768px]:min-h-[560px] min-[768px]:grid-cols-12 min-[768px]:px-10 min-[768px]:py-28">
+		<div class="flex flex-col justify-start min-[768px]:justify-center min-[768px]:col-span-7">
 			<?php if ( $eyebrow ) : ?>
 				<p class="mb-4 text-[11px] uppercase tracking-[0.22em] text-cs-ink/60"><?php echo esc_html( $eyebrow ); ?></p>
 			<?php endif; ?>

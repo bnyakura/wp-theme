@@ -376,6 +376,55 @@ Cilla Skyn design and was removed.
   the live pages directly (`curl`) and diffing their actual markup
   against these CSS rules, since a logged-out request is the only view of
   this theme's account pages fetchable without a real session.
+- **The logged-out Login screen's own layout was broken, not just unstyled** —
+  found by actually screenshotting it with a headless Chromium (`chromium-browser
+  --headless --screenshot=...`), not just reading markup. `.woocommerce`
+  was a `display: grid; grid-template-columns: 220px 1fr` (at ≥768px)
+  container sized for exactly 2 children — `.woocommerce-MyAccount-navigation`
+  + `.woocommerce-MyAccount-content`, true once logged in. Logged out,
+  `.woocommerce`'s direct children are instead `.woocommerce-notices-wrapper`,
+  `<h2>Login</h2>` and `<form>` — 3 items — and grid auto-placement
+  scattered them across that same 2-column layout: the login form landed
+  squeezed into the narrow 220px column, with a large empty gap where the
+  nav would've been. Fixed by defaulting `.woocommerce` to a plain
+  `flex-direction: column` (correct for the logged-out case) and only
+  switching to the row/220px-sidebar split with
+  `&:has(.woocommerce-MyAccount-navigation)` at ≥768px — confirmed with
+  fresh screenshots that both the logged-out login form (now full-width,
+  stacked) and the logged-in dashboard (still a proper 2-column nav +
+  content split) render correctly.
+- **The Addresses tab's Billing/Shipping cards were badly misplaced** —
+  Billing (first in the markup) rendered top-*right* and Shipping
+  bottom-*left*, not side by side — found the same way, with a real
+  screenshot of an authenticated session (a throwaway `wp_generate_auth_cookie()`
+  script, since there's no WP-CLI here either). Cause: `.woocommerce-Addresses`
+  also carries WooCommerce's own legacy `.col2-set` class, whose CSS adds
+  a `content:" "` clearfix on `::before`/`::after` for its original
+  float-based 2-column layout. Once `.woocommerce-Addresses` became
+  `display: grid` (§8), those generated boxes stopped being decorative
+  and became two extra, *empty* grid items — occupying row 1 column 1 and
+  pushing Billing into row 1 column 2, then wrapping Shipping down into
+  row 2 column 1. The `.woocommerce-Address-title` header (Billing/Shipping
+  heading + its "Edit ... address" link) has the exact same
+  clearfix-on-a-flex-container issue for the same reason. Both are fixed
+  with a `content: none` override on the relevant `::before`/`::after` —
+  the identical technique already used for the Shop page's product grid
+  (`ul.products::before`/`::after`) a few sections up in this same file;
+  same underlying WooCommerce pattern, same fix, just hit again on a
+  different element.
+- **Finding that bug prompted a check of the Login/Register two-column
+  layout for the same issue** — and turned up two problems there, both
+  now fixed even though registration is disabled on this install (so
+  neither was actually visible yet): the selector was `.u-columns.woocommerce-columns`,
+  which never matched anything — WooCommerce's real template
+  (`templates/myaccount/form-login.php`) wraps Login+Register in
+  `<div class="u-columns col2-set" id="customer_login">`, not a
+  `.woocommerce-columns` class (verified against the actual plugin file,
+  not assumed) — so this two-column layout was silently dead CSS. Fixed
+  to the real `#customer_login.col2-set` selector, **and** given the same
+  `::before`/`::after` → `content: none` fix as `.woocommerce-Addresses`,
+  since it carries the same `.col2-set` class and would have hit the
+  identical broken-layout bug the moment registration is turned on.
 - **Two more gaps found by generating a real logged-in session locally**
   (`wp_generate_auth_cookie()` via a one-off bootstrapped script, WP-CLI
   not being available here) and diffing the actual authenticated Orders/
@@ -383,12 +432,43 @@ Cilla Skyn design and was removed.
   - The Orders table's order-number cell is a `<th scope="row">`, not a
     `<td>` — `table.shop_table tbody td` alone left it on the browser's
     bold+centered `<th>` default instead of matching the rest of the row.
-  - WooCommerce's own `woocommerce-smallscreen.css` (the ≤768px
-    stacked-rows transform) only adds its `content: attr(data-title)`
-    label prefix to `td::before`, not `th::before` — so without an
-    explicit `th::before` rule, that same order-number cell would be the
-    one row silently missing its "Order:" label on mobile while every
-    other cell shows one.
+  - **Corrected on a later pass, with an actual mobile-width (390px)
+    screenshot**: WooCommerce's own `woocommerce-smallscreen.css` (the
+    ≤768px stacked-rows transform) doesn't just skip that `<th>` cell's
+    `content: attr(data-title)` label — it sets `display: none` on
+    `table.shop_table_responsive tbody th` outright, so the entire "Order:
+    #400" row was missing from the mobile view, not merely unlabelled as
+    first assumed from reading markup alone. Fixed with an explicit
+    `display: block` (this rule is one class more specific than
+    WooCommerce's, so no `!important` needed) alongside the
+    `content: attr(data-title) ": "` label, giving that cell the exact
+    same mobile treatment WooCommerce already gives every `<td>`.
+- **The Downloads table's "Downloads remaining"/"Expires" columns were
+  stacked on top of each other instead of sitting side by side** — found
+  by creating a real downloadable product + completed order locally
+  (`WC_Product_Download`, `wc_create_order()`, `wp_set_current_user(1)` so
+  WooCommerce's approved-download-directory check would auto-approve —
+  the Downloads tab is otherwise always empty on a fresh install, so this
+  needed real data, not just a screenshot of the empty state) and
+  screenshotting the result. Root cause, confirmed by dumping
+  `getComputedStyle()` for every cell in the table (written into the page
+  via an injected `<script>`, then read back out of the dumped DOM — no
+  browser devtools access from here): an **earlier pass in this same file
+  had the wrong template in mind**. It added a
+  `.download-remaining, .download-expires { display: block; ... }` rule
+  assuming those were small caption spans "under the file link", which is
+  how WooCommerce's now-deprecated `myaccount/my-downloads.php` list
+  template rendered a download's remaining-count. The template actually in
+  use, `order/order-downloads.php`, is table-based, and
+  `download-remaining`/`download-expires` are the **class names of the
+  `<td>` cells themselves** — so that rule's `display: block` was
+  overriding two of the table's four cells out of `table-cell` display
+  entirely, breaking them out of the column layout while the other two
+  columns (`download-product`, `download-file`) stayed normal. Fixed by
+  deleting the rule outright — these cells need no special styling, the
+  generic `table.shop_table tbody td` rule already covers them like every
+  other cell in this table. Re-verified at both desktop and mobile (390px)
+  width after the fix; cleaned up the test product/order afterwards.
 - **The Orders/Downloads/Addresses/Account Details sub-pages** (e.g.
   `/my-account/orders/`) are the *same* page as My Account above — WooCommerce
   rewrites each to the same page with a query var rather than a separate
