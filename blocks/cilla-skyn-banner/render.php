@@ -55,21 +55,20 @@ $image_fit_class = $image_fit_classes[ get_field( 'image_fit' ) ] ?? 'object-cov
 
 /*
  * Which part of the image stays visible once Image Fit crops it (CSS
- * object-position) — same literal-class-name-map reasoning as Image Fit
- * above, so Tailwind's content scanner can see every possible class.
+ * object-position), as free-form X/Y percentages rather than a fixed set of
+ * positions — set either by dragging the crosshair overlay that
+ * focal-point-editor.js draws on this field's image preview in the block
+ * editor, or by moving the two range sliders directly. Continuous values
+ * like these can't be pre-built Tailwind classes (Tailwind only generates
+ * CSS for exact class names it finds as literal text at build time, and a
+ * per-post percentage never is one), so this goes out as an inline style
+ * instead of a class, unlike Image Fit above.
  */
-$image_position_classes = array(
-	'left-top'     => 'object-left-top',
-	'top'          => 'object-top',
-	'right-top'    => 'object-right-top',
-	'left'         => 'object-left',
-	'center'       => 'object-center',
-	'right'        => 'object-right',
-	'left-bottom'  => 'object-left-bottom',
-	'bottom'       => 'object-bottom',
-	'right-bottom' => 'object-right-bottom',
-);
-$image_position_class = $image_position_classes[ get_field( 'image_position' ) ] ?? 'object-center';
+$focal_x = get_field( 'image_focal_x' );
+$focal_y = get_field( 'image_focal_y' );
+$focal_x = is_numeric( $focal_x ) ? max( 0, min( 100, (float) $focal_x ) ) : 50;
+$focal_y = is_numeric( $focal_y ) ? max( 0, min( 100, (float) $focal_y ) ) : 50;
+$image_position_style = sprintf( 'object-position: %s%% %s%%;', esc_attr( $focal_x ), esc_attr( $focal_y ) );
 
 $overlay_color = get_field( 'overlay_color' );
 $text_color    = get_field( 'text_color' );
@@ -115,7 +114,8 @@ $wrapper_attributes = get_block_wrapper_attributes(
 				<img
 					src="<?php echo esc_url( $image_url ); ?>"
 					alt="<?php echo esc_attr( $image_alt ); ?>"
-					class="h-full w-full <?php echo esc_attr( $image_fit_class ); ?> <?php echo esc_attr( $image_position_class ); ?>"
+					class="h-full w-full <?php echo esc_attr( $image_fit_class ); ?>"
+					style="<?php echo esc_attr( $image_position_style ); ?>"
 					loading="lazy"
 					decoding="async"
 				>

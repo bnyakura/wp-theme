@@ -81,6 +81,13 @@ if( file_exists( $single_product_file_path ) ) {
     require $single_product_file_path;
 }
 
+// Define the path to the Cilla Skyn Banner block's focal point picker
+// editor assets (drag-and-drop crosshair over the background image preview)
+$banner_focal_point_file_path = get_template_directory() . '/inc/cilla-skyn-banner-focal-point.php';
+if( file_exists( $banner_focal_point_file_path ) ) {
+    require $banner_focal_point_file_path;
+}
+
 
 
 

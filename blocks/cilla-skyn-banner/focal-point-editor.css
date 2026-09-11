@@ -1,0 +1,31 @@
+/*
+ * Cilla Skyn Banner block — drag-and-drop focal point picker styling
+ * (blocks/cilla-skyn-banner/focal-point-editor.js). Block-editor-only.
+ */
+
+.cilla-skyn-focal-wrap {
+	position: relative;
+}
+
+.cilla-skyn-focal-overlay {
+	position: absolute;
+	inset: 0;
+	cursor: crosshair;
+	z-index: 5;
+}
+
+.cilla-skyn-focal-marker {
+	position: absolute;
+	width: 22px;
+	height: 22px;
+	margin: -11px 0 0 -11px;
+	border: 2px solid #fff;
+	border-radius: 50%;
+	background: rgba(176, 141, 87, 0.85);
+	box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.35), 0 1px 4px rgba(0, 0, 0, 0.4);
+	pointer-events: none;
+}
+
+.cilla-skyn-focal-overlay.is-dragging .cilla-skyn-focal-marker {
+	background: rgba(176, 141, 87, 1);
+}
