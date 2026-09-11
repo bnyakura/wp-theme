@@ -180,9 +180,9 @@ Every block:
 
 | Block | Folder | What it renders |
 |---|---|---|
-| **Hero** | `blocks/cilla-skyn-hero` | Full-bleed cream hero: background image with a configurable overlay (gradient/solid/none, colour-picker), eyebrow, heading, description, two buttons, vertical side-label list |
+| **Hero** | `blocks/cilla-skyn-hero` | Full-bleed cream hero: 4 responsive background-image tiers — Desktop/Laptop/Tablet/Mobile (art direction via `<picture>`) — with a configurable overlay (gradient/solid/none, colour-picker), eyebrow, heading, description, two buttons, vertical side-label list |
 | **Best Sellers** | `blocks/cilla-skyn-best-sellers` | WooCommerce product grid, built from the native `[products]` shortcode with editor-configurable heading/visibility/sort/limit/columns |
-| **Shop by Concern** | `blocks/cilla-skyn-shop-by-concern` | Grid of skin-concern category tiles (product photo, title, subtitle, link) |
+| **Shop by Concern** | `blocks/cilla-skyn-shop-by-concern` | Grid of skin-concern category tiles (product photo + link, or a manually uploaded image + link, title, subtitle) |
 | **Feature Strip** | `blocks/cilla-skyn-feature-strip` | Row of icon + text trust badges |
 | **Follow Along** | `blocks/cilla-skyn-follow-along` | Instagram-style tile grid mixing product/colour-block captions and a quote tile |
 
@@ -314,7 +314,7 @@ repeater on that one options page:
 
 | Column | Where to edit |
 |---|---|
-| **Brand** | Wordmark (site title, automatic) and tagline (`cilla_skyn_tagline` theme mod — **Customize → Site Identity**, shared with the header announcement bar) stay Customizer-controlled. Description (`iga_footer_tagline` theme mod, same Customizer section) and **Social Links** (Theme Options → Footer — one row per icon: pick a **Platform** from Instagram/Facebook/TikTok/Pinterest/YouTube and its **URL**; a row with no URL, or no row at all for a platform, simply doesn't render that icon — no more dead `#` links) |
+| **Brand** | Wordmark (site title, automatic) and tagline (`cilla_skyn_tagline` theme mod, control labelled **"Site Tagline (Header & Footer)"** under **Customize → Site Identity** — also shown as the small caption under the wordmark in the header, next to the logo; not the header's separate announcement bar, see §8) stay Customizer-controlled. Description (`iga_footer_tagline` theme mod, control labelled **"Footer Tagline"**, same Customizer section — **not** the same field as Site Tagline, despite the similar name) and **Social Links** (Theme Options → Footer — one row per icon: pick a **Platform** from Instagram/Facebook/TikTok/Pinterest/YouTube and its **URL**; a row with no URL, or no row at all for a platform, simply doesn't render that icon — no more dead `#` links) |
 | **Shop** | **Theme Options → Footer → Shop Links** — same repeater pattern as Help/About. Ships with `All Products` → the real Shop page, plus 4 `#` placeholders (`Best Sellers`/`The Baby Collection`/`Bundles & Sets`/`Gift Cards`) as the fallback shown until the field is first saved |
 | **Help** | **Theme Options → Footer → Help Links** — a repeater of **Label** + **URL** rows, add/remove/reorder freely. Ships with the design's original 5 links (`Shipping & Delivery`/`Returns & Exchanges`/`FAQs`/`Track Your Order` as `#` placeholders, `Contact Us` → `/contact/`) as the fallback shown until the field is first saved |
 | **About** | **Theme Options → Footer → About Links** — same repeater pattern. Ships with `Our Story` → `/about/` (the About page built from the blocks in §5) plus 4 `#` placeholders (`Our Ingredients`/`Sustainability`/`The Edit`/`Press`) |
@@ -576,6 +576,7 @@ those two tasks and wasn't done here.
 | Contact Form block always shows an error, or messages never arrive | `wp_mail()` needs working outgoing mail on the host — install/configure an SMTP plugin (e.g. WP Mail SMTP) with real credentials, then send a test submission. Check spam too |
 | Contact Form block shows "Your session expired" immediately | A page-caching plugin is caching the nonce in the form's HTML — exclude that page from caching, or exclude the block's markup |
 | A field shows literal `<br>`/HTML tags as visible text instead of formatting | That field is a plain Text/Textarea field (intentionally escaped with `esc_html()` — see every block's `render.php`), not rich text — typing HTML into it doesn't do anything. The fields in this theme that support real formatting (bold, headings, images, video embeds, files) are the **Contact Info** block's **Subheading** and the **About Hero** block's **Intro**/**Description** (§5) — use their "Add Media"/toolbar buttons rather than typing tags by hand. See either block's own README for how to add the same capability to another field |
+| Editing "Tagline" in the Customizer doesn't change what's on the site | You're almost certainly editing the wrong one — **Customize → Site Identity** has *two* similarly-named fields: **"Site Tagline (Header & Footer)"** controls `cilla_skyn_tagline` ("Skin for a Brighter Tomorrow", shown under the header wordmark and twice in the footer); **"Footer Tagline"** controls `iga_footer_tagline` (the longer footer description paragraph). They're unrelated fields despite the name overlap |
 
 ---
 

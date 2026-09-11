@@ -91,6 +91,19 @@ add_filter('body_class', 'cilla_skyn_header_classes');
 
 
 function cilla_skyn_customizer($wp_customize) {
+    $wp_customize->add_setting('cilla_skyn_tagline', [
+        'default'           => __( 'Skin for a Brighter Tomorrow', 'cilla-skyn' ),
+        'sanitize_callback' => 'sanitize_text_field',
+        'transport'         => 'refresh',
+    ]);
+
+    $wp_customize->add_control('cilla_skyn_tagline', [
+        'label'       => __('Site Tagline (Header & Footer)', 'cilla-skyn'),
+        'description' => __('Short uppercase line shown in the header announcement bar and twice in the footer. Not the same as "Footer Tagline" below, which is the longer footer description paragraph.', 'cilla-skyn'),
+        'section'     => 'title_tagline',
+        'type'        => 'text',
+    ]);
+
     $wp_customize->add_setting('cilla_skyn_whatsapp', [
         'default'   => '',
         'transport' => 'refresh',

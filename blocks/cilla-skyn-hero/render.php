@@ -17,6 +17,26 @@ $image_url = $image_id ? wp_get_attachment_image_url( (int) $image_id, 'full' ) 
 $image_alt = $image_id ? get_post_meta( (int) $image_id, '_wp_attachment_image_alt', true ) : 'Cilla Skyn natural botanical ingredients';
 
 /*
+ * Optional separate crops/photos per device size (art direction, not
+ * just smaller versions of the same file — the mobile shot is typically
+ * a different, taller composition) — rendered via <picture> with one
+ * <source> per tier below Desktop, so the browser picks whichever file
+ * actually matches the viewport instead of just scaling the desktop
+ * image down. Sources are evaluated top-to-bottom and the browser uses
+ * the first one whose media query matches, so an empty tier is simply
+ * omitted below and the next size up is used for that viewport range —
+ * no explicit fallback logic needed here.
+ */
+$laptop_image_id  = get_field( 'laptop_image' );
+$laptop_image_url = $laptop_image_id ? wp_get_attachment_image_url( (int) $laptop_image_id, 'full' ) : '';
+
+$tablet_image_id  = get_field( 'tablet_image' );
+$tablet_image_url = $tablet_image_id ? wp_get_attachment_image_url( (int) $tablet_image_id, 'full' ) : '';
+
+$mobile_image_id  = get_field( 'mobile_image' );
+$mobile_image_url = $mobile_image_id ? wp_get_attachment_image_url( (int) $mobile_image_id, 'full' ) : '';
+
+/*
  * Overlay sitting on top of the Background Image so the text stays
  * readable — either the original design's left-to-right gradient, a flat
  * solid-colour wash, or none at all. `$overlay_style_css` becomes the
@@ -57,13 +77,24 @@ $wrapper_attributes = get_block_wrapper_attributes(
 ?>
 <section <?php echo $wrapper_attributes; ?>>
 	<div class="absolute inset-0">
-		<img
-			src="<?php echo esc_url( $image_url ); ?>"
-			alt="<?php echo esc_attr( $image_alt ); ?>"
-			class="h-full w-full object-cover"
-			loading="eager"
-			decoding="async"
-		>
+		<picture>
+			<?php if ( $mobile_image_url ) : ?>
+				<source media="(max-width: 767px)" srcset="<?php echo esc_url( $mobile_image_url ); ?>">
+			<?php endif; ?>
+			<?php if ( $tablet_image_url ) : ?>
+				<source media="(max-width: 1279px)" srcset="<?php echo esc_url( $tablet_image_url ); ?>">
+			<?php endif; ?>
+			<?php if ( $laptop_image_url ) : ?>
+				<source media="(max-width: 1919px)" srcset="<?php echo esc_url( $laptop_image_url ); ?>">
+			<?php endif; ?>
+			<img
+				src="<?php echo esc_url( $image_url ); ?>"
+				alt="<?php echo esc_attr( $image_alt ); ?>"
+				class="h-full w-full object-cover"
+				loading="eager"
+				decoding="async"
+			>
+		</picture>
 		<?php if ( $overlay_style_css ) : ?>
 			<div class="absolute inset-0" style="<?php echo esc_attr( $overlay_style_css ); ?>"></div>
 		<?php endif; ?>
