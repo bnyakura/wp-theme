@@ -3,7 +3,7 @@
     "title": "Cilla Skyn Banner",
     "category": "design",
     "icon": "align-center",
-    "description": "Flexible centered banner: optional background image, eyebrow, heading, two rich-text paragraphs and tagline. Same layout as About Hero, but every field is truly optional — an empty field just omits that section instead of falling back to default copy.",
+    "description": "Flexible centered banner: optional Desktop/Tablet/Mobile background images, eyebrow, heading, two rich-text paragraphs and tagline. Same layout as About Hero, but every field is truly optional — an empty field just omits that section instead of falling back to default copy.",
     "keywords": ["banner", "hero", "cilla skyn", "flexible"],
     "acf": {
         "mode": "auto",

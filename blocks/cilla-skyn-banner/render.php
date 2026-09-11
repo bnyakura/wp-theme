@@ -15,9 +15,26 @@
  * @package custom-theme
  */
 
-$image_id  = get_field( 'background_image' );
+$desktop_image_id = get_field( 'background_image' );
+$tablet_image_id  = get_field( 'tablet_image' );
+$mobile_image_id  = get_field( 'mobile_image' );
+
+/*
+ * Optional separate crops/photos per device size (art direction, not just
+ * smaller versions of the same file — see the Hero block's same pattern),
+ * rendered via <picture> with one <source> per tier below Desktop. Each
+ * tier is independently optional: the <img> fallback below resolves to
+ * whichever of Desktop/Tablet/Mobile is set first, so filling in only one
+ * of the three still shows that image at every screen size, and the whole
+ * image area (like every other section in this block) simply doesn't
+ * render when none of the three are set.
+ */
+$image_id  = $desktop_image_id ?: ( $tablet_image_id ?: $mobile_image_id );
 $image_url = $image_id ? wp_get_attachment_image_url( (int) $image_id, 'full' ) : '';
 $image_alt = $image_id ? get_post_meta( (int) $image_id, '_wp_attachment_image_alt', true ) : '';
+
+$tablet_image_url = $tablet_image_id ? wp_get_attachment_image_url( (int) $tablet_image_id, 'full' ) : '';
+$mobile_image_url = $mobile_image_id ? wp_get_attachment_image_url( (int) $mobile_image_id, 'full' ) : '';
 
 $overlay_color = get_field( 'overlay_color' );
 $text_color    = get_field( 'text_color' );
@@ -53,13 +70,21 @@ $wrapper_attributes = get_block_wrapper_attributes(
 <section <?php echo $wrapper_attributes; ?>>
 	<?php if ( $image_url ) : ?>
 		<div class="absolute inset-0">
-			<img
-				src="<?php echo esc_url( $image_url ); ?>"
-				alt="<?php echo esc_attr( $image_alt ); ?>"
-				class="h-full w-full object-cover"
-				loading="lazy"
-				decoding="async"
-			>
+			<picture>
+				<?php if ( $mobile_image_url ) : ?>
+					<source media="(max-width: 767px)" srcset="<?php echo esc_url( $mobile_image_url ); ?>">
+				<?php endif; ?>
+				<?php if ( $tablet_image_url ) : ?>
+					<source media="(max-width: 1279px)" srcset="<?php echo esc_url( $tablet_image_url ); ?>">
+				<?php endif; ?>
+				<img
+					src="<?php echo esc_url( $image_url ); ?>"
+					alt="<?php echo esc_attr( $image_alt ); ?>"
+					class="h-full w-full object-cover"
+					loading="lazy"
+					decoding="async"
+				>
+			</picture>
 			<?php if ( $overlay_color ) : ?>
 				<div class="absolute inset-0" style="background-color: <?php echo esc_attr( $overlay_color ); ?>;"></div>
 			<?php endif; ?>
