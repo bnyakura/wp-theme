@@ -36,6 +36,23 @@ $image_alt = $image_id ? get_post_meta( (int) $image_id, '_wp_attachment_image_a
 $tablet_image_url = $tablet_image_id ? wp_get_attachment_image_url( (int) $tablet_image_id, 'full' ) : '';
 $mobile_image_url = $mobile_image_id ? wp_get_attachment_image_url( (int) $mobile_image_id, 'full' ) : '';
 
+/*
+ * How the image fills its area (CSS object-fit). Written out as a literal
+ * class-name map, rather than building "object-{$choice}" by string
+ * concatenation, so Tailwind's content scanner (which just looks for these
+ * exact tokens in the theme's .php files — see src/input.css's top
+ * comment) can see every possible class and generate its CSS; a
+ * dynamically-built class name wouldn't be visible to it.
+ */
+$image_fit_classes = array(
+	'cover'      => 'object-cover',
+	'contain'    => 'object-contain',
+	'fill'       => 'object-fill',
+	'none'       => 'object-none',
+	'scale-down' => 'object-scale-down',
+);
+$image_fit_class = $image_fit_classes[ get_field( 'image_fit' ) ] ?? 'object-cover';
+
 $overlay_color = get_field( 'overlay_color' );
 $text_color    = get_field( 'text_color' );
 $text_style    = $text_color ? sprintf( ' style="color: %s;"', esc_attr( $text_color ) ) : '';
@@ -80,7 +97,7 @@ $wrapper_attributes = get_block_wrapper_attributes(
 				<img
 					src="<?php echo esc_url( $image_url ); ?>"
 					alt="<?php echo esc_attr( $image_alt ); ?>"
-					class="h-full w-full object-cover"
+					class="h-full w-full <?php echo esc_attr( $image_fit_class ); ?>"
 					loading="lazy"
 					decoding="async"
 				>

@@ -66,6 +66,31 @@
             "mime_types": ""
         },
         {
+            "key": "field_cilla_skyn_banner_image_fit",
+            "label": "Image Fit",
+            "name": "image_fit",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "How the background image fills its area (CSS object-fit). Leave empty for the default, Cover.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": { "width": "", "class": "", "id": "" },
+            "choices": {
+                "cover": "Cover (fill area, cropped — default)",
+                "contain": "Contain (fit entirely, may letterbox)",
+                "fill": "Fill (stretch to fit, may distort)",
+                "none": "None (original size, no scaling)",
+                "scale-down": "Scale Down (contain or original, whichever is smaller)"
+            },
+            "default_value": "",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 1,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
             "key": "field_cilla_skyn_banner_overlay_color",
             "label": "Background Overlay Color",
             "name": "overlay_color",
