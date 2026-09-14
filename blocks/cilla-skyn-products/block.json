@@ -1,10 +1,10 @@
 {
-    "name": "wp-theme/cilla-skyn-our-story",
-    "title": "Cilla Skyn Our Story",
+    "name": "wp-theme/cilla-skyn-products",
+    "title": "Cilla Skyn Products",
     "category": "design",
-    "icon": "book",
-    "description": "Founder story section for the About page: eyebrow, heading, story paragraphs, pronunciation note and closing line.",
-    "keywords": ["about", "our story", "founder", "cilla skyn"],
+    "icon": "store",
+    "description": "The Shop page's own WooCommerce product grid, filterable to one or more product categories.",
+    "keywords": ["products", "woocommerce", "shop", "category", "grid", "cilla skyn"],
     "acf": {
         "mode": "auto",
         "renderTemplate": "render.php",

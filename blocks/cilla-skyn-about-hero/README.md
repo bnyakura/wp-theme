@@ -1,6 +1,6 @@
 # Cilla Skyn About Hero Block
 
-Centered brand-statement intro, meant for the top of the About page. Sourced from the "Hero Statement" copy in `NewProject/Cilla Skyn Website Layout.docx`'s About Us section (this section isn't in the homepage mockup — it's the first block on the About page, above [Our Story](../cilla-skyn-our-story/README.md)).
+Centered brand-statement intro, meant for the top of the About page. Sourced from the "Hero Statement" copy in `NewProject/Cilla Skyn Website Layout.docx`'s About Us section (this section isn't in the homepage mockup — it's the first block on the About page, above [General Information](../cilla-skyn-general-information/README.md)).
 
 ## Fields
 

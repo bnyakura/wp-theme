@@ -1,0 +1,41 @@
+{
+    "key": "group_cilla_skyn_general_information",
+    "title": "Cilla Skyn General Information",
+    "fields": [
+        {
+            "key": "field_cilla_skyn_general_information_content",
+            "label": "Content",
+            "name": "content",
+            "aria-label": "",
+            "type": "wysiwyg",
+            "instructions": "Full rich-text editor: bold/italic, headings, lists, links. Use \"Add Media\" to insert images or files, or paste a YouTube/Vimeo link on its own line to embed a video.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": { "width": "", "class": "", "id": "" },
+            "default_value": "<h2>A Name Rooted in Love &amp; Legacy</h2>\n<p>Cilla Skyn™ was created from a deeply personal place, one rooted in love, care and intention.</p>\n<p>The name Cilla comes from Priscilla, my mother and the inspiration at the heart of the brand. Her strength, warmth and presence inspired a name that carries something deeply personal, while reflecting the values we want every Cilla Skyn™ product to embody.</p>\n<p>What began as a personal inspiration evolved into a vision for skincare that feels both meaningful and modern. A vision centred on thoughtfully selected ingredients, elevated textures and a genuine respect for the skin.</p>\n<p>Cilla Skyn™ represents a modern expression of African skincare, celebrating the richness of our botanical heritage while embracing the possibilities of contemporary cosmetic science.</p>\n<p>Every formula is created with intention, bringing together nature, science and sensorial experience to transform everyday skincare into a ritual that feels considered, comforting and beautifully your own.</p>\n<p><em>CILLA SKYN™ is pronounced SILL-UH SKIN.</em></p>",
+            "tabs": "all",
+            "toolbar": "full",
+            "media_upload": 1,
+            "delay": 0
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "wp-theme/cilla-skyn-general-information"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "Freeform rich-text section -- one full WYSIWYG editor for general-purpose copy anywhere on the site.",
+    "show_in_rest": 0,
+    "modified": 0
+}

@@ -1,0 +1,5 @@
+/* Styled via Tailwind utility classes in render.php for the section shell.
+ * The WYSIWYG field's own output (headings/paragraphs/lists/links/images
+ * from the editor) can't carry Tailwind classes, so it's styled in
+ * src/input.css instead, scoped under
+ * .wp-theme-cilla-skyn-general-information__content. */

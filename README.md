@@ -72,8 +72,8 @@ orphaned.
    [§5](#5-block-reference) to it, in order: Hero, Best Sellers, Shop by
    Concern, Feature Strip, Follow Along.
 6. Create an About page and add the 3 About-page `cilla-skyn-*` blocks
-   from [§5](#5-block-reference) to it, in order: About Hero, Our Story,
-   Formulation Approach. Add a Contact Info block to that page (or a
+   from [§5](#5-block-reference) to it, in order: About Hero, General
+   Information, Formulation Approach. Add a Contact Info block to that page (or a
    separate Contact page) too. See [§16](#16-adding-a-block-section-full-walkthrough)
    for the full add-a-block walkthrough if you're adding any block for the
    first time.
@@ -148,7 +148,7 @@ be stacked top-to-bottom on its own page:
 
 - **Homepage**: Hero → Best Sellers → Shop by Concern → Feature Strip →
   Follow Along (ported from `NewProject/cilla-skyn-homepage.html`).
-- **About page**: About Hero → Our Story → Formulation Approach, plus
+- **About page**: About Hero → General Information → Formulation Approach, plus
   Contact Info wherever contact details should appear (ported from
   `NewProject/Cilla Skyn Website Layout.docx`'s About Us copy — there's no
   About section in the homepage HTML mockup, only in the docx).
@@ -194,7 +194,7 @@ this page):
 |---|---|---|
 | **About Hero** | `blocks/cilla-skyn-about-hero` | Centered brand-statement intro: optional background image with a colour-picker overlay wash, a colour-picker text colour, eyebrow, heading, two rich-text (WYSIWYG) paragraphs, closing tagline |
 | **Banner** | `blocks/cilla-skyn-banner` | Same layout as About Hero (optional background image, eyebrow, heading, two rich-text paragraphs, tagline), but every field is truly optional — none carry a `default_value`, so an empty field just omits that section instead of falling back to default copy. Usable on any page |
-| **Our Story** | `blocks/cilla-skyn-our-story` | Founder-story section: eyebrow, heading, paragraph repeater, pronunciation note, closing line |
+| **General Information** | `blocks/cilla-skyn-general-information` | Freeform rich-text section: one full WYSIWYG editor field (headings, paragraphs, lists, links, images, embeds). Ships with the former "Our Story" founder-story copy as its default content |
 | **Formulation Approach** | `blocks/cilla-skyn-formulation-approach` | Formulation-philosophy section: eyebrow, heading, paragraph repeater, three-line principles strip |
 | **Contact Info** | `blocks/cilla-skyn-contact-info` | Heading + rich-text subheading (WYSIWYG — bold, headings, images, video embeds, files) + row of contact-method cards (WhatsApp, Instagram, Email, Phone) with icon, label, value, link — usable on any page |
 
@@ -857,8 +857,9 @@ fallback long-term.
 
 **About Us copy** (docx: "About Us — Hero Statement / Our Story /
 Our Formulation Approach") — this is the About-page block stack in §5
-(About Hero → Our Story → Formulation Approach) verbatim; no further setup
-needed beyond adding the 3 blocks to the About page.
+(About Hero → General Information → Formulation Approach); the "Our Story"
+copy ships as General Information's default WYSIWYG content, so no further
+setup is needed beyond adding the 3 blocks to the About page.
 
 **Footer's Help/About columns** (§8) point at `#` placeholders, or in
 About's case, `/about/`, until the pages below exist — once you've built

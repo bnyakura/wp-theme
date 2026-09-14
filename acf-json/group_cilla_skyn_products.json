@@ -1,0 +1,121 @@
+{
+    "key": "group_cilla_skyn_products",
+    "title": "Cilla Skyn Products",
+    "fields": [
+        {
+            "key": "field_cilla_skyn_products_heading",
+            "label": "Heading",
+            "name": "heading",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Optional. Displayed above the product grid.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": { "width": "", "class": "", "id": "" },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_cilla_skyn_products_subheading",
+            "label": "Subheading",
+            "name": "subheading",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "Optional. Displayed underneath the heading.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": { "width": "", "class": "", "id": "" },
+            "default_value": "",
+            "maxlength": "",
+            "rows": 2,
+            "placeholder": "",
+            "new_lines": ""
+        },
+        {
+            "key": "field_cilla_skyn_products_categories",
+            "label": "Categories",
+            "name": "categories",
+            "aria-label": "",
+            "type": "taxonomy",
+            "instructions": "Which product categories to display. Leave empty to show every product, exactly like the Shop page.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": { "width": "", "class": "", "id": "" },
+            "taxonomy": "product_cat",
+            "field_type": "checkbox",
+            "add_term": 0,
+            "save_terms": 0,
+            "load_terms": 0,
+            "return_format": "id",
+            "allow_null": 1,
+            "multiple": 0
+        },
+        {
+            "key": "field_cilla_skyn_products_sort",
+            "label": "Sort",
+            "name": "sort",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": { "width": "50", "class": "", "id": "" },
+            "choices": {
+                "default": "Default",
+                "newest": "Newest",
+                "oldest": "Oldest",
+                "price_low_high": "Price: Low to High",
+                "price_high_low": "Price: High to Low",
+                "popularity": "Popularity",
+                "rating": "Average Rating",
+                "title_az": "Product Title (A–Z)",
+                "title_za": "Product Title (Z–A)"
+            },
+            "default_value": "default",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_cilla_skyn_products_products_per_page",
+            "label": "Products Per Page",
+            "name": "products_per_page",
+            "aria-label": "",
+            "type": "number",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": { "width": "50", "class": "", "id": "" },
+            "default_value": 12,
+            "min": 1,
+            "max": 48,
+            "step": 1,
+            "placeholder": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "wp-theme/cilla-skyn-products"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "The Shop page's product grid, filterable to one or more categories.",
+    "show_in_rest": 0,
+    "modified": 0
+}

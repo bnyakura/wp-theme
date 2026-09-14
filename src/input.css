@@ -2024,7 +2024,9 @@ body.single-product {
  * grid (inc/single-product.php) for consistency across the two
  * product-grid surfaces. Scoped to .wp-theme-shop-page so it stays clear
  * of the Best Sellers block above, which sits on a plain (borderless,
- * transparent-card) light section instead.
+ * transparent-card) light section instead. The Cilla Skyn Products block
+ * below copies this same ruleset verbatim under .wp-theme-cilla-skyn-
+ * products, since that block is meant to look identical to this page.
  */
 .wp-theme-shop-page {
 
@@ -2274,5 +2276,388 @@ body.single-product {
 			border-color: var(--color-gold);
 			color: var(--color-gold);
 		}
+	}
+}
+
+/*
+ * Cilla Skyn Products block (blocks/cilla-skyn-products) — renders products
+ * via the same WooCommerce [products] shortcode approach as Best Sellers
+ * above, but with paginate="true" so WooCommerce fires the same
+ * woocommerce_before_shop_loop / woocommerce_after_shop_loop hooks the Shop
+ * page's own archive fires (result count, sort dropdown, pagination). This
+ * ruleset is therefore a direct copy of .wp-theme-shop-page's .woocommerce
+ * rules above -- kept as a separate copy (rather than sharing a selector)
+ * so the two surfaces can be restyled independently later, matching how
+ * Best Sellers and the Shop page are already kept separate.
+ */
+.wp-theme-cilla-skyn-products {
+
+	.woocommerce {
+		display: grid;
+		grid-template-columns: 1fr auto;
+		align-items: center;
+		column-gap: 1rem;
+
+		.woocommerce-notices-wrapper {
+			grid-column: 1 / -1;
+		}
+
+		.woocommerce-notices-wrapper:empty {
+			display: none;
+		}
+
+		.woocommerce-result-count {
+			margin: 0;
+			font-size: 0.8rem;
+			color: color-mix(in srgb, var(--color-cs-ink) 60%, transparent);
+		}
+
+		.woocommerce-ordering {
+			margin: 0;
+		}
+
+		.woocommerce-ordering .orderby {
+			padding: 0.55rem 0.9rem;
+			border: 1px solid color-mix(in srgb, var(--color-cs-ink) 20%, transparent);
+			border-radius: 0;
+			background: var(--color-cream);
+			color: var(--color-cs-ink);
+			font-size: 0.8rem;
+		}
+
+		.woocommerce-ordering .orderby:focus {
+			outline: none;
+			border-color: var(--color-cs-ink);
+		}
+
+		ul.products {
+			grid-column: 1 / -1;
+			display: grid;
+			grid-template-columns: repeat(2, 1fr);
+			gap: 1.5rem;
+			margin: 2.5rem 0 0;
+			padding: 0;
+			list-style: none;
+		}
+
+		ul.products::before,
+		ul.products::after {
+			content: none;
+		}
+
+		@media (min-width: 640px) {
+			ul.products {
+				grid-template-columns: repeat(3, 1fr);
+			}
+		}
+
+		@media (min-width: 1024px) {
+			ul.products {
+				grid-template-columns: repeat(4, 1fr);
+			}
+		}
+
+		ul.products li.product {
+			display: flex;
+			flex-direction: column;
+			width: auto !important;
+			float: none !important;
+			margin: 0 !important;
+			padding: 0;
+			overflow: hidden;
+			border: 1px solid color-mix(in srgb, var(--color-cs-ink) 10%, transparent);
+			background: var(--color-cream-dark);
+			transition: transform 0.3s ease, border-color 0.3s ease;
+		}
+
+		ul.products li.product:hover {
+			transform: translateY(-4px);
+			border-color: color-mix(in srgb, var(--color-cs-ink) 30%, transparent);
+		}
+
+		ul.products li.product .woocommerce-loop-product__link {
+			display: flex;
+			flex-direction: column;
+			flex: 1;
+			position: relative;
+			padding: 0 1.1rem 1.1rem;
+			color: var(--color-cs-ink);
+			text-decoration: none;
+		}
+
+		ul.products li.product .woocommerce-loop-product__link img {
+			order: 1;
+			width: calc(100% + 2.2rem);
+			aspect-ratio: 1 / 1;
+			margin: 0 -1.1rem 1rem;
+			object-fit: cover;
+			background: var(--color-cream);
+			transition: transform 0.5s ease;
+		}
+
+		ul.products li.product:hover .woocommerce-loop-product__link img {
+			transform: scale(1.03);
+		}
+
+		ul.products li.product .woocommerce-loop-product__title {
+			order: 2;
+			margin: 0 0 0.35rem;
+			padding: 0;
+			font-family: var(--font-sans-cs);
+			font-size: 0.875rem;
+			font-weight: 500;
+			color: var(--color-cs-ink);
+		}
+
+		ul.products li.product .woocommerce-loop-product__link:hover .woocommerce-loop-product__title {
+			color: var(--color-gold);
+		}
+
+		ul.products li.product .price {
+			order: 3;
+			margin: 0;
+			padding: 0;
+			font-size: 0.85rem;
+			color: var(--color-cs-ink);
+		}
+
+		ul.products li.product .price del {
+			color: color-mix(in srgb, var(--color-cs-ink) 50%, transparent);
+			opacity: 1;
+		}
+
+		ul.products li.product .price ins {
+			text-decoration: none;
+			color: var(--color-cs-ink);
+		}
+
+		ul.products li.product .star-rating {
+			order: 2;
+			margin: 0 0 0.35rem;
+		}
+
+		ul.products li.product .onsale {
+			position: absolute;
+			top: 0.75rem;
+			left: 0.75rem;
+			right: auto;
+			min-height: 0;
+			min-width: 0;
+			margin: 0;
+			padding: 0.3rem 0.7rem;
+			border-radius: 999px;
+			background: var(--color-cs-ink);
+			color: var(--color-cream);
+			font-size: 0.62rem;
+			font-weight: 700;
+			text-transform: uppercase;
+			letter-spacing: 0.08em;
+			line-height: 1;
+		}
+
+		ul.products li.product > a.button {
+			order: 4;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			margin: 0 1.1rem 1.1rem;
+			padding: 0.65rem 1rem;
+			border: 1px solid var(--color-cs-ink);
+			border-radius: 999px;
+			background: transparent;
+			color: var(--color-cs-ink);
+			font-size: 0.75rem;
+			letter-spacing: 0.02em;
+			text-align: center;
+			text-decoration: none;
+			transition: background-color 0.2s ease, color 0.2s ease;
+		}
+
+		ul.products li.product > a.button:hover {
+			background: var(--color-cs-ink);
+			color: var(--color-cream);
+		}
+
+		ul.products li.product > a.button.loading {
+			opacity: 0.7;
+		}
+
+		.woocommerce-pagination {
+			grid-column: 1 / -1;
+			margin: 3rem 0 0;
+		}
+
+		.woocommerce-pagination ul.page-numbers {
+			display: flex;
+			gap: 0.5rem;
+			list-style: none;
+			margin: 0;
+			padding: 0;
+		}
+
+		.woocommerce-pagination .page-numbers a,
+		.woocommerce-pagination .page-numbers span {
+			display: flex;
+			height: 2.25rem;
+			width: 2.25rem;
+			align-items: center;
+			justify-content: center;
+			border: 1px solid color-mix(in srgb, var(--color-cs-ink) 15%, transparent);
+			border-radius: 999px;
+			font-size: 0.8rem;
+			color: var(--color-cs-ink);
+			text-decoration: none;
+		}
+
+		.woocommerce-pagination .page-numbers .current {
+			border-color: var(--color-cs-ink);
+			background: var(--color-cs-ink);
+			color: var(--color-cream);
+		}
+
+		.woocommerce-pagination .page-numbers a:hover {
+			border-color: var(--color-gold);
+			color: var(--color-gold);
+		}
+	}
+}
+
+/*
+ * Cilla Skyn General Information block (blocks/cilla-skyn-general-
+ * information) — a single ACF WYSIWYG field, rendered through the_content
+ * so it can contain headings, paragraphs, lists, links, blockquotes and
+ * images. That output can't carry Tailwind utility classes (it's authored
+ * in the block editor, not this template), so it gets a hand-written
+ * "prose" ruleset here instead of Tailwind Typography (not installed --
+ * see package.json), scoped to
+ * .wp-theme-cilla-skyn-general-information__content so it never leaks
+ * into other blocks' own rich-text fields (e.g. About Hero's paragraphs).
+ */
+.wp-theme-cilla-skyn-general-information__content {
+	> * + * {
+		margin-top: 1.25rem;
+	}
+
+	p {
+		line-height: 1.75;
+		color: color-mix(in srgb, var(--color-cs-ink) 80%, transparent);
+	}
+
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		font-family: var(--font-serif);
+		font-weight: 500;
+		line-height: 1.2;
+		color: var(--color-cs-ink);
+	}
+
+	h1 {
+		font-size: 2.25rem;
+	}
+
+	h2 {
+		font-size: 1.875rem;
+	}
+
+	h3 {
+		font-size: 1.5rem;
+	}
+
+	h4,
+	h5,
+	h6 {
+		font-size: 1.125rem;
+	}
+
+	> :first-child {
+		margin-top: 0;
+	}
+
+	h1 + *,
+	h2 + *,
+	h3 + *,
+	h4 + *,
+	h5 + *,
+	h6 + * {
+		margin-top: 0.75rem;
+	}
+
+	strong,
+	b {
+		font-weight: 600;
+		color: var(--color-cs-ink);
+	}
+
+	em,
+	i {
+		font-style: italic;
+	}
+
+	a {
+		color: var(--color-cs-ink);
+		text-decoration: underline;
+		text-decoration-color: var(--color-gold);
+		text-underline-offset: 3px;
+		transition: color 0.2s ease;
+	}
+
+	a:hover,
+	a:focus-visible {
+		color: var(--color-gold);
+	}
+
+	ul,
+	ol {
+		padding-left: 1.25rem;
+		color: color-mix(in srgb, var(--color-cs-ink) 80%, transparent);
+	}
+
+	ul {
+		list-style: disc;
+	}
+
+	ol {
+		list-style: decimal;
+	}
+
+	li + li {
+		margin-top: 0.4rem;
+	}
+
+	li > ul,
+	li > ol {
+		margin-top: 0.4rem;
+	}
+
+	blockquote {
+		border-left: 2px solid var(--color-gold);
+		padding-left: 1.25rem;
+		font-style: italic;
+		color: color-mix(in srgb, var(--color-cs-ink) 70%, transparent);
+	}
+
+	hr {
+		border: none;
+		border-top: 1px solid color-mix(in srgb, var(--color-cs-ink) 15%, transparent);
+	}
+
+	img {
+		max-width: 100%;
+		height: auto;
+	}
+
+	figcaption {
+		margin-top: 0.5rem;
+		font-size: 0.8rem;
+		text-align: center;
+		color: color-mix(in srgb, var(--color-cs-ink) 55%, transparent);
+	}
+
+	iframe {
+		max-width: 100%;
 	}
 }
