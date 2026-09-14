@@ -1,13 +1,14 @@
 <?php
 /**
- * Cilla Skyn Shop by Concern block — render template.
+ * Cilla Skyn Cards block — render template.
  *
- * A grid of skin-concern category tiles (image, title, subtitle, arrow
- * link) — mirrors NewProject/cilla-skyn-homepage.html's "Shop by Concern"
- * section, with each tile's flat colour swatch replaced by an image, and
- * the tile linking somewhere. Each row picks a WooCommerce Product (image
- * + link both come from the product) OR, when Product is left empty, a
- * manually uploaded Image + Link URL — see the block's own README.
+ * A grid of category/concern cards (image, title, subtitle, arrow link) —
+ * formerly named "Shop by Concern"; mirrors NewProject/cilla-skyn-
+ * homepage.html's "Shop by Concern" section, with each tile's flat colour
+ * swatch replaced by an image, and the tile linking somewhere. Each row
+ * picks a WooCommerce Product (image + link both come from the product)
+ * OR, when Product is left empty, a manually uploaded Image + Link URL —
+ * see the block's own README.
  *
  * @package custom-theme
  */
@@ -18,7 +19,7 @@ $concerns   = get_field( 'concerns' );
 
 $wrapper_attributes = get_block_wrapper_attributes(
 	array(
-		'class' => 'wp-theme-cilla-skyn-shop-by-concern bg-cream-dark font-sans-cs text-cs-ink',
+		'class' => 'wp-theme-cilla-skyn-cards bg-cream-dark font-sans-cs text-cs-ink',
 	)
 );
 ?>

@@ -138,6 +138,96 @@
 }
 
 /*
+ * Desktop submenu dropdowns (header.php's wp_nav_menu depth is unlimited so
+ * child menu items render as WordPress's default `.sub-menu` nested <ul>
+ * on any item with children). Hidden by default, revealed on :hover AND
+ * :focus-within (so keyboard users tabbing through a parent link's own
+ * children can reach the dropdown without a mouse) rather than requiring
+ * JS to toggle a class.
+ */
+.cilla-skyn-primary-menu li {
+    position: relative;
+}
+
+.cilla-skyn-primary-menu .menu-item-has-children > a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+}
+
+.cilla-skyn-primary-menu .menu-item-has-children > a::after {
+    content: "";
+    width: 0;
+    height: 0;
+    border-left: 3px solid transparent;
+    border-right: 3px solid transparent;
+    border-top: 4px solid currentColor;
+    opacity: 0.55;
+}
+
+.cilla-skyn-primary-menu .sub-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 40;
+    min-width: 210px;
+    margin: 0;
+    padding: 0.5rem 0;
+    list-style: none;
+    background: var(--color-cream);
+    border: 1px solid color-mix(in srgb, var(--color-cs-ink) 10%, transparent);
+    box-shadow: 0 16px 32px -12px color-mix(in srgb, var(--color-cs-ink) 20%, transparent);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(4px);
+    transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s;
+}
+
+.cilla-skyn-primary-menu li:hover > .sub-menu,
+.cilla-skyn-primary-menu li:focus-within > .sub-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.cilla-skyn-primary-menu .sub-menu a {
+    display: block;
+    padding: 0.6rem 1.1rem;
+    white-space: nowrap;
+    font-size: 12.5px;
+}
+
+.cilla-skyn-primary-menu .sub-menu a:hover,
+.cilla-skyn-primary-menu .sub-menu a:focus-visible {
+    background: color-mix(in srgb, var(--color-cs-ink) 4%, transparent);
+    color: var(--color-gold);
+}
+
+/* A third-level submenu opens to the side instead of stacking further down
+   past the viewport edge. */
+.cilla-skyn-primary-menu .sub-menu .sub-menu {
+    top: -0.5rem;
+    left: 100%;
+}
+
+/*
+ * Mobile submenus (mobile-drawer's wp_nav_menu, same unlimited depth) --
+ * no hover on touch devices, so children render as a permanently visible,
+ * indented list under their parent instead of a toggled dropdown.
+ */
+.cilla-skyn-mobile-nav .sub-menu {
+    margin: 0 0 0.5rem 1rem;
+    padding: 0;
+    list-style: none;
+}
+
+.cilla-skyn-mobile-nav .sub-menu a {
+    padding: 0.65rem 0;
+    font-size: 0.85em;
+    color: color-mix(in srgb, var(--color-cs-ink) 70%, transparent);
+}
+
+/*
  * Single product page (single-product.php) — restyles WooCommerce's own
  * template functions (gallery, add-to-cart, variations, meta, tabs,
  * reviews). The surrounding layout is custom-built in the template; these

@@ -1,7 +1,8 @@
 <?php
 /**
- * Default Repeater rows for the Cilla Skyn Shop by Concern block, so the
- * block editor form isn't blank the first time it's opened.
+ * Default Repeater rows for the Cilla Skyn Cards block (formerly "Cilla
+ * Skyn Shop by Concern"), so the block editor form isn't blank the first
+ * time it's opened.
  *
  * Titles match the 6-category list under "Recommended website 'Shop by
  * Concern'" in NewProject/Cilla Skyn Website Layout.docx (the client's own

@@ -1,10 +1,10 @@
 {
-    "name": "wp-theme/cilla-skyn-shop-by-concern",
-    "title": "Cilla Skyn Shop by Concern",
+    "name": "wp-theme/cilla-skyn-cards",
+    "title": "Cilla Skyn Cards",
     "category": "design",
     "icon": "grid-view",
-    "description": "A grid of skin-concern category tiles, each with a colour swatch, title, subtitle, and link.",
-    "keywords": ["concern", "category", "grid", "skincare", "cilla skyn"],
+    "description": "A grid of category/concern cards, each with a colour swatch, title, subtitle, and link.",
+    "keywords": ["cards", "concern", "category", "grid", "skincare", "cilla skyn"],
     "acf": {
         "mode": "auto",
         "renderTemplate": "render.php",

@@ -146,7 +146,7 @@ in the Block Editor like any other block. `index.php` simply calls
 The block library is two stacks of **page section blocks**, each meant to
 be stacked top-to-bottom on its own page:
 
-- **Homepage**: Hero → Best Sellers → Shop by Concern → Feature Strip →
+- **Homepage**: Hero → Best Sellers → Cards → Feature Strip →
   Follow Along (ported from `NewProject/cilla-skyn-homepage.html`).
 - **About page**: About Hero → General Information → Formulation Approach, plus
   Contact Info wherever contact details should appear (ported from
@@ -182,7 +182,7 @@ Every block:
 |---|---|---|
 | **Hero** | `blocks/cilla-skyn-hero` | Full-bleed cream hero: 4 responsive background-image tiers — Desktop/Laptop/Tablet/Mobile (art direction via `<picture>`) — with a configurable overlay (gradient/solid/none, colour-picker), eyebrow, heading, description, two buttons, vertical side-label list |
 | **Best Sellers** | `blocks/cilla-skyn-best-sellers` | WooCommerce product grid, built from the native `[products]` shortcode with editor-configurable heading/visibility/sort/limit/columns |
-| **Shop by Concern** | `blocks/cilla-skyn-shop-by-concern` | Grid of skin-concern category tiles (product photo + link, or a manually uploaded image + link, title, subtitle) |
+| **Cards** | `blocks/cilla-skyn-cards` | Grid of category/concern cards (product photo + link, or a manually uploaded image + link, title, subtitle). Formerly named "Shop by Concern" |
 | **Feature Strip** | `blocks/cilla-skyn-feature-strip` | Row of icon + text trust badges |
 | **Follow Along** | `blocks/cilla-skyn-follow-along` | Instagram-style tile grid mixing product/colour-block captions and a quote tile |
 
@@ -817,10 +817,10 @@ Navigation** menu (§8):
 | Hero Ingredients | No content supplied yet in the docx ("I will share in a separate sheet") — link to a placeholder page until that's provided |
 | About Us | Link to the About page built from the blocks in §5 |
 
-The header's nav menu (`header.php`) renders a flat `wp_nav_menu()` with no
-dropdown styling for nested items yet — if you assign a menu with
-Face Care/Body Care sub-items, style the resulting `.sub-menu` markup
-before relying on it to show dropdowns.
+The header's nav menu (`header.php`) renders nested items as hover
+dropdowns (`.sub-menu`, styled in `src/input.css`) — assign a menu with
+Face Care/Body Care sub-items and they'll show as dropdowns automatically,
+no extra setup needed.
 
 **Product catalog** (docx: "Cilla Skyn product list by category") — the
 full SKU list (Face Cleansers, Facial Serums & Treatments, Face
@@ -828,7 +828,7 @@ Moisturisers & Creams, Facial Oils, Face + Body Treatments/Masks, Body
 Lotions & Creams, Body Oils, Body Cleansers, Body Scrubs & Polishes, Bath
 Soaks & Bath Treatments) is the client's real product range. Create each
 as a WooCommerce product, assigned to a matching product category — the
-**Best Sellers** block (§5) and the **Shop by Concern** block's tile
+**Best Sellers** block (§5) and the **Cards** block's tile
 **Product** field (§5) both pull directly from real WooCommerce products,
 so nothing on the front end shows real content until these exist.
 
@@ -836,8 +836,9 @@ so nothing on the front end shows real content until these exist.
 specific products to 7 concern groupings, each with a "Primary Role"/
 "Positioning" note (e.g. under "Oily & Acne Prone": Clarity Reset
 Clarifying Gel Face Wash → "Oil, congestion, blemishes"). The
-**Shop by Concern** block (§5) ships with the 6-tile version of this from
-the docx's own "Recommended website 'Shop by Concern'" summary (Oily &
+**Cards** block (§5, formerly named "Shop by Concern") ships with the
+6-tile version of this from the docx's own "Recommended website 'Shop by
+Concern'" summary (Oily &
 Acne Prone, Sensitive & Eczema Prone, Dry & Dehydrated, Uneven Tone & Dark
 Marks, Texture & Ageing, Firmness & Body Texture) — once products exist,
 pick one representative product per tile in the block editor (the block's

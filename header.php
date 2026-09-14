@@ -47,7 +47,7 @@
                     'menu_class'     => 'flex items-center gap-8 cilla-skyn-primary-menu',
                     'menu_id'        => 'primary-menu',
                     'fallback_cb'    => false,
-                    'depth'          => 1,
+                    'depth'          => 0,
                 )
             );
             ?>
@@ -110,7 +110,7 @@
                 'container'      => false,
                 'menu_class'     => 'cilla-skyn-mobile-nav flex flex-col',
                 'fallback_cb'    => false,
-                'depth'          => 1,
+                'depth'          => 0,
             )
         );
         ?>

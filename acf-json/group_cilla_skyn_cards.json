@@ -1,6 +1,6 @@
 {
     "key": "group_cilla_skyn_shop_by_concern",
-    "title": "Cilla Skyn Shop by Concern",
+    "title": "Cilla Skyn Cards",
     "fields": [
         {
             "key": "field_cilla_skyn_shop_by_concern_heading",
@@ -141,7 +141,7 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "wp-theme/cilla-skyn-shop-by-concern"
+                "value": "wp-theme/cilla-skyn-cards"
             }
         ]
     ],
@@ -152,7 +152,7 @@
     "instruction_placement": "label",
     "hide_on_screen": "",
     "active": true,
-    "description": "A grid of skin-concern category tiles.",
+    "description": "A grid of category/concern cards.",
     "show_in_rest": 0,
     "modified": 0
 }
