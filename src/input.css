@@ -37,8 +37,8 @@
    * the cilla-* blocks render their own light cream section background
    * regardless of the surrounding page.
    */
-  --color-cream: #F4ECE0;
-  --color-cream-dark: #ECE0CD;
+  --color-cream: #FFFFFF;
+  --color-cream-dark: #F2F2F2;
   --color-cs-ink: #1B1712;
   --color-gold: #B08D57;
   --color-gold-light: #D8BE93;

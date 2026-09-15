@@ -29,7 +29,7 @@
             <?php endif; ?>
             <span>
                 <span class="block font-serif text-2xl tracking-[0.15em] md:text-3xl">
-                    <?php bloginfo( 'name' ); ?><sup class="align-super text-[10px]">&trade;</sup>
+                    <?php bloginfo( 'name' ); ?>
                 </span>
                 <span class="mt-1 block text-[9px] uppercase tracking-[0.22em] text-cs-ink/60">
                     <?php echo esc_html( get_theme_mod( 'cilla_skyn_tagline', __( 'Skin for a Brighter Tomorrow', 'custom-theme' ) ) ); ?>

@@ -142,7 +142,7 @@ $cilla_skyn_newsletter_description = get_field( 'newsletter_description', 'optio
 					<?php if ( $cilla_skyn_logo_url ) : ?>
 						<img src="<?php echo esc_url( $cilla_skyn_logo_url ); ?>" alt="<?php bloginfo( 'name' ); ?>" class="h-9 w-auto">
 					<?php endif; ?>
-					<span class="font-serif text-2xl tracking-[0.15em]"><?php bloginfo( 'name' ); ?><sup class="text-[9px]">&trade;</sup></span>
+					<span class="font-serif text-2xl tracking-[0.15em]"><?php bloginfo( 'name' ); ?></span>
 				</a>
 				<p class="mb-4 text-[9px] uppercase tracking-[0.22em] text-cs-ink/60">
 					<?php echo esc_html( get_theme_mod( 'cilla_skyn_tagline', __( 'Skin for a Brighter Tomorrow', 'custom-theme' ) ) ); ?>
