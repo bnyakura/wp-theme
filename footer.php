@@ -144,6 +144,10 @@ $cilla_skyn_newsletter_description = get_field( 'newsletter_description', 'optio
 					<?php endif; ?>
 					<span class="font-serif text-2xl tracking-[0.15em]"><?php bloginfo( 'name' ); ?></span>
 				</a>
+				<?php $cilla_skyn_footer_tagline_mod = get_theme_mod( 'cilla_skyn_tagline', __( 'Skin for a Brighter Tomorrow', 'custom-theme' ) ); ?>
+				<?php if ( ! empty( $cilla_skyn_footer_tagline_mod ) ) : ?>
+					<p class="mb-4 text-[9px] uppercase tracking-[0.22em] text-cs-ink/60"><?php echo esc_html( $cilla_skyn_footer_tagline_mod ); ?></p>
+				<?php endif; ?>
 				<p class="mb-5 max-w-xs text-sm leading-relaxed text-cs-ink/65"><?php echo esc_html( $footer_tagline ); ?></p>
 				<?php if ( ! empty( $cilla_skyn_social_links ) ) : ?>
 					<div class="flex items-center gap-4 text-cs-ink/70">

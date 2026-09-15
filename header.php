@@ -35,13 +35,16 @@
             <?php if ( $cilla_skyn_logo_id ) : ?>
                 <img src="<?php echo esc_url( wp_get_attachment_image_url( $cilla_skyn_logo_id, 'full' ) ); ?>" alt="<?php bloginfo( 'name' ); ?>" class="h-10 w-auto">
             <?php endif; ?>
+            <?php $cilla_skyn_header_tagline = get_theme_mod( 'cilla_skyn_tagline', __( 'Skin for a Brighter Tomorrow', 'custom-theme' ) ); ?>
             <span>
                 <span class="block font-serif text-2xl tracking-[0.15em] md:text-3xl">
                     <?php bloginfo( 'name' ); ?>
                 </span>
-                <span class="mt-1 block text-[9px] uppercase tracking-[0.22em] text-cs-ink/60">
-                    <?php echo esc_html( get_theme_mod( 'cilla_skyn_tagline', __( 'Skin for a Brighter Tomorrow', 'custom-theme' ) ) ); ?>
-                </span>
+                <?php if ( ! empty( $cilla_skyn_header_tagline ) ) : ?>
+                    <span class="mt-1 block text-[9px] uppercase tracking-[0.22em] text-cs-ink/60">
+                        <?php echo esc_html( $cilla_skyn_header_tagline ); ?>
+                    </span>
+                <?php endif; ?>
             </span>
         </a>
 
