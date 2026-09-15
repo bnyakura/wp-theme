@@ -2144,6 +2144,13 @@ body.single-product {
 		grid-template-columns: 1fr auto;
 		align-items: center;
 		column-gap: 1rem;
+		/*
+		 * Space between whatever renders above (typically the Cilla Skyn
+		 * Banner block, an .alignfull section that sits flush against this
+		 * div with no margin of its own) and the result-count/ordering row
+		 * that's otherwise the very first thing here.
+		 */
+		margin-top: 3rem;
 
 		.woocommerce-notices-wrapper {
 			grid-column: 1 / -1;
