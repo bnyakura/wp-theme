@@ -43,8 +43,8 @@
   --color-gold: #B08D57;
   --color-gold-light: #D8BE93;
 
-  --font-serif: "Cormorant Garamond", serif;
-  --font-sans-cs: "Jost", sans-serif;
+  --font-serif: "Bricolage Grotesque", sans-serif;
+  --font-sans-cs: "Montserrat", sans-serif;
 }
 
 /*
@@ -62,6 +62,14 @@
  */
 @layer base {
   html {
+    /*
+     * Bumps the rem base from the browser default 16px to 18px, scaling
+     * every Tailwind text-, spacing-, and rounded- utility site-wide by
+     * the same ~12.5% -- matches the larger overall type scale of the
+     * reference site (lifestyle.co.za, ~18px body) without having to
+     * touch every block's hardcoded utility classes individually.
+     */
+    font-size: 112.5%;
     @apply overflow-x-hidden scroll-smooth;
   }
 

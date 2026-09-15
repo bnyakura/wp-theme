@@ -127,7 +127,7 @@ if ( ! $cilla_skyn_legal_links ) {
 	);
 }
 
-$cilla_skyn_newsletter_heading     = get_field( 'newsletter_heading', 'option' ) ?: __( 'Join the Cilla Skyn journal.', 'custom-theme' );
+$cilla_skyn_newsletter_heading     = get_field( 'newsletter_heading', 'option' ) ?: __( 'Join Cilla’s Circle', 'custom-theme' );
 $cilla_skyn_newsletter_description = get_field( 'newsletter_description', 'option' ) ?: __( 'Be the first to know about new launches, exclusive offers and skincare rituals.', 'custom-theme' );
 ?>
 
@@ -144,9 +144,6 @@ $cilla_skyn_newsletter_description = get_field( 'newsletter_description', 'optio
 					<?php endif; ?>
 					<span class="font-serif text-2xl tracking-[0.15em]"><?php bloginfo( 'name' ); ?></span>
 				</a>
-				<p class="mb-4 text-[9px] uppercase tracking-[0.22em] text-cs-ink/60">
-					<?php echo esc_html( get_theme_mod( 'cilla_skyn_tagline', __( 'Skin for a Brighter Tomorrow', 'custom-theme' ) ) ); ?>
-				</p>
 				<p class="mb-5 max-w-xs text-sm leading-relaxed text-cs-ink/65"><?php echo esc_html( $footer_tagline ); ?></p>
 				<?php if ( ! empty( $cilla_skyn_social_links ) ) : ?>
 					<div class="flex items-center gap-4 text-cs-ink/70">
@@ -231,7 +228,6 @@ $cilla_skyn_newsletter_description = get_field( 'newsletter_description', 'optio
 				);
 				?>
 			</p>
-			<p><?php echo esc_html( get_theme_mod( 'cilla_skyn_tagline', __( 'Skin for a Brighter Tomorrow', 'custom-theme' ) ) ); ?></p>
 			<div class="flex items-center gap-4">
 				<?php foreach ( $cilla_skyn_legal_links as $link ) : ?>
 					<?php if ( ! empty( $link['label'] ) ) : ?>

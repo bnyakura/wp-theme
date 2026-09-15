@@ -50,7 +50,7 @@ add_action('wp_enqueue_scripts', 'cilla_skyn_enqueue_icons');
 
 if ( ! function_exists( 'cilla_skyn_enqueue_fonts' ) ) {
 	/**
-	 * Cormorant Garamond (serif headings) and Jost (sans body) back the
+	 * Bricolage Grotesque (headings) and Montserrat (body) back the
 	 * Cilla Skyn blocks' `font-serif` / `font-sans-cs` Tailwind utilities
 	 * (src/input.css @theme).
 	 *
@@ -59,7 +59,7 @@ if ( ! function_exists( 'cilla_skyn_enqueue_fonts' ) ) {
 	function cilla_skyn_enqueue_fonts(): void {
 		wp_enqueue_style(
 			'cilla-skyn-fonts',
-			'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Jost:wght@300;400;500;600&display=swap',
+			'https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Montserrat:wght@300;400;500;600;700&display=swap',
 			[],
 			null
 		);

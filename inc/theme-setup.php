@@ -104,6 +104,19 @@ function cilla_skyn_customizer($wp_customize) {
         'type'        => 'text',
     ]);
 
+    $wp_customize->add_setting('cilla_skyn_delivery_banner', [
+        'default'           => __( 'Free delivery on orders over R1200 · Delivery is R189', 'cilla-skyn' ),
+        'sanitize_callback' => 'sanitize_text_field',
+        'transport'         => 'refresh',
+    ]);
+
+    $wp_customize->add_control('cilla_skyn_delivery_banner', [
+        'label'       => __('Delivery Banner', 'cilla-skyn'),
+        'description' => __('Thin black bar shown above the announcement bar at the very top of every page.', 'cilla-skyn'),
+        'section'     => 'title_tagline',
+        'type'        => 'text',
+    ]);
+
     $wp_customize->add_setting('cilla_skyn_whatsapp', [
         'default'   => '',
         'transport' => 'refresh',

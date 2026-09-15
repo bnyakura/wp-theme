@@ -8,6 +8,14 @@
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
 
+<!-- Delivery Banner -->
+<?php $cilla_skyn_delivery_banner = get_theme_mod( 'cilla_skyn_delivery_banner', __( 'Free delivery on orders over R1200 · Delivery is R189', 'custom-theme' ) ); ?>
+<?php if ( ! empty( $cilla_skyn_delivery_banner ) ) : ?>
+<div class="bg-cs-ink px-6 py-2 text-center text-[11px] uppercase tracking-[0.16em] text-cream font-sans-cs">
+    <span><?php echo esc_html( $cilla_skyn_delivery_banner ); ?></span>
+</div>
+<?php endif; ?>
+
 <!-- Announcement Bar -->
 <div class="relative bg-cream border-b border-cs-ink/10 px-6 py-2 text-center text-[11px] uppercase tracking-[0.22em] text-cs-ink/70 font-sans-cs">
     <span><?php echo esc_html( get_theme_mod( 'cilla_skyn_announcement', __( 'Thoughtfully formulated. Purposefully layered. Inspired by nature.', 'custom-theme' ) ) ); ?></span>
