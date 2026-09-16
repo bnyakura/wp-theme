@@ -1,0 +1,23 @@
+{
+    "name": "wp-theme/cilla-skyn-hero-video",
+    "title": "Cilla Skyn Hero Video",
+    "category": "design",
+    "icon": "format-video",
+    "description": "Full-bleed cream hero banner with a looping background video, heading, single button, and a vertical side list.",
+    "keywords": ["hero", "banner", "cilla skyn", "video", "cover"],
+    "acf": {
+        "mode": "auto",
+        "renderTemplate": "render.php",
+        "blockVersion": 3,
+        "autoInlineEditing": true
+    },
+    "supports": {
+        "align": ["wide", "full"],
+        "anchor": true,
+        "spacing": {
+            "padding": true,
+            "margin": true
+        }
+    },
+    "style": "file:./style.css"
+}

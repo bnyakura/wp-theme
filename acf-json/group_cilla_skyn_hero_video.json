@@ -1,0 +1,387 @@
+{
+    "key": "group_cilla_skyn_hero_video",
+    "title": "Cilla Skyn Hero Video",
+    "fields": [
+        {
+            "key": "field_cilla_skyn_hero_video_video",
+            "label": "Background Video (Desktop)",
+            "name": "video",
+            "aria-label": "",
+            "type": "file",
+            "instructions": "Looping, muted background video. Used at 768px and wider, and as the fallback below that if Background Video (Mobile) is left empty. If this is also empty, the Poster / Fallback Image below is shown as a static background instead.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": { "width": "50", "class": "", "id": "" },
+            "return_format": "url",
+            "library": "all",
+            "min_size": "",
+            "max_size": "",
+            "mime_types": "mp4,webm,mov"
+        },
+        {
+            "key": "field_cilla_skyn_hero_video_video_mobile",
+            "label": "Background Video (Mobile)",
+            "name": "video_mobile",
+            "aria-label": "",
+            "type": "file",
+            "instructions": "Optional. A lighter/shorter file used below 768px wide, so phones on cellular data aren't served the full desktop video. Leave empty to fall through to Desktop.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": { "width": "50", "class": "", "id": "" },
+            "return_format": "url",
+            "library": "all",
+            "min_size": "",
+            "max_size": "",
+            "mime_types": "mp4,webm,mov"
+        },
+        {
+            "key": "field_cilla_skyn_hero_video_poster_image",
+            "label": "Poster / Fallback Image",
+            "name": "poster_image",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "Shown while the video loads, and used as the entire background if no video is set above. Falls back to a placeholder image when this is also empty.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": { "width": "50", "class": "", "id": "" },
+            "return_format": "id",
+            "preview_size": "medium",
+            "library": "all",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": ""
+        },
+        {
+            "key": "field_cilla_skyn_hero_video_video_fit",
+            "label": "Video Fit",
+            "name": "video_fit",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "How the background video fills its area (CSS object-fit). Leave empty for the default, Cover.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": { "width": "50", "class": "", "id": "" },
+            "choices": {
+                "cover": "Cover (fill area, cropped — default)",
+                "contain": "Contain (fit entirely, may letterbox)",
+                "fill": "Fill (stretch to fit, may distort)",
+                "none": "None (original size, no scaling)",
+                "scale-down": "Scale Down (contain or original, whichever is smaller)"
+            },
+            "default_value": "",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 1,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_cilla_skyn_hero_video_video_position",
+            "label": "Video Position",
+            "name": "video_position",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "Which part of the video stays in view when Video Fit crops it (CSS object-position). Leave empty for Center.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": { "width": "50", "class": "", "id": "" },
+            "choices": {
+                "top left": "Top Left",
+                "top": "Top",
+                "top right": "Top Right",
+                "left": "Left",
+                "center": "Center",
+                "right": "Right",
+                "bottom left": "Bottom Left",
+                "bottom": "Bottom",
+                "bottom right": "Bottom Right"
+            },
+            "default_value": "center",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 1,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_cilla_skyn_hero_video_overlay_style",
+            "label": "Background Overlay Style",
+            "name": "overlay_style",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "What sits over the Background Video to keep the text readable.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": { "width": "34", "class": "", "id": "" },
+            "choices": {
+                "gradient": "Gradient",
+                "solid": "Solid Colour",
+                "none": "None (raw video)"
+            },
+            "default_value": "gradient",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_cilla_skyn_hero_video_overlay_color",
+            "label": "Overlay Color",
+            "name": "overlay_color",
+            "aria-label": "",
+            "type": "color_picker",
+            "instructions": "Used when Background Overlay Style is set to \"Solid Colour\". Click the swatch and use the picker's own opacity slider.",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_cilla_skyn_hero_video_overlay_style",
+                        "operator": "==",
+                        "value": "solid"
+                    }
+                ]
+            ],
+            "wrapper": { "width": "33", "class": "", "id": "" },
+            "default_value": "rgba(244, 236, 224, 0.85)",
+            "enable_opacity": 1,
+            "return_format": "string"
+        },
+        {
+            "key": "field_cilla_skyn_hero_video_gradient_start_color",
+            "label": "Gradient Start Colour",
+            "name": "gradient_start_color",
+            "aria-label": "",
+            "type": "color_picker",
+            "instructions": "Used when Background Overlay Style is set to \"Gradient\". The end nearest the text — usually fully (or almost fully) opaque.",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_cilla_skyn_hero_video_overlay_style",
+                        "operator": "==",
+                        "value": "gradient"
+                    }
+                ]
+            ],
+            "wrapper": { "width": "33", "class": "", "id": "" },
+            "default_value": "rgba(244, 236, 224, 1)",
+            "enable_opacity": 1,
+            "return_format": "string"
+        },
+        {
+            "key": "field_cilla_skyn_hero_video_gradient_end_color",
+            "label": "Gradient End Colour",
+            "name": "gradient_end_color",
+            "aria-label": "",
+            "type": "color_picker",
+            "instructions": "Used when Background Overlay Style is set to \"Gradient\". The end where the video shows through most — usually low opacity.",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_cilla_skyn_hero_video_overlay_style",
+                        "operator": "==",
+                        "value": "gradient"
+                    }
+                ]
+            ],
+            "wrapper": { "width": "33", "class": "", "id": "" },
+            "default_value": "rgba(244, 236, 224, 0.2)",
+            "enable_opacity": 1,
+            "return_format": "string"
+        },
+        {
+            "key": "field_cilla_skyn_hero_video_gradient_direction",
+            "label": "Gradient Direction",
+            "name": "gradient_direction",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "Used when Background Overlay Style is set to \"Gradient\".",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_cilla_skyn_hero_video_overlay_style",
+                        "operator": "==",
+                        "value": "gradient"
+                    }
+                ]
+            ],
+            "wrapper": { "width": "33", "class": "", "id": "" },
+            "choices": {
+                "to right": "Left → Right",
+                "to left": "Right → Left",
+                "to bottom": "Top → Bottom",
+                "to top": "Bottom → Top",
+                "to bottom right": "Diagonal ↘",
+                "to top right": "Diagonal ↗"
+            },
+            "default_value": "to right",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_cilla_skyn_hero_video_heading",
+            "label": "Heading",
+            "name": "heading",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Main serif headline.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": { "width": "", "class": "", "id": "" },
+            "default_value": "Layered in the Essence of Nature.",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_cilla_skyn_hero_video_text_color",
+            "label": "Text Color",
+            "name": "text_color",
+            "aria-label": "",
+            "type": "color_picker",
+            "instructions": "Colour of the heading, footer note, and side list. Pick a light colour for a dark video, a dark colour for a light video.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": { "width": "50", "class": "", "id": "" },
+            "default_value": "#1B1712",
+            "enable_opacity": 0,
+            "return_format": "string"
+        },
+        {
+            "key": "field_cilla_skyn_hero_video_text_alignment",
+            "label": "Text & Button Alignment",
+            "name": "text_alignment",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "Horizontal alignment of the heading, button, and footer note within their column.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": { "width": "50", "class": "", "id": "" },
+            "choices": {
+                "left": "Left (default)",
+                "center": "Center",
+                "right": "Right"
+            },
+            "default_value": "left",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_cilla_skyn_hero_video_primary_button_label",
+            "label": "Button Label",
+            "name": "primary_button_label",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": { "width": "50", "class": "", "id": "" },
+            "default_value": "Shop Best Sellers",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_cilla_skyn_hero_video_primary_button_url",
+            "label": "Button URL",
+            "name": "primary_button_url",
+            "aria-label": "",
+            "type": "url",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": { "width": "50", "class": "", "id": "" },
+            "default_value": "#bestsellers",
+            "placeholder": ""
+        },
+        {
+            "key": "field_cilla_skyn_hero_video_footer_note",
+            "label": "Footer Note",
+            "name": "footer_note",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Small uppercase line under the button.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": { "width": "", "class": "", "id": "" },
+            "default_value": "African Roots. Radiant Tomorrows.",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_cilla_skyn_hero_video_side_items",
+            "label": "Side Items",
+            "name": "side_items",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "Vertical uppercase label list on the right, desktop only.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": { "width": "", "class": "", "id": "" },
+            "layout": "table",
+            "min": 0,
+            "max": 0,
+            "collapsed": "",
+            "button_label": "Add Item",
+            "sub_fields": [
+                {
+                    "key": "field_cilla_skyn_hero_video_side_items_label",
+                    "label": "Label",
+                    "name": "label",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": { "width": "", "class": "", "id": "" },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                }
+            ]
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "wp-theme/cilla-skyn-hero-video"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "Full-bleed cream hero banner with a background video, heading, single button, and a vertical side list.",
+    "show_in_rest": 0,
+    "modified": 0
+}
