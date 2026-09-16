@@ -40,7 +40,7 @@
             "name": "poster_image",
             "aria-label": "",
             "type": "image",
-            "instructions": "Shown while the video loads, and used as the entire background if no video is set above. Falls back to a placeholder image when this is also empty.",
+            "instructions": "Shown while the video loads, and used as the entire background if no video is set above. Leave empty and nothing renders until the video is ready — there's no placeholder image.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": { "width": "50", "class": "", "id": "" },

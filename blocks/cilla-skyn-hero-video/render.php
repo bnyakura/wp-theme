@@ -10,14 +10,12 @@
  * @package custom-theme
  */
 
-$theme_uri = get_stylesheet_directory_uri();
-
 $video_url        = get_field( 'video' ) ?: '';
 $video_mobile_url = get_field( 'video_mobile' ) ?: '';
 
 $poster_id  = get_field( 'poster_image' );
-$poster_url = $poster_id ? wp_get_attachment_image_url( (int) $poster_id, 'full' ) : $theme_uri . '/assets/images/cilla-skyn-hero.jpg';
-$poster_alt = $poster_id ? get_post_meta( (int) $poster_id, '_wp_attachment_image_alt', true ) : 'Cilla Skyn natural botanical ingredients';
+$poster_url = $poster_id ? wp_get_attachment_image_url( (int) $poster_id, 'full' ) : '';
+$poster_alt = $poster_id ? get_post_meta( (int) $poster_id, '_wp_attachment_image_alt', true ) : '';
 
 /*
  * How the background video fills its area (CSS object-fit) and which part
@@ -136,7 +134,7 @@ $wrapper_attributes = get_block_wrapper_attributes(
 				<?php endif; ?>
 				<source src="<?php echo esc_url( $video_url ); ?>">
 			</video>
-		<?php else : ?>
+		<?php elseif ( $poster_url ) : ?>
 			<img
 				src="<?php echo esc_url( $poster_url ); ?>"
 				alt="<?php echo esc_attr( $poster_alt ); ?>"
