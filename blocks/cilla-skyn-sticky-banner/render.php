@@ -11,6 +11,17 @@
  * section below continues normally. That pause is what reads as a
  * deliberate divider rather than just another section going by.
  *
+ * The wrapper also carries a negative bottom margin equal to Pin
+ * Duration's "extra" height (e.g. -50vh at the 150% default), which pulls
+ * whatever block comes next on the page up so it starts sliding in
+ * underneath the still-pinned banner during that same stretch, instead of
+ * only appearing after the banner fully releases. Combined with Opacity
+ * While Stuck (below), that next section becomes visible right through
+ * the banner while it's pinned — a "reveal" transition rather than a hard
+ * cut. The banner is given z-10 so it paints above that next section
+ * (which would otherwise, being later in the DOM, paint over it) despite
+ * the overlap.
+ *
  * Same field set as the Cilla Skyn Banner block otherwise (image with
  * fit/focal point, overlay, text colour, eyebrow, heading, two rich-text
  * paragraphs, tagline) — every field optional, nothing falls back to
@@ -98,17 +109,61 @@ $cilla_skyn_sticky_banner_has_content = static function ( $html ) {
  * block behaves like an ordinary full-height section.
  */
 $pin_height = get_field( 'pin_height' );
-$pin_height = is_numeric( $pin_height ) ? max( 100, min( 300, (float) $pin_height ) ) : 150;
+$pin_height = is_numeric( $pin_height ) ? max( 100, min( 200, (float) $pin_height ) ) : 150;
+
+/*
+ * The stretch of scroll the banner stays pinned for is also how long the
+ * next block gets pulled up to overlap underneath it (see the file-level
+ * comment above) — a negative margin equal to that same distance.
+ */
+$overlap_vh = max( 0, $pin_height - 100 );
+
+$pinned_opacity = get_field( 'pinned_opacity' );
+$pinned_opacity = is_numeric( $pinned_opacity ) ? max( 10, min( 100, (float) $pinned_opacity ) ) / 100 : 0.45;
 
 $wrapper_attributes = get_block_wrapper_attributes(
 	array(
-		'class' => 'wp-theme-cilla-skyn-sticky-banner relative isolate bg-cream font-sans-cs text-cs-ink',
-		'style' => sprintf( 'min-height: %svh;', $pin_height ),
+		'class' => 'wp-theme-cilla-skyn-sticky-banner relative isolate z-10 bg-cream font-sans-cs text-cs-ink',
+		'style' => sprintf( 'min-height: %1$svh; margin-bottom: -%2$svh;', $pin_height, $overlap_vh ),
 	)
 );
 ?>
 <section <?php echo $wrapper_attributes; ?>>
-	<div class="sticky top-0 h-screen w-full overflow-hidden">
+	<?php
+	/*
+	 * Two zero-footprint markers, watched by assets/js/sticky-banner-reveal.js
+	 * via IntersectionObserver:
+	 *
+	 * - The TOP sentinel sits at the banner's un-stuck (natural) position.
+	 *   The instant it scrolls out of view, the banner must have just
+	 *   locked to the top of the screen, so JS adds `.is-stuck` (see
+	 *   style.css for the opacity transition that triggers).
+	 *
+	 * - The BOTTOM sentinel sits {Pin Duration − 100}vh down from the
+	 *   wrapper's top -- NOT the wrapper's own bottom edge (200vh+ down):
+	 *   that's where the wrapper *ends*, but the sticky pin (which is
+	 *   100vh tall) actually releases 100vh *before* that, the moment
+	 *   scrolling would otherwise push it past the wrapper's bottom. Once
+	 *   this sentinel scrolls out of view,
+	 *   the sticky window is over -- but CSS `position: sticky`, once
+	 *   released, doesn't return to the pin's original top-of-wrapper
+	 *   position; it settles flush against the *bottom* of its containing
+	 *   block instead. Since that's deliberately the same spot the next
+	 *   block on the page has been pulled up to overlap (the negative
+	 *   margin above), the released banner would otherwise sit there
+	 *   permanently, indefinitely "ghosting" over that block's own
+	 *   content instead of handing off cleanly. `.is-past` (added once
+	 *   this sentinel scrolls out) forces it fully invisible at exactly
+	 *   that moment instead.
+	 *
+	 * No JS / no IntersectionObserver support: neither class is ever
+	 * added, so the banner just stays fully opaque and visible the whole
+	 * time it's on screen -- see style.css.
+	 */
+	?>
+	<div class="cilla-skyn-sticky-banner-sentinel absolute left-0 top-0 h-px w-px" aria-hidden="true"></div>
+	<div class="cilla-skyn-sticky-banner-bottom-sentinel absolute left-0 h-px w-px" style="top: <?php echo esc_attr( $overlap_vh ); ?>vh;" aria-hidden="true"></div>
+	<div class="cilla-skyn-sticky-banner-pin sticky top-0 h-screen w-full overflow-hidden" style="--cilla-skyn-sticky-banner-opacity: <?php echo esc_attr( $pinned_opacity ); ?>;">
 		<?php if ( $image_url ) : ?>
 			<picture>
 				<?php if ( $mobile_image_url ) : ?>

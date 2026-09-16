@@ -1,4 +1,39 @@
 /*
+ * Sticky-reveal effect (render.php + assets/js/sticky-banner-reveal.js):
+ * .cilla-skyn-sticky-banner-pin starts fully opaque -- it only fades to
+ * the editor's chosen "Opacity While Stuck" (--cilla-skyn-sticky-banner-
+ * opacity, set inline by render.php) once the JS detects it has actually
+ * locked to the top of the viewport and adds `.is-stuck`, rather than for
+ * however long it's merely `position: sticky` in the DOM -- otherwise the
+ * banner would look washed out while it's still scrolling into view,
+ * before there's anything behind it worth revealing. If JS never runs (no
+ * IntersectionObserver support, or scripts disabled), `.is-stuck` is
+ * simply never added and the banner just stays fully opaque -- a safe,
+ * still-functional fallback, not a broken transparent block.
+ */
+.cilla-skyn-sticky-banner-pin {
+	opacity: 1;
+	transition: opacity 0.7s ease;
+}
+
+.cilla-skyn-sticky-banner-pin.is-stuck {
+	opacity: var(--cilla-skyn-sticky-banner-opacity, 1);
+}
+
+/*
+ * Once released, `position: sticky` settles flush against the *bottom* of
+ * its containing block rather than back at its original position -- which
+ * here deliberately overlaps the next block on the page (see render.php's
+ * file-level comment). Left alone that would ghost the banner over that
+ * block's content permanently; hide it outright the instant it happens
+ * instead, for a clean hand-off. Comes after `.is-stuck` so it wins if
+ * both classes are ever present together.
+ */
+.cilla-skyn-sticky-banner-pin.is-past {
+	opacity: 0;
+}
+
+/*
  * Rich-text styling for the Intro/Description WYSIWYG fields' output
  * (blocks/cilla-skyn-sticky-banner/render.php). Hand-written rather than
  * Tailwind utility classes, since this markup comes from the block editor

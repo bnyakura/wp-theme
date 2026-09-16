@@ -70,11 +70,21 @@
      * touch every block's hardcoded utility classes individually.
      */
     font-size: 112.5%;
-    @apply overflow-x-hidden scroll-smooth;
+    /*
+     * `clip`, not `hidden` -- either one stops a `.alignfull` block's 100vw
+     * trick (below) from causing a horizontal scrollbar, but `hidden` (and
+     * `auto`/`scroll`) makes html/body a CSS "scroll container", which
+     * becomes the nearest ancestor `position: sticky` descendants (e.g. the
+     * Cilla Skyn Sticky Banner block) measure against instead of the actual
+     * viewport -- breaking their stickiness. `clip` clips the overflow
+     * without being scrollable, so it isn't a scroll container and sticky
+     * positioning inside the page keeps working normally.
+     */
+    @apply overflow-x-clip scroll-smooth;
   }
 
   body {
-    @apply overflow-x-hidden bg-cream font-sans-cs leading-[1.6] text-cs-ink antialiased;
+    @apply overflow-x-clip bg-cream font-sans-cs leading-[1.6] text-cs-ink antialiased;
   }
 }
 
@@ -90,7 +100,7 @@
  * full-width block like Cilla Skyn Banner would get clipped to that same
  * 1280px column instead of spanning edge-to-edge like it does on pages
  * with no wrapper. Safe to use `100vw` here since `body` above already sets
- * `overflow-x-hidden`, so a scrollbar's width can't cause horizontal
+ * `overflow-x-clip`, so a scrollbar's width can't cause horizontal
  * scroll/jitter.
  */
 .alignfull {
@@ -123,6 +133,7 @@
 .cilla-skyn-primary-menu a {
     color: color-mix(in srgb, var(--color-cs-ink) 80%, transparent);
     text-decoration: none;
+    font-weight: 600;
     transition: color 0.2s ease;
 }
 
@@ -138,6 +149,7 @@
     border-bottom: 1px solid color-mix(in srgb, var(--color-cs-ink) 10%, transparent);
     color: var(--color-cs-ink);
     text-decoration: none;
+    font-weight: 600;
 }
 
 .cilla-skyn-mobile-nav .current-menu-item a,
@@ -203,6 +215,7 @@
     padding: 0.6rem 1.1rem;
     white-space: nowrap;
     font-size: 12.5px;
+    font-weight: 400;
 }
 
 .cilla-skyn-primary-menu .sub-menu a:hover,
@@ -232,6 +245,7 @@
 .cilla-skyn-mobile-nav .sub-menu a {
     padding: 0.65rem 0;
     font-size: 0.85em;
+    font-weight: 400;
     color: color-mix(in srgb, var(--color-cs-ink) 70%, transparent);
 }
 
