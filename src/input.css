@@ -2264,6 +2264,7 @@ body.single-product {
 		ul.products li.product .woocommerce-loop-product__link img {
 			order: 1;
 			width: calc(100% + 2.2rem);
+			max-width: calc(100% + 2.2rem);
 			aspect-ratio: 1 / 1;
 			margin: 0 -1.1rem 1rem;
 			object-fit: cover;
@@ -2507,6 +2508,7 @@ body.single-product {
 		ul.products li.product .woocommerce-loop-product__link img {
 			order: 1;
 			width: calc(100% + 2.2rem);
+			max-width: calc(100% + 2.2rem);
 			aspect-ratio: 1 / 1;
 			margin: 0 -1.1rem 1rem;
 			object-fit: cover;
