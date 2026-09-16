@@ -56,8 +56,6 @@ if ( ! function_exists( 'custom_theme_enqueue_js' ) ) {
 	wp_enqueue_script( 'iga-hero-slider', get_theme_file_uri( 'assets/js/hero-slider.js' ), [], $version, true );
 	// Scroll-reveal — .reveal/.active replacement.
 	wp_enqueue_script( 'iga-reveal', get_theme_file_uri( 'assets/js/reveal.js' ), [], $version, true );
-	// Cilla Skyn Sticky Banner — fades to transparent once pinned, revealing the section below underneath it.
-	wp_enqueue_script( 'cilla-skyn-sticky-banner-reveal', get_theme_file_uri( 'assets/js/sticky-banner-reveal.js' ), [], $version, true );
 	// Pricing tab toggle.
 	wp_enqueue_script( 'iga-pricing-tabs', get_theme_file_uri( 'assets/js/pricing-tabs.js' ), [], $version, true );
 	// Floating WhatsApp chat button (footer.php) open/close + send.

@@ -3,8 +3,8 @@
     "title": "Cilla Skyn Sticky Banner",
     "category": "design",
     "icon": "minus",
-    "description": "Full-bleed banner that pins in place (position: sticky) for a stretch of scroll before releasing, marking a deliberate break between the sections before and after it. Same optional fields as Cilla Skyn Banner (background image with fit/focal point, overlay, text colour, eyebrow, heading, two rich-text paragraphs, tagline), plus a Pin Duration control.",
-    "keywords": ["banner", "sticky", "scroll", "cilla skyn", "divider", "section break", "parallax"],
+    "description": "Full-bleed parallax banner: the background image stays visually fixed to the browser window while the page scrolls past it (CSS background-attachment: fixed, no JS). Same optional fields as Cilla Skyn Banner (background image with focal point, overlay, text colour, eyebrow, heading, two rich-text paragraphs, tagline), plus a Section Height control.",
+    "keywords": ["banner", "parallax", "scroll", "cilla skyn", "fixed background"],
     "acf": {
         "mode": "auto",
         "renderTemplate": "render.php",
