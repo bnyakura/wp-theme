@@ -31,17 +31,17 @@
 
         <!-- Logo -->
         <?php $cilla_skyn_logo_id = get_theme_mod( 'custom_logo' ); ?>
-        <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="flex items-center gap-3 leading-none no-underline">
+        <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="flex shrink-0 items-center gap-3 leading-none no-underline">
             <?php if ( $cilla_skyn_logo_id ) : ?>
                 <img src="<?php echo esc_url( wp_get_attachment_image_url( $cilla_skyn_logo_id, 'full' ) ); ?>" alt="<?php bloginfo( 'name' ); ?>" class="h-10 w-auto">
             <?php endif; ?>
             <?php $cilla_skyn_header_tagline = get_theme_mod( 'cilla_skyn_tagline', __( 'Skin for a Brighter Tomorrow', 'custom-theme' ) ); ?>
             <span>
-                <span class="block font-serif text-2xl tracking-[0.15em] md:text-3xl">
+                <span class="block whitespace-nowrap font-serif text-2xl tracking-[0.15em] md:text-3xl">
                     <?php bloginfo( 'name' ); ?>
                 </span>
                 <?php if ( ! empty( $cilla_skyn_header_tagline ) ) : ?>
-                    <span class="mt-1 block text-[9px] uppercase tracking-[0.22em] text-cs-ink/60">
+                    <span class="mt-1 hidden whitespace-nowrap text-[9px] uppercase tracking-[0.22em] text-cs-ink/60 xl:block">
                         <?php echo esc_html( $cilla_skyn_header_tagline ); ?>
                     </span>
                 <?php endif; ?>
@@ -49,13 +49,13 @@
         </a>
 
         <!-- Desktop Navigation -->
-        <nav class="hidden items-center gap-8 text-[13px] tracking-wide text-cs-ink/80 lg:flex" aria-label="<?php esc_attr_e( 'Primary navigation', 'custom-theme' ); ?>">
+        <nav class="hidden items-center gap-5 text-[13px] tracking-wide text-cs-ink/80 lg:flex" aria-label="<?php esc_attr_e( 'Primary navigation', 'custom-theme' ); ?>">
             <?php
             wp_nav_menu(
                 array(
                     'theme_location' => 'primary_navigation',
                     'container'      => false,
-                    'menu_class'     => 'flex items-center gap-8 cilla-skyn-primary-menu',
+                    'menu_class'     => 'flex items-center gap-5 whitespace-nowrap cilla-skyn-primary-menu',
                     'menu_id'        => 'primary-menu',
                     'fallback_cb'    => false,
                     'depth'          => 0,
