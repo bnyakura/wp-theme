@@ -32,6 +32,30 @@ function iga_fix_single_product_tabs() {
 }
 add_action( 'template_redirect', 'iga_fix_single_product_tabs', 20 );
 
+/**
+ * Restore a third compatibility shim WC_Template_Loader::init() only wires
+ * up when add_theme_support('woocommerce') is declared: the 'comments_template'
+ * filter that swaps in WooCommerce's own templates/single-product-reviews.php
+ * (star-rating select, "Add a review" / "Be the first to review" copy, the
+ * #reviews/.woocommerce-Reviews markup this theme's CSS already targets)
+ * whenever the Reviews tab's callback -- woocommerce_output_product_data_tabs()
+ * hard-codes the string 'comments_template' -- calls comments_template( 'reviews', ... ).
+ *
+ * Without this filter, comments_template() looks for a theme-root file
+ * literally named "reviews" (the tab key, not "reviews.php"), never finds
+ * one, and silently falls back to WordPress's generic
+ * wp-includes/theme-compat/comments.php -- a plain "Leave a Reply" form
+ * with no rating field and none of the product-review markup at all.
+ *
+ * WC_Template_Loader::comments_template_loader() already contains exactly
+ * the right lookup (theme override first, then the WooCommerce plugin's own
+ * template), so we just point the filter at it directly instead of
+ * duplicating its logic.
+ */
+if ( class_exists( 'WC_Template_Loader' ) ) {
+	add_filter( 'comments_template', array( 'WC_Template_Loader', 'comments_template_loader' ) );
+}
+
 if ( ! function_exists( 'iga_render_related_products' ) ) {
 	/**
 	 * Outputs a "You May Also Like" grid of related products, styled to

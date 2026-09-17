@@ -3,8 +3,8 @@
     "title": "Cilla Skyn Ingredients",
     "category": "design",
     "icon": "carrot",
-    "description": "Grid of hero-ingredient cards (photo, name, description) — for the Our Ingredients page.",
-    "keywords": ["ingredients", "about", "cilla skyn"],
+    "description": "Centered ingredient index rendered as an accordion list (name, description, benefits, best for, find it in, optional link), with a Cream/Cream Dark background toggle for banded page rhythm. Every field is optional.",
+    "keywords": ["ingredients", "accordion", "index", "hero", "about", "cilla skyn"],
     "acf": {
         "mode": "auto",
         "renderTemplate": "render.php",

@@ -347,6 +347,28 @@ body.single-product {
 	}
 
 	/* Price */
+	/* Star rating summary (under the title, above the price) */
+	.wp-theme-single-product-rating .woocommerce-product-rating {
+		display: flex;
+		align-items: center;
+		gap: 0.6rem;
+	}
+
+	.wp-theme-single-product-rating .star-rating {
+		font-size: 0.9rem;
+	}
+
+	.wp-theme-single-product-rating .woocommerce-review-link {
+		font-size: 0.8rem;
+		color: color-mix(in srgb, var(--color-cs-ink) 55%, transparent);
+		text-decoration: underline;
+		text-underline-offset: 3px;
+	}
+
+	.wp-theme-single-product-rating .woocommerce-review-link:hover {
+		color: var(--color-gold);
+	}
+
 	.wp-theme-single-product-price .woocommerce-Price-amount {
 		color: var(--color-cs-ink);
 	}

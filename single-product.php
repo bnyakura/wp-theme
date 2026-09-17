@@ -58,6 +58,10 @@ while ( have_posts() ) :
 						<?php the_title(); ?>
 					</h1>
 
+					<div class="wp-theme-single-product-rating mt-3">
+						<?php woocommerce_template_single_rating(); ?>
+					</div>
+
 					<div class="mt-5 flex items-center gap-3">
 						<div class="wp-theme-single-product-price text-2xl text-cs-ink/90"><?php echo wp_kses_post( $product->get_price_html() ); ?></div>
 						<?php if ( $on_sale ) : ?>
