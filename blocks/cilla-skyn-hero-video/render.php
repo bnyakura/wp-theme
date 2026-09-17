@@ -7,11 +7,36 @@
  * eyebrow/description/secondary button, and editor-controlled text colour
  * and text/CTA alignment.
  *
+ * Heading, Button Label/URL and Footer Note are all optional -- each is
+ * wrapped in its own `if`, so clearing one in the editor just omits that
+ * line instead of falling back to placeholder copy. Leaving all of them
+ * empty (with no video/poster either) renders an empty section with only
+ * its own padding.
+ *
  * @package custom-theme
  */
 
 $video_url        = get_field( 'video' ) ?: '';
 $video_mobile_url = get_field( 'video_mobile' ) ?: '';
+
+/*
+ * Minimum height of the section below 768px wide, written as a literal
+ * class-name map for the same Tailwind content-scanner reason as the
+ * object-fit/position maps below -- a class built by concatenating the
+ * field's raw value at runtime would be invisible to Tailwind's build.
+ * "Tall" (1320px) is the original value carried over from the image Hero
+ * block's shell and matches its own documented mobile layout tuning; it
+ * isn't necessarily right for every video, so it's editable here rather
+ * than fixed.
+ */
+$mobile_height_classes = array(
+	'auto'   => '',
+	'short'  => 'min-h-[480px]',
+	'medium' => 'min-h-[720px]',
+	'tall'   => 'min-h-[1320px]',
+	'screen' => 'min-h-screen',
+);
+$mobile_height_class = $mobile_height_classes[ get_field( 'mobile_height' ) ?: 'tall' ] ?? 'min-h-[1320px]';
 
 $poster_id  = get_field( 'poster_image' );
 $poster_url = $poster_id ? wp_get_attachment_image_url( (int) $poster_id, 'full' ) : '';
@@ -66,8 +91,8 @@ if ( 'solid' === $overlay_style ) {
 	$overlay_style_css  = 'background-image: linear-gradient(' . $gradient_direction . ', ' . $gradient_start . ', ' . $gradient_end . ');';
 }
 
-$heading     = get_field( 'heading' ) ?: 'Layered in the Essence of Nature.';
-$footer_note = get_field( 'footer_note' ) ?: 'African Roots. Radiant Tomorrows.';
+$heading     = get_field( 'heading' );
+$footer_note = get_field( 'footer_note' );
 
 $text_color = get_field( 'text_color' ) ?: '#1B1712';
 
@@ -106,8 +131,8 @@ $alignment     = $alignment_classes[ $alignment_key ] ?? $alignment_classes['lef
  */
 $content_col_span_class = 'left' === $alignment_key ? 'min-[768px]:col-span-7' : 'min-[768px]:col-span-12';
 
-$primary_label = get_field( 'primary_button_label' ) ?: 'Shop Best Sellers';
-$primary_url   = get_field( 'primary_button_url' ) ?: '#bestsellers';
+$primary_label = get_field( 'primary_button_label' );
+$primary_url   = get_field( 'primary_button_url' );
 
 $side_items = 'left' === $alignment_key ? get_field( 'side_items' ) : false;
 
@@ -148,7 +173,7 @@ $wrapper_attributes = get_block_wrapper_attributes(
 		<?php endif; ?>
 	</div>
 
-	<div class="relative mx-auto grid min-h-[1320px] max-w-[1400px] grid-cols-1 gap-8 px-6 py-20 min-[768px]:min-h-[560px] min-[768px]:grid-cols-12 min-[768px]:px-10 min-[768px]:py-28" style="color: <?php echo esc_attr( $text_color ); ?>;">
+	<div class="relative mx-auto grid <?php echo esc_attr( $mobile_height_class ); ?> max-w-[1400px] grid-cols-1 gap-8 px-6 py-20 min-[768px]:min-h-[560px] min-[768px]:grid-cols-12 min-[768px]:px-10 min-[768px]:py-28" style="color: <?php echo esc_attr( $text_color ); ?>;">
 		<div class="flex flex-col justify-start min-[768px]:justify-center <?php echo esc_attr( $content_col_span_class . ' ' . $alignment['text'] . ' ' . $alignment['items'] ); ?>">
 			<?php if ( $heading ) : ?>
 				<h1 class="mb-6 max-w-xl font-serif text-5xl leading-[1.08] min-[768px]:text-6xl"><?php echo esc_html( $heading ); ?></h1>
