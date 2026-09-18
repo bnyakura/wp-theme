@@ -110,22 +110,6 @@ if ( ! $cilla_skyn_about_links ) {
 }
 
 $cilla_skyn_legal_links = get_field( 'legal_links', 'option' );
-if ( ! $cilla_skyn_legal_links ) {
-	$cilla_skyn_legal_links = array(
-		array(
-			'label' => __( 'Terms', 'custom-theme' ),
-			'url'   => home_url( '/terms/' ),
-		),
-		array(
-			'label' => __( 'Privacy', 'custom-theme' ),
-			'url'   => home_url( '/privacy/' ),
-		),
-		array(
-			'label' => __( 'Cookies', 'custom-theme' ),
-			'url'   => home_url( '/cookies/' ),
-		),
-	);
-}
 
 $cilla_skyn_newsletter_heading     = get_field( 'newsletter_heading', 'option' ) ?: __( 'Join Cilla’s Circle', 'custom-theme' );
 $cilla_skyn_newsletter_description = get_field( 'newsletter_description', 'option' ) ?: __( 'Be the first to know about new launches, exclusive offers and skincare rituals.', 'custom-theme' );
@@ -233,11 +217,13 @@ $cilla_skyn_newsletter_description = get_field( 'newsletter_description', 'optio
 				?>
 			</p>
 			<div class="flex items-center gap-4">
-				<?php foreach ( $cilla_skyn_legal_links as $link ) : ?>
-					<?php if ( ! empty( $link['label'] ) ) : ?>
-						<a href="<?php echo esc_url( $link['url'] ?: '#' ); ?>" class="hover:text-cs-ink"><?php echo esc_html( $link['label'] ); ?></a>
-					<?php endif; ?>
-				<?php endforeach; ?>
+				<?php if ( ! empty( $cilla_skyn_legal_links ) ) : ?>
+					<?php foreach ( $cilla_skyn_legal_links as $link ) : ?>
+						<?php if ( ! empty( $link['label'] ) ) : ?>
+							<a href="<?php echo esc_url( $link['url'] ?: '#' ); ?>" class="hover:text-cs-ink"><?php echo esc_html( $link['label'] ); ?></a>
+						<?php endif; ?>
+					<?php endforeach; ?>
+				<?php endif; ?>
 				<svg class="h-3.5 w-3.5 text-gold" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 20c8-1 12-7 12-16-9 0-14 5-14 12 0 1.5.7 3 2 4z"/></svg>
 			</div>
 		</div>
