@@ -37,7 +37,7 @@ $pillars = get_field( 'pillars' );
 
 $wrapper_attributes = get_block_wrapper_attributes(
 	array(
-		'class' => 'wp-theme-cilla-skyn-pillars bg-cream-dark font-sans-cs text-cs-ink',
+		'class' => 'wp-theme-cilla-skyn-pillars bg-[#FAF3E5] font-sans-cs text-cs-ink',
 	)
 );
 ?>

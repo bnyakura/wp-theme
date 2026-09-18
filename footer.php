@@ -115,7 +115,7 @@ $cilla_skyn_newsletter_heading     = get_field( 'newsletter_heading', 'option' )
 $cilla_skyn_newsletter_description = get_field( 'newsletter_description', 'option' ) ?: __( 'Be the first to know about new launches, exclusive offers and skincare rituals.', 'custom-theme' );
 ?>
 
-<footer id="site-footer" class="border-t border-cs-ink/10 bg-cream-dark pb-6 pt-16 font-sans-cs text-cs-ink">
+<footer id="site-footer" class="border-t border-cs-ink/10 bg-[#FAF3E5] pb-6 pt-16 font-sans-cs text-cs-ink">
 	<div class="mx-auto max-w-[1400px] px-6 md:px-10">
 
 		<div class="grid grid-cols-1 gap-10 pb-12 md:grid-cols-[1.6fr_1fr_1fr_1fr_1.4fr]">

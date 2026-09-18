@@ -19,7 +19,7 @@ $concerns   = get_field( 'concerns' );
 
 $wrapper_attributes = get_block_wrapper_attributes(
 	array(
-		'class' => 'wp-theme-cilla-skyn-cards bg-cream-dark font-sans-cs text-cs-ink',
+		'class' => 'wp-theme-cilla-skyn-cards bg-[#FAF3E5] font-sans-cs text-cs-ink',
 	)
 );
 ?>

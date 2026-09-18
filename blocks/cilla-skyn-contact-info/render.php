@@ -42,7 +42,7 @@ $subheading     = apply_filters( 'the_content', $subheading_raw );
 
 $wrapper_attributes = get_block_wrapper_attributes(
 	array(
-		'class' => 'wp-theme-cilla-skyn-contact-info bg-cream-dark font-sans-cs text-cs-ink',
+		'class' => 'wp-theme-cilla-skyn-contact-info bg-[#FAF3E5] font-sans-cs text-cs-ink',
 	)
 );
 ?>

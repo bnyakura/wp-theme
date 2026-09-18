@@ -24,7 +24,7 @@ $content     = $content_raw ? apply_filters( 'the_content', $content_raw ) : '';
 
 $wrapper_attributes = get_block_wrapper_attributes(
 	array(
-		'class' => 'wp-theme-cilla-skyn-general-information bg-cream-dark font-sans-cs text-cs-ink',
+		'class' => 'wp-theme-cilla-skyn-general-information bg-[#FAF3E5] font-sans-cs text-cs-ink',
 	)
 );
 ?>
