@@ -1780,7 +1780,7 @@ body.single-product {
 		}
 
 		/*
-		 * Login/Register two-column layout, when registration is enabled
+		 * Login/Register layout, when registration is enabled
 		 * (woocommerce_enable_myaccount_registration option) and both
 		 * forms show together. WooCommerce's own template
 		 * (templates/myaccount/form-login.php) wraps them in
@@ -1792,15 +1792,36 @@ body.single-product {
 		 * there with a screenshot, not re-verified here since
 		 * registration is disabled on this install — same WooCommerce
 		 * class, same fix applies either way).
+		 *
+		 * Single column at every width, not just below 768px: Login and
+		 * Register stack top-to-bottom (markup order — Login first) and
+		 * each form fills the full row instead of the two of them
+		 * splitting it in half, per request.
 		 */
 		#customer_login.col2-set {
 			display: grid;
 			grid-template-columns: 1fr;
 			gap: 2.5rem;
+		}
 
-			@media (min-width: 768px) {
-				grid-template-columns: 1fr 1fr;
-			}
+		/*
+		 * WooCommerce's own woocommerce-layout.css floats these at
+		 * `width:48%` above 768px (its own side-by-side default,
+		 * separate from the `#customer_login.col2-set` grid above) —
+		 * only its woocommerce-smallscreen.css un-does that back to
+		 * `width:100%`, and only below 768px. Without this, the grid
+		 * above stacks Login/Register but each one stays pinned at
+		 * roughly half width on desktop, confirmed by an actual
+		 * screenshot showing exactly that half-width card.
+		 */
+		#customer_login.col2-set .col-1,
+		#customer_login.col2-set .col-2 {
+			float: none;
+			width: 100%;
+		}
+
+		#customer_login.col2-set form {
+			width: 100%;
 		}
 
 		#customer_login.col2-set::before,
