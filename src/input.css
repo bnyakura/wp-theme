@@ -181,12 +181,23 @@
 			grid-template-columns: 1fr auto;
 			grid-template-areas:
 				"heading heading"
+				"desc    desc"
 				"email   button"
 				"resp    resp";
 			align-items: stretch;
 
 			> h2 {
 				grid-area: heading;
+			}
+
+			/* Description — sits on its own full-width row just below
+			   the heading (footer.php's .text-sm paragraph). */
+			> p {
+				grid-area: desc;
+				margin: 0 0 1rem;
+				font-size: 0.875rem;
+				line-height: 1.625;
+				color: color-mix(in srgb, var(--color-cs-ink) 65%, transparent);
 			}
 
 			/* Email field — grows to fill the row (design's flex-1
@@ -227,7 +238,7 @@
 					display: inline-block;
 					width: 100%;
 					padding: 0.625rem 1.25rem;
-					border: none;
+					border: 1px solid transparent;
 					border-radius: 0;
 					background: var(--color-cs-ink);
 					color: var(--color-cream);

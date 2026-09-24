@@ -213,10 +213,13 @@ $cilla_skyn_newsletter_description = get_field( 'newsletter_description', 'optio
 				<div id="mc_embed_signup">
 					
 					<form action="https://cillaskyn.us8.list-manage.com/subscribe/post?u=183b5aadadbcbe51f0873f453&amp;id=1f1895c305&amp;f_id=00c6dee2f0" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_self" novalidate="">
-							<div id="mc_embed_signup_scroll"><h2>Join Cilla’s Circle</h2>
-							
+							<div id="mc_embed_signup_scroll">
+								<h2>Join Cilla’s Circle</h2>
+							    
+							<p class="mb-4 text-sm leading-relaxed text-cs-ink/65">Be the first to know about new launches, exclusive offers and skincare rituals.</p>
+
 								<div class="indicates-required"><span class="asterisk">*</span> indicates required</div>
-								<div class="mc-field-group"><label for="mce-EMAIL">Email Address <span class="asterisk">*</span></label><input type="email" name="EMAIL" class="required email" id="mce-EMAIL" required="" value=""></div>
+								<div class="mc-field-group"><label for="mce-EMAIL">Email Address <span class="asterisk">*</span></label><input type="email" name="EMAIL" class="required email" id="mce-EMAIL" placeholder="Email Address" required="" value=""></div>
 							<div id="mce-responses" class="clear">
 								<div class="response" id="mce-error-response" style="display: none;"></div>
 								<div class="response" id="mce-success-response" style="display: none;"></div>
