@@ -129,6 +129,129 @@
     width: auto;
 }
 
+/*
+ * Mailchimp newsletter signup (footer.php, id="mc_embed_shell") — restyled
+ * to match the hand-built Cilla Skyn newsletter form it replaced (footer
+ * heading, then email input + button joined on one row). Mailchimp's own
+ * embed markup and ids are left completely untouched so the injected
+ * Mailchimp JS keeps working — everything here is done with selectors
+ * scoped under #mc_embed_shell.
+ */
+#mc_embed_shell {
+	#mc_embed_signup {
+
+		/* Heading — matches the other footer column headings (text-sm,
+		   font-medium, mb-4) instead of the embed's default h2. */
+		h2 {
+			margin: 0 0 1rem;
+			font-family: var(--font-sans-cs);
+			font-size: 0.875rem;
+			font-weight: 500;
+			line-height: 1.2;
+			color: var(--color-cs-ink);
+		}
+
+		/* The "* indicates required" note and the field's visible label
+		   are sr-only, matching the replaced form's sr-only label — the
+		   design shows the row as just an input + button with no label
+		   text (kept in the a11y tree, not display:none). */
+		.indicates-required,
+		.mc-field-group label {
+			position: absolute;
+			width: 1px;
+			height: 1px;
+			padding: 0;
+			margin: -1px;
+			overflow: hidden;
+			clip: rect(0, 0, 0, 0);
+			white-space: nowrap;
+			border: 0;
+		}
+
+		/* Lay out the embed as a 2-column grid so the email input and the
+		   Subscribe button sit side by side on one row (matches the
+		   design's joined input + button), with the heading and any
+		   Mailchimp response boxes on their own full-width rows. Grid
+		   (rather than flex-wrap) is used because the Mailchimp markup's
+		   DOM order is fixed — its response/honeypot divs sit between the
+		   field group and the button — and grid lets each piece claim an
+		   explicit named area regardless of sibling order. */
+		#mc_embed_signup_scroll {
+			display: grid;
+			grid-template-columns: 1fr auto;
+			grid-template-areas:
+				"heading heading"
+				"email   button"
+				"resp    resp";
+			align-items: stretch;
+
+			> h2 {
+				grid-area: heading;
+			}
+
+			/* Email field — grows to fill the row (design's flex-1
+			   input: border-cs-ink/25, bg-cream, px-3 py-2.5, text-sm,
+			   focus:border-cs-ink focus:outline-none). */
+			.mc-field-group {
+				grid-area: email;
+				min-width: 0;
+
+				input[type="email"] {
+					width: 100%;
+					padding: 0.625rem 0.75rem;
+					border: 1px solid color-mix(in srgb, var(--color-cs-ink) 25%, transparent);
+					border-radius: 0;
+					background: var(--color-cream);
+					color: var(--color-cs-ink);
+					font-size: 0.875rem;
+
+					&::placeholder {
+						color: color-mix(in srgb, var(--color-cs-ink) 40%, transparent);
+					}
+
+					&:focus {
+						outline: none;
+						border-color: var(--color-cs-ink);
+					}
+				}
+			}
+
+			/* Subscribe button — shrink-0, bg-cs-ink, px-5 py-2.5,
+			   text-cream, hover:bg-cs-ink/85. (The other .clear carries
+			   Mailchimp's #mce-responses response boxes instead, hence
+			   the :not().) */
+			> div.clear:not(#mce-responses) {
+				grid-area: button;
+
+				#mc-embedded-subscribe {
+					display: inline-block;
+					width: 100%;
+					padding: 0.625rem 1.25rem;
+					border: none;
+					border-radius: 0;
+					background: var(--color-cs-ink);
+					color: var(--color-cream);
+					font-size: 0.875rem;
+					cursor: pointer;
+					transition: background-color 0.2s ease;
+
+					&:hover {
+						background: color-mix(in srgb, var(--color-cs-ink) 85%, transparent);
+					}
+				}
+			}
+
+			/* Mailchimp error/success messages — always their own full
+			   row below the input/button line so they never squeeze the
+			   joined row. */
+			#mce-responses {
+				grid-area: resp;
+				font-size: 0.8rem;
+			}
+		}
+	}
+}
+
 /* Desktop + mobile primary nav links (header.php) — Cilla Skyn cream header. */
 .cilla-skyn-primary-menu a {
     color: color-mix(in srgb, var(--color-cs-ink) 80%, transparent);

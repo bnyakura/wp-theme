@@ -193,7 +193,7 @@ $cilla_skyn_newsletter_description = get_field( 'newsletter_description', 'optio
 			<?php endif; ?>
 
 			<!-- Newsletter -->
-			<div>
+			<!-- <div>
 				<h6 class="mb-4 text-sm font-medium"><?php echo esc_html( $cilla_skyn_newsletter_heading ); ?></h6>
 				<p class="mb-4 text-sm leading-relaxed text-cs-ink/65"><?php echo esc_html( $cilla_skyn_newsletter_description ); ?></p>
 				<form class="flex" onsubmit="return false;">
@@ -201,7 +201,36 @@ $cilla_skyn_newsletter_description = get_field( 'newsletter_description', 'optio
 					<input id="cilla-skyn-newsletter-email" type="email" placeholder="<?php esc_attr_e( 'Your email address', 'custom-theme' ); ?>" class="min-w-0 flex-1 border border-cs-ink/25 bg-cream px-3 py-2.5 text-sm placeholder:text-cs-ink/40 focus:border-cs-ink focus:outline-none">
 					<button type="submit" class="shrink-0 bg-cs-ink px-5 py-2.5 text-sm text-cream transition hover:bg-cs-ink/85"><?php esc_html_e( 'Sign Up', 'custom-theme' ); ?></button>
 				</form>
+			</div> -->
+
+
+
+
+			
+
+
+			<div id="mc_embed_shell">
+				<div id="mc_embed_signup">
+					
+					<form action="https://cillaskyn.us8.list-manage.com/subscribe/post?u=183b5aadadbcbe51f0873f453&amp;id=1f1895c305&amp;f_id=00c6dee2f0" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_self" novalidate="">
+							<div id="mc_embed_signup_scroll"><h2>Join Cilla’s Circle</h2>
+							
+								<div class="indicates-required"><span class="asterisk">*</span> indicates required</div>
+								<div class="mc-field-group"><label for="mce-EMAIL">Email Address <span class="asterisk">*</span></label><input type="email" name="EMAIL" class="required email" id="mce-EMAIL" required="" value=""></div>
+							<div id="mce-responses" class="clear">
+								<div class="response" id="mce-error-response" style="display: none;"></div>
+								<div class="response" id="mce-success-response" style="display: none;"></div>
+							</div><div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_183b5aadadbcbe51f0873f453_1f1895c305" tabindex="-1" value=""></div><div class="clear"><input type="submit" name="subscribe" id="mc-embedded-subscribe" class="button" value="Subscribe"></div>
+						</div>
+					</form>
+				</div>
 			</div>
+
+
+
+
+
+
 		</div>
 
 		<!-- Bottom bar -->
