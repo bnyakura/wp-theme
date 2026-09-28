@@ -88,6 +88,13 @@ if( file_exists( $banner_focal_point_file_path ) ) {
     require $banner_focal_point_file_path;
 }
 
+// Define the path to the WooCommerce integration hooks file (header cart
+// badge AJAX fragment)
+$woocommerce_file_path = get_template_directory() . '/inc/woocommerce.php';
+if( file_exists( $woocommerce_file_path ) ) {
+    require $woocommerce_file_path;
+}
+
 
 
 

@@ -94,7 +94,7 @@
                 <?php $cilla_skyn_cart_count = WC()->cart->get_cart_contents_count(); ?>
                 <a href="<?php echo esc_url( wc_get_cart_url() ); ?>" class="relative flex items-center transition hover:opacity-60" aria-label="<?php echo esc_attr( sprintf( _n( 'View cart (%d item)', 'View cart (%d items)', $cilla_skyn_cart_count, 'custom-theme' ), $cilla_skyn_cart_count ) ); ?>">
                     <svg class="h-[18px] w-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 8h12l-1 12H7L6 8z"/><path d="M9 8V6a3 3 0 016 0v2" stroke-linecap="round"/></svg>
-                    <span class="absolute -right-2 -top-2 flex h-4 w-4 items-center justify-center rounded-full bg-cs-ink text-[9px] text-cream"><?php echo esc_html( $cilla_skyn_cart_count > 99 ? '99+' : $cilla_skyn_cart_count ); ?></span>
+                    <span id="cilla-skyn-cart-count" class="absolute -right-2 -top-2 flex h-4 w-4 items-center justify-center rounded-full bg-cs-ink text-[9px] text-cream"><?php echo esc_html( $cilla_skyn_cart_count > 99 ? '99+' : $cilla_skyn_cart_count ); ?></span>
                 </a>
             <?php endif; ?>
 
