@@ -56,6 +56,29 @@ if ( class_exists( 'WC_Template_Loader' ) ) {
 	add_filter( 'comments_template', array( 'WC_Template_Loader', 'comments_template_loader' ) );
 }
 
+/**
+ * Disable WooCommerce's flexslider gallery and hover-zoom on single products.
+ *
+ * Because this theme declares no add_theme_support('woocommerce'),
+ * WooCommerce's "unsupported theme" compatibility layer
+ * (WC_Template_Loader::unsupported_theme_init()) force-enables
+ * wc-product-gallery-slider / -zoom / -lightbox for us. flexslider then runs
+ * on our custom .wp-theme-single-product-gallery markup, but all of the CSS
+ * that sizes and clips it ships scoped to WooCommerce's own
+ * ".woocommerce div.product div.images" wrapper -- which our custom
+ * single-product.php template doesn't output. With no width constraint from
+ * that CSS, flexslider mis-measures the gallery and pins every slide to a
+ * ~1400px inline width, so the main image sprawls far past its column and is
+ * clipped by the page's overflow-x (most visibly broken on mobile).
+ *
+ * The static (no-flexslider) gallery markup lays out correctly on its own and
+ * is styled in src/input.css. We keep the PhotoSwipe lightbox so tapping an
+ * image still opens it full-screen; hover-zoom is pointless on touch and
+ * depends on the same broken sizing, so it's disabled too.
+ */
+add_filter( 'woocommerce_single_product_flexslider_enabled', '__return_false' );
+add_filter( 'woocommerce_single_product_zoom_enabled', '__return_false' );
+
 if ( ! function_exists( 'iga_render_related_products' ) ) {
 	/**
 	 * Outputs a "You May Also Like" grid of related products, styled to

@@ -431,53 +431,85 @@ body.single-product {
 		color: var(--color-cs-ink);
 	}
 
-	/* Gallery */
+	/*
+	 * Gallery — flexslider is disabled for this template (see
+	 * inc/single-product.php), so this styles WooCommerce's plain gallery
+	 * markup directly: a large lead image with any remaining images laid out
+	 * as a thumbnail row beneath it. Tapping any image opens the PhotoSwipe
+	 * lightbox.
+	 */
 	.wp-theme-single-product-gallery .woocommerce-product-gallery {
+		position: relative;
 		opacity: 1 !important;
 	}
 
 	.wp-theme-single-product-gallery .woocommerce-product-gallery__wrapper {
-		overflow: hidden;
-		border-radius: 0;
+		display: grid;
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+		gap: 0.625rem;
+		margin: 0;
+		padding: 0;
+	}
+
+	/* Lead image spans the full width; the rest become thumbnails below it. */
+	.wp-theme-single-product-gallery .woocommerce-product-gallery__image:first-child {
+		grid-column: 1 / -1;
+	}
+
+	.wp-theme-single-product-gallery .woocommerce-product-gallery__image a {
+		display: block;
+	}
+
+	.wp-theme-single-product-gallery .woocommerce-product-gallery__image img {
+		display: block;
+		width: 100%;
+		height: auto;
 		border: 1px solid color-mix(in srgb, var(--color-cs-ink) 10%, transparent);
 		background: var(--color-cream);
 	}
 
-	.wp-theme-single-product-gallery .woocommerce-product-gallery__image img {
-		width: 100%;
-		height: auto;
+	/* Thumbnails (every image after the lead) are cropped to neat squares. */
+	.wp-theme-single-product-gallery .woocommerce-product-gallery__image:not(:first-child) img {
 		aspect-ratio: 1 / 1;
 		object-fit: cover;
-	}
-
-	.wp-theme-single-product-gallery .flex-control-thumbs {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 0.625rem;
-		margin: 0.875rem 0 0;
-		padding: 0;
-		list-style: none;
-	}
-
-	.wp-theme-single-product-gallery .flex-control-thumbs li {
-		width: 4.5rem;
-	}
-
-	.wp-theme-single-product-gallery .flex-control-thumbs img {
-		width: 100%;
-		aspect-ratio: 1 / 1;
-		object-fit: cover;
-		border-radius: 0;
-		border: 1px solid color-mix(in srgb, var(--color-cs-ink) 10%, transparent);
 		cursor: pointer;
-		opacity: 0.6;
+		opacity: 0.75;
 		transition: opacity 0.2s ease, border-color 0.2s ease;
 	}
 
-	.wp-theme-single-product-gallery .flex-control-thumbs img.flex-active,
-	.wp-theme-single-product-gallery .flex-control-thumbs img:hover {
+	.wp-theme-single-product-gallery .woocommerce-product-gallery__image:not(:first-child) img:hover {
 		opacity: 1;
 		border-color: var(--color-cs-ink);
+	}
+
+	/*
+	 * Full-screen (PhotoSwipe) trigger. WooCommerce's own icon styling for
+	 * this button is scoped to its ".woocommerce div.product div.images"
+	 * markup, which this template doesn't output, so style the button here
+	 * instead of letting the bare 🔍 glyph float over the image.
+	 */
+	.wp-theme-single-product-gallery .woocommerce-product-gallery__trigger {
+		position: absolute;
+		top: 0.75rem;
+		right: 0.75rem;
+		z-index: 5;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 2.5rem;
+		height: 2.5rem;
+		border-radius: 999px;
+		border: 1px solid color-mix(in srgb, var(--color-cs-ink) 12%, transparent);
+		background: color-mix(in srgb, var(--color-cream) 85%, transparent);
+		font-size: 1rem;
+		line-height: 1;
+		text-decoration: none;
+		backdrop-filter: blur(2px);
+		transition: background-color 0.2s ease;
+	}
+
+	.wp-theme-single-product-gallery .woocommerce-product-gallery__trigger:hover {
+		background: var(--color-cream);
 	}
 
 	/* Price */
