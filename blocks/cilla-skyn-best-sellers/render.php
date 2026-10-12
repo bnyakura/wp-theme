@@ -41,6 +41,26 @@ list( $orderby, $order ) = $sort_map[ $sort ] ?? $sort_map['default'];
 $limit   = min( 24, max( 1, absint( get_field( 'limit' ) ?: 8 ) ) );
 $columns = min( 6, max( 1, absint( get_field( 'columns' ) ?: 4 ) ) );
 
+// Editor-controlled typography/spacing, surfaced to CSS as custom
+// properties on the section so the WooCommerce shortcode markup below can
+// pick them up (see src/input.css). Clamped to the same ranges as the ACF
+// fields so hand-edited meta can't produce absurd values.
+$title_font_size = min( 40, max( 8, absint( get_field( 'title_font_size' ) ?: 12 ) ) );
+
+$column_gap_field = get_field( 'column_gap' );
+$column_gap       = min( 100, max( 0, '' === $column_gap_field || null === $column_gap_field ? 24 : absint( $column_gap_field ) ) );
+
+$row_gap_field = get_field( 'row_gap' );
+$row_gap       = min( 100, max( 0, '' === $row_gap_field || null === $row_gap_field ? 40 : absint( $row_gap_field ) ) );
+
+$inline_style = sprintf(
+	'--cs-bs-columns:%d;--cs-bs-title-size:%dpx;--cs-bs-col-gap:%dpx;--cs-bs-row-gap:%dpx;',
+	$columns,
+	$title_font_size,
+	$column_gap,
+	$row_gap
+);
+
 $shortcode = sprintf(
 	'[products limit="%d" columns="%d" visibility="%s" orderby="%s" order="%s"]',
 	$limit,
@@ -53,6 +73,7 @@ $shortcode = sprintf(
 $wrapper_attributes = get_block_wrapper_attributes(
 	array(
 		'class' => 'wp-theme-cilla-skyn-best-sellers bg-cream font-sans-cs text-cs-ink',
+		'style' => $inline_style,
 	)
 );
 ?>

@@ -2171,9 +2171,49 @@ body.single-product {
  */
 .wp-theme-cilla-skyn-best-sellers {
 
+	/*
+	 * WooCommerce floats li.product by default, which only lets its own
+	 * fixed percentage margins decide the spacing. Switch ul.products to a
+	 * real grid so the editor-controlled Column/Row Spacing fields (surfaced
+	 * as --cs-bs-col-gap / --cs-bs-row-gap on the section) drive the gaps,
+	 * and so --cs-bs-columns (the Columns field) sets the desktop track
+	 * count. Mobile/tablet still step down to 2/3 columns for legibility.
+	 */
+	.woocommerce ul.products {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		column-gap: var(--cs-bs-col-gap, 24px);
+		row-gap: var(--cs-bs-row-gap, 40px);
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	/* WooCommerce's float clearfix would otherwise become stray grid items
+	   and steal the first cells. */
+	.woocommerce ul.products::before,
+	.woocommerce ul.products::after {
+		content: none;
+	}
+
+	@media (min-width: 640px) {
+		.woocommerce ul.products {
+			grid-template-columns: repeat(3, 1fr);
+		}
+	}
+
+	@media (min-width: 1024px) {
+		.woocommerce ul.products {
+			grid-template-columns: repeat(var(--cs-bs-columns, 4), 1fr);
+		}
+	}
+
 	.woocommerce ul.products li.product {
 		display: flex;
 		flex-direction: column;
+		width: auto !important;
+		float: none !important;
+		margin: 0 !important;
 		padding: 0;
 		overflow: hidden;
 		background: transparent;
@@ -2213,7 +2253,7 @@ body.single-product {
 		margin: 0 0 0.25rem;
 		padding: 0;
 		font-family: var(--font-sans-cs);
-		font-size: 0.875rem;
+		font-size: var(--cs-bs-title-size, 12px);
 		font-weight: 500;
 		color: var(--color-cs-ink);
 	}
