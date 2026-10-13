@@ -117,6 +117,45 @@ function cilla_skyn_customizer($wp_customize) {
         'type'        => 'text',
     ]);
 
+    $wp_customize->add_setting('cilla_skyn_announcement', [
+        'default'           => __( 'Thoughtfully formulated. Purposefully layered. Inspired by nature.', 'cilla-skyn' ),
+        'sanitize_callback' => 'sanitize_text_field',
+        'transport'         => 'refresh',
+    ]);
+
+    $wp_customize->add_control('cilla_skyn_announcement', [
+        'label'       => __('Announcement Bar — Main Text', 'cilla-skyn'),
+        'description' => __('Centered text in the announcement bar below the delivery banner. Leave empty to hide. If all three announcement fields are empty, the whole bar is hidden.', 'cilla-skyn'),
+        'section'     => 'title_tagline',
+        'type'        => 'text',
+    ]);
+
+    $wp_customize->add_setting('cilla_skyn_announcement_right_1', [
+        'default'           => __( 'Worldwide Shipping', 'cilla-skyn' ),
+        'sanitize_callback' => 'sanitize_text_field',
+        'transport'         => 'refresh',
+    ]);
+
+    $wp_customize->add_control('cilla_skyn_announcement_right_1', [
+        'label'       => __('Announcement Bar — Right Item 1', 'cilla-skyn'),
+        'description' => __('Shown on the right of the announcement bar on larger screens. Leave empty to hide.', 'cilla-skyn'),
+        'section'     => 'title_tagline',
+        'type'        => 'text',
+    ]);
+
+    $wp_customize->add_setting('cilla_skyn_announcement_right_2', [
+        'default'           => __( 'A More Radiant You', 'cilla-skyn' ),
+        'sanitize_callback' => 'sanitize_text_field',
+        'transport'         => 'refresh',
+    ]);
+
+    $wp_customize->add_control('cilla_skyn_announcement_right_2', [
+        'label'       => __('Announcement Bar — Right Item 2', 'cilla-skyn'),
+        'description' => __('Second right-side item, separated from the first by a divider. Leave empty to hide.', 'cilla-skyn'),
+        'section'     => 'title_tagline',
+        'type'        => 'text',
+    ]);
+
     $wp_customize->add_setting('cilla_skyn_whatsapp', [
         'default'   => '',
         'transport' => 'refresh',

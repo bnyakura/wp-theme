@@ -19,14 +19,31 @@
 <?php endif; ?>
 
 <!-- Announcement Bar -->
+<?php
+$cilla_skyn_announcement       = trim( (string) get_theme_mod( 'cilla_skyn_announcement', __( 'Thoughtfully formulated. Purposefully layered. Inspired by nature.', 'custom-theme' ) ) );
+$cilla_skyn_announcement_right_1 = trim( (string) get_theme_mod( 'cilla_skyn_announcement_right_1', __( 'Worldwide Shipping', 'custom-theme' ) ) );
+$cilla_skyn_announcement_right_2 = trim( (string) get_theme_mod( 'cilla_skyn_announcement_right_2', __( 'A More Radiant You', 'custom-theme' ) ) );
+?>
+<?php if ( '' !== $cilla_skyn_announcement || '' !== $cilla_skyn_announcement_right_1 || '' !== $cilla_skyn_announcement_right_2 ) : ?>
 <div class="relative bg-cream border-b border-cs-ink/10 px-6 py-2 text-center text-[11px] uppercase tracking-[0.22em] text-cs-ink/70 font-sans-cs">
-    <span><?php echo esc_html( get_theme_mod( 'cilla_skyn_announcement', __( 'Thoughtfully formulated. Purposefully layered. Inspired by nature.', 'custom-theme' ) ) ); ?></span>
+    <?php if ( '' !== $cilla_skyn_announcement ) : ?>
+        <span><?php echo esc_html( $cilla_skyn_announcement ); ?></span>
+    <?php endif; ?>
+    <?php if ( '' !== $cilla_skyn_announcement_right_1 || '' !== $cilla_skyn_announcement_right_2 ) : ?>
     <span class="absolute right-6 top-1/2 hidden -translate-y-1/2 items-center gap-3 normal-case tracking-normal text-cs-ink/60 md:flex">
-        <span><?php esc_html_e( 'Worldwide Shipping', 'custom-theme' ); ?></span>
-        <span class="text-cs-ink/30">|</span>
-        <span><?php esc_html_e( 'A More Radiant You', 'custom-theme' ); ?></span>
+        <?php if ( '' !== $cilla_skyn_announcement_right_1 ) : ?>
+            <span><?php echo esc_html( $cilla_skyn_announcement_right_1 ); ?></span>
+        <?php endif; ?>
+        <?php if ( '' !== $cilla_skyn_announcement_right_1 && '' !== $cilla_skyn_announcement_right_2 ) : ?>
+            <span class="text-cs-ink/30">|</span>
+        <?php endif; ?>
+        <?php if ( '' !== $cilla_skyn_announcement_right_2 ) : ?>
+            <span><?php echo esc_html( $cilla_skyn_announcement_right_2 ); ?></span>
+        <?php endif; ?>
     </span>
+    <?php endif; ?>
 </div>
+<?php endif; ?>
 
 <header id="site-header" class="border-b border-cs-ink/10 bg-cream font-sans-cs text-cs-ink">
     <div class="mx-auto flex max-w-[1400px] items-center justify-between gap-6 px-6 py-4 md:px-10">
