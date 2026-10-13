@@ -112,8 +112,8 @@ if ( ! function_exists( 'iga_render_related_products' ) ) {
 				$image_id  = $related_product->get_image_id();
 				$image_url = $image_id ? wp_get_attachment_image_url( $image_id, 'medium_large' ) : wc_placeholder_img_src( 'medium_large' );
 				?>
-				<article class="group relative flex h-full flex-col overflow-hidden border border-cs-ink/10 bg-cream-dark transition duration-300 hover:-translate-y-1 hover:border-cs-ink/30">
-					<a href="<?php echo esc_url( get_permalink( $related_id ) ); ?>" class="relative block aspect-square overflow-hidden bg-cream">
+				<article class="group relative flex h-full flex-col overflow-hidden bg-transparent transition duration-300 hover:-translate-y-1">
+					<a href="<?php echo esc_url( get_permalink( $related_id ) ); ?>" class="relative block aspect-[4/5] overflow-hidden bg-linear-to-b from-cream-dark to-gold-light">
 						<img
 							src="<?php echo esc_url( $image_url ); ?>"
 							alt="<?php echo esc_attr( $related_product->get_name() ); ?>"
@@ -121,13 +121,16 @@ if ( ! function_exists( 'iga_render_related_products' ) ) {
 							loading="lazy"
 						>
 					</a>
-					<div class="flex flex-1 flex-col p-5">
+					<div class="flex flex-1 flex-col pt-4">
 						<h3 class="font-sans-cs text-sm font-medium text-cs-ink">
 							<a href="<?php echo esc_url( get_permalink( $related_id ) ); ?>" class="hover:text-gold">
 								<?php echo esc_html( $related_product->get_name() ); ?>
 							</a>
 						</h3>
-						<div class="mt-2 text-sm text-cs-ink/70"><?php echo wp_kses_post( $related_product->get_price_html() ); ?></div>
+						<div class="mb-3 mt-1 text-sm font-medium text-cs-ink"><?php echo wp_kses_post( $related_product->get_price_html() ); ?></div>
+						<a href="<?php echo esc_url( get_permalink( $related_id ) ); ?>" class="mt-auto flex items-center justify-center border border-cs-ink px-4 py-2.5 text-xs text-cs-ink transition hover:bg-cs-ink hover:text-cream">
+							<?php esc_html_e( 'Shop Now', 'iga' ); ?>
+						</a>
 					</div>
 				</article>
 			<?php endforeach; ?>

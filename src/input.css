@@ -2198,8 +2198,9 @@ body.single-product {
  * WooCommerce's existing hooks/classes (.woocommerce-loop-product__title,
  * span.onsale, a.button, etc.) instead of duplicating that markup. Scoped
  * to .wp-theme-cilla-skyn-best-sellers so none of this leaks into the
- * Shop/single-product pages, which get their own near-identical but
- * bordered-card treatment further down this file (.wp-theme-shop-page).
+ * Shop/single-product pages, which get the same borderless card treatment
+ * further down this file (.wp-theme-shop-page) so every product-grid
+ * surface matches this block.
  */
 .wp-theme-cilla-skyn-best-sellers {
 
@@ -2381,13 +2382,13 @@ body.single-product {
  * markup (still rendered via the_content()'s unsupported_theme_shop_
  * content_filter(), since this theme has no add_theme_support(
  * 'woocommerce')) to match the Cilla Skyn cream theme. The card
- * look-and-feel mirrors the single product page's "You May Also Like"
- * grid (inc/single-product.php) for consistency across the two
- * product-grid surfaces. Scoped to .wp-theme-shop-page so it stays clear
- * of the Best Sellers block above, which sits on a plain (borderless,
- * transparent-card) light section instead. The Cilla Skyn Products block
- * below copies this same ruleset verbatim under .wp-theme-cilla-skyn-
- * products, since that block is meant to look identical to this page.
+ * look-and-feel mirrors the Best Sellers block above (borderless,
+ * transparent card, 4:5 gradient image, square outline button) so every
+ * product-grid surface matches, and also matches the single product
+ * page's "You May Also Like" grid (inc/single-product.php). The Cilla
+ * Skyn Products block below copies this same ruleset verbatim under
+ * .wp-theme-cilla-skyn-products, since that block is meant to look
+ * identical to this page.
  */
 .wp-theme-shop-page {
 
@@ -2480,6 +2481,20 @@ body.single-product {
 			ul.products {
 				grid-template-columns: repeat(4, 1fr);
 			}
+
+			/*
+			 * Respect WooCommerce's "Products per row" setting (Customizer →
+			 * WooCommerce → Product Catalog, stored as woocommerce_catalog_
+			 * columns), which adds a columns-N class to ul.products. Without
+			 * these the desktop grid was stuck at 4 columns regardless of the
+			 * setting. Mobile/tablet still step down to 2/3 for legibility.
+			 */
+			ul.products.columns-1 { grid-template-columns: 1fr; }
+			ul.products.columns-2 { grid-template-columns: repeat(2, 1fr); }
+			ul.products.columns-3 { grid-template-columns: repeat(3, 1fr); }
+			ul.products.columns-4 { grid-template-columns: repeat(4, 1fr); }
+			ul.products.columns-5 { grid-template-columns: repeat(5, 1fr); }
+			ul.products.columns-6 { grid-template-columns: repeat(6, 1fr); }
 		}
 
 		ul.products li.product {
@@ -2490,14 +2505,12 @@ body.single-product {
 			margin: 0 !important;
 			padding: 0;
 			overflow: hidden;
-			border: 1px solid color-mix(in srgb, var(--color-cs-ink) 10%, transparent);
-			background: var(--color-cream-dark);
-			transition: transform 0.3s ease, border-color 0.3s ease;
+			background: transparent;
+			transition: transform 0.3s ease;
 		}
 
 		ul.products li.product:hover {
 			transform: translateY(-4px);
-			border-color: color-mix(in srgb, var(--color-cs-ink) 30%, transparent);
 		}
 
 		ul.products li.product .woocommerce-loop-product__link {
@@ -2505,19 +2518,17 @@ body.single-product {
 			flex-direction: column;
 			flex: 1;
 			position: relative;
-			padding: 0 1.1rem 1.1rem;
 			color: var(--color-cs-ink);
 			text-decoration: none;
 		}
 
 		ul.products li.product .woocommerce-loop-product__link img {
 			order: 1;
-			width: calc(100% + 2.2rem);
-			max-width: calc(100% + 2.2rem);
-			aspect-ratio: 1 / 1;
-			margin: 0 -1.1rem 1rem;
+			width: 100%;
+			aspect-ratio: 4 / 5;
+			margin: 0 0 1rem;
 			object-fit: cover;
-			background: var(--color-cream);
+			background: linear-gradient(to bottom, var(--color-cream-dark), var(--color-gold-light));
 			transition: transform 0.5s ease;
 		}
 
@@ -2527,7 +2538,7 @@ body.single-product {
 
 		ul.products li.product .woocommerce-loop-product__title {
 			order: 2;
-			margin: 0 0 0.35rem;
+			margin: 0 0 0.25rem;
 			padding: 0;
 			font-family: var(--font-sans-cs);
 			font-size: 0.875rem;
@@ -2541,9 +2552,10 @@ body.single-product {
 
 		ul.products li.product .price {
 			order: 3;
-			margin: 0;
+			margin: 0 0 0.75rem;
 			padding: 0;
-			font-size: 0.85rem;
+			font-size: 0.875rem;
+			font-weight: 500;
 			color: var(--color-cs-ink);
 		}
 
@@ -2559,7 +2571,7 @@ body.single-product {
 
 		ul.products li.product .star-rating {
 			order: 2;
-			margin: 0 0 0.35rem;
+			margin: 0 0 0.5rem;
 		}
 
 		ul.products li.product .onsale {
@@ -2586,10 +2598,10 @@ body.single-product {
 			display: flex;
 			align-items: center;
 			justify-content: center;
-			margin: 0 1.1rem 1.1rem;
+			margin: 0;
 			padding: 0.65rem 1rem;
 			border: 1px solid var(--color-cs-ink);
-			border-radius: 999px;
+			border-radius: 0;
 			background: transparent;
 			color: var(--color-cs-ink);
 			font-size: 0.75rem;
@@ -2724,6 +2736,20 @@ body.single-product {
 			ul.products {
 				grid-template-columns: repeat(4, 1fr);
 			}
+
+			/*
+			 * Respect WooCommerce's "Products per row" setting (Customizer →
+			 * WooCommerce → Product Catalog, stored as woocommerce_catalog_
+			 * columns), which adds a columns-N class to ul.products. Without
+			 * these the desktop grid was stuck at 4 columns regardless of the
+			 * setting. Mobile/tablet still step down to 2/3 for legibility.
+			 */
+			ul.products.columns-1 { grid-template-columns: 1fr; }
+			ul.products.columns-2 { grid-template-columns: repeat(2, 1fr); }
+			ul.products.columns-3 { grid-template-columns: repeat(3, 1fr); }
+			ul.products.columns-4 { grid-template-columns: repeat(4, 1fr); }
+			ul.products.columns-5 { grid-template-columns: repeat(5, 1fr); }
+			ul.products.columns-6 { grid-template-columns: repeat(6, 1fr); }
 		}
 
 		ul.products li.product {
@@ -2734,14 +2760,12 @@ body.single-product {
 			margin: 0 !important;
 			padding: 0;
 			overflow: hidden;
-			border: 1px solid color-mix(in srgb, var(--color-cs-ink) 10%, transparent);
-			background: var(--color-cream-dark);
-			transition: transform 0.3s ease, border-color 0.3s ease;
+			background: transparent;
+			transition: transform 0.3s ease;
 		}
 
 		ul.products li.product:hover {
 			transform: translateY(-4px);
-			border-color: color-mix(in srgb, var(--color-cs-ink) 30%, transparent);
 		}
 
 		ul.products li.product .woocommerce-loop-product__link {
@@ -2749,19 +2773,17 @@ body.single-product {
 			flex-direction: column;
 			flex: 1;
 			position: relative;
-			padding: 0 1.1rem 1.1rem;
 			color: var(--color-cs-ink);
 			text-decoration: none;
 		}
 
 		ul.products li.product .woocommerce-loop-product__link img {
 			order: 1;
-			width: calc(100% + 2.2rem);
-			max-width: calc(100% + 2.2rem);
-			aspect-ratio: 1 / 1;
-			margin: 0 -1.1rem 1rem;
+			width: 100%;
+			aspect-ratio: 4 / 5;
+			margin: 0 0 1rem;
 			object-fit: cover;
-			background: var(--color-cream);
+			background: linear-gradient(to bottom, var(--color-cream-dark), var(--color-gold-light));
 			transition: transform 0.5s ease;
 		}
 
@@ -2771,7 +2793,7 @@ body.single-product {
 
 		ul.products li.product .woocommerce-loop-product__title {
 			order: 2;
-			margin: 0 0 0.35rem;
+			margin: 0 0 0.25rem;
 			padding: 0;
 			font-family: var(--font-sans-cs);
 			font-size: 0.875rem;
@@ -2785,9 +2807,10 @@ body.single-product {
 
 		ul.products li.product .price {
 			order: 3;
-			margin: 0;
+			margin: 0 0 0.75rem;
 			padding: 0;
-			font-size: 0.85rem;
+			font-size: 0.875rem;
+			font-weight: 500;
 			color: var(--color-cs-ink);
 		}
 
@@ -2803,7 +2826,7 @@ body.single-product {
 
 		ul.products li.product .star-rating {
 			order: 2;
-			margin: 0 0 0.35rem;
+			margin: 0 0 0.5rem;
 		}
 
 		ul.products li.product .onsale {
@@ -2830,10 +2853,10 @@ body.single-product {
 			display: flex;
 			align-items: center;
 			justify-content: center;
-			margin: 0 1.1rem 1.1rem;
+			margin: 0;
 			padding: 0.65rem 1rem;
 			border: 1px solid var(--color-cs-ink);
-			border-radius: 999px;
+			border-radius: 0;
 			background: transparent;
 			color: var(--color-cs-ink);
 			font-size: 0.75rem;
