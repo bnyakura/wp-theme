@@ -81,18 +81,34 @@ add_filter( 'woocommerce_single_product_zoom_enabled', '__return_false' );
 
 if ( ! function_exists( 'iga_render_related_products' ) ) {
 	/**
-	 * Outputs a "You May Also Like" grid of related products, styled to
-	 * match the Armory Products block cards.
+	 * Outputs a "You May Also Like" grid of related products.
+	 *
+	 * Renders WooCommerce's native [products] grid — the same markup the
+	 * Best Sellers block, Shop page and Products block use — so these cards
+	 * match every other product surface on the site exactly: full-bleed 4:5
+	 * image, title, price (incl. sale strike-through), star rating, sale
+	 * badge and the real AJAX add-to-cart button. The shared borderless
+	 * cream/gold card styling lives in src/input.css, where
+	 * .wp-theme-single-product-related rides on the Best Sellers ruleset.
+	 *
+	 * This replaces the previous hand-built card markup, which had drifted
+	 * from the rest of the site (static "Shop Now" link, no star rating/sale
+	 * badge, and a price line that rendered empty).
 	 *
 	 * @param WC_Product $product Current product.
 	 * @return void
 	 */
 	function iga_render_related_products( WC_Product $product ): void {
-		$related_ids = wc_get_related_products( $product->get_id(), 4 );
+		$related_ids = wc_get_related_products( $product->get_id(), 5 );
 
 		if ( empty( $related_ids ) ) {
 			return;
 		}
+
+		// absint() each id and let WooCommerce's shortcode own the query and
+		// card markup. limit matches the id count so none are dropped (the
+		// shortcode's default per-page cap can be lower than the id list).
+		$ids = implode( ',', array_map( 'absint', $related_ids ) );
 		?>
 		<div class="mx-auto mb-10 max-w-2xl text-center">
 			<h2 class="font-serif text-3xl leading-none text-cs-ink sm:text-4xl">
@@ -100,40 +116,22 @@ if ( ! function_exists( 'iga_render_related_products' ) ) {
 			</h2>
 		</div>
 
-		<div class="grid grid-cols-1 gap-5 min-[601px]:grid-cols-2 min-[1024px]:grid-cols-4">
+		<?php
+		// --cs-bs-columns is the Best Sellers ruleset's desktop column count
+		// (it defaults to 4); set it to 5 here so this shared grid shows five
+		// cards per row on desktop. Tablet/mobile still step down to 3/2 for
+		// legibility, same as every other product grid.
+		?>
+		<div class="wp-theme-single-product-related" style="--cs-bs-columns:5;">
 			<?php
-			foreach ( $related_ids as $related_id ) :
-				$related_product = wc_get_product( $related_id );
-
-				if ( ! $related_product || 'publish' !== $related_product->get_status() ) {
-					continue;
-				}
-
-				$image_id  = $related_product->get_image_id();
-				$image_url = $image_id ? wp_get_attachment_image_url( $image_id, 'medium_large' ) : wc_placeholder_img_src( 'medium_large' );
-				?>
-				<article class="group relative flex h-full flex-col overflow-hidden bg-transparent transition duration-300 hover:-translate-y-1">
-					<a href="<?php echo esc_url( get_permalink( $related_id ) ); ?>" class="relative block aspect-[4/5] overflow-hidden bg-linear-to-b from-cream-dark to-gold-light">
-						<img
-							src="<?php echo esc_url( $image_url ); ?>"
-							alt="<?php echo esc_attr( $related_product->get_name() ); ?>"
-							class="h-full w-full object-cover transition duration-500 group-hover:scale-105"
-							loading="lazy"
-						>
-					</a>
-					<div class="flex flex-1 flex-col pt-4">
-						<h3 class="font-sans-cs text-sm font-medium text-cs-ink">
-							<a href="<?php echo esc_url( get_permalink( $related_id ) ); ?>" class="hover:text-gold">
-								<?php echo esc_html( $related_product->get_name() ); ?>
-							</a>
-						</h3>
-						<div class="mb-3 mt-1 text-sm font-medium text-cs-ink"><?php echo wp_kses_post( $related_product->get_price_html() ); ?></div>
-						<a href="<?php echo esc_url( get_permalink( $related_id ) ); ?>" class="mt-auto flex items-center justify-center border border-cs-ink px-4 py-2.5 text-xs text-cs-ink transition hover:bg-cs-ink hover:text-cream">
-							<?php esc_html_e( 'Shop Now', 'iga' ); ?>
-						</a>
-					</div>
-				</article>
-			<?php endforeach; ?>
+			echo do_shortcode(
+				sprintf(
+					'[products ids="%s" columns="5" limit="%d"]',
+					esc_attr( $ids ),
+					count( $related_ids )
+				)
+			);
+			?>
 		</div>
 		<?php
 	}

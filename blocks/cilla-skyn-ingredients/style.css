@@ -1,1 +1,85 @@
-/* Styled via Tailwind utility classes in render.php. */
+/*
+ * Rich-text styling for the Description and Benefits WYSIWYG sub-fields'
+ * output (blocks/cilla-skyn-ingredients/render.php). Hand-written rather than
+ * Tailwind utility classes, since this markup comes from the block editor and
+ * can't carry them — same pattern as the About Hero block's Intro/Description
+ * fields (see that block's style.css). Scoped under
+ * .cilla-skyn-ingredients-content so it never leaks into other WYSIWYG fields;
+ * colour and size are inherited from the accordion panel (text-cs-ink/70,
+ * text-sm, leading-relaxed) set on the wrapper in render.php. The rest of the
+ * block is styled via Tailwind utility classes in render.php.
+ */
+
+.cilla-skyn-ingredients-content {
+	color: inherit;
+}
+
+.cilla-skyn-ingredients-content > *:first-child {
+	margin-top: 0;
+}
+
+.cilla-skyn-ingredients-content > *:last-child {
+	margin-bottom: 0;
+}
+
+.cilla-skyn-ingredients-content p {
+	margin: 0 0 0.75em;
+}
+
+.cilla-skyn-ingredients-content strong,
+.cilla-skyn-ingredients-content b {
+	font-weight: 600;
+	color: inherit;
+}
+
+.cilla-skyn-ingredients-content em,
+.cilla-skyn-ingredients-content i {
+	font-style: italic;
+}
+
+.cilla-skyn-ingredients-content a {
+	color: inherit;
+	text-decoration: underline;
+	text-decoration-color: var(--color-gold);
+	text-underline-offset: 2px;
+}
+
+.cilla-skyn-ingredients-content a:hover {
+	color: var(--color-gold);
+}
+
+.cilla-skyn-ingredients-content ul,
+.cilla-skyn-ingredients-content ol {
+	margin: 0 0 0.75em;
+	padding-left: 1.1em;
+}
+
+.cilla-skyn-ingredients-content li {
+	margin-bottom: 0.25em;
+}
+
+/* Echo the old dash-bulleted Benefits list's gold accent. */
+.cilla-skyn-ingredients-content li::marker {
+	color: var(--color-gold);
+}
+
+.cilla-skyn-ingredients-content blockquote {
+	margin: 0.75em 0;
+	padding-left: 1em;
+	border-left: 2px solid var(--color-gold);
+	font-style: italic;
+	opacity: 0.8;
+}
+
+.cilla-skyn-ingredients-content h1,
+.cilla-skyn-ingredients-content h2,
+.cilla-skyn-ingredients-content h3,
+.cilla-skyn-ingredients-content h4,
+.cilla-skyn-ingredients-content h5,
+.cilla-skyn-ingredients-content h6 {
+	margin: 1em 0 0.4em;
+	font-family: var(--font-serif);
+	font-weight: 400;
+	line-height: 1.2;
+	color: inherit;
+}

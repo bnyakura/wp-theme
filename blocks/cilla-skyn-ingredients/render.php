@@ -44,6 +44,19 @@ $wrapper_attributes = get_block_wrapper_attributes(
 	)
 );
 
+/*
+ * Description/Benefits are WYSIWYG fields — get_field( 'ingredients' ) returns
+ * each row's value already run through ACF's acf_the_content pipeline (wpautop,
+ * shortcodes, embeds), so they're echoed as HTML rather than esc_html'd. Same
+ * rich-text approach as the About Hero block; styling lives in style.css under
+ * .cilla-skyn-ingredients-content. This helper decides whether a field holds
+ * anything renderable (text, or an image/embed) before printing its wrapper.
+ */
+$cilla_skyn_ingredients_has_content = static function ( $html ) {
+	$html = (string) $html;
+	return '' !== trim( wp_strip_all_tags( $html ) ) || false !== strpos( $html, '<img' ) || false !== strpos( $html, '<iframe' );
+};
+
 $position = 0;
 ?>
 <section <?php echo $wrapper_attributes; ?>>
@@ -71,8 +84,8 @@ $position = 0;
 				<?php foreach ( $ingredients as $ingredient ) : ?>
 						<?php
 						$name        = trim( (string) ( $ingredient['name'] ?? '' ) );
-						$description = trim( (string) ( $ingredient['description'] ?? '' ) );
-						$benefits    = trim( (string) ( $ingredient['benefits'] ?? '' ) );
+						$description = (string) ( $ingredient['description'] ?? '' );
+						$benefits    = (string) ( $ingredient['benefits'] ?? '' );
 						$best_for    = trim( (string) ( $ingredient['best_for'] ?? '' ) );
 						$find_in     = trim( (string) ( $ingredient['find_in'] ?? '' ) );
 						$link_url    = trim( (string) ( $ingredient['link_url'] ?? '' ) );
@@ -84,9 +97,8 @@ $position = 0;
 
 						++$position;
 
-						$benefit_lines = $benefits
-							? array_filter( array_map( 'trim', explode( "\n", $benefits ) ) )
-							: array();
+						$has_description = $cilla_skyn_ingredients_has_content( $description );
+						$has_benefits    = $cilla_skyn_ingredients_has_content( $benefits );
 						?>
 						<details class="group">
 							<summary class="flex cursor-pointer list-none items-center gap-4 px-5 py-4 marker:content-none">
@@ -96,12 +108,12 @@ $position = 0;
 									<path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round" />
 								</svg>
 							</summary>
-							<?php if ( $description || $benefit_lines || $best_for || $find_in || $link_url ) : ?>
+							<?php if ( $has_description || $has_benefits || $best_for || $find_in || $link_url ) : ?>
 								<div class="space-y-4 py-5 pr-5 pl-15 text-sm leading-relaxed text-cs-ink/70">
-									<?php if ( $description ) : ?>
-										<p><?php echo nl2br( esc_html( $description ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></p>
+									<?php if ( $has_description ) : ?>
+										<div class="cilla-skyn-ingredients-content"><?php echo $description; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></div>
 									<?php endif; ?>
-									<?php if ( $benefit_lines ) : ?>
+									<?php if ( $has_benefits ) : ?>
 										<div>
 											<span class="mb-1.5 flex items-center gap-1.5 text-[11px] uppercase tracking-[0.14em] text-gold">
 												<svg class="h-3 w-3 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
@@ -109,14 +121,7 @@ $position = 0;
 												</svg>
 												Benefits
 											</span>
-											<ul class="space-y-0.5">
-												<?php foreach ( $benefit_lines as $line ) : ?>
-													<li class="flex gap-2">
-														<span class="text-gold" aria-hidden="true">–</span>
-														<span><?php echo esc_html( $line ); ?></span>
-													</li>
-												<?php endforeach; ?>
-											</ul>
+											<div class="cilla-skyn-ingredients-content"><?php echo $benefits; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></div>
 										</div>
 									<?php endif; ?>
 									<?php if ( $best_for ) : ?>

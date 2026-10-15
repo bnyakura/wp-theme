@@ -2200,9 +2200,16 @@ body.single-product {
  * to .wp-theme-cilla-skyn-best-sellers so none of this leaks into the
  * Shop/single-product pages, which get the same borderless card treatment
  * further down this file (.wp-theme-shop-page) so every product-grid
- * surface matches this block.
+ * surface matches this block. The single product page's "You May Also
+ * Like" grid (inc/single-product.php) renders this same [products]
+ * shortcode and shares this ruleset via .wp-theme-single-product-related,
+ * so those cards match the Best Sellers grid exactly. The --cs-bs-* custom
+ * properties fall back to their defaults there (12px title, 24px/40px gaps),
+ * except --cs-bs-columns, which that template sets inline to 5 for a
+ * five-across desktop row.
  */
-.wp-theme-cilla-skyn-best-sellers {
+.wp-theme-cilla-skyn-best-sellers,
+.wp-theme-single-product-related {
 
 	/*
 	 * WooCommerce floats li.product by default, which only lets its own
