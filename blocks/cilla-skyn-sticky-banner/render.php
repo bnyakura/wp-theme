@@ -49,6 +49,26 @@ $focal_y = get_field( 'image_focal_y' );
 $focal_x = is_numeric( $focal_x ) ? max( 0, min( 100, (float) $focal_x ) ) : 50;
 $focal_y = is_numeric( $focal_y ) ? max( 0, min( 100, (float) $focal_y ) ) : 50;
 
+/*
+ * How each tier's image fills the section. This block paints the photo as a
+ * CSS background-image (for the fixed/parallax effect), not an <img>, so the
+ * background-size property stands in for object-fit — 'cover'/'contain' map
+ * straight across, 'fill' becomes the 100% 100% stretch, and 'auto' is the
+ * natural-size ("none"/original) case. Each tier is independently optional and
+ * falls through Desktop -> Tablet -> Mobile exactly like the image fields, so
+ * a single Desktop choice still governs every size. Default 'cover' matches
+ * the previous hardcoded `bg-cover`.
+ */
+$cilla_skyn_sticky_banner_fit_sizes = array(
+	'cover'   => 'cover',
+	'contain' => 'contain',
+	'fill'    => '100% 100%',
+	'auto'    => 'auto',
+);
+$desktop_fit = $cilla_skyn_sticky_banner_fit_sizes[ get_field( 'image_fit' ) ] ?? 'cover';
+$tablet_fit  = $cilla_skyn_sticky_banner_fit_sizes[ get_field( 'tablet_image_fit' ) ] ?? $desktop_fit;
+$mobile_fit  = $cilla_skyn_sticky_banner_fit_sizes[ get_field( 'mobile_image_fit' ) ] ?? $tablet_fit;
+
 $overlay_color = get_field( 'overlay_color' );
 $text_color    = get_field( 'text_color' );
 $text_style    = $text_color ? sprintf( ' style="color: %s;"', esc_attr( $text_color ) ) : '';
@@ -85,7 +105,7 @@ $block_id = 'cilla-skyn-sticky-banner-' . wp_unique_id();
 
 $wrapper_attributes = get_block_wrapper_attributes(
 	array(
-		'class' => 'wp-theme-cilla-skyn-sticky-banner relative flex flex-col items-center justify-center bg-cream font-sans-cs text-cs-ink bg-cover bg-no-repeat',
+		'class' => 'wp-theme-cilla-skyn-sticky-banner relative flex flex-col items-center justify-center bg-cream font-sans-cs text-cs-ink bg-no-repeat',
 		'style' => sprintf( 'min-height: %1$svh; background-position: %2$s%% %3$s%%;', $min_height, $focal_x, $focal_y ),
 		'id'    => $block_id,
 	)
@@ -101,12 +121,12 @@ $wrapper_attributes = get_block_wrapper_attributes(
 ?>
 <?php if ( $image_url ) : ?>
 	<style>
-		#<?php echo esc_attr( $block_id ); ?> { background-image: url('<?php echo esc_url( $image_url ); ?>'); }
+		#<?php echo esc_attr( $block_id ); ?> { background-image: url('<?php echo esc_url( $image_url ); ?>'); background-size: <?php echo esc_html( $desktop_fit ); ?>; }
 		@media (max-width: 767px) {
-			#<?php echo esc_attr( $block_id ); ?> { background-image: url('<?php echo esc_url( $mobile_image_url ); ?>'); background-attachment: scroll; }
+			#<?php echo esc_attr( $block_id ); ?> { background-image: url('<?php echo esc_url( $mobile_image_url ); ?>'); background-attachment: scroll; background-size: <?php echo esc_html( $mobile_fit ); ?>; }
 		}
 		@media (min-width: 768px) and (max-width: 1279px) {
-			#<?php echo esc_attr( $block_id ); ?> { background-image: url('<?php echo esc_url( $tablet_image_url ); ?>'); }
+			#<?php echo esc_attr( $block_id ); ?> { background-image: url('<?php echo esc_url( $tablet_image_url ); ?>'); background-size: <?php echo esc_html( $tablet_fit ); ?>; }
 		}
 		@media (min-width: 768px) {
 			#<?php echo esc_attr( $block_id ); ?> { background-attachment: fixed; }

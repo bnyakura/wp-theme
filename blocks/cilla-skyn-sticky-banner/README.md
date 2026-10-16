@@ -2,7 +2,7 @@
 
 A full-bleed parallax banner: the background image stays visually fixed to the browser window while the page scrolls past it, then the next block on the page covers it normally once this section ends. The classic CSS-only technique (`background-attachment: fixed`) — no JS, no `position: sticky`, no negative margins, no z-index.
 
-Same field set as the [Cilla Skyn Banner](../cilla-skyn-banner/README.md) block (background image with focal point, overlay, text colour, eyebrow, heading, two rich-text paragraphs, tagline), plus one new control: **Section Height**.
+Same field set as the [Cilla Skyn Banner](../cilla-skyn-banner/README.md) block (background image with focal point, overlay, text colour, eyebrow, heading, two rich-text paragraphs, tagline), plus **Section Height** and per-device **Image Fit** controls. Because the photo is painted as a CSS `background-image` (for the fixed/parallax effect) rather than an `<img>`, the fit is applied via `background-size` instead of `object-fit`.
 
 ## Fields
 
@@ -12,6 +12,7 @@ Same field set as the [Cilla Skyn Banner](../cilla-skyn-banner/README.md) block 
 | **Background Image (Desktop)** | Image | No | Fills the section as a fixed background at 768px and wider. Also used as the fallback for Tablet/Mobile when either is left empty. Leave all three empty for a plain cream panel. |
 | **Background Image (Tablet)** | Image | No | Optional separate crop/photo used from 768px up to 1279px wide, in place of Desktop. |
 | **Background Image (Mobile)** | Image | No | Optional separate crop/photo used below 768px wide. The parallax effect itself is switched off below 768px regardless (see below), so this just renders as a normal scrolling background. |
+| **Image Fit (Desktop / Tablet / Mobile)** | Select | No | How each tier's image fills the section — CSS `background-size`, the background equivalent of `object-fit`: **Cover** (fill, cropped — default), **Contain** (fit entirely, may letterbox), **Fill** (stretch, may distort), **Original** (`auto`, natural size). Each tier is independently optional and falls through Desktop → Tablet → Mobile, same as the image fields; empty Desktop = Cover. |
 | **Image Focal Point** (X) / **(Y)** | Range sliders | No | CSS `background-position` as free-form X/Y percentages. 50/50 (default) is centered. |
 | **Background Overlay Color** | Color picker (with opacity) | No | Wash placed over the background image so the centered text stays readable. Leave empty for no wash. |
 | **Text Color** | Color picker | No | Overrides Heading/Intro/Description/Tagline colour. Doesn't affect Eyebrow (always brand gold). |

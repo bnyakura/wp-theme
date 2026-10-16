@@ -83,6 +83,78 @@
             "mime_types": ""
         },
         {
+            "key": "field_cilla_skyn_sticky_banner_image_fit",
+            "label": "Image Fit (Desktop)",
+            "name": "image_fit",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "How the Desktop background image fills the section (CSS background-size — the background-image equivalent of object-fit). Leave empty for the default, Cover.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": { "width": "34", "class": "", "id": "" },
+            "choices": {
+                "cover": "Cover (fill section, cropped — default)",
+                "contain": "Contain (fit entirely, may letterbox)",
+                "fill": "Fill (stretch to fit, may distort)",
+                "auto": "Original (natural size, no scaling)"
+            },
+            "default_value": "",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 1,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_cilla_skyn_sticky_banner_tablet_image_fit",
+            "label": "Image Fit (Tablet)",
+            "name": "tablet_image_fit",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "How the Tablet background image fills the section (768px–1279px wide). Leave empty to reuse the Desktop fit above.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": { "width": "33", "class": "", "id": "" },
+            "choices": {
+                "cover": "Cover (fill section, cropped)",
+                "contain": "Contain (fit entirely, may letterbox)",
+                "fill": "Fill (stretch to fit, may distort)",
+                "auto": "Original (natural size, no scaling)"
+            },
+            "default_value": "",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 1,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_cilla_skyn_sticky_banner_mobile_image_fit",
+            "label": "Image Fit (Mobile)",
+            "name": "mobile_image_fit",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "How the Mobile background image fills the section (below 768px wide). Leave empty to reuse the Tablet fit (falling through to Desktop).",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": { "width": "33", "class": "", "id": "" },
+            "choices": {
+                "cover": "Cover (fill section, cropped)",
+                "contain": "Contain (fit entirely, may letterbox)",
+                "fill": "Fill (stretch to fit, may distort)",
+                "auto": "Original (natural size, no scaling)"
+            },
+            "default_value": "",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 1,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
             "key": "field_cilla_skyn_sticky_banner_image_focal_x",
             "label": "Image Focal Point",
             "name": "image_focal_x",
