@@ -93,20 +93,28 @@ $cilla_skyn_sticky_banner_has_content = static function ( $html ) {
 };
 
 /*
- * How tall the parallax section is — the only thing controlling how long
- * the effect lasts, now that there's no separate "pin duration" to
- * configure. Free-form vh, so it goes out as an inline style rather than
- * a pre-built Tailwind class, same reasoning as the focal-point percentages.
+ * How tall the parallax section is per device — also how long the effect
+ * lasts, now that there's no separate "pin duration" to configure. Free-form
+ * vh, so each goes out as a literal CSS rule rather than a pre-built Tailwind
+ * class (same reasoning as the focal-point percentages). Desktop defaults to
+ * 80; Tablet and Mobile fall through to Desktop when left empty, same pattern
+ * as the per-device image and fit fields. These live in the <style> block
+ * below rather than the inline style attribute because only the former can
+ * carry the per-breakpoint @media overrides.
  */
-$min_height = get_field( 'min_height' );
-$min_height = is_numeric( $min_height ) ? max( 40, min( 200, (float) $min_height ) ) : 80;
+$desktop_min_height = get_field( 'min_height' );
+$desktop_min_height = is_numeric( $desktop_min_height ) ? max( 40, min( 200, (float) $desktop_min_height ) ) : 80;
+$tablet_min_height  = get_field( 'tablet_min_height' );
+$tablet_min_height  = is_numeric( $tablet_min_height ) ? max( 40, min( 200, (float) $tablet_min_height ) ) : $desktop_min_height;
+$mobile_min_height  = get_field( 'mobile_min_height' );
+$mobile_min_height  = is_numeric( $mobile_min_height ) ? max( 40, min( 200, (float) $mobile_min_height ) ) : $tablet_min_height;
 
 $block_id = 'cilla-skyn-sticky-banner-' . wp_unique_id();
 
 $wrapper_attributes = get_block_wrapper_attributes(
 	array(
 		'class' => 'wp-theme-cilla-skyn-sticky-banner relative flex flex-col items-center justify-center bg-cream font-sans-cs text-cs-ink bg-no-repeat',
-		'style' => sprintf( 'min-height: %1$svh; background-position: %2$s%% %3$s%%;', $min_height, $focal_x, $focal_y ),
+		'style' => sprintf( 'background-position: %1$s%% %2$s%%;', $focal_x, $focal_y ),
 		'id'    => $block_id,
 	)
 );
@@ -119,8 +127,15 @@ $wrapper_attributes = get_block_wrapper_attributes(
  * effect to most phones.
  */
 ?>
-<?php if ( $image_url ) : ?>
 	<style>
+		#<?php echo esc_attr( $block_id ); ?> { min-height: <?php echo esc_html( $desktop_min_height ); ?>vh; }
+		@media (max-width: 767px) {
+			#<?php echo esc_attr( $block_id ); ?> { min-height: <?php echo esc_html( $mobile_min_height ); ?>vh; }
+		}
+		@media (min-width: 768px) and (max-width: 1279px) {
+			#<?php echo esc_attr( $block_id ); ?> { min-height: <?php echo esc_html( $tablet_min_height ); ?>vh; }
+		}
+<?php if ( $image_url ) : ?>
 		#<?php echo esc_attr( $block_id ); ?> { background-image: url('<?php echo esc_url( $image_url ); ?>'); background-size: <?php echo esc_html( $desktop_fit ); ?>; }
 		@media (max-width: 767px) {
 			#<?php echo esc_attr( $block_id ); ?> { background-image: url('<?php echo esc_url( $mobile_image_url ); ?>'); background-attachment: scroll; background-size: <?php echo esc_html( $mobile_fit ); ?>; }
@@ -131,8 +146,8 @@ $wrapper_attributes = get_block_wrapper_attributes(
 		@media (min-width: 768px) {
 			#<?php echo esc_attr( $block_id ); ?> { background-attachment: fixed; }
 		}
-	</style>
 <?php endif; ?>
+	</style>
 <section <?php echo $wrapper_attributes; ?>>
 	<?php if ( $overlay_color ) : ?>
 		<div class="absolute inset-0" style="background-color: <?php echo esc_attr( $overlay_color ); ?>;"></div>

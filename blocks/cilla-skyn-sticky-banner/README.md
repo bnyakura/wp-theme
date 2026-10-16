@@ -2,13 +2,13 @@
 
 A full-bleed parallax banner: the background image stays visually fixed to the browser window while the page scrolls past it, then the next block on the page covers it normally once this section ends. The classic CSS-only technique (`background-attachment: fixed`) — no JS, no `position: sticky`, no negative margins, no z-index.
 
-Same field set as the [Cilla Skyn Banner](../cilla-skyn-banner/README.md) block (background image with focal point, overlay, text colour, eyebrow, heading, two rich-text paragraphs, tagline), plus **Section Height** and per-device **Image Fit** controls. Because the photo is painted as a CSS `background-image` (for the fixed/parallax effect) rather than an `<img>`, the fit is applied via `background-size` instead of `object-fit`.
+Same field set as the [Cilla Skyn Banner](../cilla-skyn-banner/README.md) block (background image with focal point, overlay, text colour, eyebrow, heading, two rich-text paragraphs, tagline), plus per-device **Section Height** and **Image Fit** controls. Because the photo is painted as a CSS `background-image` (for the fixed/parallax effect) rather than an `<img>`, the fit is applied via `background-size` instead of `object-fit`, and both height and fit are emitted as `@media`-scoped rules in a small inline `<style>` block.
 
 ## Fields
 
 | Field | Type | Required | Description |
 |---|---|---|---|
-| **Section Height** | Range (40–200%) | No | How tall this section is, as a percentage of the viewport height — also how long the parallax effect lasts, since the background stays fixed for as long as this section is scrolling past. Default 80%. |
+| **Section Height (Desktop / Tablet / Mobile)** | Range (40–200%) | No | How tall this section is per device, as a percentage of the viewport height — also how long the parallax effect lasts, since the background stays fixed for as long as this section is scrolling past. Desktop defaults to 80%; Tablet and Mobile fall through to Desktop when left empty. Applied via `@media`-scoped `min-height` rules in the inline `<style>` block (an inline `style` attribute can't carry breakpoints). |
 | **Background Image (Desktop)** | Image | No | Fills the section as a fixed background at 768px and wider. Also used as the fallback for Tablet/Mobile when either is left empty. Leave all three empty for a plain cream panel. |
 | **Background Image (Tablet)** | Image | No | Optional separate crop/photo used from 768px up to 1279px wide, in place of Desktop. |
 | **Background Image (Mobile)** | Image | No | Optional separate crop/photo used below 768px wide. The parallax effect itself is switched off below 768px regardless (see below), so this just renders as a normal scrolling background. |
