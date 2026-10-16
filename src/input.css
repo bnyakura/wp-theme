@@ -2209,7 +2209,8 @@ body.single-product {
  * five-across desktop row.
  */
 .wp-theme-cilla-skyn-best-sellers,
-.wp-theme-single-product-related {
+.wp-theme-single-product-related,
+.wp-theme-search-results {
 
 	/*
 	 * WooCommerce floats li.product by default, which only lets its own
@@ -2382,6 +2383,55 @@ body.single-product {
 		order: 2;
 		margin: 0 0 0.5rem;
 	}
+}
+
+/*
+ * Search results (search.php) pagination. WordPress's the_posts_pagination()
+ * emits <nav class="... wp-theme-search-pagination"><div class="nav-links">
+ * with .page-numbers links; restyle them as square cream/ink buttons to match
+ * the rest of the theme (the product cards above share the Best Sellers
+ * ruleset, so only the pager needs its own rules here).
+ */
+.wp-theme-search-pagination {
+	margin-top: 3.5rem;
+}
+
+.wp-theme-search-pagination .nav-links {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 0.5rem;
+}
+
+.wp-theme-search-pagination .page-numbers {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	min-width: 2.5rem;
+	padding: 0.5rem 0.75rem;
+	border: 1px solid color-mix(in srgb, var(--color-cs-ink) 20%, transparent);
+	background: var(--color-cream);
+	color: var(--color-cs-ink);
+	font-size: 0.8rem;
+	line-height: 1;
+	text-decoration: none;
+	transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.wp-theme-search-pagination a.page-numbers:hover {
+	border-color: var(--color-cs-ink);
+	color: var(--color-gold);
+}
+
+.wp-theme-search-pagination .page-numbers.current {
+	background: var(--color-cs-ink);
+	border-color: var(--color-cs-ink);
+	color: var(--color-cream);
+}
+
+.wp-theme-search-pagination .page-numbers.dots {
+	border-color: transparent;
+	background: transparent;
 }
 
 /*
