@@ -2281,7 +2281,6 @@ body.single-product {
 		aspect-ratio: 4 / 5;
 		margin: 0 0 1rem;
 		object-fit: cover;
-		background: linear-gradient(to bottom, var(--color-cream-dark), var(--color-gold-light));
 		transition: transform 0.5s ease;
 	}
 
@@ -2585,7 +2584,6 @@ body.single-product {
 			aspect-ratio: 4 / 5;
 			margin: 0 0 1rem;
 			object-fit: cover;
-			background: linear-gradient(to bottom, var(--color-cream-dark), var(--color-gold-light));
 			transition: transform 0.5s ease;
 		}
 
@@ -2840,7 +2838,6 @@ body.single-product {
 			aspect-ratio: 4 / 5;
 			margin: 0 0 1rem;
 			object-fit: cover;
-			background: linear-gradient(to bottom, var(--color-cream-dark), var(--color-gold-light));
 			transition: transform 0.5s ease;
 		}
 
