@@ -95,6 +95,14 @@ if( file_exists( $woocommerce_file_path ) ) {
     require $woocommerce_file_path;
 }
 
+// Define the path to the WebP conversion file (auto-converts new uploads to
+// WebP + the "Convert existing images" button under Customize → WebP
+// Conversion, with reference rewriting and backups)
+$webp_conversion_file_path = get_template_directory() . '/inc/webp-conversion.php';
+if( file_exists( $webp_conversion_file_path ) ) {
+    require $webp_conversion_file_path;
+}
+
 
 
 
