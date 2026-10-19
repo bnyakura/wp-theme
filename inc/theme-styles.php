@@ -37,12 +37,31 @@ if ( ! function_exists( 'custom_theme_enqueue_styles' ) ) {
 
 function cilla_skyn_enqueue_icons() {
 
-    wp_enqueue_style(
-        'font-awesome',
-        'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css',
-        [],
-        '6.5.2'
-    );
+    // Self-hosted Font Awesome 6.5.2 (assets/fontawesome/) instead of the
+    // cdnjs copy: removes a render-blocking cross-origin request, serves the
+    // CSS gzipped from our own domain, and keeps the FULL icon set so the
+    // admin-chosen ACF icon fields (pillars, cards, value pills, etc.) keep
+    // working. The stylesheet itself is made non-render-blocking in
+    // cilla_skyn_async_styles() below.
+    $fa_rel  = '/assets/fontawesome/css/all.min.css';
+    $fa_file = get_template_directory() . $fa_rel;
+
+    if ( file_exists( $fa_file ) ) {
+        wp_enqueue_style(
+            'font-awesome',
+            get_template_directory_uri() . $fa_rel,
+            [],
+            '6.5.2'
+        );
+    } else {
+        // Fallback to cdnjs if the self-hosted copy is missing (e.g. not deployed).
+        wp_enqueue_style(
+            'font-awesome',
+            'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css',
+            [],
+            '6.5.2'
+        );
+    }
 
 }
 
@@ -96,6 +115,124 @@ if ( ! function_exists( 'cilla_skyn_dequeue_preorders_sitewide_assets' ) ) {
 	}
 }
 add_action( 'wp_enqueue_scripts', 'cilla_skyn_dequeue_preorders_sitewide_assets', 100 );
+
+if ( ! function_exists( 'cilla_skyn_is_woo_page' ) ) {
+	/**
+	 * Pages where WooCommerce's own stylesheets are genuinely needed above the
+	 * fold: the shop archive, single product, cart, checkout and account pages
+	 * (all of which the theme restyles on top of Woo's base layout).
+	 *
+	 * The front page also renders products (the cilla-skyn-products /
+	 * best-sellers blocks via the [products] shortcode), but those sit below
+	 * the fold, so there the Woo CSS is kept-but-async'd rather than dequeued.
+	 *
+	 * @return bool
+	 */
+	function cilla_skyn_is_woo_page(): bool {
+		if ( ! function_exists( 'is_woocommerce' ) ) {
+			return false;
+		}
+		return is_woocommerce() || is_cart() || is_checkout() || is_account_page() || is_product() || is_shop();
+	}
+}
+
+if ( ! function_exists( 'cilla_skyn_dequeue_woocommerce_css' ) ) {
+	/**
+	 * WooCommerce enqueues woocommerce-general (woocommerce.css, ~90 KiB),
+	 * woocommerce-layout and woocommerce-smallscreen on EVERY front-end page.
+	 * On pages that render no WooCommerce markup at all (About, Contact, FAQ,
+	 * generic content pages) that's ~120 KiB of unused, render-blocking CSS.
+	 *
+	 * Drop all three there. They are kept on real Woo pages and on the front
+	 * page (which embeds product blocks); on the front page they are made
+	 * non-render-blocking instead -- see cilla_skyn_async_styles().
+	 *
+	 * @return void
+	 */
+	function cilla_skyn_dequeue_woocommerce_css(): void {
+		if ( cilla_skyn_is_woo_page() || is_front_page() ) {
+			return;
+		}
+
+		wp_dequeue_style( 'woocommerce-general' );
+		wp_dequeue_style( 'woocommerce-layout' );
+		wp_dequeue_style( 'woocommerce-smallscreen' );
+	}
+}
+add_action( 'wp_enqueue_scripts', 'cilla_skyn_dequeue_woocommerce_css', 100 );
+
+if ( ! function_exists( 'cilla_skyn_async_styles' ) ) {
+	/**
+	 * Make non-critical stylesheets load without blocking first paint, using
+	 * the `media="print"` + `onload` swap (with a <noscript> fallback). These
+	 * styles are decorative or below-the-fold, so a few ms of unstyled content
+	 * is a far better trade than ~3.7 s of render-blocking network time.
+	 *
+	 *   - font-awesome   : icons (decorative)
+	 *   - cilla-skyn-fonts / iga-fonts : Google Fonts (text uses the swap
+	 *                      fallback until they arrive; display=swap is set)
+	 *   - sbi-styles / sb_instagram_styles : Instagram feed (footer)
+	 *   - woocommerce-*  : on the FRONT PAGE only, where products are below
+	 *                      the fold. On real Woo pages these stay blocking
+	 *                      because product layout is the primary content.
+	 *
+	 * @param string $tag    The full <link> tag.
+	 * @param string $handle The stylesheet handle.
+	 * @param string $href   The stylesheet URL.
+	 * @param string $media  The media attribute.
+	 * @return string
+	 */
+	function cilla_skyn_async_styles( $tag, $handle, $href, $media ) {
+		$async = array(
+			'font-awesome',
+			'cilla-skyn-fonts',
+			'iga-fonts',
+			'sbi-styles',
+			'sb_instagram_styles',
+		);
+
+		if ( is_front_page() ) {
+			$async[] = 'woocommerce-general';
+			$async[] = 'woocommerce-layout';
+			$async[] = 'woocommerce-smallscreen';
+		}
+
+		if ( ! in_array( $handle, $async, true ) ) {
+			return $tag;
+		}
+
+		return sprintf(
+			'<link rel="stylesheet" id="%1$s-css" href="%2$s" media="print" onload="this.media=\'all\';this.onload=null;" />' .
+			'<noscript><link rel="stylesheet" href="%2$s" /></noscript>' . "\n",
+			esc_attr( $handle ),
+			esc_url( $href )
+		);
+	}
+}
+add_filter( 'style_loader_tag', 'cilla_skyn_async_styles', 10, 4 );
+
+if ( ! function_exists( 'cilla_skyn_resource_hints' ) ) {
+	/**
+	 * Warm up the Google Fonts connections early so the now-async font CSS
+	 * (fonts.googleapis.com) and the font files themselves (fonts.gstatic.com)
+	 * download sooner. gstatic needs crossorigin because fonts are CORS loads.
+	 *
+	 * @param array  $hints    URLs to hint.
+	 * @param string $relation The relation type being requested.
+	 * @return array
+	 */
+	function cilla_skyn_resource_hints( $hints, $relation ) {
+		if ( 'preconnect' === $relation ) {
+			$hints[] = 'https://fonts.googleapis.com';
+			$hints[] = array(
+				'href'        => 'https://fonts.gstatic.com',
+				'crossorigin' => 'anonymous',
+			);
+		}
+		return $hints;
+	}
+}
+add_filter( 'wp_resource_hints', 'cilla_skyn_resource_hints', 10, 2 );
 
 if ( ! function_exists( 'custom_theme_enqueue_editor_styles' ) ) {
 	/**
