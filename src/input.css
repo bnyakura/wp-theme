@@ -2406,7 +2406,10 @@ body.single-product {
 		overflow-x: auto;
 		scroll-snap-type: x mandatory;
 		-webkit-overflow-scrolling: touch;
-		padding-bottom: 0.75rem;
+		/* Hide the scrollbar — the row is driven by the arrow buttons/swipe,
+		   so the grey track is just visual noise (Firefox + IE/Edge legacy). */
+		scrollbar-width: none;
+		-ms-overflow-style: none;
 		--cs-bs-slider-per-view: 2;
 	}
 
@@ -2434,18 +2437,9 @@ body.single-product {
 		scroll-snap-align: start;
 	}
 
-	/* Slim scrollbar so there's a visible affordance that the row scrolls. */
+	/* Hide the WebKit/Blink scrollbar too (Chrome, Safari, Edge). */
 	.woocommerce ul.products::-webkit-scrollbar {
-		height: 6px;
-	}
-
-	.woocommerce ul.products::-webkit-scrollbar-track {
-		background: transparent;
-	}
-
-	.woocommerce ul.products::-webkit-scrollbar-thumb {
-		background: color-mix(in srgb, var(--color-cs-ink) 25%, transparent);
-		border-radius: 999px;
+		display: none;
 	}
 }
 
