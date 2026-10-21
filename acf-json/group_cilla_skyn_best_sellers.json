@@ -153,6 +153,84 @@
             "placeholder": ""
         },
         {
+            "key": "field_cilla_skyn_best_sellers_slider",
+            "label": "Display as Slider",
+            "name": "slider",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "Show the products in a single row that slides left and right instead of a stacked grid. The Columns field sets how many cards are visible at once; any extra products (see Number of Products) are reached by sliding.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": { "width": "", "class": "", "id": "" },
+            "message": "",
+            "default_value": 0,
+            "ui": 1,
+            "ui_on_text": "Slider",
+            "ui_off_text": "Grid"
+        },
+        {
+            "key": "field_cilla_skyn_best_sellers_show_arrows",
+            "label": "Show Arrows",
+            "name": "show_arrows",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "Show previous / next arrow buttons so visitors can slide the row without swiping. Only applies in Slider mode.",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    { "field": "field_cilla_skyn_best_sellers_slider", "operator": "==", "value": "1" }
+                ]
+            ],
+            "wrapper": { "width": "", "class": "", "id": "" },
+            "message": "",
+            "default_value": 1,
+            "ui": 1,
+            "ui_on_text": "Shown",
+            "ui_off_text": "Hidden"
+        },
+        {
+            "key": "field_cilla_skyn_best_sellers_autoplay",
+            "label": "Auto Slide",
+            "name": "autoplay",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "Automatically advance the row at a set interval. Pauses while the visitor hovers or is touching it, and loops back to the start at the end. Only applies in Slider mode.",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    { "field": "field_cilla_skyn_best_sellers_slider", "operator": "==", "value": "1" }
+                ]
+            ],
+            "wrapper": { "width": "", "class": "", "id": "" },
+            "message": "",
+            "default_value": 0,
+            "ui": 1,
+            "ui_on_text": "On",
+            "ui_off_text": "Off"
+        },
+        {
+            "key": "field_cilla_skyn_best_sellers_autoplay_speed",
+            "label": "Auto Slide Speed",
+            "name": "autoplay_speed",
+            "aria-label": "",
+            "type": "number",
+            "instructions": "Seconds between automatic slides.",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    { "field": "field_cilla_skyn_best_sellers_autoplay", "operator": "==", "value": "1" }
+                ]
+            ],
+            "wrapper": { "width": "", "class": "", "id": "" },
+            "default_value": 4,
+            "min": 1,
+            "max": 30,
+            "step": 0.5,
+            "prepend": "",
+            "append": "sec",
+            "placeholder": ""
+        },
+        {
             "key": "field_cilla_skyn_best_sellers_title_font_size",
             "label": "Product Title Font Size",
             "name": "title_font_size",
@@ -225,5 +303,5 @@
     "active": true,
     "description": "Cream-section WooCommerce product grid, built from the [products] shortcode.",
     "show_in_rest": 0,
-    "modified": 0
+    "modified": 1792592558
 }

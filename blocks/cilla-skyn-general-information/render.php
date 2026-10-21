@@ -22,9 +22,18 @@
 $content_raw = get_field( 'content', false, false );
 $content     = $content_raw ? apply_filters( 'the_content', $content_raw ) : '';
 
+/*
+ * Section background colour, chosen in the block sidebar. The ACF field
+ * defaults to the brand cream (#FAF3E5), the block's original hardcoded
+ * background; the PHP fallback repeats it so blocks placed before this
+ * field existed (empty stored value) keep that same cream.
+ */
+$background_color = get_field( 'background_color' ) ?: '#FAF3E5';
+
 $wrapper_attributes = get_block_wrapper_attributes(
 	array(
-		'class' => 'wp-theme-cilla-skyn-general-information bg-[#FAF3E5] font-sans-cs text-cs-ink',
+		'class' => 'wp-theme-cilla-skyn-general-information font-sans-cs text-cs-ink',
+		'style' => sprintf( 'background-color: %s;', esc_attr( $background_color ) ),
 	)
 );
 ?>

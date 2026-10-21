@@ -17,6 +17,20 @@
             "toolbar": "full",
             "media_upload": 1,
             "delay": 0
+        },
+        {
+            "key": "field_cilla_skyn_general_information_background_color",
+            "label": "Background Color",
+            "name": "background_color",
+            "aria-label": "",
+            "type": "color_picker",
+            "instructions": "Section background colour. Defaults to the brand cream (#FAF3E5) when left empty.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": { "width": "", "class": "", "id": "" },
+            "default_value": "#FAF3E5",
+            "enable_opacity": 0,
+            "return_format": "string"
         }
     ],
     "location": [
@@ -37,5 +51,5 @@
     "active": true,
     "description": "Freeform rich-text section -- one full WYSIWYG editor for general-purpose copy anywhere on the site.",
     "show_in_rest": 0,
-    "modified": 0
+    "modified": 1792592558
 }

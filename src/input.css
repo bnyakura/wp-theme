@@ -2385,6 +2385,71 @@ body.single-product {
 }
 
 /*
+ * Best Sellers "Display as Slider" layout. The ACF Slider toggle adds the
+ * --slider modifier in render.php; this turns the product grid into a single
+ * horizontally-scrollable row — ul.products becomes a nowrap flex track with
+ * overflow-x + scroll-snap, and each li.product takes a fixed share of the
+ * width so exactly N cards show at once, the rest reached by sliding/swiping
+ * left and right. N (--cs-bs-slider-per-view) mirrors the grid's responsive
+ * steps: 2 on mobile, 3 from 640px, and the editor's Columns value from
+ * 1024px. CSS-only (native scroll + snap, no JS), scoped to --slider so the
+ * related-products and search grids that share the ruleset above are
+ * untouched. These rules match the base block's specificity but come later in
+ * source order, so they win — including the width !important, which beats the
+ * base width:auto !important the same way.
+ */
+.wp-theme-cilla-skyn-best-sellers--slider {
+
+	.woocommerce ul.products {
+		display: flex;
+		flex-wrap: nowrap;
+		overflow-x: auto;
+		scroll-snap-type: x mandatory;
+		-webkit-overflow-scrolling: touch;
+		padding-bottom: 0.75rem;
+		--cs-bs-slider-per-view: 2;
+	}
+
+	@media (min-width: 640px) {
+		.woocommerce ul.products {
+			--cs-bs-slider-per-view: 3;
+		}
+	}
+
+	@media (min-width: 1024px) {
+		.woocommerce ul.products {
+			--cs-bs-slider-per-view: var(--cs-bs-columns, 4);
+		}
+	}
+
+	/*
+	 * Each card is 1/Nth of the visible width, minus its share of the gaps
+	 * between the N cards on screen. --cs-bs-slider-per-view inherits from
+	 * ul.products above. width is repeated with !important only to override
+	 * the base grid rule's width:auto !important; flex-basis does the real work.
+	 */
+	.woocommerce ul.products li.product {
+		flex: 0 0 calc((100% - (var(--cs-bs-slider-per-view) - 1) * var(--cs-bs-col-gap, 24px)) / var(--cs-bs-slider-per-view));
+		width: calc((100% - (var(--cs-bs-slider-per-view) - 1) * var(--cs-bs-col-gap, 24px)) / var(--cs-bs-slider-per-view)) !important;
+		scroll-snap-align: start;
+	}
+
+	/* Slim scrollbar so there's a visible affordance that the row scrolls. */
+	.woocommerce ul.products::-webkit-scrollbar {
+		height: 6px;
+	}
+
+	.woocommerce ul.products::-webkit-scrollbar-track {
+		background: transparent;
+	}
+
+	.woocommerce ul.products::-webkit-scrollbar-thumb {
+		background: color-mix(in srgb, var(--color-cs-ink) 25%, transparent);
+		border-radius: 999px;
+	}
+}
+
+/*
  * Search results (search.php) pagination. WordPress's the_posts_pagination()
  * emits <nav class="... wp-theme-search-pagination"><div class="nav-links">
  * with .page-numbers links; restyle them as square cream/ink buttons to match

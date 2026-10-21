@@ -60,6 +60,8 @@ if ( ! function_exists( 'custom_theme_enqueue_js' ) ) {
 	wp_enqueue_script( 'iga-pricing-tabs', get_theme_file_uri( 'assets/js/pricing-tabs.js' ), [], $version, true );
 	// Floating WhatsApp chat button (footer.php) open/close + send.
 	wp_enqueue_script( 'cilla-skyn-whatsapp-chat', get_theme_file_uri( 'assets/js/whatsapp-chat.js' ), [], $version, true );
+	// Best Sellers slider — arrow buttons + optional autoplay for the block's "Display as Slider" layout.
+	wp_enqueue_script( 'cilla-skyn-product-slider', get_theme_file_uri( 'assets/js/product-slider.js' ), [], $version, true );
 
 
 
